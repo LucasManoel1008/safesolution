@@ -1,0 +1,274 @@
+:root{
+    --blue: #2B2D42;
+    --blue2: #1d1e20;
+    --blue3:#234063;
+    --blue4:#1E2D3F;
+    --white: #EDF2F4;
+}
+/*Formatações para evitar css-inline*/
+.blue2{color: #234063}
+.text-underline{text-decoration: underline;}
+.bold{font-weight: bolder;}
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.loaded .fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/*Fim das formatações*/
+
+/* formata o site para todos ficarem em uma posição "Reset", alguns navegadores possuem um
+    CSS por padrão, isso remove eles*/
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+@font-face {
+    font-family: "montserrat";
+    src: url("../fonts/Montserrat-VariableFont_wght.ttf");
+}
+
+body{
+    font-family: "montserrat";
+    height: 100%;
+}
+
+/* Botão que da um scroll rápido para cima */
+#botaoScroll{
+    position: fixed;
+    border: none;
+    background-color: var(--blue);
+    padding:7px 20px;
+    border-radius: 20px;
+    color: white;
+    font-size: 2em;
+    z-index: 1000;
+    right: 20px;
+    bottom: 20px;
+    cursor: pointer;
+    display: none;
+    transition: all 0.2s;
+    scroll-behavior: smooth;
+}
+#botaoScroll:hover{
+    background-color: var(--blue4);
+    transition: all 0.2s;
+}
+
+
+#active{
+    border: 2px solid var(--blue3);
+    background-color: var(--blue3);
+    color: var(--blue2);
+
+}
+.header .menuOculto{
+    font-weight: bold;
+
+}
+.header{
+    position: fixed;
+    justify-content: space-around;
+    width: 100%;
+    background-color: white;
+    box-shadow: 6px 6px 10px -1px rgba(45, 46, 66, 0.8),
+                -6px -6px 10px -1px rgba(35, 64, 99, 0.40) ;
+    top: 0;
+    z-index: 997;
+}
+.fixedHeader{
+    position: fixed;
+}
+
+.elements-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px 10px;
+    height: 70px;
+    margin: 0 auto;  
+}
+
+
+.left-header-desktop a , .elementsHeader-desktop a{
+    margin: 0 10px;
+    text-align: center;
+}
+.elements-header #logo-header img{
+    width: 250px;
+}
+
+.elementsHeader-desktop{
+    display: none;
+    justify-content: flex-start;
+    
+}
+.left-header-desktop{
+    display: none;
+    justify-content: flex-end;
+}
+.menuOculto a{
+    text-decoration: none;
+    color: #fff;
+    padding: 8px 8px 8px 32px;
+    font-size: 25px;
+    display: block;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    transition: 0.1s;
+}
+.menuOculto a:hover{
+    color: var(--blue2);
+}
+.btn-close-x{
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    background-color: transparent;
+    border: none;
+    font-size: 32px;
+    color: var(--white);
+    cursor: pointer;
+    padding: 2px;
+    width: 40px;
+    transition: 0.5s;
+}
+.btn-close:hover{
+    background-color: #234063;
+    border-radius: 10px;
+    transition: border 0.5s;
+
+}
+.menuOculto{
+    height: 100%;
+    width: 300px;
+    margin-left: -100vw;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #1E2D3F;
+    transition: 0.5s;
+    padding-top: 60px;
+    transition: border 0.5s;
+    text-align: left;
+}
+
+#elements-header{
+    margin-left: 16px;
+}
+
+
+.footer .servicos ul{
+    list-style: none;
+    
+}
+.footer{
+    margin-top: 3vh;
+    width: 100%;
+    background-color: var(--blue2);
+    display: flex;
+    flex-direction: column;
+    color: var(--white);
+    font-size: 15px;
+}
+.footer .servicos{
+    background-color: none;
+}
+.footer .servicos .container1{
+    text-align: left ;
+}
+.footer .servicos ul a {
+    display: inline;
+    color: #234063;
+}
+
+.footer strong{
+    color: var(--white);
+}
+
+
+
+@media screen and (min-width:700px){
+    .elements-header{
+        max-width: 700px;
+    }
+}
+@media screen and (min-width:993px) {
+    .logo{
+        flex-grow: 1;
+    }
+    .elementsHeader-desktop, .left-header-desktop{
+        display: flex;
+        align-items: center;
+    }
+    .elements-header{
+        white-space: nowrap; /*Evita quebra de linhas*/
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        max-width: none;
+    }
+    #active{
+        border-radius: 4px;
+        opacity: 0.8;
+        color: var(--blue3);
+        background-color: transparent;
+        border: 2px solid var(--blue);
+    }
+    .elementsHeader-desktop a , .left-header-desktop a{
+        text-decoration: none;
+        color: var(--blue3);
+        font-weight: bolder;
+        padding:5px;
+        font-size: 12px;
+    }
+    .left-header-desktop .login{
+        border: 1px solid var(--blue3);
+        border-radius: 4px;
+        transition: background-color 0.5s;
+    }
+    .left-header-desktop .registro{
+        color: white;
+        background-color: var(--blue3);
+        border-radius: 4px;
+        transition: opacity 0.5s;
+    }
+    .left-header-desktop .registro:hover{
+        opacity: 0.8;
+        transition: opacity 0.5s;
+    }
+    .left-header-desktop .login:hover{
+        background-color: #f1f1f1;
+        transition: background-color 0.5s;
+    }
+    
+    .elementsHeader-desktop a:hover{
+        opacity: 0.8;
+        border-radius: 4px;
+        color: var(--blue3);
+        background-color: transparent;
+        border: 1px solid var(--blue);
+    }
+    #elements-header{
+        display: none;
+    }
+    .menuOculto{
+        display: none;
+    }      
+
+    .footer .servicos{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        text-align: center;
+    }
+   
+    }
+    

@@ -1,0 +1,384 @@
+/*palheta de cores do site, para usar basta aplicar color: var("nome da var")*/
+:root{
+    --blue: rgb(43, 45, 66);
+    --blue2: #8e9aaf;
+    --blue3:rgb(35, 64, 99);
+    --blue4:#1E2D3F;
+    --white: #EDF2F4;
+}
+html, body{
+    overflow-x: hidden;
+}
+a{
+    text-decoration: none;
+}
+strong{
+    color: var(--blue3);
+}
+
+
+/*Formatações para evitar css-inline*/
+.blue2{color: #234063}
+.text-underline{text-decoration: underline;}
+.bold{font-weight: bold;}
+.align-text{
+    text-align: center;
+}
+
+
+/*Fim das formatações*/
+
+/*Botao Junte-se a nós*/
+    .joinUs{
+        max-width: 90%;
+        margin: 160px auto 20px auto;
+        border:none;
+        border-radius: 2px;
+        font-size: 20px;
+        padding: 10px;
+        background-color: var(--blue3);
+        
+    }
+    
+    .joinUs:hover{
+        background-color: var(--blue4);
+    }
+    
+
+    /* Divulgação de serviços */
+    .firstImage{
+        justify-content: space-around;
+        width: 100%;
+        margin: 20px 20px 0 20px;
+        padding-bottom: 20px;
+        box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+        
+    }
+
+    .firstImage .leftContent{
+        margin-top: clamp(20px, 20%, 200px);
+    }
+    .firstImage .leftContent h4{
+        color: #234063;
+        font-weight: bold;
+    }
+    .firstImage .leftContent p{
+        opacity: 0.7;
+        color: gray;
+    }
+    .firstImage .leftContent button.text-button{
+        color: white;
+        background-color: var(--blue3);
+        cursor: pointer;
+        margin-top: 30px;
+       
+    }
+    .firstImage .rightContent img{
+       width: 300px;
+       z-index: 1;
+        
+    }
+    
+
+/*Formatações do carrossel*/
+
+
+/* Divulgação do aplicativo */
+.applicationMobile{
+    background-color: var(--blue3);
+    color: white;
+    padding-top: 20px;
+    margin-top: 100px;
+    margin-bottom: 150px;
+    flex-direction: column;
+    align-items: center;
+    max-height: 600px;
+}
+.applicationMobile h4{
+    font-weight: bold;
+}
+
+/* Formatações sobre os 4 elementos que informam o objetivo no site */
+.title-main-text{
+    margin-top: 70px;
+    font-weight: bold;
+    color:var(--blue3);
+    text-align: center;
+}
+
+.text-body{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 20px;
+    text-align: center;
+    margin: 20px auto;
+    max-width: 80%;
+    justify-content: space-between;
+    grid-gap: 20px;
+    
+
+}
+.text-body .Text{
+    margin: 20px auto;
+}
+.Text{
+    margin: 20px 40px 20px 0;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+    max-width: 400px;
+    height: 500px;
+}
+.Text p{
+    margin-bottom: 3rem;
+}
+
+.icon-main-text{
+    margin-bottom: 3rem;
+    margin-top: 1rem;
+}
+.list{
+    list-style-position: inside;
+    text-align: start;
+    
+}
+
+.list li::marker{
+    color: var(--blue3);
+}
+.icon-main-text{
+    width: 90px;
+}
+
+
+
+
+/*Comentarios de clientes*/
+.comments-area{
+    margin: 7rem 0 7rem 0;
+}
+
+.comments{
+    display: grid;
+    grid-template-columns:repeat(auto-fit, minmax(19rem, 4fr)) ;
+}
+.container{
+    width: 300px;
+    align-items: center;
+    text-align: center;
+    margin: 20px auto;
+    gap: 15px;
+}
+.container h1{
+    margin:20px auto;
+}
+.container img{
+    width: 100px;
+    border-radius: 100%;
+}
+.container p{
+    font-style: italic;
+    font-size: clamp(10px,15px,18px);
+}
+.peopleName{
+    color: var(--blue3);
+    margin-bottom: 30px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+
+/* Barra de pesquisa + Categorias */
+.categorias{
+    
+    width: clamp(300px, 700px, 90%);
+    margin: 0 auto;
+
+}
+
+.categorias h4{
+    margin-bottom: 30px !important; 
+}
+.links{
+    margin-top: 20px;
+    justify-content: center;
+    gap: 10px;
+}
+
+
+
+
+.servicos-links a{
+    margin: 0 5px;
+}
+
+
+/*Perguntas frequentes*/
+.FAQ{
+    width: 100%;
+    
+
+}
+.FAQ-container{
+    margin: 70px auto;
+    width: calc(250px + 5%) ;
+    display: grid;
+    width: 100%;
+
+}
+.FAQ-container li{
+    list-style-type: none;
+    margin: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 6px 6px 10px -1px rgba(45, 46, 66, 0.8),
+                -6px -6px 10px -1px rgba(35, 64, 99, 0.40) ;
+    cursor: pointer;
+}
+.FAQ-container li label{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--blue3);
+}
+.FAQ-container li label::before{
+    content: "+";
+    margin-right: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--blue2);
+}
+.FAQ-container li input[type="radio"]{
+    display: none;
+}
+.faq-content{
+    color: var(--blue2);
+    padding: 0 10px;
+    line-height: 26px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s, padding 0.5s;
+}
+.FAQ-container li input[type="radio"]:checked+ label + .faq-content{
+    max-height: 300px;
+    padding: 10px 10px 20px;
+}
+.FAQ-container li input[type="radio"]:checked+ label::before{
+    content: "-";
+}
+
+/* Formularios */
+.forms{
+    text-align: center;
+    color: var(--blue3);
+}
+.forms-title{
+    margin: auto;
+    width: fit-content;
+    font-weight: bold;
+}
+.forms-title p{
+    text-align: left;
+    margin-left: 10px;
+}
+.forms-data{
+    display: flex;
+    flex-direction: column;
+    width: 70vw;
+    margin: 40px auto;
+
+}
+.forms-data input{
+    margin-bottom: 2em;
+    border:none;
+    border-bottom:1px solid rgba(0, 0, 0, 0.4);
+    font-size: 15px;
+    padding-bottom: 6px;
+    
+}
+.forms-data input:focus{
+    outline: none;
+}
+.forms-data .razao{
+    align-self: flex-start;
+    text-align: left;
+}
+.razao p{
+    font-size: 10px;
+}
+.razao select{
+    border: none;
+    background-color: white;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    width: 70vw;
+    padding-bottom: 6px;
+    opacity: 0.7;
+}
+
+/*Botão RESET*/
+.forms input[type="submit"]{
+    padding: 10px;
+    margin-left: calc(100% - 200px);
+    background-color: var(--blue4);
+    border: 1px solid var(--blue4);
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+   
+}
+
+
+.textarea{
+    margin: 2em 0 10px 0;
+}
+.textarea textarea{
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    resize: none;
+    outline: none;
+    font-size: 15px;
+    padding-bottom: 6px;
+    width: 70vw;
+}
+
+
+@media screen and (max-width:620px){
+    .servicos-links{
+        max-width: clamp(300px, 40%, 500px);
+    }
+    
+}
+@media  screen and (min-width: 720px) {
+    .joinUs{
+        max-width: 700px;
+    }
+}
+
+@media screen and (min-width: 993px){
+    h4{
+        font-size: 36px;
+    }
+    .firstImage .leftContent p{
+        font-size: 26px;
+    }
+    .firstImage{
+        margin-top: 70px;
+    }
+
+}
+
+@media screen and (max-width: 1200px){
+    .text-body{
+        grid-template-columns: repeat(1,1fr);
+    }
+    .Text{
+        height: fit-content;
+    }
+    @media screen and (max-width: 400px){
+        .firstImage .rightContent img{
+            width: 200px;
+        }
+    }
+}
+
