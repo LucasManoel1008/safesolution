@@ -157,46 +157,89 @@ function Home() {
       </section>
 
       {/* Barra de pesquisa + Categorias - Inicio */}
-      <section className="categorias">
-        <h4 className="title-main-text">Faça o Teste!</h4>
-        <div className="input-group">
-          <input type="text" className="form-control" placeholder="Pesquisar"/>
-          <div className="input-group-append">
-            <button className="btn btn-secondary" type="button">
-              <i className="fa fa-search"></i>
-            </button>
-          </div>
-        </div>
-      </section>
+     
+      <section class="FAQ">
+            <h4 class="title-main-text blue2 align-text">Perguntas Frequentes</h4>
+            <ul class="FAQ-container">
+                <li>
+                    <input type="radio" name="faq" id="firstFAQ" />
+                    <label for="firstFAQ">Como usar a plataforma?</label>
+                    <div class="faq-content">
+                        <p>
+                        Como Provedor - você pode divulgar os serviços que sua empresa disponibiliza. <br/>  
+                        Como Cliente - Você poderá ter acesso a diversoso serviços disponiveis.
+                        </p>
+                    </div>
+                </li>
+                <li>
+                    <input type="radio" name="faq" id="secondFAQ"/>
+                    {/* placeholder */}
+                    <label for="secondFAQ">Que tipo de segurança a plataforma possui contra golpes?</label>
+                    <div class="faq-content">
+                        <p>
+                            Instalações e serviços empresariais, no geral, demandam muitas etapas, 
+                            um contato individual com as servidoras, e uma burocracia que precisa
+                            perder espaço com a rapidez do mercado moderno. A grandiosa vantagem 
+                            da Safe Soluction© é reunir todas as etapas do processo num único lugar,
+                            otimizando tempo e unificando também a contatação para todas as empresas,
+                            sejam elas prestadoras ou solicitantes de serviços.</p>
+                    </div>
+                </li>
+                <li>
+                    <input type="radio" name="faq" id="thirdFAQ"/>
+                    <label for="thirdFAQ">Por que usar a plataforma de vocês?</label>
+                    <div class="faq-content">
+                        <p>
+                            Instalações e serviços empresariais, no geral, demandam muitas etapas, 
+                            um contato individual com as servidoras, e uma burocracia que precisa
+                            perder espaço com a rapidez do mercado moderno. A grandiosa vantagem 
+                            da Safe Soluction© é reunir todas as etapas do processo num único lugar,
+                            otimizando tempo e unificando também a contatação para todas as empresas,
+                            sejam elas prestadoras ou solicitantes de serviços.
+                        </p>
+                    </div>
+                </li>
+                <li>
+                    <input type="radio" name="faq" id="fourthFAQ"/>
+                    <label for="fourthFAQ">A plataforma possui aplicativo móvel para facilitar o acesso em dispositivos móveis?</label>
+                    <div class="faq-content">
+                        <p>
+                            Sim, a plataforma possui uma versão mobile, que está disponível para Android e IOS. O aplicativo é essencial para quem busca praticidade e um acompanhamento
+                        dos serviços e contatações mesmo longe dos dispositivos desktop.
+                        </p>
+                    </div>
+                </li>
+            </ul>
 
-      <div className="links d-flex">
-        <strong>Mais Vistos:</strong>
-        <div className="servicos-links">
-          <a href="#">Arquitetura</a>
-          <a href="#">limpeza</a>
-          <a href="#">Transportes</a>
-          <a href="#">Segurança</a>
-          <a href="#">Encanador</a>
-        </div>
-      </div>
+        </section>
+        
 
-      {/* Barra de pesquisa + Categorias - FIM */}
-
-      <section className="FAQ">
-        <h4>Perguntas Frequentes</h4>
-        <div className="faq-item">
-          <div className="faq-question">O que é a Safe Solution?</div>
-          <div className="faq-answer">A Safe Solution é uma plataforma que conecta empresas prestadoras de serviços com outras empresas que necessitam desses serviços, facilitando o processo de contratação e otimização de recursos.</div>
-        </div>
-        <div className="faq-item">
-          <div className="faq-question">Como funciona o sistema de serviços compartilhados?</div>
-          <div className="faq-answer">Nosso sistema permite que empresas publiquem seus serviços para que outras empresas possam encontrá-los e contratá-los de forma prática e eficiente, tudo em um único lugar.</div>
-        </div>
-        <div className="faq-item">
-          <div className="faq-question">Quem pode utilizar a plataforma?</div>
-          <div className="faq-answer">Qualquer empresa que esteja em busca de otimizar seus recursos ao contratar serviços ou que deseja expandir sua rede de clientes pode utilizar nossa plataforma.</div>
-        </div>
-      </section>
+        <form id="ajuda" class="forms">
+            <div class="forms-title">
+                <h4>Ainda dúvidas? Entre em Contato Conosco!</h4>
+                <p>*Entrada Obrigatória</p>
+            </div>
+                <div class="forms-data">
+                    <input type="text" placeholder="*NOME" onfocus="focusName()" id="name"/>
+                    <input type="text" placeholder="*SOBRENOME"/>
+                    <input type="email" placeholder="*EMAIL"/>
+                    <input type="tel" placeholder="TELEFONE"/>
+                    <input type="text" placeholder="CIDADE"/>
+                    <div class="razao">
+                    <p>*Assunto</p>
+                    <select name="Assunto" id="Assunto">
+                        <option value="Assunto" selected>*ASSUNTO</option>
+                        <option value="Reclamacao" >RECLAMAÇÃO</option>
+                        <option value="Elogio" >ELOGIO</option>
+                        <option value="Informacao" >INFORMAÇÃO</option>
+                    </select>
+                    <div class="textarea">
+                        <textarea  rows="1" placeholder="*Mensagem" id="mensagem" oninput="ajustarTexto()"></textarea>
+                    </div>
+                </div>
+                </div>
+                <input id="submit" type="submit" value="enviar"/>
+        </form>
 
       <footer class="footer">
             <div class="servicos mt-4">
