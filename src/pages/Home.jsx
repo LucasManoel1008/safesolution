@@ -1,38 +1,12 @@
 import React from 'react'
 import Imagemindex from '../shared/Imagesindex'
 
+
+
 function Home() {
   return (
     <div>
-        <button id="botaoScroll" >&uarr;</button>
-      <header className="header" id="header">      
-        {/* Menu versão mobile */}
-        <div className="menuOculto" id="menuOculto">
-          <button className="btn-close-x" >&times;</button>
-          <a href="#" id="active">AJUDA</a>
-          <a href="#">SERVIÇOS</a>
-          <a href="#">SOBRE NÓS</a>
-          <a href="#">ENTRAR</a>
-        </div>
-
-        {/* Menu da Versão Desktop */}
-        <div className="elements-header">
-          <img src="#" alt="Menu" id="elements-header" style={{fontSize: "30px", cursor: "pointer"}}  />
-          <div className="elementsHeader-desktop">
-            <a href="#">SERVIÇOS</a>
-            <a href="#">SOBRE NÓS</a>
-            <a href="#" id="active">AJUDA</a>
-          </div>
-          <div className="logo">
-            <a href="#" id="logo-header"><img src="#" alt="" /></a>
-          </div>
-          <div className="left-header-desktop">
-            <a href="#" className="login">ENTRAR</a>
-            <a href="#" className="registro">REGISTRO</a>
-          </div>
-        </div>
-      </header>
-
+       
       {/* Botão disponível apenas no mobile. Junte-se a nós */}
       <button className="btn-primary d-lg-none btn-block joinUs">Seja Provedor <img src={Imagemindex.fast} alt=""/></button>
 
@@ -47,7 +21,7 @@ function Home() {
             <button className="text-button btn">Descubra já</button>
           </div>
           <div className="rightContent">
-            <img src="img/firstImage/plumber-talking-mobile.jpg" alt="Engineer"/>
+            <img src={Imagemindex.plumber} alt="Engineer"/>
           </div>
         </div>
 
@@ -92,11 +66,11 @@ function Home() {
           <h4>BAIXE NOSSO APLICATIVO</h4>
           <p>Gerenciamento de serviços na palma da mão</p>
           <div className="aplicationLinks mt-5 mb-5">
-            <a href="#" className="pr-4"><img src="img/aplication/disponivel-google-play-badge 1.png" width="150" alt="GOOGLE PLAY"/></a>
-            <a href="#"><img src="img/aplication/disponivel-na-app-store-botao 1.png" width="150" alt="APP STORE"/></a>
+            <a href="#" className="pr-4"><img src={Imagemindex.googlePlay} width="150" alt="GOOGLE PLAY"/></a>
+            <a href="#"><img src={Imagemindex.appSotre} width="150" alt="APP STORE"/></a>
           </div>
 
-          <img src="img/aplication/BAIXE NOSSO APLICATIVO.png" width="400" alt="CELLPHONE" className="cellphone"/>
+          <img src={Imagemindex.cellphone} width="400" alt="CELLPHONE" className="cellphone"/>
         </div>
       </main>
 
@@ -159,13 +133,13 @@ function Home() {
 
       {/* Barra de pesquisa + Categorias - Inicio */}
      
-      <section class="FAQ">
-            <h4 class="title-main-text blue2 align-text">Perguntas Frequentes</h4>
-            <ul class="FAQ-container">
+      <section className="FAQ">
+            <h4 className="title-main-text blue2 align-text">Perguntas Frequentes</h4>
+            <ul className="FAQ-container">
                 <li>
                     <input type="radio" name="faq" id="firstFAQ" />
-                    <label for="firstFAQ">Como usar a plataforma?</label>
-                    <div class="faq-content">
+                    <label htmlFor="firstFAQ">Como usar a plataforma?</label>
+                    <div className="faq-content">
                         <p>
                         Como Provedor - você pode divulgar os serviços que sua empresa disponibiliza. <br/>  
                         Como Cliente - Você poderá ter acesso a diversoso serviços disponiveis.
@@ -175,8 +149,8 @@ function Home() {
                 <li>
                     <input type="radio" name="faq" id="secondFAQ"/>
                     {/* placeholder */}
-                    <label for="secondFAQ">Que tipo de segurança a plataforma possui contra golpes?</label>
-                    <div class="faq-content">
+                    <label htmlFor="secondFAQ">Que tipo de segurança a plataforma possui contra golpes?</label>
+                    <div className="faq-content">
                         <p>
                             Instalações e serviços empresariais, no geral, demandam muitas etapas, 
                             um contato individual com as servidoras, e uma burocracia que precisa
@@ -188,8 +162,8 @@ function Home() {
                 </li>
                 <li>
                     <input type="radio" name="faq" id="thirdFAQ"/>
-                    <label for="thirdFAQ">Por que usar a plataforma de vocês?</label>
-                    <div class="faq-content">
+                    <label htmlFor="thirdFAQ">Por que usar a plataforma de vocês?</label>
+                    <div className="faq-content">
                         <p>
                             Instalações e serviços empresariais, no geral, demandam muitas etapas, 
                             um contato individual com as servidoras, e uma burocracia que precisa
@@ -202,8 +176,8 @@ function Home() {
                 </li>
                 <li>
                     <input type="radio" name="faq" id="fourthFAQ"/>
-                    <label for="fourthFAQ">A plataforma possui aplicativo móvel para facilitar o acesso em dispositivos móveis?</label>
-                    <div class="faq-content">
+                    <label htmlFor="fourthFAQ">A plataforma possui aplicativo móvel para facilitar o acesso em dispositivos móveis?</label>
+                    <div className="faq-content">
                         <p>
                             Sim, a plataforma possui uma versão mobile, que está disponível para Android e IOS. O aplicativo é essencial para quem busca praticidade e um acompanhamento
                         dos serviços e contatações mesmo longe dos dispositivos desktop.
@@ -215,86 +189,34 @@ function Home() {
         </section>
         
 
-        <form id="ajuda" class="forms">
-            <div class="forms-title">
+        <form id="ajuda" className="forms">
+            <div className="forms-title">
                 <h4>Ainda dúvidas? Entre em Contato Conosco!</h4>
                 <p>*Entrada Obrigatória</p>
             </div>
-                <div class="forms-data">
-                    <input type="text" placeholder="*NOME" onfocus="focusName()" id="name"/>
+                <div className="forms-data">
+                    <input type="text" placeholder="*NOME" id="name"/>
                     <input type="text" placeholder="*SOBRENOME"/>
                     <input type="email" placeholder="*EMAIL"/>
                     <input type="tel" placeholder="TELEFONE"/>
                     <input type="text" placeholder="CIDADE"/>
-                    <div class="razao">
+                    <div className="razao">
                     <p>*Assunto</p>
                     <select name="Assunto" id="Assunto">
-                        <option value="Assunto" selected>*ASSUNTO</option>
+                        <option value="Assunto" defaultValue={'Assunto'}>*ASSUNTO</option>
                         <option value="Reclamacao" >RECLAMAÇÃO</option>
                         <option value="Elogio" >ELOGIO</option>
                         <option value="Informacao" >INFORMAÇÃO</option>
                     </select>
-                    <div class="textarea">
-                        <textarea  rows="1" placeholder="*Mensagem" id="mensagem" oninput="ajustarTexto()"></textarea>
+                    <div className="textarea">
+                        <textarea  rows="1" placeholder="*Mensagem" id="mensagem"></textarea>
                     </div>
                 </div>
                 </div>
                 <input id="submit" type="submit" value="enviar"/>
         </form>
 
-      <footer class="footer">
-            <div class="servicos mt-4">
-                <ul class="mt-4 container1">
-                    <a href="#"> <img src="img/Logo (Reserva).png" width="200" alt="LOGO"/></a>
-                    <li><a href="#">Política de Privacidade</a></li>
-                    <li><a href="#">Termos de uso</a></li>
-                    <li><a href="#">Seja provedor</a></li>
-                </ul>
-               <ul class="container2 d-flex flex-column mt-3" >               
-                    <strong class="pb-2">Serviços</strong>
-                    <li><a href="#">Arquitetura</a></li>
-                    <li><a href="#">limpeza</a></li>
-                    <li><a href="#">Transportes</a></li>
-                    <li><a href="#">Segurança</a></li>
-                    <li><a href="#">Encanador</a></li>
-               </ul>
-               
-               <ul class="container3 d-flex flex-column mt-3">
-                    <strong class="pb-2">Informações</strong>
-                    <li><a href="#quemSomos">Sobre nós</a></li>
-                    <li><a href="#ajuda">Ajuda</a></li>
-                    <li><a href="#relatos">Relatos</a></li>
-
-               </ul>
-            
-               <ul class="container4 d-flex flex-row mt-3">
-
-                    <a href="#">
-                        <img src="img/redesSociais/Facebook.svg" width="30" alt="Facebook"/>
-                    </a>
-
-                    <a href="#">
-                        <img src="img/redesSociais/Instagram.svg" width="30" alt="Instagram"/>
-                    </a>
-
-                    <a href="#">
-                        <img src="img/redesSociais/LinkedIn.svg"  width="30" alt="LinkedIn"/>
-                    </a>
-
-                    <a href="#">
-                        <img src="img/redesSociais/x.svg"  width="30"  alt="x"/>
-                    </a>
-
-                    <a href="#">
-                        <img src="img/redesSociais/zap.svg" width="30" alt="Whatsapp"/>
-                    </a>
-               </ul>
-
-              
-            </div>
-          
-               <span class="align-text">© 2024 Safe Solutions. Todos os direitos reservados.</span>
-        </footer>
+      
     </div>
   )
 }

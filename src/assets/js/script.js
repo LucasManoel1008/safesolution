@@ -1,6 +1,6 @@
 window.onscroll = function() {botaoScroll()};
 
-function fixedheader(){
+export function fixedheader(){
     var header = document.getElementById('header');
     
     if (document.body.scroll|Top > 400 || document.documentElement.scrollTop > 400 ){
@@ -14,18 +14,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 //Abrir e fechar o menu lateral
-function abrirNav(){
-    document.getElementById('menuOculto').style.marginLeft = "0";
-    document.getElementById('menuOculto').style.transition = "0.5s";
-
+export function abrirNav(){
+    document.getElementById('menuOculto').style.marginLeft = '0'
+    document.getElementById('menuOculto').style.transition = "0.5s"
+    
 }
 
-function fecharNav(){
+export function fecharNav(){
     document.getElementById('menuOculto').style.marginLeft = "-100vh";
 }
 
 //Botão de voltar ao topo
-function botaoScroll(){
+export function botaoScroll(){
     if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
         document.getElementById("botaoScroll").style.display = "block";
         
@@ -35,7 +35,7 @@ function botaoScroll(){
       }
     }
 
-function voltartopo(){
+export function voltartopo(){
     var check = 'false'
     if(check){
     window.scrollTo({top:0, behavior: 'smooth'})
@@ -48,7 +48,7 @@ function voltartopo(){
 }
 
 //Ajuste de tamanho automático na caixa de texto
-function ajustarTexto(){
+export function ajustarTexto(){
     document.getElementById('mensagem').style.height ='auto';
     document.getElementById('mensagem').style.height =mensagem.scrollHeight + 'px';
 }
