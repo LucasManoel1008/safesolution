@@ -1,4 +1,5 @@
 import React from 'react'
+import Imagemindex from '../shared/Imagesindex'
 
 function Home() {
   return (
@@ -33,7 +34,7 @@ function Home() {
       </header>
 
       {/* Botão disponível apenas no mobile. Junte-se a nós */}
-      <button className="btn-primary d-lg-none btn-block joinUs">Seja Provedor <img src="img/Fast forward.png" alt=""/></button>
+      <button className="btn-primary d-lg-none btn-block joinUs">Seja Provedor <img src={Imagemindex.fast} alt=""/></button>
 
       {/*Área com todos os textos do corpo do site, Cada div text é um texto com seu icone,
       falta alterá-lo de acordo com o novo figma, está totalmente responsivo ja.*/}
@@ -53,21 +54,21 @@ function Home() {
         <h4 id="quemSomos" className="title-main-text fade-in">Quem é a Safe Solution?</h4>
         <section className="text-body fade-in">
           <div className="Text">
-            <img src="img/Safety.svg" alt="Icon" className="icon-main-text"/>
+            <img src={Imagemindex.Safety} alt="Icon" className="icon-main-text"/>
             <p> Focada em serviços e instalações  empresariais, a Safe Solutions
                 oferece uma rede que interliga de forma prática e funcional 
                 prestadoras de serviço com potenciais empresas-cliente que 
                 necessitam de um serviço.</p>
           </div>
           <div className="Text">
-            <img src="img/tecnico_itb.svg" alt="tecnico_itb" className="icon-main-text"/>
+            <img src={Imagemindex.tecnico} alt="tecnico_itb" className="icon-main-text"/>
             <p>Nosso Sistema divulga diversos serviços de empresas, para empresas, ao redor do Brasil.
                 Publique serviços de sua empresa, ou procure dentre a vasta variedade de opções para
                 a sua própria.
             </p>
           </div>
           <div className="Text">
-            <img src="img/gastos.svg" alt="Icon" className="icon-main-text"/>
+            <img src={Imagemindex.gastos} alt="Icon" className="icon-main-text"/>
             <p>Cerca de 5% do faturamento bruto de sua empresa pode estar
                 sendo gasto de forma inadequada com serviços superfaturados.
                 <span>
@@ -77,7 +78,7 @@ function Home() {
             </p>
           </div>
           <div className="Text">
-            <img src="img/Quest.svg" alt="Quest" className="icon-main-text"/>
+            <img src={Imagemindex.Quest} alt="Quest" className="icon-main-text"/>
             <ul className="list">
               <li>Otimizar</li>
               <li>Capacitar clientes para encontrar serviços que precisam, quando precisam.</li>
@@ -104,7 +105,7 @@ function Home() {
         <h4 className="title-main-text">Feedback de nossos clientes</h4>
         <div className="comments">
           <div className="container">
-            <img src="img/woman1.png" alt=""/>
+            <img src={Imagemindex.woman1} alt=""/>
             <h4 className="peopleName">Luiza Meneses</h4>
             <p>O sistema de serviços compartilhados
                 é uma verdadeira revolução! Agora posso
@@ -114,7 +115,7 @@ function Home() {
                 empreendedora.</p>
           </div>
           <div className="container">
-            <img src="img/man1.png" alt=""/>
+            <img src={Imagemindex.man1} alt=""/>
             <h4 className="peopleName">José Santos</h4>
             <p>Como proprietário de uma pequena empresa,
                 sempre estou buscando maneiras de expandir 
@@ -125,7 +126,7 @@ function Home() {
                 meu orçamento.</p>
           </div>
           <div className=" container">
-            <img src="img/woman2.png" alt=""/>
+            <img src={Imagemindex.woman2} alt=""/>
             <h4 className="peopleName">Fernanda Almeida</h4>
             <p>Como proprietária de uma loja no setor 
                 de varejo, é importante manter uma 
@@ -141,7 +142,7 @@ function Home() {
             </p>
           </div>
           <div className="container">
-            <img src="img/man2.png" alt=""/>
+            <img src={Imagemindex.man2} alt=""/>
             <h4 className="peopleName">André Ferreira</h4>
             <p>Como empresário, sempre estou em busca
                 de soluções eficientes para otimizar
