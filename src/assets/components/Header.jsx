@@ -5,7 +5,7 @@ import * as js from '../js/script'
 function Header() {
   return (
     <div>
-         <button id="botaoScroll" >&uarr;</button>
+         <button id="botaoScroll" onClick={js.fecharNav} >&uarr;</button>
     <header className="header" id="header">      
       {/* Menu versão mobile */}
       <div className="menuOculto" id="menuOculto">

@@ -21,7 +21,7 @@ export function abrirNav(){
 }
 
 export function fecharNav(){
-    document.getElementById('menuOculto').style.marginLeft = "-100vh";
+    document.getElementById('menuOculto').style.marginLeft = '-100vh'
 }
 
 //Botão de voltar ao topo
