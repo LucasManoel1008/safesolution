@@ -25,10 +25,10 @@ function Header() {
           <a href="#" id="active">AJUDA</a>
         </div>
         <div className="logo">
-          <a href="#" id="logo-header"><img src={Imagenspadroes.logo} alt="Logo" /></a>
+          <a href="/Home" id="logo-header"><img src={Imagenspadroes.logo} alt="Logo" /></a>
         </div>
         <div className="left-header-desktop">
-          <a href="/Login" className="login">ENTRAR</a>
+          <a href="/Login" className="login">Login</a>
           <a href="#" className="registro">REGISTRO</a>
         </div>
       </div>
