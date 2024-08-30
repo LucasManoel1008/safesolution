@@ -9,16 +9,8 @@
 .blue2{color: #234063}
 .text-underline{text-decoration: underline;}
 .bold{font-weight: bolder;}
-.fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 1s ease-out, transform 1s ease-out;
-}
 
-.loaded .fade-in {
-    opacity: 1;
-    transform: translateY(0);
-}
+
 
 /*Fim das formatações*/
 

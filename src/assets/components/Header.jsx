@@ -5,11 +5,11 @@ import * as js from '../js/script'
 function Header() {
   return (
     <div>
-         <button id="botaoScroll" onClick={js.fecharNav} >&uarr;</button>
+         <button id="botaoScroll" onClick={js.voltartopo} >&uarr;</button>
     <header className="header" id="header">      
       {/* Menu versão mobile */}
       <div className="menuOculto" id="menuOculto">
-        <button className="btn-close-x" >&times;</button>
+        <button className="btn-close-x" onClick={js.fecharNav}>&times;</button>
         <a href="#" id="active">AJUDA</a>
         <a href="#">SERVIÇOS</a>
         <a href="#">SOBRE NÓS</a>

@@ -1,11 +1,11 @@
 import React from 'react'
 import Imagemindex from '../shared/Imagesindex'
-
+import * as js from '../assets/js/script.js'
 
 
 function Home() {
   return (
-    <div>
+    <div >
        
       {/* Botão disponível apenas no mobile. Junte-se a nós */}
       <button className="btn-primary d-lg-none btn-block joinUs">Seja Provedor <img src={Imagemindex.fast} alt="fastForward"/></button>
@@ -14,7 +14,7 @@ function Home() {
       falta alterá-lo de acordo com o novo figma, está totalmente responsivo ja.*/}
       <main className="main-content">
         {/* Imagem divulgando serviços - Inicio */}
-        <div className="firstImage d-flex fade-in">
+        <div className="firstImage d-flex">
           <div className="leftContent">
             <h4>Mais de 1000 empresas em <br/> um só lugar</h4>
             <p>Descubra, contrate e conecte-se <br/> com uma variedade de empresas</p>
@@ -26,7 +26,7 @@ function Home() {
         </div>
 
         <h4 id="quemSomos" className="title-main-text fade-in">Quem é a Safe Solution?</h4>
-        <section className="text-body fade-in">
+        <section className="text-body">
           <div className="Text">
             <img src={Imagemindex.Safety} alt="Icon" className="icon-main-text"/>
             <p> Focada em serviços e instalações  empresariais, a Safe Solutions
@@ -75,7 +75,7 @@ function Home() {
       </main>
 
       {/* Feedbacks de outros Clientes */}
-      <section id="relatos" className="comments-area fade-in">
+      <section id="relatos" className="comments-area">
         <h4 className="title-main-text">Feedback de nossos clientes</h4>
         <div className="comments">
           <div className="container">
@@ -209,7 +209,7 @@ function Home() {
                         <option value="Informacao" >INFORMAÇÃO</option>
                     </select>
                     <div className="textarea">
-                        <textarea  rows="1" placeholder="*Mensagem" id="mensagem"></textarea>
+                        <textarea  rows="1" placeholder="*Mensagem" id="mensagem" onFocus={js.ajustarTexto}></textarea>
                     </div>
                 </div>
                 </div>
