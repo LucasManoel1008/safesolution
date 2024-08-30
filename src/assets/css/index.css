@@ -50,13 +50,13 @@ strong{
         justify-content: space-around;
         width: 100%;
         margin: 20px 20px 0 20px;
-        padding-bottom: 20px;
         box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
         
     }
 
     .firstImage .leftContent{
         margin-top: clamp(20px, 20%, 200px);
+
     }
     .firstImage .leftContent h4{
         color: #234063;
@@ -73,9 +73,10 @@ strong{
         margin-top: 30px;
        
     }
+    
     .firstImage .rightContent img{
        width: 300px;
-       z-index: 1;
+       
         
     }
     
@@ -379,6 +380,7 @@ strong{
         .firstImage .rightContent img{
             width: 200px;
         }
+        
     }
 }
 

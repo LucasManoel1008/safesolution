@@ -170,6 +170,8 @@ body{
     flex-direction: column;
     color: var(--white);
     font-size: 15px;
+    position: relative;
+    
 }
 .footer .servicos{
     background-color: none;

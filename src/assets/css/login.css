@@ -1,0 +1,93 @@
+:root{
+    --blue3:#234063;
+    --blue4:#1E2D3F;
+    --white: #EDF2F4;
+}
+.hidden {
+    display: none;
+}
+
+/* Caixa do login */
+.loginBox{
+    width: 500px;
+    height: 620px;
+    margin: 120px auto 90px auto;
+    box-shadow: 0px 3px 12px -3px rgba(0,0,0,0.36);
+}
+
+.loginBox .logoLogin{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+/* conteudo do login */
+.loginBox .content{
+    margin-top: 40px;
+}
+.loginBox .content h4{
+    color: var(--blue3);
+    font-weight: 600;
+    font-size: 32px;
+}
+.loginBox .content p{
+    font-style: normal;
+    opacity: 0.7;
+    color: #5A5A5A;
+}
+
+/* input's do login */
+.entradaDados{
+    margin-top: 40px;
+    
+}
+.entradaDados .cpf, .entradaDados .password{
+    margin-top: 10px;
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border-color: var(--blue3);
+}
+
+
+
+.entradaDados input::placeholder{
+    color: #5A5A5A ;
+    opacity: 0.5;
+    padding: 30px;
+    
+}
+.entradaDados .text .iconText, .entradaDados .passwordInput .iconPassword{
+    position: relative;
+    top: -33px;
+    left: -110px;
+    font-size: 20px;
+    opacity: 0.5;
+}
+
+.entradaDados .passwordInput{
+    position: relative;
+    top: -15px;
+}
+.entradaDados .passwordInput small{
+    position: relative;
+    top: -20px;
+    left: -60px;
+}
+
+.entradaDados input[type = submit]{
+    width: 100%;
+    padding: 7px;
+    background-color: var(--blue3);
+    color: white;
+    border-radius: 5px;
+    border: none;
+}
+
+.loginBox .cadConta{
+    background-color: none;
+    border: 1px solid var(--blue3);
+    margin-top: 50px;
+    border-radius: 5px;
+    color: #5A5A5A;
+
+}

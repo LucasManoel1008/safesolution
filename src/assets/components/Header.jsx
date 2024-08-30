@@ -1,6 +1,6 @@
 import React from 'react'
 import Imagenspadroes from '../../shared/Imagespadroes'
-import * as js from '../js/script'
+import * as js from '../js'
 
 function Header() {
   return (
@@ -28,7 +28,7 @@ function Header() {
           <a href="#" id="logo-header"><img src={Imagenspadroes.logo} alt="Logo" /></a>
         </div>
         <div className="left-header-desktop">
-          <a href="#" className="login">ENTRAR</a>
+          <a href="/Login" className="login">ENTRAR</a>
           <a href="#" className="registro">REGISTRO</a>
         </div>
       </div>

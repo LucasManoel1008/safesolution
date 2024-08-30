@@ -1,6 +1,6 @@
 import React from 'react'
 import Imagemindex from '../shared/Imagesindex'
-import * as js from '../assets/js/script.js'
+import * as js from '../assets/js/index.js'
 
 
 function Home() {
@@ -188,7 +188,6 @@ function Home() {
 
         </section>
         
-
         <form id="ajuda" className="forms">
             <div className="forms-title">
                 <h4>Ainda dúvidas? Entre em Contato Conosco!</h4>
@@ -213,7 +212,7 @@ function Home() {
                     </div>
                 </div>
                 </div>
-                <input id="submit" type="submit" value="enviar"/>
+                <input id="submit" type="submit" onSubmit={js.submit} value="enviar"/>
         </form>
 
       
