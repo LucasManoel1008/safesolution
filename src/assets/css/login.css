@@ -62,6 +62,7 @@
     left: -110px;
     font-size: 20px;
     opacity: 0.5;
+    
 }
 
 .entradaDados .passwordInput{
@@ -89,5 +90,22 @@
     margin-top: 50px;
     border-radius: 5px;
     color: #5A5A5A;
+
+}
+
+@media screen and (max-width: 552px){
+    .loginBox {
+        box-shadow: none;
+        display: flex;
+        position: relative;
+        top: 50%;
+        justify-content: center;
+        width: 100%;
+        margin: 120px 0 120px 0 ;
+
+    }
+    .loginBox img{
+        display: none;
+    }
 
 }

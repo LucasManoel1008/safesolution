@@ -6,7 +6,7 @@ function Footer() {
         <footer className="footer">
             <div className="servicos mt-4">
                 <ul className="mt-4 container1">
-                    <a href="/Home"> <img src={Imagenspadroes.logoReserva} width="200" alt="LOGO"/></a>
+                    <a href="/"> <img src={Imagenspadroes.logoReserva} width="200" alt="LOGO"/></a>
                     <li><a href="#">Política de Privacidade</a></li>
                     <li><a href="#">Termos de uso</a></li>
                     <li><a href="#">Seja provedor</a></li>

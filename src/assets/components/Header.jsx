@@ -25,7 +25,7 @@ function Header() {
           <a href="#" id="active">AJUDA</a>
         </div>
         <div className="logo">
-          <a href="/Home" id="logo-header"><img src={Imagenspadroes.logo} alt="Logo" /></a>
+          <a href="/" id="logo-header"><img src={Imagenspadroes.logo} alt="Logo" /></a>
         </div>
         <div className="left-header-desktop">
           <a href="/Login" className="login">Login</a>

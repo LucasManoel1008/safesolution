@@ -1,5 +1,6 @@
 import React from 'react'
 import Imagespadroes from '../shared/Imagespadroes.jsx'
+import * as loginJs from '../assets/js/login.js'
 function Login() {
   
 
@@ -11,7 +12,7 @@ function Login() {
 
 const handleBlurText = (event) => {
     if (event.target.value === '') {
-        event.target.placeholder = 'CPF ou CNPJ';
+        event.target.placeholder = 'CPF';
         document.getElementById('iconCpf').style.opacity = 0.5
     }
 };
@@ -25,6 +26,7 @@ const handleBlurText = (event) => {
       document.getElementById('passwordIcon').style.opacity = 0.5
   }
   }
+
   
   return (
     <div>
@@ -33,13 +35,15 @@ const handleBlurText = (event) => {
         <div className="content container">
             <h4>Login</h4>
             <p>Faça login com sua conta</p>
-            <form className="entradaDados">
+            <form className="entradaDados" id='login'  onSubmit={loginJs.validarCpf}>
               
               <div className="text">
-                <input type="text" id='cpf'  placeholder='CPF ou CNPJ'
+                <input type="text" id='cpf'  placeholder='CPF'
                 onFocus={handleFocusText}
                 onBlur={handleBlurText} 
-                className='cpf'/>
+                className='cpf'
+                
+                />
                 <span><i className="fa-solid fa-user iconText" id='iconCpf'></i></span>
               </div>
 
@@ -48,6 +52,8 @@ const handleBlurText = (event) => {
                 className='password' 
                 onFocus={handleFocusPassword}
                 onBlur={handleBlurPassword}
+                id='password'
+                
                 />
                 <span><i id='passwordIcon' className="fa-solid fa-lock iconPassword"></i></span>
               </div>
@@ -57,6 +63,7 @@ const handleBlurText = (event) => {
 
             <a href="#" className='d-block p-2 cadConta'>Cadastrar Nova Conta</a>
         </div>
+        
      </section>
     </div>
   )
