@@ -11,7 +11,7 @@ function Header() {
       <div className="menuOculto" id="menuOculto">
         <button className="btn-close-x" onClick={js.fecharNav}>&times;</button>
         <a href="/" id="active">AJUDA</a>
-        <a href="#">SERVIÇOS</a>
+        <a href="/Servicos">SERVIÇOS</a>
         <a href="#">SOBRE NÓS</a>
         <a href="/Login">ENTRAR</a>
       </div>
@@ -20,7 +20,7 @@ function Header() {
       <div className="elements-header">
         <img src={Imagenspadroes.menu} alt="Menu" id="elements-header" onClick={js.abrirNav} style={{fontSize: "30px", cursor: "pointer"}}  />
         <div className="elementsHeader-desktop">
-          <a href="#">SERVIÇOS</a>
+          <a href="/Servicos">SERVIÇOS</a>
           <a href="#">SOBRE NÓS</a>
           <a href="#" id="active">AJUDA</a>
         </div>

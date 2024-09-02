@@ -180,7 +180,7 @@ body{
     color: #234063;
 }
 
-.footer strong{
+.footer strong a{
     color: var(--white);
 }
 
