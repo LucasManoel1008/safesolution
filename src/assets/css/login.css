@@ -51,9 +51,11 @@
 
 
 .entradaDados input::placeholder{
-    color: #5A5A5A ;
+    color: #5A5A5A;
     opacity: 0.5;
     padding: 30px;
+    
+
     
 }
 .entradaDados .text .iconText, .entradaDados .passwordInput .iconPassword{

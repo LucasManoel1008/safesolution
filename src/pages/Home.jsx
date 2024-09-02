@@ -1,14 +1,14 @@
 import React from 'react'
 import Imagemindex from '../shared/Imagesindex'
 import * as js from '../assets/js/index.js'
-
+import '../assets/css/index.css'
 
 function Home() {
   return (
     <div >
        
       {/* Botão disponível apenas no mobile. Junte-se a nós */}
-      <button className="btn-primary d-lg-none btn-block joinUs">Seja Provedor <img src={Imagemindex.fast} alt="fastForward"/></button>
+      <button className= "btn-primary d-lg-none btn-block joinUs">Seja Provedor <img src={Imagemindex.fast} alt="fastForward"/></button>
 
       {/*Área com todos os textos do corpo do site, Cada div text é um texto com seu icone,
       falta alterá-lo de acordo com o novo figma, está totalmente responsivo ja.*/}

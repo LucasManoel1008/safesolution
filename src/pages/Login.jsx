@@ -1,4 +1,5 @@
 import React from 'react'
+import '../assets/css/login.css'
 import Imagespadroes from '../shared/Imagespadroes.jsx'
 import * as loginJs from '../assets/js/login.js'
 function Login() {
