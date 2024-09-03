@@ -1,5 +1,6 @@
 import React from 'react'
 import Imagenspadroes from '../../shared/Imagespadroes'
+import '../padronizacao/padrao.css'
 function Footer() {
   return (
     <div>

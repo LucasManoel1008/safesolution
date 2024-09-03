@@ -1,6 +1,7 @@
 import React from 'react'
 import Imagenspadroes from '../../shared/Imagespadroes'
 import * as js from '../js'
+import '../padronizacao/padrao.css'
 
 function Header() {
   return (

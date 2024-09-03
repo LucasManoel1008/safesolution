@@ -1,0 +1,32 @@
+.conteudo{
+    margin-top: 120px;
+}
+.hubLayout{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+}
+
+.leftContent, .centerContent, .chatMenu{
+    width: 300px;
+    height: 300px;
+
+    
+}
+.leftContent{
+    background-color: aqua;
+    width: 20vw;
+    margin: 0 auto;
+    
+}
+.centerContent{
+    margin: 0 auto;
+    width: 40vw;
+    background-color: chocolate;
+
+}
+.chatMenu{
+    margin-left: auto;
+    width: 20vw;
+    background-color: purple;
+}
