@@ -23,9 +23,8 @@ function Footer() {
                
                <ul className="container3 d-flex flex-column mt-3">
                     <strong className="pb-2">Informações</strong>
-                    <li><a href="#quemSomos">Sobre nós</a></li>
-                    <li><a href="#ajuda">Ajuda</a></li>
-                    <li><a href="#relatos">Relatos</a></li>
+                    <li><a href="/">Sobre nós</a></li>
+                    <li><a href="/#relatos">Relatos</a></li>
 
                </ul>
             

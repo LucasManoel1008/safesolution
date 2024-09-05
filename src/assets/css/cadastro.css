@@ -1,0 +1,49 @@
+:root{
+    --blue3:#234063;
+    --blue4:#1E2D3F;
+    --white: #EDF2F4;
+}
+.loginBox .entradaDados .confirmPass{
+    top: -60px;
+
+}
+.loginBox .entradaDados .confirmPass .iconConfirmPass{
+    position: relative;
+    top: -38px;
+    left: -110px;
+    font-size: 20px;
+    opacity: 0.7;
+    pointer-events: none;
+}
+.loginBox .entradaDados .passwordInput .passValidation{
+    position: relative;
+    top: -30px;
+    
+    margin: 0;
+
+}
+.loginBox .entradaDados .passwordInput .passValidation p{
+    margin-bottom: 0;
+    text-align: left;
+    font-size: 14px;
+}
+.loginBox .entradaDados .passwordInput .passValidation>p{
+    
+    color: var(--blue3);
+    opacity: 1;
+}
+
+.loginBox .entradaDados .passwordInput .passValidation ul{
+    padding: 0;
+    list-style: none;
+}
+.loginBox .entradaDados .prosseguir{
+    position: relative;
+    top: -70px;
+}
+.loginBox .content  .loginConta{
+    position: relative;
+    top: -50px;
+    margin-top: 0;
+
+}

@@ -11,9 +11,8 @@ function Header() {
       {/* Menu versão mobile */}
       <div className="menuOculto" id="menuOculto">
         <button className="btn-close-x" onClick={js.fecharNav}>&times;</button>
-        <a href="/" id="active">AJUDA</a>
         <a href="/Servicos">SERVIÇOS</a>
-        <a href="#">SOBRE NÓS</a>
+        <a href="/">SOBRE NÓS</a>
         <a href="/Login">ENTRAR</a>
       </div>
 
@@ -23,14 +22,14 @@ function Header() {
         <div className="elementsHeader-desktop">
           <a href="/Servicos">SERVIÇOS</a>
           <a href="#">SOBRE NÓS</a>
-          <a href="#" id="active">AJUDA</a>
+
         </div>
         <div className="logo">
           <a href="/" id="logo-header"><img src={Imagenspadroes.logo} alt="Logo" /></a>
         </div>
         <div className="left-header-desktop">
           <a href="/Login" className="login">Login</a>
-          <a href="#" className="registro">REGISTRO</a>
+          <a href="/Cadastro" className="registro">Cadastro</a>
         </div>
       </div>
     </header>

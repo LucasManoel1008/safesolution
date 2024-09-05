@@ -14,7 +14,7 @@ function Login() {
 const handleBlurText = (event) => {
     if (event.target.value === '') {
         event.target.placeholder = 'CPF';
-        document.getElementById('iconCpf').style.opacity = 0.5
+        document.getElementById('iconCpf').style.opacity = 0.7
     }
 };
   const handleFocusPassword = (event) => {
@@ -24,7 +24,7 @@ const handleBlurText = (event) => {
   const handleBlurPassword = (event) => {
     if (event.target.value === '') {
       event.target.placeholder = 'Senha';
-      document.getElementById('passwordIcon').style.opacity = 0.5
+      document.getElementById('passwordIcon').style.opacity = 0.7
   }
   }
 
@@ -45,7 +45,7 @@ const handleBlurText = (event) => {
                 className='cpf'
                 
                 />
-                <span><i className="fa-solid fa-user iconText" id='iconCpf'></i></span>
+                <span className='iconText'><i className="fa-solid fa-user " id='iconCpf'></i></span>
               </div>
 
               <div className="passwordInput">
@@ -56,13 +56,13 @@ const handleBlurText = (event) => {
                 id='password'
                 
                 />
-                <span><i id='passwordIcon' className="fa-solid fa-lock iconPassword"></i></span>
+                <span className='iconPassword '><i id='passwordIcon' className="fa-solid fa-lock "></i></span>
               </div>
                 <input type="submit" className='btn btn-primary' value={`login`} />
             </form>
             <a href="#">Esqueci minha senha</a>
 
-            <a href="#" className='d-block p-2 cadConta'>Cadastrar Nova Conta</a>
+            <a href="/Cadastro" className='d-block p-2 cadConta'>Cadastrar Nova Conta</a>
         </div>
         
      </section>
