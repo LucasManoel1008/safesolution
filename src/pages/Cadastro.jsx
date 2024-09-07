@@ -5,7 +5,7 @@ import Imagenspadroes from '../shared/Imagespadroes'
 function Cadastro() {
 
 const [text, setText] = useState('');
-const specialCharRegex = /[!@#$%^&*(),.?":{}|<>_+=/¨{}]/g;
+const specialCharRegex = /[!@#$%^&*(),.?":{}|<>_+=/¨{}12345678910]/g;
 const uppercaseRegex = /[A-Z]/;
 const handleFocusText = (event) => {
     event.target.placeholder = '';
