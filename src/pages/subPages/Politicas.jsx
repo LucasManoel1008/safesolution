@@ -1,5 +1,5 @@
 import React from 'react'
-import '../../assets/css/politicas.css'
+import '../../assets/css/politica.css'
 function Politicas() {
   return (
     <div>
