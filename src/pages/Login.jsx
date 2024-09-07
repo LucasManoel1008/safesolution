@@ -1,6 +1,6 @@
 import React from 'react'
 import '../assets/css/login.css'
-import Imagespadroes from '../shared/Imagespadroes.jsx'
+import Imagenspadroes from '../shared/Imagespadroes.jsx';
 import * as loginJs from '../assets/js/login.js'
 function Login() {
   
@@ -32,7 +32,7 @@ const handleBlurText = (event) => {
   return (
     <div>
      <section className='loginBox'>
-        <img src={Imagespadroes.logo} alt="Logo" width={200} className='logoLogin' />
+        <img src={Imagenspadroes.logo} alt="Logo" width={200} className='logoLogin' />
         <div className="content container">
             <h4>Login</h4>
             <p>Faça login com sua conta</p>

@@ -41,11 +41,11 @@
     
 }
 .entradaDados .cpf, .entradaDados .password{
-    margin-top: 10px;
+
     width: 100%;
     padding: 8px;
     border-radius: 5px;
-    border-color: var(--blue3);
+    border-color: black;
 }
 
 
@@ -54,10 +54,8 @@
     color: #5A5A5A;
     opacity: 0.5;
     padding: 30px;
-    
-
-    
 }
+
 .entradaDados .text .iconText, .entradaDados .passwordInput .iconPassword{
     position: relative;
     top: -38px;

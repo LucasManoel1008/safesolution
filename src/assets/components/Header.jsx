@@ -14,6 +14,7 @@ function Header() {
         <a href="/Servicos">SERVIÇOS</a>
         <a href="/">SOBRE NÓS</a>
         <a href="/Login">ENTRAR</a>
+        <a href="/Cadastro">Junte-se a nós</a>
       </div>
 
       {/* Menu da Versão Desktop */}
@@ -21,7 +22,7 @@ function Header() {
         <img src={Imagenspadroes.menu} alt="Menu" id="elements-header" onClick={js.abrirNav} style={{fontSize: "30px", cursor: "pointer"}}  />
         <div className="elementsHeader-desktop">
           <a href="/Servicos">SERVIÇOS</a>
-          <a href="#">SOBRE NÓS</a>
+          <a href="/">SOBRE NÓS</a>
 
         </div>
         <div className="logo">
@@ -29,7 +30,7 @@ function Header() {
         </div>
         <div className="left-header-desktop">
           <a href="/Login" className="login">Login</a>
-          <a href="/Cadastro" className="registro">Cadastro</a>
+          <a href="/Cadastro" className="registro">Junte-se a nós</a>
         </div>
       </div>
     </header>

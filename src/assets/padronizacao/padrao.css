@@ -197,6 +197,7 @@ body{
     .elementsHeader-desktop, .left-header-desktop{
         display: flex;
         align-items: center;
+        justify-content: center;
     }
     .elements-header{
         white-space: nowrap; /*Evita quebra de linhas*/
