@@ -5,9 +5,10 @@ function Cadastro() {
     
   return (
     <div className='cadastroContent'>
+      
        <img src={Imagenspadroes.logo} alt="Logo" width={200} className='logoCadastro' />
        <h4>Cadastro</h4>
-       <div class="nameInput mt-4">
+       <div className="nameInput mt-4">
             <input type="text"  className="form-control" placeholder='Primeiro nome'/>
             <input type="text"  className="form-control" placeholder='Último nome'/>
         </div>
@@ -25,7 +26,9 @@ function Cadastro() {
         <a href="/Cadastro2" role='button' className="continuarCadastro1 btn btn-primary mt-4">Continuar</a>
         <span>Ja possui uma conta? <a href="/Login">Entre já</a></span>
         <p className='termos-e-politicas mt-4'>Ao continuar, afirmo que concordo com a <a href="/Politica">Política de privacidade</a> e os <a href="/Termos">Termos de uso</a> da Safe Solutions.</p>
+        
     </div>
+    
   )
 }
 
