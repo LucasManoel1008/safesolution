@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Imagemindex from '../shared/Imagesindex'
 import * as js from '../assets/js/index.js'
 import '../assets/css/index.css'
@@ -8,7 +9,7 @@ function Home() {
     <div >
        
       {/* Botão disponível apenas no mobile. Junte-se a nós */}
-      <button className= "btn-primary d-lg-none btn-block joinUs"><a href="/Cadastro">Seja Provedor <img src={Imagemindex.fast} alt="fastForward"/></a></button>
+     <Link to={"/Cadastro"}> <button className= "btn-primary d-lg-none btn-block joinUs"><a href="/Cadastro">Seja Provedor <img src={Imagemindex.fast} alt="fastForward"/></a></button></Link>
 
       {/*Área com todos os textos do corpo do site, Cada div text é um texto com seu icone,
       falta alterá-lo de acordo com o novo figma, está totalmente responsivo ja.*/}
@@ -45,10 +46,7 @@ function Home() {
             <img src={Imagemindex.gastos} alt="Icon" className="icon-main-text"/>
             <p>Cerca de 5% do faturamento bruto de sua empresa pode estar
                 sendo gasto de forma inadequada com serviços superfaturados.
-                <span>
-                <a href="https://www.solucoesdynamicair.com.br/blog/atencao-aos-custos-de-manutencao-em-sua-industria" target="_blank" style={{color: "#234063", textDecoration: "underline"}}>
-                    Saiba mais</a>
-                </span>
+                <span><Link to="https://www.solucoesdynamicair.com.br/blog/atencao-aos-custos-de-manutencao-em-sua-industria" target="_blank" style={{color: "#234063", textDecoration: "underline"}}>Saiba mais</Link></span>
             </p>
           </div>
           <div className="Text">
@@ -66,8 +64,8 @@ function Home() {
           <h4>BAIXE NOSSO APLICATIVO</h4>
           <p>Gerenciamento de serviços na palma da mão</p>
           <div className="aplicationLinks mt-5 mb-5">
-            <a href="#" className="pr-4"><img src={Imagemindex.googlePlay} width="150" alt="GOOGLE PLAY"/></a>
-            <a href="#"><img src={Imagemindex.appSotre} width="150" alt="APP STORE"/></a>
+            <Link to="#" className="pr-4"><img src={Imagemindex.googlePlay} width="150" alt="GOOGLE PLAY"/></Link>
+            <Link to="#"><img src={Imagemindex.appSotre} width="150" alt="APP STORE"/></Link>
           </div>
 
           <img src={Imagemindex.cellphone} width="400" alt="CELLPHONE" className="cellphone"/>

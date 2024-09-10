@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import Imagenspadroes from '../../shared/Imagespadroes'
+import { Link } from "react-router-dom";
 function Cadastro2() {
+
+    // Autocompletar CNPJ
     const [cnpj, setCnpj] = useState("");
 
     const handleInputChange = (e) => {
@@ -157,7 +160,7 @@ function Cadastro2() {
                 <button type="button" className="btn btn-primary aplicar" onClick={getCEP}>Aplicar</button>
             </div>
             </div>
-            <a href="/Cadastro2" role='button' className="continuarCadastro1 btn btn-primary mt-4">Continuar</a>
+            <Link to="/Cadastro2" role='button' className="continuarCadastro1 btn btn-primary mt-4">Finalizar</Link>
        
         
     </div>

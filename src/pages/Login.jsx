@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import '../assets/css/login.css'
 import Imagenspadroes from '../shared/Imagespadroes.jsx';
 import * as loginJs from '../assets/js/login.js'
@@ -60,9 +61,9 @@ const handleBlurText = (event) => {
               </div>
                 <input type="submit" className='btn btn-primary' value={`login`} />
             </form>
-            <a href="#">Esqueci minha senha</a>
+            <Link to="#">Esqueci minha senha</Link>
 
-            <a href="/Cadastro" className='d-block p-2 cadConta'>Cadastrar Nova Conta</a>
+            <Link to="/Cadastro" className='d-block p-2 cadConta'>Cadastrar Nova Conta</Link>
         </div>
         
      </section>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import '../../assets/css/cadastro.css'
 import Imagenspadroes from '../../shared/Imagespadroes'
 function Cadastro() {
@@ -24,10 +25,10 @@ function Cadastro() {
             <input type="password" className='form-control' placeholder='Confirme sua senha' />
         </div>
         <a href="/Cadastro2" role='button' className="continuarCadastro1 btn btn-primary mt-4">Continuar</a>
-        <span>Ja possui uma conta? <a href="/Login">Entre já</a></span>
-        <p className='termos-e-politicas mt-4'>Ao continuar, afirmo que concordo com a <a href="/Politica">Política de privacidade</a> e os <a href="/Termos">Termos de uso</a> da Safe Solutions.</p>
+        <span>Ja possui uma conta? <Link to={"/Login"}>Entre já </Link></span>
+        <p className='termos-e-politicas mt-4'>Ao continuar, afirmo que concordo com a <Link to="/Politica">Política de privacidade</Link> e os <Link to="/Termos">Termos de uso</Link> da Safe Solutions.</p>
         
-    </div>
+      </div>
     
   )
 }
