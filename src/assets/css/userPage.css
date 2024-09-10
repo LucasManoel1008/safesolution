@@ -1,0 +1,83 @@
+
+.user-page{
+    height: 800px;
+    width: 1250px;
+    margin: 90px auto 40px auto;
+    padding: 25px;
+}
+.user-page .user-nav{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+   
+}
+.user-page .user-nav ul{
+    list-style: none;
+    padding: 0;
+}
+.user-page .user-nav .user-nav-links{
+    width: 300px;
+    height: 450px;  
+    box-shadow: 0px 3px 12px -3px rgba(0,0,0,0.36);
+}
+.user-page .user-nav .user-nav-links button{
+    width: 100%;
+    padding: 11px;
+    background-color: white;
+    border: none;
+    color: rgba(0,0,0,0.70);
+    
+    
+}
+.user-page .user-nav .user-nav-links button:hover{
+    background-color:   rgb(142, 154, 175,0.5);
+    transition: background-color 0.1s;
+    color: black;
+}
+
+.section-date{
+    width: 100%;
+    height: 100%;
+    box-shadow: 0px 3px 12px -3px rgba(0,0,0,0.36);
+}
+
+/* UserProfile - Formatações */
+.userProfile{
+    width: 870px;
+    margin: 0 auto;
+    height: 800px;
+}
+.userProfile p, .userProfile h2{
+    text-align: center;   
+}
+.userProfile h2{
+    color: var(--blue3);
+}
+.userProfile p{
+    opacity: .7;
+}
+.userProfile .userItens1{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+.userProfile .userItens1 .form-group .nomeExibicao{
+    width: 100%;
+}
+.userProfile .endereco p{
+    opacity: 0.7;
+    text-align: left;
+}
+.userProfile .endereco .cepInputs .itens1,
+.userProfile .endereco .cepInputs .itens2,
+.userProfile .endereco .cepInputs .itens3{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.userProfile .endereco .cepInputs input{
+    width: 380px;
+}
+

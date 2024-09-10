@@ -76,22 +76,26 @@ function Cadastro2() {
 
   return (
     <div className='cadastroContent'>
+
         <img src={Imagenspadroes.logo} alt="Logo" className='logoCadastro' width={200} />
+
         <h4>Quase lá</h4>
+        <p>
+        Preencha os campos abaixo com as informações essenciais sobre o seu negócio. Essas informações nos ajudarão a conectar você com clientes e outros serviços.</p>
 
             <div className="nameInput nome-cnpj mt-4 ">
                 <input type="text"  className="form-control" placeholder='Nome empresarial'/>
-                <input type="text" id="cnpj" placeholder="00.000.000/0000-00" maxLength="18" className='form-control' onChange={handleInputChange} value={cnpj} / >
+                <input type="text" id="cnpj" placeholder="00.000.000/0000-00" maxLength="18" className='form-control' onChange={handleInputChange} value={cnpj} ></input>
             </div>
             <div className="form-floating mt-4 interesse">
                 <select className="form-select" id="floatingSelect" aria-label="Floating label select example">
-                    <option defaultValue={'contratante'}>Sou contratante</option>
+                    <option defaultValue={'contratante'}>Sou Contratante</option>
                     <option value="provedor">Sou Provedor</option>
                 </select>
                 <label htmlFor="floatingSelect">Área de Interesse</label>
             </div>
             <div className="form-floating descricao mt-4">
-                <textarea className="form-control " placeholder="Leave a comment here" id="floatingTextarea2"></textarea>
+                <textarea className="form-control " placeholder="Descrição" id="floatingTextarea2"></textarea>
                 <label htmlFor="floatingTextarea2">Descrição</label>
             </div>
             <div className="cepInputs mt-4">
@@ -156,16 +160,15 @@ function Cadastro2() {
                     placeholder="Cidade"
                 />
             </div>
-            <div>
-                <button type="button" className="btn btn-primary aplicar" onClick={getCEP}>Aplicar</button>
+            <div className="aplicar">
+                <button type="button" className="btn btn-primary " onClick={getCEP}>Aplicar</button>
             </div>
             </div>
-            <Link to="/Cadastro2" role='button' className="continuarCadastro1 btn btn-primary mt-4">Finalizar</Link>
+            <Link to="/UserPage" role='button' className="continuarCadastro1 btn btn-primary mt-4">Finalizar</Link>
        
-        
+            
     </div>
   )
 }
-
-
 export default Cadastro2
+
