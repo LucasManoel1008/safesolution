@@ -19,7 +19,6 @@ function Cadastro() {
   return (
     <div className='cadastroContent'>
       
-       <img src={Imagenspadroes.logo} alt="Logo" width={200} className='logoCadastro' />
        <h4>Cadastro</h4>
        <div className="nameInput mt-4">
             <input type="text"  className="form-control" placeholder='Primeiro nome'/>
