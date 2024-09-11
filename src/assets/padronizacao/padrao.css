@@ -39,7 +39,7 @@ body{
     border-radius: 20px;
     color: white;
     font-size: 2em;
-    z-index: 1000;
+    z-index: 20000;
     right: 20px;
     bottom: 20px;
     cursor: pointer;

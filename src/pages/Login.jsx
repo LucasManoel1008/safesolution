@@ -43,7 +43,7 @@ const handleBlurText = (event) => {
                 <input type="text" id='cpf'  placeholder='CPF'
                 onFocus={handleFocusText}
                 onBlur={handleBlurText} 
-                className='cpf'
+                className='cpf form-control'
                 
                 />
                 <span className='iconText'><i className="fa-solid fa-user " id='iconCpf'></i></span>
@@ -51,7 +51,7 @@ const handleBlurText = (event) => {
 
               <div className="passwordInput">
                 <input type="password"  placeholder='Senha' 
-                className='password' 
+                className='password form-control' 
                 onFocus={handleFocusPassword}
                 onBlur={handleBlurPassword}
                 id='password'

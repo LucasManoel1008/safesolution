@@ -8,7 +8,7 @@ function Cadastro2() {
 
     const handleInputChange = (e) => {
       let value = e.target.value.replace(/\D/g, ""); // Remove caracteres não numéricos
-  
+    
       if (value.length > 2) {
         value = value.replace(/^(\d{2})(\d)/, "$1.$2");
       }
@@ -62,13 +62,7 @@ function Cadastro2() {
             .catch(error => console.log(error));
     };
 
-    const handleClear = () => {
-        setCep('');
-        setRua('');
-        setBairro('');
-        setCidade('');
-        setNumero('');
-    };
+    
     
 
       
@@ -160,8 +154,8 @@ function Cadastro2() {
                     placeholder="Cidade"
                 />
             </div>
-            <div className="aplicar">
-                <button type="button" className="btn btn-primary " onClick={getCEP}>Aplicar</button>
+            <div className="">
+                <button type="button" className="btn btn-primary aplicar" onClick={getCEP}>Aplicar</button>
             </div>
             </div>
             <Link to="/UserPage" role='button' className="continuarCadastro1 btn btn-primary mt-4">Finalizar</Link>

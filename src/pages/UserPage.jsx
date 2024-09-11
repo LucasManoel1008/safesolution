@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 import '../assets/css/userPage.css'
+import ImagensUser from '../shared/ImagensUser';
 
 // Componentes para diferentes seções, começando no UserProfile
 const UserProfile = () => (
   <div className='userProfile p-4'>
     <h2>Configurações da Conta</h2>
     <p>Gerencie detalhes de sua conta.</p>
+    <div className="logoEmpresaContent">
+      <img src={ImagensUser.paladins} alt="Logo empresa" className='logoEmpresa' />
+      <img src={ImagensUser.edit} alt="Edit" className='editIcon' />
+    </div>
     <div className="userItens1 mt-4">
+            
             <div className="form-group">
                 <label htmlFor="exampleFormControlInput1">Nome de exibição:</label>
                 <input type="text" className="form-control d-inline nomeExibicao" id="exampleFormControlInput1" value={"IntechLauncher"} readOnly/>
@@ -84,13 +90,18 @@ const UserProfile = () => (
                     placeholder="Cidade"
                 />
             </div>
-            <div className="aplicar">
-                <button type="button" className="btn btn-primary ">Editar</button>
+            <div>
+                <button type="button" className="btn btn-primary editar">Editar</button>
             </div>
             </div>
 
     </div>
-
+    <div className="dadosPessoais">
+      <p>Dados pessoais</p>
+      <div className="inputsPessoais">
+          
+      </div>
+    </div>
   </div>
 );
 

@@ -47,6 +47,23 @@
     width: 870px;
     margin: 0 auto;
     height: 800px;
+    display: flex;
+    flex-direction: column;
+}
+.userProfile .logoEmpresaContent{
+    display: flex;
+    justify-content: center;
+}
+.userProfile .logoEmpresaContent .logoEmpresa{
+    width: 120px;
+    align-self: center;
+    border-radius: 100%;  
+}
+.userProfile .logoEmpresaContent .editIcon{
+    width: 20px;
+    margin-top: 100px;
+    position: relative;
+    right: 13px;
 }
 .userProfile p, .userProfile h2{
     text-align: center;   
@@ -79,5 +96,9 @@
 }
 .userProfile .endereco .cepInputs input{
     width: 380px;
+}
+.userProfile .endereco .cepInputs  .editar {
+    background-color: var(--blue3);
+    border: none;
 }
 

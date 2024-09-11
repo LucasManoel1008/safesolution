@@ -1,6 +1,6 @@
 .cadastroContent{
     width: 750px;
-    height: 720px;
+    height: 740px;
     margin: 120px auto 40px auto;
     box-shadow: 0px 3px 12px -3px rgba(0,0,0,0.36);
     display: flex;
@@ -72,7 +72,11 @@
     justify-content: space-between;
 }
 .cadastroContent .cepInputs  .aplicar{
-    text-align: left ;
+    background-color: var(--blue3);
+    float: left;
+}
+.cadastroContent .cpfInput{
+    width: 80%;
 }
 
 @media screen and (max-width: 820px){
