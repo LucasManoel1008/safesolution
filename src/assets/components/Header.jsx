@@ -11,9 +11,9 @@ function Header() {
       {/* Menu versão mobile */}
       <div className="menuOculto" id="menuOculto">
         <button className="btn-close-x" onClick={js.fecharNav}>&times;</button>
-        <a href="/Servicos">SERVIÇOS</a>
-        <a href="/">SOBRE NÓS</a>
-        <a href="/Login">ENTRAR</a>
+        <a href="/Servicos">Serviços</a>
+        <a href="/">Sobre Nós</a>
+        <a href="/Login">Entrar</a>
         <a href="/Cadastro">Junte-se a nós</a>
       </div>
 

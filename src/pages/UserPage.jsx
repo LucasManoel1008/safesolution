@@ -4,7 +4,7 @@ import ImagensUser from '../shared/ImagensUser';
 
 // Componentes para diferentes seções, começando no UserProfile
 const UserProfile = () => (
-  <div className='userProfile p-4'>
+  <div className='userProfile p-4 mb-4'>
     <h2>Configurações da Conta</h2>
     <p>Gerencie detalhes de sua conta.</p>
     <div className="logoEmpresaContent">
@@ -96,11 +96,25 @@ const UserProfile = () => (
             </div>
 
     </div>
-    <div className="dadosPessoais">
-      <p>Dados pessoais</p>
-      <div className="inputsPessoais">
-          
-      </div>
+    <div className="dadosPessoais mt-4">
+      <div className="inputsPessoais"></div>
+        <p>Dados pessoais</p>
+        <div className="nome-ultimo">
+        <div className="userItens1 mt-4">
+            
+            <div className="form-group">
+                <label htmlFor="primeiroNome">Primeiro Nome:</label>
+                <input type="text" className="form-control d-inline nomeExibicao" id="primeiroNome" value={"Fulano"} readOnly/>
+                <span><i className="fa-solid fa-pen-to-square"></i></span>
+             </div>
+            <div className="form-group">
+                <label htmlFor="ultimoNome">Último Nome:</label>
+                <input type="email" className="form-control d-inline nomeExibicao" id="ultimoNome" value={"de Tal"} readOnly/>
+                <span><i className="fa-solid fa-pen-to-square"></i></span>
+             </div>
+        </div>
+        </div>
+      
     </div>
   </div>
 );

@@ -1,6 +1,6 @@
 
 .user-page{
-    height: 800px;
+    height: 1200px;
     width: 1250px;
     margin: 90px auto 40px auto;
     padding: 25px;
@@ -46,7 +46,7 @@
 .userProfile{
     width: 870px;
     margin: 0 auto;
-    height: 800px;
+    height: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -102,3 +102,10 @@
     border: none;
 }
 
+.userProfile .dadosPessoais p{
+    text-align: left;
+}
+
+.userProfile .dadosPessoais .nome-ultimo input{
+    width: 200px;
+}
