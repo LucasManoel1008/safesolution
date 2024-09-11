@@ -7,7 +7,7 @@ function Cadastro2() {
     const [cnpj, setCnpj] = useState("");
 
     const handleInputChange = (e) => {
-      let value = e.target.value.replace(/\D/g, ""); // Remove caracteres não numéricos
+      let value = e.target.value.replace(/\D/g, "");
     
       if (value.length > 2) {
         value = value.replace(/^(\d{2})(\d)/, "$1.$2");
