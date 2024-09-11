@@ -33,7 +33,6 @@ const handleBlurText = (event) => {
   return (
     <div>
      <section className='loginBox'>
-        <img src={Imagenspadroes.logo} alt="Logo" width={200} className='logoLogin' />
         <div className="content container">
             <h4>Login</h4>
             <p>Faça login com sua conta</p>
