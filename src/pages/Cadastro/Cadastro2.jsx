@@ -71,7 +71,6 @@ function Cadastro2() {
   return (
     <div className='cadastroContent'>
 
-        <img src={Imagenspadroes.logo} alt="Logo" className='logoCadastro' width={200} />
 
         <h4>Quase lá</h4>
         <p>
