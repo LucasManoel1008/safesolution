@@ -4,7 +4,8 @@ import Login from './pages/Login'
 import Cadastro from './pages/Cadastro/Cadastro'
 import Cadastro2 from './pages/Cadastro/Cadastro2'
 import UserPage from './pages/UserPage'
-import Politicas from './pages/subPages/politicas'
+import Termos from './pages/subPages/Termos'
+import Politicas from './pages/subPages/Politicas'
 import EsqueciSenha from './pages/subPages/EsqueciSenha'
 import {BrowserRouter , Routes, Route} from 'react-router-dom'
 import Header from './assets/components/Header'
@@ -25,6 +26,7 @@ function App() {
       <Route path='/Esqueci-Senha' element={<EsqueciSenha/>}/>
       <Route path='/Cadastro' element={<Cadastro/>} />
       <Route path='/Cadastro2' element={<Cadastro2/>} />
+      <Route path='/Termos' element={<Termos/>} />
       <Route path='/UserPage' element={<UserPage/>} />
       <Route path='/Politicas-de-Privacidade' element = {<Politicas/>} />
       
