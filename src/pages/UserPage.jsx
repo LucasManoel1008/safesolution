@@ -129,10 +129,11 @@ const UserProfile = () => (
 );
 
 const UserSettings = () => (
-  <div>
-    <h2>Configurações</h2>
-    <p>Configurações da conta do usuário.</p>
-    
+  <div className='userSettings mt-4'>
+    <h4 className='text-center'><strong>Em Breve</strong></h4>
+    <h5 className='text-center'>Esta seção ainda não está pronto</h5>
+    <h5 className='text-center'>Volte novamente mais tarde</h5>
+    <strong className='iconClosed'><i class="fa-solid fa-square-xmark"></i></strong>
   </div>
 );
 

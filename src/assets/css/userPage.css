@@ -109,3 +109,19 @@
 .userProfile .dadosPessoais .nome-ultimo input{
     width: 200px;
 }
+
+
+/* userSettings - Formatações */
+
+.userSettings {
+    width: 100%;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    
+}
+.userSettings .iconClosed{
+    font-size: 200px;
+    margin: 0 auto;
+    
+}
