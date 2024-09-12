@@ -11,7 +11,7 @@ const UserProfile = () => (
       <img src={ImagensUser.paladins} alt="Logo empresa" className='logoEmpresa' />
       <img src={ImagensUser.edit} alt="Edit" className='editIcon' />
     </div>
-    <div className="userItens1 mt-4">
+    <div className="userItens1 mt-3">
             
             <div className="form-group">
                 <label htmlFor="exampleFormControlInput1">Nome de exibição:</label>
@@ -28,6 +28,15 @@ const UserProfile = () => (
         <textarea className="form-control mt-3 " placeholder="Sua descrição aqui..."  id="floatingTextarea2" >Sua descrição aqui...</textarea>
         <label htmlFor="floatingTextarea2">Descrição</label>
     </div>
+    <div className="userItens1 mt-4">
+            
+            <div className="form-group">
+                <label htmlFor="telefone">Telefone:</label>
+                <input type="text" className="form-control d-inline" id="primeiroNome" value={"(00) 00000-0000"} readOnly/>
+                <span><i className="fa-solid fa-pen-to-square"></i></span>
+             </div>
+           
+        </div>
     <div className="endereco mt-4">
         <p>Endereço</p>
         <div className="cepInputs mt-4">
@@ -84,7 +93,6 @@ const UserProfile = () => (
                 <input
                     type="text"
                     id="cidade"
-                    
                     readOnly
                     className="form-control"
                     placeholder="Cidade"
@@ -113,6 +121,7 @@ const UserProfile = () => (
                 <span><i className="fa-solid fa-pen-to-square"></i></span>
              </div>
         </div>
+        
         </div>
       
     </div>

@@ -72,7 +72,7 @@ function Cadastro2() {
     <div className='cadastroContent'>
 
 
-        <h4>Quase lá</h4>
+        <h4 className="mt-4">Quase lá</h4>
         <p>
         Preencha os campos abaixo com as informações essenciais sobre o seu negócio. Essas informações nos ajudarão a conectar você com clientes e outros serviços.</p>
 

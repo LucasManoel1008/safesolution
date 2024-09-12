@@ -1,0 +1,17 @@
+.NotFound{
+    margin-top: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 40vh;
+}
+.NotFound{
+    color: var(--blue3);
+}
+.NotFound .backHome{
+    margin: 0 auto;
+    color: white;
+    background-color: var(--blue3);
+    padding: 5px;
+    border-radius: 5px;
+}

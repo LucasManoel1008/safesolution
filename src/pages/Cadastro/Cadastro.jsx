@@ -19,7 +19,7 @@ function Cadastro() {
   return (
     <div className='cadastroContent'>
       
-       <h4>Cadastro</h4>
+       <h4 className='mt-3'>Cadastro</h4>
        <div className="nameInput mt-4">
             <input type="text"  className="form-control" placeholder='Primeiro nome'/>
             <input type="text"  className="form-control" placeholder='Último nome'/>

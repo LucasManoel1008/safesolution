@@ -33,7 +33,7 @@ const handleBlurText = (event) => {
   return (
     <div>
      <section className='loginBox'>
-        <div className="content container">
+        <div className="content container pt-4">
             <h4>Login</h4>
             <p>Faça login com sua conta</p>
             <form className="entradaDados" id='login'  onSubmit={loginJs.validarCpf}>
@@ -60,7 +60,7 @@ const handleBlurText = (event) => {
               </div>
                 <input type="submit" className='btn btn-primary' value={`login`} />
             </form>
-            <Link to="#">Esqueci minha senha</Link>
+            <Link to="/Esqueci-Senha">Esqueci minha senha</Link>
 
             <Link to="/Cadastro" className='d-block p-2 cadConta'>Cadastrar Nova Conta</Link>
         </div>
