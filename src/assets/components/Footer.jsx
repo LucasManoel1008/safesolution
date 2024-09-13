@@ -25,6 +25,8 @@ function Footer() {
                     <strong className="pb-2">Informações</strong>
                     <li><a href="/">Sobre nós</a></li>
                     <li><a href="/#relatos">Relatos</a></li>
+                    <li className='blue2 bold mt-3'>Contato:</li>
+                    <li className='blue2'>safesolutionsempresa@gmail.com</li>
 
                </ul>
             

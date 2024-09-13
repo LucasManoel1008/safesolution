@@ -4,7 +4,7 @@ import ImagensUser from '../shared/ImagensUser';
 
 // Componentes para diferentes seções, começando no UserProfile
 const UserProfile = () => (
-  <div className='userProfile p-4 mb-4'>
+  <div className='userP rofile p-4 mb-4'>
     <h2>Configurações da Conta</h2>
     <p>Gerencie detalhes de sua conta.</p>
     <div className="logoEmpresaContent">
