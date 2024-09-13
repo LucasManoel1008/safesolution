@@ -6,6 +6,7 @@ import Cadastro2 from './pages/Cadastro/Cadastro2'
 import UserPage from './pages/UserPage'
 import Termos from './pages/subPages/Termos'
 import Politicas from './pages/subPages/Politicas'
+import Servicos from './pages/Servicos'
 import EsqueciSenha from './pages/subPages/EsqueciSenha'
 import {BrowserRouter , Routes, Route} from 'react-router-dom'
 import Header from './assets/components/Header'
@@ -29,6 +30,7 @@ function App() {
       <Route path='/Cadastro2' element={<Cadastro2/>} />
       <Route path='/Termos' element={<Termos/>} />
       <Route path='/UserPage' element={<UserPage/>} />
+      <Route path='/Servicos' element={<Servicos/>}/>
       <Route path='/Politicas-de-Privacidade' element = {<Politicas/>} />
 
       <Route path='*' element ={<NotFound/>} />
