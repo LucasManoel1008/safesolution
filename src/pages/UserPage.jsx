@@ -138,9 +138,11 @@ const UserSettings = () => (
 );
 
 const UserOrders = () => (
-  <div>
-    <h2>Pedidos</h2>
-    <p>Histórico de pedidos do usuário.</p>
+  <div className='userSettings mt-4'>
+    <h4 className='text-center'><strong>Em Breve</strong></h4>
+    <h5 className='text-center'>Esta seção ainda não está pronto</h5>
+    <h5 className='text-center'>Volte novamente mais tarde</h5>
+    <strong className='iconClosed'><i class="fa-solid fa-square-xmark"></i></strong>
   </div>
 );
 
@@ -167,17 +169,13 @@ function UserPage() {
       {/* Menu de navegação */}
         <section className='user-nav'>
             <nav className='user-nav-links'>
-                <ul>
-                <li>
+              
                     <button className='nav-item' id='profile' onClick={() => setSection('profile')}><i className="fa-solid fa-user pr-2"></i>Perfil</button>
-                </li>
-                <li>
+                
                     <button className='nav-item ' onClick={() => setSection('settings')}><i className="fa-solid fa-gear pr-2"></i>Configurações</button>
-                </li>
-                <li>
+                
                     <button className='nav-item ' onClick={() => setSection('orders')}><i className="fa-solid fa-cart-shopping pr-2"></i>Pedidos</button>
-                </li>
-                </ul>
+                
                 
             </nav>
             

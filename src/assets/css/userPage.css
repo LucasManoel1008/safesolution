@@ -1,7 +1,7 @@
 
 .user-page{
     height: 1200px;
-    width: 1250px;
+    width: 1200px;
     margin: 90px auto 40px auto;
     padding: 25px;
 }
@@ -44,7 +44,7 @@
 
 /* UserProfile - Formatações */
 .userProfile{
-    width: 870px;
+    width: 100%;
     margin: 0 auto;
     height: 100%;
     display: flex;
@@ -123,5 +123,29 @@
 .userSettings .iconClosed{
     font-size: 200px;
     margin: 0 auto;
+    
+}
+
+@media screen and (max-width: 1200px){
+    
+    .user-page .user-nav{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+    }
+    .user-page .section-date{
+        margin: 0 !important;
+        box-shadow: none;
+    }
+    .user-page .user-nav .user-nav-links{
+        display: flex;
+        flex-direction: row ;
+        height: fit-content;
+        margin-bottom: 3em;
+        
+    }
+    
     
 }
