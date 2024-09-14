@@ -24,7 +24,9 @@
     font-family: "montserrat";
     src: url("../fonts/Montserrat-VariableFont_wght.ttf");
 }
-
+html {
+    scroll-behavior: auto;
+  }
 body{
     font-family: "montserrat";
     height: 100%;

@@ -36,8 +36,8 @@ flex-direction: row;
     color: var(--blue3);
     font-weight: 600;
 }
-.servicosContent .mainContentServicos .servicoSection .servico .rightText p{
-    color: gray;
+.servicosContent .mainContentServicos .servicoSection .servico .rightText small{
+    color: black;
 }
 .servicosContent .mainContentServicos .servicoSection .servico:hover{
     text-decoration: none;

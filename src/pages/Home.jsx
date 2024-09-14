@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Fade } from 'react-reveal'
 import Imagemindex from '../shared/Imagesindex'
 import * as js from '../assets/js/index.js'
 import '../assets/css/index.css'
@@ -7,14 +8,15 @@ import '../assets/css/index.css'
 function Home() {
   return (
     <div >
-       
       {/* Botão disponível apenas no mobile. Junte-se a nós */}
      <Link to={"/Cadastro"}> <button className= "btn-primary d-lg-none btn-block joinUs"><a href="/Cadastro">Seja Provedor <img src={Imagemindex.fast} alt="fastForward"/></a></button></Link>
 
       {/*Área com todos os textos do corpo do site, Cada div text é um texto com seu icone,
       falta alterá-lo de acordo com o novo figma, está totalmente responsivo ja.*/}
+      
       <main className="main-content">
         {/* Imagem divulgando serviços - Inicio */}
+        <Fade  duration={1500} deley={400 } >
         <div className="firstImage d-flex">
           <div className="leftContent">
             <h4>Mais de 1000 empresas em <br/> um só lugar</h4>
@@ -25,7 +27,9 @@ function Home() {
             <img src={Imagemindex.plumber} alt="Engineer"/>
           </div>
         </div>
-
+        </Fade>
+        
+        <Fade bottom duration={1500} deley={400 } >
         <h4 id="quemSomos" className="title-main-text fade-in">Quem é a Safe Solution?</h4>
         <section className="text-body">
           <div className="Text">
@@ -58,6 +62,7 @@ function Home() {
             </ul>
           </div>
         </section>
+        </Fade>
 
         {/*Divulgação do app Mobile - INICIO */}
         <div className="applicationMobile d-flex d-lg-none">
@@ -71,13 +76,19 @@ function Home() {
           <img src={Imagemindex.cellphone} width="400" alt="CELLPHONE" className="cellphone"/>
         </div>
       </main>
+      
 
       {/* Feedbacks de outros Clientes */}
+      <Fade bottom duration={500}>
       <section id="relatos" className="comments-area">
         <h4 className="title-main-text">Feedback de nossos clientes</h4>
         <div className="comments">
+        
           <div className="container">
-            <img src={Imagemindex.woman1} alt=""/>
+          <Fade bottom duration={600}>
+            <img src={Imagemindex.woman1} alt="Luiza Meneses"/>
+            </Fade>
+            <Fade bottom duration={700}>
             <h4 className="peopleName">Luiza Meneses</h4>
             <p>O sistema de serviços compartilhados
                 é uma verdadeira revolução! Agora posso
@@ -85,9 +96,15 @@ function Home() {
                 diferentes empresas em um só lugar. É 
                 incrível como isso facilita minha vida como 
                 empreendedora.</p>
+            </Fade>
           </div>
+          
+          
           <div className="container">
-            <img src={Imagemindex.man1} alt=""/>
+          <Fade bottom duration={600}>
+            <img src={Imagemindex.man1} alt="José Santos"/>
+          </Fade>
+          <Fade bottom duration={700}>
             <h4 className="peopleName">José Santos</h4>
             <p>Como proprietário de uma pequena empresa,
                 sempre estou buscando maneiras de expandir 
@@ -96,9 +113,15 @@ function Home() {
                 solução brilhante. Posso acessar uma ampla
                 gama de serviços de alta qualidade sem comprometer
                 meu orçamento.</p>
+          </Fade>
+
           </div>
+          
           <div className=" container">
-            <img src={Imagemindex.woman2} alt=""/>
+          <Fade bottom duration={600}>
+            <img src={Imagemindex.woman2} alt="Fernanda Almeida"/>
+            </Fade>
+            <Fade bottom duration={700}>
             <h4 className="peopleName">Fernanda Almeida</h4>
             <p>Como proprietária de uma loja no setor 
                 de varejo, é importante manter uma 
@@ -112,9 +135,13 @@ function Home() {
                 melhor experiência de compra para 
                 meus clientes.
             </p>
+            </Fade>
           </div>
           <div className="container">
-            <img src={Imagemindex.man2} alt=""/>
+            <Fade bottom duration={600}>
+              <img src={Imagemindex.man2} alt="André Ferreira"/>
+            </Fade>
+            <Fade bottom duration={700}>
             <h4 className="peopleName">André Ferreira</h4>
             <p>Como empresário, sempre estou em busca
                 de soluções eficientes para otimizar
@@ -125,15 +152,20 @@ function Home() {
                 . É uma ferramenta indispensável para
                 quem busca crescimento e eficiência 
                 nos negócios.</p>
+                </Fade>
           </div>
         </div>
       </section>
+      </Fade>
+      
 
       {/* Barra de pesquisa + Categorias - Inicio */}
-     
+      <Fade bottom duration={500}>
       <section className="FAQ">
             <h4 className="title-main-text blue2 align-text">Perguntas Frequentes</h4>
+      
             <ul className="FAQ-container">
+            <Fade bottom duration={600}>
                 <li>
                     <input type="radio" name="faq" id="firstFAQ" />
                     <label htmlFor="firstFAQ">Como usar a plataforma?</label>
@@ -144,6 +176,8 @@ function Home() {
                         </p>
                     </div>
                 </li>
+                </Fade>
+                <Fade bottom duration={600}>
                 <li>
                     <input type="radio" name="faq" id="secondFAQ"/>
                     {/* placeholder */}
@@ -158,6 +192,8 @@ function Home() {
                             sejam elas prestadoras ou solicitantes de serviços.</p>
                     </div>
                 </li>
+                </Fade>
+                <Fade bottom duration={600}>
                 <li>
                     <input type="radio" name="faq" id="thirdFAQ"/>
                     <label htmlFor="thirdFAQ">Por que usar a plataforma de vocês?</label>
@@ -172,6 +208,8 @@ function Home() {
                         </p>
                     </div>
                 </li>
+                </Fade>
+                <Fade bottom duration={600}>
                 <li>
                     <input type="radio" name="faq" id="fourthFAQ"/>
                     <label htmlFor="fourthFAQ">A plataforma possui aplicativo móvel para facilitar o acesso em dispositivos móveis?</label>
@@ -182,9 +220,12 @@ function Home() {
                         </p>
                     </div>
                 </li>
+                </Fade>
             </ul>
-
+         
         </section>
+        </Fade>
+        
         
         <form id="ajuda" className="forms">
             <div className="forms-title">
@@ -213,7 +254,7 @@ function Home() {
                 <input id="submit" type="submit" onSubmit={js.submit} value="enviar"/>
         </form>
 
-      
+  
     </div>
   )
 }
