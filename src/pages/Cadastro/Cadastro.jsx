@@ -40,7 +40,7 @@ function Cadastro() {
           </div>
         <a href="/Cadastro2" role='button' className="continuarCadastro1 btn btn-primary mt-4">Continuar</a>
         <span>Ja possui uma conta? <Link to={"/Login"}>Entre já </Link></span>
-        <p className='termos-e-politicas mt-4'>Ao continuar, afirmo que concordo com a <Link to="/Politica">Política de privacidade</Link> e os <Link to="/Termos">Termos de uso</Link> da Safe Solutions.</p>
+        <p className='termos-e-politicas mt-4'>Ao continuar, afirmo que concordo com a <Link to="/Politicas-de-Privacidade">Política de privacidade</Link> e os <Link to="/Termos">Termos de uso</Link> da Safe Solutions.</p>
         
       </div>
     

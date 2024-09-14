@@ -8,8 +8,8 @@ function Footer() {
             <div className="servicos mt-4">
                 <ul className="mt-4 container1">
                     <a href="/"> <img src={Imagenspadroes.logoReserva} width="200" alt="LOGO"/></a>
-                    <li><a href="#">Política de Privacidade</a></li>
-                    <li><a href="#">Termos de uso</a></li>
+                    <li><a href="/Politicas-de-Privacidade">Política de Privacidade</a></li>
+                    <li><a href="/Termos">Termos de uso</a></li>
                     <li><a href="/Cadastro">Seja provedor</a></li>
                 </ul>
                <ul className="container2 d-flex flex-column mt-3" >               
