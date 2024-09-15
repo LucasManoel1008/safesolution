@@ -1,9 +1,15 @@
+
+
+
 .servicosContent{
     margin-top: 120px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     height: 100%;
+}
+.hidden{
+    display: none;
 }
 .servicosContent .leftContentFilter{
     width: 350px;
@@ -13,7 +19,20 @@
 .servicosContent .leftContentFilter h5{
     color: var(--blue3);
     font-weight: 600;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
 }
+.servicosContent .leftContentFilter .message{
+    width: 100%;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+
+
 .servicosContent .mainContentServicos{
     width: 70%;
     height: 100%;
@@ -42,3 +61,47 @@ flex-direction: row;
 .servicosContent .mainContentServicos .servicoSection .servico:hover{
     text-decoration: none;
 }
+
+
+.mainContentServicos .input-group button{
+    border-color: var(--blue3);
+     color: var(--blue3);
+    }
+.mainContentServicos .input-group button:hover{
+    background-color: var(--blue3);
+    color: white;
+    
+}
+
+/* Tamplate de serviços - Inicio */
+.serviceTemplate{
+    background-color: white;
+    width: 1200px;
+    height: auto;
+    box-shadow: 0px 3px 12px -3px rgba(0,0,0,0.36);
+    border: 1px solid var(--blue3);
+    border-radius: 10px;
+    position: absolute;
+    z-index: 9;
+    padding: 15px;
+    top: 120px;
+    right: 10%;
+    
+}
+.serviceTemplate h6{
+    color: var(--blue3);
+    font-weight: 600;
+}
+.serviceTemplate p, .serviceTemplate li{
+    opacity: .9;
+}
+
+.serviceTemplate ul{
+    list-style: disc;
+}
+.serviceTemplate .orcamento{
+    background-color: var(--blue3);
+    border:  none;
+    float: right;
+}
+

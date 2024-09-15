@@ -175,8 +175,6 @@ function UserPage() {
                     <button className='nav-item ' onClick={() => setSection('settings')}><i className="fa-solid fa-gear pr-2"></i>Configurações</button>
                 
                     <button className='nav-item ' onClick={() => setSection('orders')}><i className="fa-solid fa-cart-shopping pr-2"></i>Pedidos</button>
-                
-                
             </nav>
             
         
