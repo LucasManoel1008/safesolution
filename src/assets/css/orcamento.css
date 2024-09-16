@@ -1,3 +1,35 @@
 .orcamentoContent{
     margin-top: 120px;
 }
+.orcamentoContent .endereco .cepInputs{
+    display: flex;
+    width: 800px;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.orcamentoContent .endereco .cepInputs input{
+    width: 300px;
+}
+.orcamentoContent .especificacoes{
+    width: 70vw;
+    margin: 0 auto;
+
+}
+
+.orcamentoContent .dadosForm .prosseguir{
+    background-color: var(--blue3);
+    border: none;
+}
+.orcamentoContent .paragraph{
+    opacity: .7;
+}
+.orcamentoContent strong{
+    opacity: .9;
+}
+
+/* orcamento conteudo 2 - Inicio */
+.orcamentoConten2 .dadosForm .voltar-prosseguir{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
