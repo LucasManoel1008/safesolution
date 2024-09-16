@@ -28,6 +28,7 @@ html {
     scroll-behavior: auto;
   }
 body{
+    padding: 0 !important;
     font-family: "montserrat";
     height: 100%;
 }
