@@ -9,7 +9,7 @@ function Home() {
   return (
     <div >
       {/* Botão disponível apenas no mobile. Junte-se a nós */}
-     <Link to={"/Cadastro"}> <button className= "btn-primary d-lg-none btn-block joinUs"><a href="/Cadastro">Seja Provedor <img src={Imagemindex.fast} alt="fastForward"/></a></button></Link>
+     <Link to={"/Cadastro"}> <button className= "btn-primary d-lg-none btn-block joinUs">Seja Provedor <img src={Imagemindex.fast} alt="fastForward"/></button></Link>
 
       {/*Área com todos os textos do corpo do site, Cada div text é um texto com seu icone,
       falta alterá-lo de acordo com o novo figma, está totalmente responsivo ja.*/}
@@ -239,7 +239,7 @@ function Home() {
                     <input type="tel" placeholder="TELEFONE"/>
                     <input type="text" placeholder="CIDADE"/>
                     <div className="razao">
-                    <p>*Assunto</p>
+                    <small>*Assunto</small>
                     <select name="Assunto" id="Assunto">
                         <option value="Assunto" defaultValue={'Assunto'}>*ASSUNTO</option>
                         <option value="Reclamacao" >RECLAMAÇÃO</option>

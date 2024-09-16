@@ -8,12 +8,14 @@ import Termos from './pages/subPages/Termos'
 import Politicas from './pages/subPages/Politicas'
 import Servicos from './pages/Servicos'
 import Orcamento from './pages/Orcamento'
+import Orcamento2 from './pages/Orcamento2'
 import EsqueciSenha from './pages/subPages/EsqueciSenha'
 import Servico1 from './pages/subPages/Servico1'
 import {BrowserRouter , Routes, Route} from 'react-router-dom'
 import Header from './assets/components/Header'
 import Footer from './assets/components/Footer'
 import NotFound from './pages/subPages/NotFound'
+
 
 
 
@@ -35,6 +37,7 @@ function App() {
       <Route path='/Servicos' element={<Servicos/>}/>
       <Route path='/Manutencao' element={<Servico1/>}/>
       <Route path='/Orcamento' element={<Orcamento/>}/>
+      <Route path='/Orcamento2' element={<Orcamento2/>}/>
       <Route path='/Politicas-de-Privacidade' element = {<Politicas/>} />
 
       <Route path='*' element ={<NotFound/>} />
