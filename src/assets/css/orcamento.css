@@ -5,10 +5,12 @@
     display: flex;
     width: 800px;
     flex-direction: row;
-    justify-content: space-between;
 }
 .orcamentoContent .endereco .cepInputs input{
     width: 300px;
+}
+.orcamentoContent .endereco .cepInputs .numero{
+    width: 60px;
 }
 .orcamentoContent .especificacoes{
     width: 70vw;
@@ -33,3 +35,9 @@
     flex-direction: row;
     justify-content: space-between;
 }
+
+
+/* Confirmação */
+.confirmacao{
+    margin: 120px auto;
+    }

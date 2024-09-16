@@ -31,16 +31,14 @@ function Orcamento() {
                     <input
                         type="text"
                         id="cep"
-                      
                         className="form-control"
                         placeholder="CEP"
                     />
                     <input
                     type="text"
                     id="numero"
-                   
-                    className="form-control"
-                    placeholder="Número"
+                    className="form-control ml-2 numero"
+                    placeholder="N°"
                     
                 />
           </div>

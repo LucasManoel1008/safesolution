@@ -21,15 +21,36 @@ function Orcamento2() {
           <label htmlFor="materials"><strong>Materiais e ferramentas necessários (opcional):</strong></label>
           <textarea id="materials" readOnly className="form-control" rows="3" placeholder="Preciso saber se a empresa fornecerá buchas, parafusos e qualquer outro material necessário para a montagem. A montagem precisará ser realizada no terceiro andar do prédio, e o local não possui elevador, apenas escadas estreitas. A equipe possui ferramentas adequadas para essa situação?"></textarea>
         </div>
+        <div className="endereco mt-4 mb-4">
+          <p><strong>Endereço Final (opcional - apenas no caso de entregas)</strong></p>
+          <div className="cepInputs mt-4">
+                      <input
+                          type="text"
+                          id="cep"
+                          className="form-control"
+                          placeholder="06447-100"
+                          readOnly
+                      />
+                      <input
+                      type="text"
+                      id="numero"
+                      className="form-control ml-2 numero"
+                      placeholder="256"
+                      readOnly
+                      
+                  />
+            </div>
+          </div>
         <div className="form-check mb-4">
           <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
           <label className="form-check-label" htmlFor="flexCheckDefault">
           Ao continuar, afirmo que li e concordo com a <Link to="/Politicas-de-Privacidade">Política de privacidade</Link> e os <Link to="/Termos">Termos de uso</Link> da Safe Solutions.
           </label>
         </div>
+        
         <div className="voltar-prosseguir">
           <Link to={"/Orcamento"}><button className="btn btn-primary prosseguir">Voltar</button></Link>
-          <Link to={"/Orcamento2"}><button className="btn btn-primary prosseguir">Concluir</button></Link>
+          <Link to={"/Confirmacao"}><button className="btn btn-primary prosseguir">Concluir</button></Link>
         </div>
       </form>
     </div>
