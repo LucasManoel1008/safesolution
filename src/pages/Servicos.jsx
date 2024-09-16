@@ -3,6 +3,7 @@ import '../assets/css/servicos.css'
 import { Link } from 'react-router-dom'
 import imagensServicos from '../shared/Imagesservicos'
 import * as servico from '../assets/js/servicos';
+import { Fade, Roll, Zoom } from 'react-reveal';
 
 
 
@@ -14,7 +15,7 @@ const None =() => (
 );
 
 const Manutencao = () => (
-    
+    <Zoom duration={200}>
     <div id='servico1' className='serviceTemplate'>
         <div className="nomeEmpresa p-3 ">
             <img src={imagensServicos.logo1} width={70} alt="Bretecno" />
@@ -48,14 +49,16 @@ const Manutencao = () => (
                 <li>Localização</li>
             </ul>
         </div>
-        <Link to={"#"}><button className='btn btn-primary orcamento'>Solicitar Orçamento</button></Link>
+        <Link to={"/Orcamento"}><button className='btn btn-primary orcamento'>Solicitar Orçamento</button></Link>
     </div>  
+    </Zoom>
 )
 
 const Limpeza = () => (
+    <Zoom duration={200}>
     <div id='servico2' className='serviceTemplate'>
        <div className="nomeEmpresa p-3 ">
-            <img src={imagensServicos.logo2} width={70} alt="uper Clean" />
+            <img src={imagensServicos.logo2} width={70} alt="Super Clean" />
             <span>Super Clean</span>
             <button className='float-right mt-3 btn closeService' onClick={servico.servico2} >X</button>
             
@@ -83,17 +86,19 @@ const Limpeza = () => (
                 <li>Localização</li>
             </ul>
         </div>
-        <Link to={"#"}><button className='btn btn-primary orcamento'>Solicitar Orçamento</button></Link>
+        <Link to={"/Orcamento"}><button className='btn btn-primary orcamento'>Solicitar Orçamento</button></Link>
     </div>  
+    </Zoom>
 )
 
 
 const Montador = () =>(
+    <Zoom duration={200}>
     <div id='servico3' className='serviceTemplate'>
         <div className="nomeEmpresa p-3 ">
             <img src={imagensServicos.logo3} width={70} alt="O Montador" />
             <span>O Montador</span>
-            <button className='float-right mt-3 btn closeService' onClick={servico.servico3} >X</button>
+            <button className='float-right mt-3 btn closeService' onClick={servico.servico3}>X</button>
             
         </div>
         <div className="descricao">
@@ -129,8 +134,9 @@ const Montador = () =>(
                 <li>Localização</li>
             </ul>
         </div>
-        <Link to={"#"}><button className='btn btn-primary orcamento'>Solicitar Orçamento</button></Link>
+        <Link to={"/Orcamento"}><button className='btn btn-primary orcamento'>Solicitar Orçamento</button></Link>
     </div>
+    </Zoom>
 );
 
 
@@ -139,12 +145,14 @@ function Servicos() {
 
 // Função para mudar o componente exibido
 const handleComponentChange = (component) => {
-  setCurrentComponent(component);
+    document.getElementById('filter').style.display = 'block';
+    setCurrentComponent(component);
 };
+// Conteúdo da página inicial   
   return (
     
     <div className='conteiner servicosContent'>
-            
+            <div id='filter' className="filter"></div>
         <div className="leftContentFilter">
             <h5 className='text-center mt-3'>Mensagens</h5> 
             
@@ -161,7 +169,7 @@ const handleComponentChange = (component) => {
             <input type="search" className="form-control rounded" placeholder="Pesquisar..." aria-label="Search" aria-describedby="search-addon" />
             <button type="button" className="btn btn-outline-primary" data-mdb-ripple-init><i className="filtro fa-solid fa-filter"></i></button>
         </div>
-            <section className='servicoSection mb-4'>
+            <section className='servicoSection mb-4' onClick={servico.ativar1}>
                 <button className="servico w-100 btn" onClick={() => handleComponentChange('manutencao')}>               
                         <img src={imagensServicos.logo1} width={50} height={50} alt="Logo empresa" className='mr-4'/>
                     <div className="rightText">
@@ -172,7 +180,7 @@ const handleComponentChange = (component) => {
                     </div>
                 </button>
             </section>
-            <section className='servicoSection mt-4'>
+            <section className='servicoSection mt-4' onClick={servico.ativar2}>
                      <button className="servico w-100 btn" onClick={() => handleComponentChange('limpeza')}>            
                         <img src={imagensServicos.logo2} width={50} height={50} alt="Logo empresa" className='mr-4'/>
                     <div className="rightText">
@@ -183,8 +191,8 @@ const handleComponentChange = (component) => {
                     </div>
                 </button>
             </section>
-            <section className='servicoSection mt-4' onClick={() => handleComponentChange('montador')}>
-            <button className="servico w-100 btn">                     
+            <section className='servicoSection mt-4'  onClick={servico.ativar3}>
+            <button className="servico w-100 btn" onClick={() => handleComponentChange('montador')}>                     
                         <img src={imagensServicos.logo3} width={50} height={50} alt="Logo empresa" className='mr-4'/>
                     <div className="rightText">
                         <span className="title">Montador de Móveis</span>
