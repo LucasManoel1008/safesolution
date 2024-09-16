@@ -6,14 +6,14 @@ function EsqueciSenha() {
   return (
    <div className='contentSenha pt-2'>
   
-    <h4 className='agacuatro pt-5'>Resgatar Senha</h4>
-    <p className='texttoilet pb-2'>Insira o endereço de email registrado na sua conta <br/> que 
-    te enviaremos um código de verificação.</p>
+    <h4 className='agacuatro pt-5'>Redefinir Senha</h4>
+    <p className='texttoilet pb-2'>Enviaremos um código de autenticação <br/> por meio do endereço de email registrado na conta.</p>
     
     
 
 <input type='text' className='form-control skibidi pt-1 pb-1 p-4' placeholder='E-mail' />
-<button className='botãoIceBLue btn-primary btn'> Confirmar Email</button>
+<a href="/Validar-Codigo" role="button" class="irParaValidarCodigo btn btn-primary mt-4">Confirmar e continuar</a>
+<Link to="/Login">Retornar à tela de login</Link>
    </div>
    
   )

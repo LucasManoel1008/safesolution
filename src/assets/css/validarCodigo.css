@@ -1,4 +1,4 @@
-.contentSenha{
+.contentCodigo{
     margin: 120px auto 40px auto;
     width: 680px;
     height: 500px;
@@ -8,30 +8,29 @@ flex-direction: column;
     text-align: center;
 color:var(--blue3);
 }
-.contentSenha .skibidi {
+.contentCodigo .codigo {
 align-self: center;
 width: 400px;
+
 }
-.contentSenha .bolsonaro {
-    align-self: center;
-    width: 400px;
-}
-.contentSenha .botãoIceBLue {
+.contentCodigo .botãokljay {
     align-self: center;
     width: 300px;
-    margin: 25px;
+    margin: 20px;
  background-color:var(--blue3);
  font-weight: 4500;
 }
-.contentSenha .agacuatro {
+.contentCodigo .titulo {
 
     font-weight: 600;
 
 }
-.contentSenha .irParaValidarCodigo {
-    align-self: center;
+.contentCodigo .tentOutrat {
+    background-color: none;
+    border: 1px solid var(--blue3);
+    border-radius: 5px;
+    color: #5A5A5A;
     width: 300px;
-    margin: 25px;
- background-color:var(--blue3);
- font-weight: 4500;
+    align-self: center;
 }
+
