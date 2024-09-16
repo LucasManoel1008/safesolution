@@ -12,6 +12,8 @@ import {BrowserRouter , Routes, Route} from 'react-router-dom'
 import Header from './assets/components/Header'
 import Footer from './assets/components/Footer'
 import NotFound from './pages/subPages/NotFound'
+import ValidarCodigo from './pages/subPages/ValidarCodigo'
+import RedefinicaoDeSenha from './pages/subPages/RedefinicaoDeSenha'
 
 
 
@@ -32,6 +34,8 @@ function App() {
       <Route path='/UserPage' element={<UserPage/>} />
       <Route path='/Servicos' element={<Servicos/>}/>
       <Route path='/Politicas-de-Privacidade' element = {<Politicas/>} />
+      <Route path='/Validar-Codigo' element ={<ValidarCodigo/>}/>
+      <Route path='/Redefinição-Senha' element ={<RedefinicaoDeSenha/>}/>
 
       <Route path='*' element ={<NotFound/>} />
       
