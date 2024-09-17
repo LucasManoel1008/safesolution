@@ -193,17 +193,7 @@ function Home() {
                     </div>
                 </li>
                 </Fade>
-                <Fade bottom duration={600}>
-                <li>
-                    <input type="radio" name="faq" id="thirdFAQ"/>
-                    <label htmlFor="thirdFAQ">Por que usar a plataforma de vocês?</label>
-                    <div className="faq-content">
-                        <p>
-                          Oferecemos uma maior práticidade e segurança. Permitindo um controle maior dos serviços
-                        </p>
-                    </div>
-                </li>
-                </Fade>
+
                 <Fade bottom duration={600}>
                 <li>
                     <input type="radio" name="faq" id="fourthFAQ"/>
