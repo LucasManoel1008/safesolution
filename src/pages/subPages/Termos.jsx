@@ -6,7 +6,7 @@ function Termos() {
       <div className='Title'>
         <h4>Termos de uso</h4>
         </div>
-    <div  className='textoContent'>
+    <div  className='texto'>
 
         <h5>TERMOS DE USO — Safe Solutions</h5>
         <p>Safe Solutions, pessoa jurídica de direito privado descreve, através deste documento, as regras de uso do site www.safesolutions.com e qualquer outro site, loja ou 
