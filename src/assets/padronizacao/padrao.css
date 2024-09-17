@@ -1,5 +1,4 @@
 :root{
-
     --blue3:#234063;
     --blue4:#1E2D3F;
     --white: #EDF2F4;
@@ -162,7 +161,7 @@ body{
     
 }
 .footer{
-    margin-top: 3vh;
+
     width: 100%;
     background-color: var(--blue2);
     display: flex;

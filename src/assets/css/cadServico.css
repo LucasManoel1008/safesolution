@@ -1,0 +1,74 @@
+.cadServico{
+    margin-top: 71px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 80vh;
+
+}
+.cadServico .conteudoPrincipal{
+    width: 80%;
+}
+.cadServico .menuLateral{
+    width: 20%;
+    background-color: rgba(187, 185, 185, 0.103);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.cadServico .menuLateral .profile{
+    color: var(--blue3);
+    font-weight: 600;
+}
+.cadServico .menuLateral .profile img{
+    border-radius: 100%;
+}
+.cadServico .menuLateral .tab-links{
+    margin-top: 50px;
+    list-style-type: none;
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+}
+.cadServico .menuLateral .tab-links button{
+    font-size: 20px ;
+   
+}
+.cadServico .menuLateral .provedor{
+    top: 400px;
+}
+.servicos{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.servicos .adicionar{
+    margin: 0 auto;
+    width: 97% ;
+}
+
+
+/* Cadastrar novo serviço */
+.servicoCadastro{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 1200px;
+    height: 700px;
+    box-shadow: 0px 3px 12px -3px rgba(0,0,0,0.36);
+    margin: 120px auto 50px auto;
+}
+.servicoCadastro .imageService{
+    font-size: 240px;
+}
+.servicoCadastro .imageService i{
+    border: 3px solid var(--blue3) ;
+    padding: 10px 15px;
+    border-radius: 10px;
+    color: var(--blue3);
+}
+;.servicoCadastro .inputServico{
+    display: flex;
+    flex-direction: column;
+}

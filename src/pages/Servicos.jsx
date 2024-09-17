@@ -114,11 +114,7 @@ const Montador = () =>(
             segura e eficiente de móveis de
             todos os tipos e marcas. Desde
             móveis planejados até móveis 
-            prontos para montagem, nossos 
-            profissionais estão equipados 
-            para lidar com qualquer desafio,
-            proporcionando comodidade e qualidade
-            em cada etapa do processo. <br />
+            prontos para montagem. <br />
             <li>Ajustes e Reparos;</li>
             <li>Instalação de Mobiliário Corporativo;</li>
             <li>Desmontagem e Remontagem;</li>
@@ -151,7 +147,7 @@ const handleComponentChange = (component) => {
 // Conteúdo da página inicial   
   return (
     
-    <div className='conteiner servicosContent'>
+    <div className='conteiner servicosContent mb-4'>
             <div id='filter' className="filter"></div>
         <div className="leftContentFilter">
             <h5 className='text-center mt-3'>Mensagens</h5> 
