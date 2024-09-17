@@ -58,11 +58,11 @@ const handleBlurText = (event) => {
                 />
                 <span className='iconPassword '><i id='passwordIcon' className="fa-solid fa-lock "></i></span>
               </div>
-                <Link to={'/Userpage'}><input type="submit" className='btn btn-primary' value={`login`} /></Link>
+                <input type="submit" className='btn btn-primary' value={`login`} />
             </form>
             <Link to="/Esqueci-Senha">Esqueci minha senha</Link>
 
-            <Link to="/Cadastro" className='d-block p-2 cadConta'>Cadastrar Nova Conta</Link>
+            <Link to="/Cadastro" className='d-block p-2 cadConta '>Cadastrar Nova Conta</Link>
         </div>
         
      </section>

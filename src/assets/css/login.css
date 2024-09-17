@@ -93,7 +93,13 @@
     margin-top: 50px;
     border-radius: 5px;
     color: #5A5A5A;
+    text-decoration: none;
 
+}
+.loginBox .cadConta:hover{
+    border-color: var(--blue);
+    transition: all 0.3s;
+    
 }
 
 @media screen and (max-width: 552px){

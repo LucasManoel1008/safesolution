@@ -7,7 +7,7 @@ import '../assets/css/index.css'
 
 function Home() {
   return (
-    <div >
+    <div className='mb-5'>
       {/* Botão disponível apenas no mobile. Junte-se a nós */}
      <Link to={"/Cadastro"}> <button className= "btn-primary d-lg-none btn-block joinUs">Seja Provedor <img src={Imagemindex.fast} alt="fastForward"/></button></Link>
 
@@ -199,12 +199,7 @@ function Home() {
                     <label htmlFor="thirdFAQ">Por que usar a plataforma de vocês?</label>
                     <div className="faq-content">
                         <p>
-                            Instalações e serviços empresariais, no geral, demandam muitas etapas, 
-                            um contato individual com as servidoras, e uma burocracia que precisa
-                            perder espaço com a rapidez do mercado moderno. A grandiosa vantagem 
-                            da Safe Soluction© é reunir todas as etapas do processo num único lugar,
-                            otimizando tempo e unificando também a contatação para todas as empresas,
-                            sejam elas prestadoras ou solicitantes de serviços.
+                          Oferecemos uma maior práticidade e segurança. Permitindo um controle maior dos serviços
                         </p>
                     </div>
                 </li>
