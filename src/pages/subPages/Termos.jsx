@@ -8,8 +8,8 @@ function Termos() {
         </div>
     <div  className='texto'>
 
-        <h5>TERMOS DE USO — Safe Solutions</h5>
-        <p>Safe Solutions, pessoa jurídica de direito privado descreve, através deste documento, as regras de uso do site www.safesolutions.com e qualquer outro site, loja ou 
+        <h5>Termos de Uso — Safe Solutions</h5>
+        <p>Safe Solutions, pessoa jurídica de direito privado descreve, através deste documento, as regras de uso do site <a href="/">www.safesolutions.com </a>e qualquer outro site, loja ou 
   aplicativo operado pelo proprietário.
   Ao navegar neste website, consideramos que você está de acordo com os Termos de Uso abaixo.
   Caso você não esteja de acordo com as condições deste contrato, pedimos que não faça mais uso deste website, muito menos cadastre-se ou envie os seus dados pessoais.

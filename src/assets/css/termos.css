@@ -1,18 +1,40 @@
-.termoContent{
-    margin-top: 120px;
+
+:root {
+    --blue3: #234063;
+    --blue4: #1E2D3F;
+    --white: #EDF2F4;
+    --text-color: #333;
+    --link-color: #1E2D3F;
+    --heading-color: #234063;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--white);
+    padding: 20px;
+}
+
+.termoContent h4 {
+    color: var(--heading-color);
+    font-size: 2.5em;
+    margin-bottom: 20px;
     text-align: center;
-
 }
-.termoContent .Title h4{
-     font-weight: bold;
-     color: var(--blue3);
 
-}
 .termoContent .texto {
-
-    width: 1350px;
-    height: 1850px;
-    margin: 0 auto;
+    margin-top: 120px;
+    max-width: 1000px;
+    margin: 40px auto;
     padding: 20px;
     background-color: #f7f7f7;
     border-radius: 8px;
@@ -20,14 +42,76 @@
 }
 
 
-.termoContent .texto h5{
+.termoContent h5 {
+    font-size: 1.60em;
+    color: var(--heading-color);
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--blue4);
+    padding-bottom: 10px;
+}
 
-font-weight: 500;
-padding: 7px;
-font-size: 1.75em;
- color: var(--heading-color);
- margin-bottom: 15px;
- border-bottom: 2px solid var(--blue4);
- padding-bottom: 10px;
+.termoContent .texto p {
+    font-size: 1em;
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+
+
+/* Responsividade para telas menores */
+@media screen and (max-width: 1200px) {
+    .termoContent {
+        max-width: 90%;
+    }
+
+    .termoContent h4 {
+        font-size: 2.3em;
+    }
+
+    .termoContent h5 {
+        font-size: 1.65em;
+    }
+
+    .termoContent p{
+        font-size: 1.05em;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        padding: 5px;
+    }
+
+    .termoContent {
+        padding: 15px;
+    }
+
+    .termoContent h4 {
+        font-size: 2em;
+    }
+
+    .termoContent h5 {
+        font-size: 1.5em;
+    }
+
+    .termoContent p{
+        font-size: 1em;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .termoContent h4 {
+        font-size: 1.8em;
+    }
+
+    .termoContent h5 {
+        font-size: 1.4em;
+    }
+
+    .termoContent p{
+        font-size: 0.95em;
+    }
 
 }
+
+
