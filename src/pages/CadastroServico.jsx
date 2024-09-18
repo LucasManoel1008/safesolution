@@ -101,7 +101,7 @@ function CadastroServico() {
             </div>
             <ul className='tab-links'>
                <button className='btn' onClick={() => setSection('servicos')}><i className="fa-solid fa-scroll mr-2"></i>Serviços</button>
-                <button className='btn' onClick={() => setSection('statistics')}><i className="fa-solid fa-chart-simple mr-2"></i>Estatisticas</button>
+                <button className='btn' onClick={() => setSection('statistics')}><i className="fa-solid fa-chart-simple mr-2"></i>Em andamento</button>
                 <button className='btn' onClick={() => setSection('pedidos')}>¹<i className="fa-solid fa-bell mr-2"></i>Pedidos</button>
             </ul>
             <div className="form-check form-switch provedor">

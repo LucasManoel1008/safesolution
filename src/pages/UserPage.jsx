@@ -45,7 +45,6 @@ const UserProfile = () => (
                     <input
                         type="text"
                         id="cep"
-                      
                         className="form-control"
                         placeholder="CEP"
                         
@@ -174,7 +173,7 @@ function UserPage() {
                 
                     <button className='nav-item ' onClick={() => setSection('settings')}><i className="fa-solid fa-gear pr-2"></i>Configurações</button>
                 
-                    <button className='nav-item ' onClick={() => setSection('orders')}><i className="fa-solid fa-cart-shopping pr-2"></i>Pedidos</button>
+                    <button className='nav-item ' onClick={() => setSection('orders')}><i className="fa-solid fa-cart-shopping pr-2"></i>Compras</button>
             </nav>
             
         

@@ -117,7 +117,7 @@ function Cadastro2() {
 
         <h4 className="mt-4">Quase lá</h4>
         
-        <form onSubmit={validarFormulario}>
+        <form onSubmit={validarFormulario} className="pb-5">
             <p>
             Preencha os campos abaixo com as informações essenciais sobre o seu negócio. Essas informações nos ajudarão a conectar você com clientes e outros serviços.</p>
                 <div className="nameInput nome-cnpj mt-4 ">
@@ -130,7 +130,7 @@ function Cadastro2() {
                     <input
                     type="text"
                     id="cnpj"
-                    placeholder="00.000.000/0000-00"
+                    placeholder="CNPJ"
                     maxLength="18"
                     className='form-control'
                     onChange={handleInputChange}
