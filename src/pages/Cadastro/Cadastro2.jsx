@@ -1,12 +1,22 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 function Cadastro2() {
 
     // Autocompletar CNPJ
     const [cnpj, setCnpj] = useState("");
+    const [nome, setNome] = useState('');
+    const [descricao, setDescricao] = useState('');
+    const navigate = useNavigate();
+
+    const handleInputNome = (e) => {
+        setNome(e.target.value);
+    }
+    const handleInputDescricao = (e) =>{
+        setDescricao(e.target.value);
+    }
 
     const handleInputChange = (e) => {
+    
       let value = e.target.value.replace(/\D/g, "");
     
       if (value.length > 2) {
@@ -43,12 +53,28 @@ function Cadastro2() {
     const validarFormulario = (event) => {
         event.preventDefault();
 
-        if (select == 'provedor'){
-            navigator('/Cadastro-Servico')
+        if (nome == '' ) {
+            window.alert("Você deve preencher o campo 'Nome empresarial'");
+            return;
         }
+        else if (descricao == ''){
+            window.alert("Você precisa informar a descrição da empresa!")
+            return;
+        }
+        else if (cep === "" || cep.length < 8) {
+            alert("Você precisa digitar o cep corretamente!");
+            return;
+        }
+        
+
         else{
-            navigator('/UserPage')
-        }
+            if (select == 'provedor'){
+                navigator('/Cadastro-Servico')
+            }
+            else{
+                navigator('/UserPage')
+            }
+    }
 
     }
 
@@ -61,10 +87,11 @@ function Cadastro2() {
     };
 
     const getCEP = () => {
-        if (cep === "" || cep.length < 8) {
+            if (cep === "" || cep.length < 8) {
             alert("Você precisa digitar o cep corretamente!");
             return;
-        }
+            }
+        
 
         const url = `https://viacep.com.br/ws/${cep}/json`;
 
@@ -94,8 +121,21 @@ function Cadastro2() {
             <p>
             Preencha os campos abaixo com as informações essenciais sobre o seu negócio. Essas informações nos ajudarão a conectar você com clientes e outros serviços.</p>
                 <div className="nameInput nome-cnpj mt-4 ">
-                    <input type="text"  className="form-control" placeholder='Nome empresarial'/>
-                    <input type="text" id="cnpj" placeholder="00.000.000/0000-00" maxLength="18" className='form-control' onChange={handleInputChange} value={cnpj} ></input>
+                    <input
+                    type="text"
+                    className="form-control"
+                    placeholder='Nome empresarial'
+                    onChange={handleInputNome}
+                    />
+                    <input
+                    type="text"
+                    id="cnpj"
+                    placeholder="00.000.000/0000-00"
+                    maxLength="18"
+                    className='form-control'
+                    onChange={handleInputChange}
+                    value={cnpj}
+                    />
                 </div>
                 <div className="form-floating mt-4 interesse">
                     <select onChange={handleSelectChangeSelect} value={select} className="form-select" id="floatingSelect" aria-label="Floating label select example">
@@ -105,7 +145,12 @@ function Cadastro2() {
                     <label htmlFor="floatingSelect">Área de Interesse</label>
                 </div>
                 <div className="form-floating descricao mt-4">
-                    <textarea className="form-control " placeholder="Descrição" id="floatingTextarea2"></textarea>
+                    <textarea
+                    className="form-control"
+                    placeholder="Descrição"
+                    id="floatingTextarea2"
+                    onChange={handleInputDescricao}
+                    value={descricao}></textarea>
                     <label htmlFor="floatingTextarea2">Descrição</label>
                 </div>
                 <div className="cepInputs mt-4">

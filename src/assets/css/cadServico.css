@@ -58,17 +58,5 @@
     height: 700px;
     box-shadow: 0px 3px 12px -3px rgba(0,0,0,0.36);
     margin: 120px auto 50px auto;
-}
-.servicoCadastro .imageService{
-    font-size: 240px;
-}
-.servicoCadastro .imageService i{
-    border: 3px solid var(--blue3) ;
-    padding: 10px 15px;
-    border-radius: 10px;
-    color: var(--blue3);
-}
-;.servicoCadastro .inputServico{
-    display: flex;
-    flex-direction: column;
-}
+};
+
