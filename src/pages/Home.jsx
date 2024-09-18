@@ -1,11 +1,27 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import { Fade } from 'react-reveal'
 import Imagemindex from '../shared/Imagesindex'
 import * as js from '../assets/js/index.js'
 import '../assets/css/index.css'
 
+
+
+
 function Home() {
+
+    const [assunto, validarAssunto] = useState('');   {/*  pega os dados do Assunto  */ }
+    const validarFormulario = (event) => {
+      event.preventDefault(); {/*Impede o envio do formulário */}
+      if (assunto === 'assunto' || assunto === '') {
+        window.alert('Selecione um Assunto diferente do padrão!');
+      } else {
+        window.alert('Mensagem enviada com sucesso');
+        location.reload();
+        return true;
+      }
+    };
+
   return (
     <div className='mb-5'>
       {/* Botão disponível apenas no mobile. Junte-se a nós */}
@@ -222,31 +238,31 @@ function Home() {
         </Fade>
         
         
-        <form id="ajuda" className="forms">
+        <form className="forms"  onSubmit={validarFormulario}>
             <div className="forms-title">
                 <h4>Ainda dúvidas? Entre em Contato Conosco!</h4>
                 <p>*Entrada Obrigatória</p>
             </div>
                 <div className="forms-data">
-                    <input type="text" placeholder="*NOME" id="name"/>
-                    <input type="text" placeholder="*SOBRENOME"/>
-                    <input type="email" placeholder="*EMAIL"/>
+                    <input type="text" placeholder="*NOME" id="name"required />
+                    <input type="text" placeholder="SOBRENOME"/>
+                    <input type="email" placeholder="*EMAIL"required/>
                     <input type="tel" placeholder="TELEFONE"/>
                     <input type="text" placeholder="CIDADE"/>
                     <div className="razao">
                     <small>*Assunto</small>
-                    <select name="Assunto" id="Assunto">
-                        <option value="Assunto" defaultValue={'Assunto'}>*ASSUNTO</option>
+                    <select id="assunto" required  onChange={(e) => validarAssunto(e.target.value)}>
+                        <option value='assunto'>*ASSUNTO</option>
                         <option value="Reclamacao" >RECLAMAÇÃO</option>
                         <option value="Elogio" >ELOGIO</option>
-                        <option value="Informacao" >INFORMAÇÃO</option>
                     </select>
                     <div className="textarea">
-                        <textarea  rows="1" placeholder="*Mensagem" id="mensagem" onFocus={js.ajustarTexto}></textarea>
+                        <textarea  rows="1" required
+                         placeholder="*Mensagem" id="mensagem" onFocus={js.ajustarTexto}></textarea>
                     </div>
                 </div>
                 </div>
-                <input id="submit" type="submit" onSubmit={js.submit} value="enviar"/>
+                <input type="submit" value="enviar"/>
         </form>
 
   

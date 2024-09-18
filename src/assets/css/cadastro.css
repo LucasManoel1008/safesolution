@@ -9,8 +9,13 @@
     padding: 5px;
     text-align: center;
 }
-
-.cadastroContent .logoCadastro{
+.cadastroContent form{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    align-items: center;
+}
+.cadastroContent form .logoCadastro{
     align-self: flex-start;
     padding: 10px;
 }
@@ -19,11 +24,11 @@
     font-weight: 600;
     font-size: 28px;
 }
-.cadastroContent p{
+.cadastroContent form p{
     opacity: .7;
 
 }
-.cadastroContent .nameInput{
+.cadastroContent form .nameInput{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -31,56 +36,56 @@
     gap: 40px;
 }
 
-.cadastroContent .email{
+.cadastroContent form .email{
     width: 80%;
 }
-.cadastroContent .date {
+.cadastroContent form .date {
     width: 80%;
 }
-.cadastroContent .date label{
+.cadastroContent form .date label{
     align-self: flex-start;
 }
-.cadastroContent .passwordInputCadastro{
+.cadastroContent form .passwordInputCadastro{
     justify-content: space-between;
     width: 80%;
     gap: 40px;
 }
-.cadastroContent .continuarCadastro1{
+.cadastroContent form .continuarCadastro1{
     width: 80%;
     background-color: var(--blue3);
 }
-.cadastroContent .termos-e-politicas{
+.cadastroContent form .termos-e-politicas{
     width: 80%;
     opacity: 0.4;
 }
-.cadastroContent .codeInput{
+.cadastroContent form .codeInput{
     width: 40%;
 }
-.cadastroContent .interesse{
+.cadastroContent form .interesse{
     width: 80%;
 }
-.cadastroContent .descricao{
+.cadastroContent form .descricao{
     width: 80%;
 }
-.cadastroContent .cepInputs{
+.cadastroContent form .cepInputs{
     width: 80%;
 }
-.cadastroContent .cepInputs .itens1, .cadastroContent .cepInputs .itens2{
+.cadastroContent form .cepInputs .itens1, .cadastroContent form .cepInputs .itens2{
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
-.cadastroContent .cepInputs  .aplicar{
+.cadastroContent form .cepInputs  .aplicar{
     background-color: var(--blue3);
     float: left;
 }
-.cadastroContent .cpfInput{
+.cadastroContent form .cpfInput{
     width: 80%;
 }
 
 @media screen and (max-width: 820px){
-    .cadastroContent .logoCadastro{
+    .cadastroContent form .logoCadastro{
         display: none;
     }
     .cadastroContent{
@@ -91,12 +96,20 @@
     .cadastroContent{
         box-shadow: none;
         width: 100%;
+        height: fit-content;
     }
-    .cadastroContent .nameInput{
-        flex-direction: column;
+    .cadastroContent form .cepInputs .itens1,.cadastroContent form .cepInputs .itens2{
+        flex-direction: column ;
+        gap: 20px;
     }
-    .cadastroContent .passwordInputCadastro{
+    
+    .cadastroContent form .nameInput{
         flex-direction: column;
+        gap: 20px;
+    }
+    .cadastroContent form .passwordInputCadastro{
+        flex-direction: column;
+        gap: 20px;
     }
 }
 

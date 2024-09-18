@@ -1,21 +1,48 @@
-import React from 'react'
+import React, {useState } from 'react'
 import '../../assets/css/redefine.css'
-import Imagenspadroes from '../../shared/Imagespadroes'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+
 function RedefinicaoDeSenha() {
   
+  const [senha1, setSenha1] = useState('');
+  const [senha2, setSenha2] = useState('');
+  const navigate = useNavigate();
+
+  const validarSenha = (event) => {
+    event.preventDefault();
+
+    if (senha1.length < 8) {
+      window.alert("Senha deve ter pelo menos 8 caracteres");
+    } 
+    else if (senha1 !== senha2) {
+      window.alert("Senhas não correspondem");
+    } 
+    else {
+      window.alert("Senha alterada com sucesso!");
+      navigate('/Login');
+    }
+  };
+
+  const handleInputPass1 = (e) => {
+    setSenha1(e.target.value);
+  };
+
+  const handleInputPass2 = (e) => {
+    setSenha2(e.target.value);
+  };
+
+
+
   return (
    <div className='contentDefinirSas pt-2'>
-  
     <h4 className='tituloderedeff pt-5'>Redefinir Senha</h4>
-    <h6 classname='subtitleredeff'>Autenticação concluída com sucesso.</h6>
+    <h6 className='subtitleredeff'>Autenticação concluída com sucesso.</h6>
     <p className='mensagemexplainredefff pb-2'>Crie uma nova senha.</p>
-    
-    
-
-<input type='text' className='form-control criarsenha pt-1 pb-1 p-4' maxLength={16}  placeholder='Criar nova senha'  />
-<input type='text' className='form-control confirmarsenha pt-1 pb-1 p-4' maxLength={16}  placeholder='Confirmar nova senha'  />
-<a href="/Login" role="button" class="botãottottlogin btn btn-primary mt-4">Fazer login</a>
+    <form onSubmit={validarSenha}>
+      <input type='text' className='form-control criarsenha pt-1 pb-1 p-4' value={senha1} maxLength={16} onChange={handleInputPass1}  placeholder='Criar nova senha'  />
+      <input type='text' className='form-control .criarsenha pt-1 pb-1 p-4' value={senha2} maxLength={16} onChange={handleInputPass2}  placeholder='Confirmar nova senha'  />
+      <button role="submit" className="botãottottlogin btn btn-primary mt-4">Fazer login</button>
+    </form>
    </div>
    
   )

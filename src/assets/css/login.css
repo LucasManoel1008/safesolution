@@ -42,41 +42,11 @@
     
 }
 .entradaDados .cpf, .entradaDados .password{
-
     width: 100%;
-    padding: 8px;
     border-radius: 5px;
     border-color: black;
 }
 
-
-
-.entradaDados input::placeholder{
-    color: #5A5A5A;
-    opacity: 0.5;
-    padding: 30px;
-}
-
-.entradaDados .text .iconText, .entradaDados .passwordInput .iconPassword{
-    position: relative;
-    top: -38px;
-    left: -110px;
-    font-size: 20px;
-    opacity: 0.7;
-    pointer-events: none;
-    
-}
-
-.entradaDados .passwordInput{
-    position: relative;
-    top: -15px;
-
-}
-.entradaDados .passwordInput small{
-    position: relative;
-    top: -20px;
-    left: -60px;
-}
 
 .entradaDados input[type = submit]{
     width: 100%;

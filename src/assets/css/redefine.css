@@ -1,35 +1,52 @@
 .contentDefinirSas{
-    margin: 120px auto 85px auto;
+    margin: 120px auto 20vh auto;
     width: 680px;
     height: 500px;
     box-shadow: 0px 3px 12px -3px rgba(0,0,0,0.36);
-display: flex;
-flex-direction: column;
+    display: flex;
+    flex-direction: column;
     text-align: center;
-color:var(--blue3);
+    color:var(--blue3);
 }
 .contentDefinirSas .criarsenha {
-align-self: center;
-width: 400px;
-
-}
-.contentDefinirSas .confirmarsenha {
     align-self: center;
     width: 400px;
 }
 
+
 .contentDefinirSas .botãottottlogin {
     align-self: center;
     width: 300px;
-    margin: 20px;
- background-color:var(--blue3);
- font-weight: 4500;
+    background-color:var(--blue3);
+    font-weight: 4500;
 }
 .contentDefinirSas .tituloderedeff {
-
     font-weight: 600;
-
 }
 .contentDefinirSas .subtitleredeff {
     font-weight: 300;
+}
+.contentDefinirSas form{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 720px){
+    .contentDefinirSas{
+        box-shadow: none;
+        width:90%;
+    }
+    .contentDefinirSas .tituloderedeff {
+        font-size: 28px;
+    }
+   
+}
+@media screen and (max-width: 440px){
+    .contentDefinirSas .criarsenha {
+        width: 100%;
+    }
+    .contentDefinirSas form{
+        margin: 0 auto !important;
+    }
 }

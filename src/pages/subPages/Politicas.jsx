@@ -1,10 +1,11 @@
-import React from 'react'
-import '../../assets/css/politica.css'
+import React from 'react';
+import '../../assets/css/politica.css';
 
 function Politicas() {
   return (
     <div className='conteudoPoliticas'>
       <h1>Política de Privacidade</h1>
+      
       <section>
         <h2>1. Introdução</h2>
         <p>
@@ -12,7 +13,7 @@ function Politicas() {
           Esta Política de Privacidade descreve como coletamos, usamos, divulgamos e protegemos as informações de nossos usuários e parceiros.
         </p>
       </section>
-      
+
       <section>
         <h2>2. Informações Que Coletamos</h2>
         <ul>
@@ -74,7 +75,39 @@ function Politicas() {
       </section>
 
       <section>
-        <h2>9. Contato</h2>
+        <h2>9. Políticas Relacionadas a Orçamentos e Proteção de Riscos</h2>
+        <p>
+          A Safe Solutions adota políticas claras e transparentes em relação à elaboração e aceitação de orçamentos, com o objetivo de proteger tanto o contratante quanto o provedor de serviços de riscos financeiros e operacionais.
+        </p>
+        <h3>9.1 Transparência no Orçamento</h3>
+        <ul>
+          <li><strong>Clareza na Proposta:</strong> Todos os orçamentos fornecidos pela Safe Solutions serão detalhados de forma clara, especificando os serviços incluídos, prazos e condições de pagamento. Isso garante que o contratante compreenda completamente o escopo e as responsabilidades envolvidas.</li>
+          <li><strong>Validade do Orçamento:</strong> Os orçamentos têm um período de validade especificado, dentro do qual as condições acordadas serão mantidas. Após esse período, pode ser necessário um novo orçamento em função de mudanças nas condições de mercado ou na natureza dos serviços solicitados.</li>
+        </ul>
+
+        <h3>9.2 Proteção ao Contratante</h3>
+        <ul>
+          <li><strong>Garantia de Preço Fixo:</strong> Após a aceitação do orçamento, a Safe Solutions garante que os valores acordados não sofrerão alterações, salvo se houver mudanças no escopo dos serviços ou necessidades adicionais solicitadas pelo contratante.</li>
+          <li><strong>Compromisso de Entrega:</strong> A Safe Solutions se compromete a entregar os serviços dentro dos prazos acordados, com a qualidade esperada e em conformidade com o que foi descrito no orçamento.</li>
+          <li><strong>Mitigação de Riscos:</strong> Se houver qualquer risco operacional que possa impactar o cumprimento do orçamento ou dos prazos, a Safe Solutions informará imediatamente o contratante e buscará uma solução alternativa com o menor impacto possível.</li>
+        </ul>
+
+        <h3>9.3 Proteção ao Provedor de Serviços</h3>
+        <ul>
+          <li><strong>Revisão de Escopo:</strong> Caso o contratante solicite modificações significativas após a aceitação do orçamento inicial, a Safe Solutions se reserva o direito de revisar o orçamento, ajustando os custos e prazos de acordo com as novas exigências.</li>
+          <li><strong>Compensação por Cancelamento:</strong> No caso de cancelamento por parte do contratante após a aceitação do orçamento e início dos serviços, a Safe Solutions poderá cobrar uma taxa de cancelamento proporcional ao trabalho já realizado, para cobrir custos e esforços investidos até aquele momento.</li>
+          <li><strong>Exclusão de Responsabilidade por Força Maior:</strong> A Safe Solutions não será responsável por atrasos ou falhas na entrega dos serviços devido a eventos de força maior, como desastres naturais, interrupções tecnológicas significativas ou mudanças legais que impactem a execução dos serviços.</li>
+        </ul>
+
+        <h3>9.4 Revisão e Ajustes</h3>
+        <ul>
+          <li><strong>Revisão de Orçamentos:</strong> Ambas as partes podem solicitar revisões dos orçamentos em caso de mudanças significativas no escopo dos serviços ou em condições externas que influenciem os custos.</li>
+          <li><strong>Compromisso de Negociação:</strong> Em caso de disputa ou desacordo sobre o orçamento ou a execução dos serviços, as partes se comprometem a buscar uma solução amigável por meio de negociação direta, antes de recorrer a medidas legais.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>10. Contato</h2>
         <p>
           Se você tiver dúvidas ou preocupações sobre esta Política de Privacidade, entre em contato conosco em: 
           <a href="mailto:safesolutionsempresa@gmail.com">safesolutionsempresa@gmail.com</a>
@@ -84,4 +117,4 @@ function Politicas() {
   );
 }
 
-export default Politicas;
+export default Politicas;

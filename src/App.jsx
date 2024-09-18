@@ -47,7 +47,7 @@ function App() {
       <Route path='Cadastro-Servico-Novo' element={<CadastroServicoNovo/>}/>
       <Route path='/Confirmacao' element={<Confirmação/>}/>
       <Route path='/Validar-Codigo' element ={<ValidarCodigo/>}/>
-      <Route path='/Redefinição-Senha' element ={<RedefinicaoDeSenha/>}/>
+      <Route path='/Redefinicao-Senha' element ={<RedefinicaoDeSenha/>}/>
 
       <Route path='*' element ={<NotFound/>} />
       

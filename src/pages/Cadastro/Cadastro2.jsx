@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Imagenspadroes from '../../shared/Imagespadroes'
 import { Link } from "react-router-dom";
 function Cadastro2() {
 
@@ -73,9 +72,10 @@ function Cadastro2() {
 
 
         <h4 className="mt-4">Quase lá</h4>
+        
+        <form action="">
         <p>
         Preencha os campos abaixo com as informações essenciais sobre o seu negócio. Essas informações nos ajudarão a conectar você com clientes e outros serviços.</p>
-
             <div className="nameInput nome-cnpj mt-4 ">
                 <input type="text"  className="form-control" placeholder='Nome empresarial'/>
                 <input type="text" id="cnpj" placeholder="00.000.000/0000-00" maxLength="18" className='form-control' onChange={handleInputChange} value={cnpj} ></input>
@@ -158,6 +158,7 @@ function Cadastro2() {
             </div>
             </div>
             <Link to="/UserPage" role='button' className="continuarCadastro1 btn btn-primary mt-4">Finalizar</Link>
+        </form>
        
             
     </div>

@@ -1,33 +1,44 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../assets/css/login.css'
-import Imagenspadroes from '../shared/Imagespadroes.jsx';
-import * as loginJs from '../assets/js/login.js'
 function Login() {
   
 
+  const [cpf, setCpf] = useState('');  // Nota: Não precisei colcocar como constante
+  const navigate = useNavigate();
 
-  const handleFocusText = (event) => {
-    event.target.placeholder = '';
-    document.getElementById('iconCpf').style.opacity = 0
-};
-
-const handleBlurText = (event) => {
-    if (event.target.value === '') {
-        event.target.placeholder = 'CPF';
-        document.getElementById('iconCpf').style.opacity = 0.7
+  // Função de validação do formulário
+  const validarFormulario = (event) => {
+    event.preventDefault(); // Não deixa o formulário avançar
+    
+    // Verifica se o CPF tem menos de 11 caracteres
+    if (cpf.length < 14) { // Ajustado para incluir formatação
+      window.alert("Digite um CPF válido");
+    } else {
+      navigate('/UserPage'); // Redireciona para a página do usuário
     }
-};
-  const handleFocusPassword = (event) => {
-    event.target.placeholder = '';
-    document.getElementById('passwordIcon').style.opacity = 0
-  }
-  const handleBlurPassword = (event) => {
-    if (event.target.value === '') {
-      event.target.placeholder = 'Senha';
-      document.getElementById('passwordIcon').style.opacity = 0.7
-  }
-  }
+  };
+
+
+  const handleInputChange = (e) => {
+    let value = e.target.value.replace(/\D/g, ""); // Remove caracteres não numéricos
+
+    // Formata o CPF conforme o padrão
+    if (value.length > 2) {
+      value = value.replace(/^(\d{3})(\d)/, "$1.$2");
+    }
+    if (value.length > 5) {
+      value = value.replace(/^(\d{3})\.(\d{3})(\d)/, "$1.$2.$3");
+    }
+    if (value.length > 8) {
+      value = value.replace(/^(\d{3})\.(\d{3})\.(\d{3})(\d)/, "$1.$2.$3-$4");
+    }
+
+
+    setCpf(value); // Atualiza o valor do cpf
+  };
+
 
   
   return (
@@ -36,27 +47,25 @@ const handleBlurText = (event) => {
         <div className="content container pt-4">
             <h4>Login</h4>
             <p>Faça login com sua conta</p>
-            <form className="entradaDados" id='login'  onSubmit={loginJs.validarCpf}>
-              
-              <div className="text">
-                <input type="text" id='cpf'  placeholder='CPF'
-                onFocus={handleFocusText}
-                onBlur={handleBlurText} 
-                className='cpf form-control'
-                
+            <form className="entradaDados" onSubmit={validarFormulario}>
+              <div className="text mb-4">
+                <input type="text" id='cpf'
+                placeholder='CPF'
+                onChange={handleInputChange}
+                value={cpf}
+                className='form-control'
+                maxLength={14}
                 />
-                <span className='iconText'><i className="fa-solid fa-user " id='iconCpf'></i></span>
+                
               </div>
 
-              <div className="passwordInput">
+              <div className="passwordInput mb-4">
                 <input type="password"  placeholder='Senha' 
-                className='password form-control' 
-                onFocus={handleFocusPassword}
-                onBlur={handleBlurPassword}
+                className='form-control' 
                 id='password'
-                
+                required
                 />
-                <span className='iconPassword '><i id='passwordIcon' className="fa-solid fa-lock "></i></span>
+               
               </div>
                 <input type="submit" className='btn btn-primary' value={`login`} />
             </form>
