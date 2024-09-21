@@ -1,0 +1,17 @@
+.CadastroServicoContent h4 {
+    color: var(--blue3);
+    font-weight: 550;
+}
+.CadastroServicoContent .produtoLayout{
+    
+    padding: 15px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+.CadastroServicoContent .produtoLayout .titleReturn{
+    display: 	flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.CadastroServicoContent .produtoLayout h5{
+    color: var(--blue3);
+}

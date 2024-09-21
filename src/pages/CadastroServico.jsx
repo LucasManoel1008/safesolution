@@ -25,7 +25,7 @@ function CadastroServico() {
   return (
     
     <div className='cadServico'>
-        <nav className="menuLateral p-4">
+        <nav className="menuLateral p-4 border-right">
             <div className="profile">
                 <img className='mr-2' src={ImagensUser.paladins} width={60} alt="Logo empresa" />
                 <span>IntechLauncher</span>
