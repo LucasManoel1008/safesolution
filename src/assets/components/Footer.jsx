@@ -15,7 +15,7 @@ function Footer() {
                <ul className="container2 d-flex flex-column mt-3" >               
                     <strong className="pb-2"><a href="/Servicos">Serviços</a></strong>
                     <li><a href="#">Arquitetura</a></li>
-                    <li><a href="#">limpeza</a></li>
+                    <li><a href="#">Limpeza</a></li>
                     <li><a href="#">Transportes</a></li>
                     <li><a href="#">Segurança</a></li>
                     <li><a href="#">Encanador</a></li>

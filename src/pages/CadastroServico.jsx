@@ -25,7 +25,7 @@ function CadastroServico() {
   return (
     
     <div className='cadServico'>
-        <nav className="menuLateral p-4 border-right">
+        <nav className="menuLateral p-4 ">
             <div className="profile">
                 <img className='mr-2' src={ImagensUser.paladins} width={60} alt="Logo empresa" />
                 <span>IntechLauncher</span>
@@ -40,7 +40,7 @@ function CadastroServico() {
               <label className="form-check-label" htmlFor="flexSwitchCheckChecked" >Sou Provedor</label>
             </div>
         </nav>
-        <div className='conteudoPrincipal'>
+        <div className='conteudoPrincipal border-left'>
             {renderSection()}
          </div>
     </div>
