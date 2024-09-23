@@ -27,7 +27,7 @@ function Orcamento() {
         </div>
         <div className="endereco mt-4 mb-4">
         <p><strong>Endereço Final (opcional - apenas no caso de entregas)</strong></p>
-        <div className="cepInputs mt-4 ">
+          <div className="cepInputs mt-4 ">
                     <input
                         type="text"
                         id="cep"
@@ -43,7 +43,7 @@ function Orcamento() {
                 />
           </div>
 
-            </div>
+        </div>
         <Link to={"/Orcamento2"}><button className="btn btn-primary prosseguir">Prosseguir</button></Link>
       </form>
     </div>

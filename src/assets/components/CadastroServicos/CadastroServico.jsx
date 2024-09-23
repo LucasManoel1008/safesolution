@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import '../../css/novoServico.css'
+import { Link } from 'react-router-dom';
 function CategoriaAdd() {
   return (
     <div className='mb-2'>
@@ -16,7 +17,7 @@ function CategoriaAdd() {
   )
 }
 function CadastroServico( {onClick}) {
-  
+  const [nome, setNome] = useState('')
   const [categorias, setCategorias] = useState([]);
   const addCategoria = (event) => {
     event.preventDefault();
@@ -32,7 +33,7 @@ function CadastroServico( {onClick}) {
           <button className='btn btn-primary' onClick={onClick} ><i className="mr-2 fa-solid fa-arrow-left"></i>Voltar</button >
         </div>
         {/* Sem Subimissao */}
-          <form>
+          <form >
             <div className="nomeDescricao">
               <div className="form-group">
                 <label htmlFor="tituloServico">Título do serviço</label>
@@ -48,6 +49,19 @@ function CadastroServico( {onClick}) {
               {categorias}
               <button className=' btn fw-bold blue2' onClick={addCategoria}>+</button>
             </div>
+            <div className="criterios form-group">
+              <h5>Critérios de Avaliação:</h5>
+              <p>Escreva, de forma detalhada, quais serão os critérios para o orçamento do serviço</p>
+              <label htmlFor="criterios">Critérios Avaliativos</label>
+              <textarea className="form-control" id="criterios" rows="3"></textarea>
+              <div className="form-check mb-4">
+                <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                <label className="form-check-label" htmlFor="flexCheckDefault">
+                Ao continuar, afirmo que li e concordo com a <Link to="/Politicas-de-Privacidade">Política de privacidade</Link> e os <Link to="/Termos">Termos de uso</Link> da Safe Solutions.
+                </label>
+              </div>
+            </div>
+            <button role='submit' className='btn btn-primary'>Salvar</button>
           </form>
         </section>
 
