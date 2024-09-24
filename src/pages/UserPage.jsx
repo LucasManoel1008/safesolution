@@ -167,17 +167,13 @@ function UserPage() {
    
     <div className='user-page mb-5'>  
       <div className="menuResponsivo mb-2">
-        <div class="dropdown">
-          <button class="btn btn-primary " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa-solid fa-caret-down"></i>
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-          </div>
-      </div>
+        <button className='btn btn-primary mb-2 openMenu'>Open menu</button>
+        <div className="nav-links">
+          <button className='nav-item mr-1 btn' id='profile' onClick={() => setSection('profile')}><i className="fa-solid fa-user pr-2"></i>Perfil</button>      
+          <button className='nav-item mr-1 btn' onClick={() => setSection('settings')}><i className="fa-solid fa-gear pr-2"></i>Configurações</button>  
+          <button className='nav-item mr-1 btn' onClick={() => setSection('orders')}><i className="fa-solid fa-cart-shopping pr-2"></i>Compras</button> 
+        </div>
+      </div>      
       {/* Menu de navegação */}
         <section className='user-nav'>
             <nav className='user-nav-links'>
