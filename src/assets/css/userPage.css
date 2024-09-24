@@ -5,6 +5,17 @@
     margin: 90px auto 40px auto;
     padding: 25px;
 }
+.user-page .menuResponsivo{
+    display: none;
+    
+}
+.user-page .menuResponsivo .dropdown button{
+    background-color: transparent;
+    border: none;
+    color: black;
+    font-size: 24px;
+
+}
 .user-page .user-nav{
 
     display: flex;
@@ -127,25 +138,16 @@
 }
 
 @media screen and (max-width: 1200px){
-    
-    .user-page .user-nav{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        
-    }
-    .user-page .section-date{
-        margin: 0 !important;
-        box-shadow: none;
-    }
     .user-page .user-nav .user-nav-links{
-        display: flex;
-        flex-direction: row ;
-        height: fit-content;
-        margin-bottom: 3em;
-        
+        display: none;
     }
+    .user-page .menuResponsivo{
+        display: block;
+        position: fixed;
+        z-index: 99;
+
+    }
+    
     
     
 }

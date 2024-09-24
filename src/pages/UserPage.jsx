@@ -164,7 +164,20 @@ function UserPage() {
   };
 
   return (
+   
     <div className='user-page mb-5'>  
+      <div className="menuResponsivo mb-2">
+        <div class="dropdown">
+          <button class="btn btn-primary " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa-solid fa-caret-down"></i>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+          </div>
+      </div>
       {/* Menu de navegação */}
         <section className='user-nav'>
             <nav className='user-nav-links'>
@@ -175,16 +188,13 @@ function UserPage() {
                 
                     <button className='nav-item ' onClick={() => setSection('orders')}><i className="fa-solid fa-cart-shopping pr-2"></i>Compras</button>
             </nav>
-            
-        
-
       {/* Conteúdo que muda com base na seção selecionada */}
             <div className='section-date ml-5'>
                 {renderSection()}
-                
             </div>
             
       </section>
+      
     </div>
   );
 }
