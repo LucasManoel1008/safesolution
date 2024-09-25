@@ -140,15 +140,29 @@
     .user-page{
         display: flex;
         flex-direction: column;
-        width: 100%;
+        width: 80%;
         align-items: center;
     }
-    .user-page .userProfile{
+    .user-page .user-nav .section-date .userProfile{
         width: 100%;
-        justify-content: space-between;
+        justify-content: space-around;
+    }
+    .userProfile .userItens1 input{
+        width: 300px !important;
+        display: block !important;
+        ;
+
+        
+    }
+    .userProfile .endereco .cepInputs input{
+        width: clamp(300px, 35vw, 350px) ;
+    }
+
+    .user-page .user-nav .section-date .userProfile .userItens1 i{
+        display: block;
     }
     .user-page .user-nav .section-date{
-        width: 80%;
+        width:clamp(750px, 80vw, 1200px) !important;
         box-shadow: none;
         margin: 0 auto;
         display: flex;
@@ -164,7 +178,7 @@
         flex-direction: column;
         margin: 0 auto !important;
     }
-    .user-page .user-nav .section-date
+    
     .user-page .user-nav .user-nav-links{
         display: none;
     }
@@ -184,6 +198,31 @@
         width: 100%;
     }
     
-    
+    @media screen and (max-width: 720px){
+        .userProfile .userItens1{
+            align-items: center;
+            flex-direction: column;
+        }
+        .userProfile .userItens1 .form-group,
+        .userProfile .userItens2{
+            margin: 0 auto;
+            width: 80%;
+        }
+        .userProfile .userItens1 .form-group input{
+            width: 100% !important;
+        }
+        .userProfile .endereco .cepInputs .itens1,
+        .userProfile .endereco .cepInputs .itens2,
+        .userProfile .endereco .cepInputs .cidade{
+            gap: 20px;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+        .userProfile .endereco .cepInputs {
+            width: 100%;
+        }
+    }
     
 }

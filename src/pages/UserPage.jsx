@@ -12,7 +12,6 @@ const UserProfile = () => (
       <img src={ImagensUser.edit} alt="Edit" width={20} className='editIcon' />
     </div>
     <div className="userItens1 mt-3">
-            
             <div className="form-group">
                 <label htmlFor="exampleFormControlInput1">Nome de exibição:</label>
                 <input type="text" className="form-control d-inline nomeExibicao" id="exampleFormControlInput1" value={"IntechLauncher"} readOnly/>
@@ -38,7 +37,7 @@ const UserProfile = () => (
            
         </div>
     <div className="endereco mt-4">
-        <p>Endereço</p>
+        
         <div className="cepInputs mt-4">
                 <div className="itens1 mb-4">
                 <div>
@@ -88,7 +87,7 @@ const UserProfile = () => (
             </div>
             </div>
             
-            <div className="mb-4">
+            <div className="mb-4 cidade">
                 <input
                     type="text"
                     id="cidade"
