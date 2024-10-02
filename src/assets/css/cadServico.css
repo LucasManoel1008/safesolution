@@ -40,12 +40,14 @@
 .servicos{
     display: flex;
     flex-direction: column;
+    width: 90%;
+    margin: 0 auto;
     
 }
 
 .servicos .adicionar{
     margin: 0 auto;
-    width: 97% ;
+    width: 100% ;
 }
 
 

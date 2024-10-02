@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import '../../css/novoServico.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 function CategoriaAdd() {
   return (
     <div className='mb-2'>
@@ -17,12 +18,30 @@ function CategoriaAdd() {
   )
 }
 function CadastroServico( {onClick}) {
-  const [nome, setNome] = useState('')
+  const [nome, setNome] = useState('');
   const [categorias, setCategorias] = useState([]);
+  const [descricao, setDescricao] = useState("");
+  const [criterios, setCriterios] = useState("");
+  const navigate = useNavigate();
   const addCategoria = (event) => {
     event.preventDefault();
     setCategorias([...categorias, <CategoriaAdd key={categorias.length} />]);
   };
+
+  const onSubmit =()=>{
+    console.log("Descrição:", descricao);
+    axios.post("http://localhost:8080/servico",
+      {nome_servico: nome,
+        descricao_servico: descricao
+      }
+    )
+    .then((response)=>{
+      if(response.status==200 || response.status==201){ alert('cadastro com sucesso');  window.location.reload();}
+        else alert('CADASTRO NÃO REALIZADO')
+      })
+    .catch(e=>console.log(e.message))
+    }
+  
 
   return (
     <div className="m-4 CadastroServicoContent">
@@ -37,11 +56,11 @@ function CadastroServico( {onClick}) {
             <div className="nomeDescricao">
               <div className="form-group">
                 <label htmlFor="tituloServico">Título do serviço</label>
-                <input type="text" className="form-control" id="tituloServico" placeholder="EX: Instalação de ar-condicionado..." maxLength={100}/>
+                <input type="text" onChange={(e) => setNome(e.target.value)} className="form-control" id="tituloServico" placeholder="EX: Instalação de ar-condicionado..." maxLength={100}/>
               </div>
               <div className='form-group'>
                 <label htmlFor="descricao">Descrição do Serviço</label>
-                <textarea className="form-control" id="descricao" rows="3"></textarea>
+                <textarea className="form-control" onChange={(e) => setDescricao(e.target.value)} id="descricao" rows="3"></textarea>
               </div>
             </div>
             <div className="Categoria">
@@ -61,7 +80,7 @@ function CadastroServico( {onClick}) {
                 </label>
               </div>
             </div>
-            <button role='submit' className='btn btn-primary'>Salvar</button>
+            <input type="button" value="Cadastrar" onClick={()=>onSubmit()} />
           </form>
         </section>
 
