@@ -25,6 +25,7 @@ function VisualizarServico({onClick}) {
             <th scope="col">#ID</th>
             <th scope="col">Nome</th>
             <th scope="col">Descrição</th>
+            <th scope='col'>Ações</th>
           </tr>
         </thead>
         <tbody>
@@ -33,6 +34,7 @@ function VisualizarServico({onClick}) {
               <th scope="row">{item.id}</th> {/* Supondo que "id" exista nos dados */}
               <td>{item.nome_servico}</td>
               <td>{item.descricao_servico}</td>
+              <td><button className='btn btn-secondary'>Editar</button> <button className='btn btn-danger'>Excluir</button></td>
             </tr>
           ))}
         </tbody>
