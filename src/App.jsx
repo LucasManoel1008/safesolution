@@ -12,7 +12,6 @@ import Orcamento2 from './pages/Orcamento2'
 import Confirmação from './pages/subPages/Confirmação'
 import EsqueciSenha from './pages/subPages/EsqueciSenha'
 import Servico1 from './pages/subPages/Servico1'
-import CadastroServicoNovo from './pages/subPages/CadastroServicoNovo'
 import {BrowserRouter , Routes, Route} from 'react-router-dom'
 import Header from './assets/components/Header'
 import Footer from './assets/components/Footer'
@@ -44,7 +43,6 @@ function App() {
       <Route path='/Politicas-de-Privacidade' element = {<Politicas/>} />
       <Route path='/Orcamento2' element={<Orcamento2/>}/>
       <Route path='/Cadastro-Servico' element={<CadastroServico/>}/>
-      <Route path='Cadastro-Servico-Novo' element={<CadastroServicoNovo/>}/>
       <Route path='/Confirmacao' element={<Confirmação/>}/>
       <Route path='/Validar-Codigo' element ={<ValidarCodigo/>}/>
       <Route path='/Redefinicao-Senha' element ={<RedefinicaoDeSenha/>}/>

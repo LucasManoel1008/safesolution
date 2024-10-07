@@ -3,15 +3,19 @@ import { Link, useNavigate } from 'react-router-dom'
 import '../../assets/css/cadastro.css'
 function Cadastro() {
 
-  const [cpf, setCpf] = useState('');  // Nota: Não precisei colcocar como constante
+  const [cpf, setCpf] = useState('');  
   const [senha1, setSenha1] = useState('');
   const [nome, setNome] = useState('');
   const [sobreNome, setSobrenome] = useState('');
+  const [dataNascimento, setDataNascimento] = useState('');
   const [senha2, setSenha2] = useState('');
   const [email, setEmail] = useState('');
   const navigate = useNavigate();
+  const nomeCompleto = nome + " " + sobreNome;
 
-
+  const data = JSON.parse(localStorage.getItem('dados')) || [];
+  data.push({ nome: nomeCompleto, senha: senha1, cpf: cpf, email: email});
+  localStorage.setItem('dados', JSON.stringify(data));
 
   const validarFormulario = (event) => {
     event.preventDefault();
