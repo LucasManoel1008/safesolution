@@ -8,8 +8,8 @@ function Confirmação() {
         <div id='loading' class="spinner-border text-primary" role="status">
              <span class="visually-hidden">Loading...</span>
         </div>
-        <h2 id='h2'>Enviando dados..</h2>
-        <meta http-equiv="refresh" content="2.5; /Servicos " />
+        <h2 id='h2'>Enviando dados...</h2>
+        <meta http-equiv="refresh" content="3.5; /Servicos " />
       </div>
   )
 }

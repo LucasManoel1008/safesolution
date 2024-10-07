@@ -6,4 +6,16 @@
 #h2{
     margin: 100px auto 35vh auto;
     color: #234063;
+    animation: pulse 1s infinite; /* Define a animação */
 }
+
+@keyframes pulse {
+    0%, 100% {
+      opacity: 0.7; /* Opacidade inicial e final */
+    }
+    50% {
+      opacity: 1; /* Opacidade máxima */
+    }
+}
+  
+  
