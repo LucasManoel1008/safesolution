@@ -15,7 +15,8 @@ function Cadastro() {
 
   const validarFormulario = (event) => {
     event.preventDefault();
-
+    const cleanedCPf =  cpf.replace(/[.-]/g, '');
+    // Validações
     if (nome === '' || sobreNome === '') {
       window.alert('Nome incompleto!');
       return;
@@ -35,17 +36,15 @@ function Cadastro() {
       window.alert('Digite um CPF válido');
       return;
     }
-
-    // Salvar dados no localStorage após validação bem-sucedida
-    const data = JSON.parse(localStorage.getItem('dados')) || [];
-    data.push({
-      nome: nomeCompleto,
-      senha: senha1,
-      cpf: cpf,
-      email: email,
-      dataNascimento: dataNascimento
-    });
-    localStorage.setItem('dados', JSON.stringify(data));
+    const userData = {
+      nome_usuario: nomeCompleto,
+      senha_usuario: senha1,
+      cpf: cleanedCPf,
+      email_usuario: email,
+      data_nascimento: dataNascimento,
+    };
+    
+    localStorage.setItem('usuario', JSON.stringify(userData));
 
     // Navegar para a próxima página
     navigate('/Cadastro2');
@@ -62,7 +61,7 @@ function Cadastro() {
     if (cpf.length > 8) {
       cpf = cpf.replace(/^(\d{3})\.(\d{3})\.(\d{3})(\d)/, '$1.$2.$3-$4');
     }
-
+    
     setCpf(cpf);
   };
 

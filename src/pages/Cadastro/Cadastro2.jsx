@@ -7,6 +7,8 @@ function Cadastro2() {
     const [cnpj, setCnpj] = useState("");
     const [nome, setNome] = useState('');
     const [descricao, setDescricao] = useState('');
+
+
     const navigate = useNavigate();
 
     const handleInputNome = (e) => {
@@ -57,46 +59,37 @@ function Cadastro2() {
 
     const validarFormulario = (event) => {
         event.preventDefault();
-
-        const dadosArmazenados = JSON.parse(localStorage.getItem('dados')) || [];
-        setDados(dadosArmazenados);
-        setExibirDados(true); // Mostra os dados após o clique
     
-
-        if (nome == '' ) {
-            window.alert("Você deve preencher o campo 'Nome empresarial'");
-            return;
+        // Validar os campos da empresa
+        if (nome === '') {
+          window.alert("Você deve preencher o campo 'Nome empresarial'");
+          return;
+        } else if (descricao === '') {
+          window.alert("Você precisa informar a descrição da empresa!");
+          return;
+        } else if (cep === "" || cep.length < 8) {
+          alert("Você precisa digitar o CEP corretamente!");
+          return;
         }
-        else if (descricao == ''){
-            window.alert("Você precisa informar a descrição da empresa!")
-            return;
-        }
-        else if (cep === "" || cep.length < 8) {
-            alert("Você precisa digitar o cep corretamente!");
-            return;
-        }
+    
+        // Obter os dados do usuário do localStorage
+        const dadosArmazenados = JSON.parse(localStorage.getItem('usuario'));
         
-        
-        else{
-            // Enviar os dados para a API
-            axios.post('http://localhost:8080/usuario', dadosArmazenados)
+        if (dadosArmazenados) {
+          // Enviar os dados para a API
+          axios.post('http://localhost:8080/usuario', dadosArmazenados)
             .then(response => {
-            console.log('Usuario salvo com sucesso:', response.data);
-            // Você pode adicionar um feedback visual para o usuário aqui
+              console.log('Usuário salvo com sucesso:', response.data);
+              // Navegar conforme o tipo selecionado
+              
             })
             .catch(error => {
-            console.error('Erro ao salvar o Usuário:', error);
-            // Você pode adicionar um feedback de erro para o usuário aqui
+              console.error('Erro ao salvar o Usuário:', error);
+              
             });
-            if (select == 'provedor'){
-                navigator('/Cadastro-Servico')
-            }
-            else{
-                navigator('/UserPage')
-            }
-    }
-
-    }
+        }
+      };
+    
 
     const handleCepChange = (e) => {
         setCep(e.target.value);
