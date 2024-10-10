@@ -81,7 +81,11 @@ function Cadastro2() {
             .then(response => {
               console.log('Usuário salvo com sucesso:', response.data);
               // Navegar conforme o tipo selecionado
-              
+              if (select === 'provedor') {
+                navigate('/Cadastro-Servico');
+              } else {
+                navigate('/UserPage');
+              }
             })
             .catch(error => {
               console.error('Erro ao salvar o Usuário:', error);
