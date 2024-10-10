@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios'
 function Cadastro2() {
 
     // Autocompletar CNPJ
@@ -35,6 +36,8 @@ function Cadastro2() {
       setCnpj(value);
     };
 
+    
+
    
     // Validar CEP
     const [cep, setCep] = useState('');
@@ -43,6 +46,8 @@ function Cadastro2() {
     const [cidade, setCidade] = useState('');
     const [numero, setNumero] = useState('');
     const [select, setSelect] = useState('');
+    const [dados, setDados] = useState([]);
+    const [exibirDados, setExibirDados] = useState(false);
     const navigator = useNavigate();
    
 
@@ -52,6 +57,11 @@ function Cadastro2() {
 
     const validarFormulario = (event) => {
         event.preventDefault();
+
+        const dadosArmazenados = JSON.parse(localStorage.getItem('dados')) || [];
+        setDados(dadosArmazenados);
+        setExibirDados(true); // Mostra os dados após o clique
+    
 
         if (nome == '' ) {
             window.alert("Você deve preencher o campo 'Nome empresarial'");
@@ -66,8 +76,18 @@ function Cadastro2() {
             return;
         }
         
-
+        
         else{
+            // Enviar os dados para a API
+            axios.post('http://localhost:8080/usuario', dadosArmazenados)
+            .then(response => {
+            console.log('Usuario salvo com sucesso:', response.data);
+            // Você pode adicionar um feedback visual para o usuário aqui
+            })
+            .catch(error => {
+            console.error('Erro ao salvar o Usuário:', error);
+            // Você pode adicionar um feedback de erro para o usuário aqui
+            });
             if (select == 'provedor'){
                 navigator('/Cadastro-Servico')
             }
@@ -221,7 +241,7 @@ function Cadastro2() {
                 </div>
                 <button role='submit' className="continuarCadastro1 btn btn-primary mt-4">Finalizar</button>
         </form>
-       
+
             
     </div>
   )
