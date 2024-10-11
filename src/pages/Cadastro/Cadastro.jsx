@@ -41,7 +41,6 @@ function Cadastro() {
       senha_usuario: senha1,
       cpf: cleanedCPf,
       email_usuario: email,
-      data_nascimento: dataNascimento,
     };
     
     localStorage.setItem('usuario', JSON.stringify(userData));

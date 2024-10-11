@@ -9,6 +9,8 @@ function VisualizarServico({onClick}) {
       axios.get("http://localhost:8080/servico")
       .then((response) => {
         setDados(response.data)
+        const dadosArmazenados = localStorage.getItem('usuario');
+
       })
       .catch(e => console.log(e.message))
     }
@@ -31,7 +33,7 @@ function VisualizarServico({onClick}) {
         <tbody>
           {dados.map((item, idx) => (
             <tr key={idx}>
-              <th scope="row">{item.id}</th> {/* Supondo que "id" exista nos dados */}
+              <th scope="row">{item.id}</th>
               <td>{item.nome_servico}</td>
               <td>{item.descricao_servico}</td>
               <td><button className='btn btn-secondary'>Editar</button> <button className='btn btn-danger'>Excluir</button></td>
