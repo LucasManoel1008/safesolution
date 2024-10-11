@@ -43,7 +43,7 @@ function Cadastro() {
       email_usuario: email,
     };
     
-    localStorage.setItem('usuario', JSON.stringify(userData));
+    sessionStorage.setItem('usuario', JSON.stringify(userData));
 
     // Navegar para a próxima página
     navigate('/Cadastro2');

@@ -4,7 +4,7 @@ import axios from 'axios';
 function VisualizarServico({onClick}) {
 
     const [dados, setDados] = useState([])
-
+  
     const Busca = () => {
       axios.get("http://localhost:8080/servico")
       .then((response) => {

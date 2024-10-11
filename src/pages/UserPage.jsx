@@ -2,6 +2,24 @@ import React, { useState } from 'react';
 import '../assets/css/userPage.css'
 import ImagensUser from '../shared/ImagensUser';
 
+
+// Pegar cpf para o Axios
+const dadosUser = JSON.parse(sessionStorage.getItem('usuario'))
+const cpf = dadosUser.cpf
+
+
+const resgatarDados = "`http://localhost:8080/empresa?cpfUsuario=${cpf}";
+
+// Resgatar os dados com o Axios
+const fetchData = async () => {
+  try {
+    const response = await axios.get(resgatarDados); // Faz a requisição GET
+    console.log(response.data); // Manipula os dados recebidos
+  } catch (error) {
+    console.error('Erro ao fazer a requisição:', error); // Trata erros
+  }
+};
+
 // Componentes para diferentes seções, começando no UserProfile
 const UserProfile = () => (
   <div className='userProfile p-4 mb-4'>
@@ -14,7 +32,7 @@ const UserProfile = () => (
     <div className="userItens1 mt-3">
             <div className="form-group">
                 <label htmlFor="exampleFormControlInput1">Nome de exibição:</label>
-                <input type="text" className="form-control d-inline nomeExibicao" id="exampleFormControlInput1" value={"IntechLauncher"} readOnly/>
+                <input type="text" className="form-control d-inline nomeExibicao" id="exampleFormControlInput1" value={response.nome_empresa} readOnly/>
                 <span><i className="fa-solid fa-pen-to-square"></i></span>
              </div>
             <div className="form-group">

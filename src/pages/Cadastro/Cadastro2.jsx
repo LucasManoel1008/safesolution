@@ -64,7 +64,7 @@ function Cadastro2() {
       return;
     }
 
-    const dadosArmazenados = localStorage.getItem('usuario');
+    const dadosArmazenados = sessionStorage.getItem('usuario');
     const dadosEmpresa = {
       cnpj,
       nome_empresa: nome,
@@ -88,6 +88,7 @@ function Cadastro2() {
         .then(response => {
             localStorage.clear();
           console.log('Empresa salva com sucesso:', response.data);
+          sessionStorage.setItem('empresa', dadosEmpresa)
           if (select === 'provedor') {
             navigate('/Cadastro-Servico');
           } else {
