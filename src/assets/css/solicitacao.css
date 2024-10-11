@@ -1,0 +1,13 @@
+.SolicitacaoContent {
+    margin: 200px auto 20vh auto;
+    width: 680px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    color:var(--blue3);
+}
+
+.SolicitacaoContent h4{
+
+}

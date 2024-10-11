@@ -19,6 +19,7 @@ import NotFound from './pages/subPages/NotFound'
 import ValidarCodigo from './pages/subPages/ValidarCodigo'
 import RedefinicaoDeSenha from './pages/subPages/RedefinicaoDeSenha'
 import CadastroServico from './pages/CadastroServico'
+import Solicitação from './pages/subPages/Solicitação'
 
 
 
@@ -46,6 +47,8 @@ function App() {
       <Route path='/Confirmacao' element={<Confirmação/>}/>
       <Route path='/Validar-Codigo' element ={<ValidarCodigo/>}/>
       <Route path='/Redefinicao-Senha' element ={<RedefinicaoDeSenha/>}/>
+      <Route path='/Solicitação' element ={<Solicitação/>}/>
+
 
       <Route path='*' element ={<NotFound/>} />
       
