@@ -65,8 +65,9 @@ function Cadastro2() {
     }
 
     const dadosArmazenados = sessionStorage.getItem('usuario');
+    const cleanedCnpj = cnpj.replace(/[./-]/g, '');
     const dadosEmpresa = {
-      cnpj,
+      cnpj: cleanedCnpj,
       nome_empresa: nome,
       descricao_empresa: descricao,
       cep,
@@ -75,6 +76,7 @@ function Cadastro2() {
       cidade,
       numero,
     };
+    
 
     if (dadosArmazenados) {
       const dados = JSON.parse(dadosArmazenados);
@@ -86,9 +88,10 @@ function Cadastro2() {
           return axios.post(`http://localhost:8080/empresa?cpfUsuario=${dados.cpf}`, dadosEmpresa);
         })
         .then(response => {
-            localStorage.clear();
+          sessionStorage.clear();
+          sessionStorage.setItem('empresa',JSON.stringify(dadosEmpresa))
           console.log('Empresa salva com sucesso:', response.data);
-          sessionStorage.setItem('empresa', dadosEmpresa)
+         
           if (select === 'provedor') {
             navigate('/Cadastro-Servico');
           } else {
