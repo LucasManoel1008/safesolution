@@ -39,6 +39,7 @@ function Cadastro() {
     const userData = {
       nome_usuario: nomeCompleto,
       senha_usuario: senha1,
+      data_nascimento: dataNascimento,
       cpf: cleanedCPf,
       email_usuario: email,
     };

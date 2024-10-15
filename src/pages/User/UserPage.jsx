@@ -52,7 +52,7 @@ const UserProfile = ({ empresa, apagarConta,setSection}) => (
     <div className="userItens1 mt-4">
       <div className="form-group">
         <label htmlFor="telefone">Telefone:</label>
-        <input type="text" className="form-control d-inline" id="telefone" value={"(00) 00000-0000"} readOnly />
+        <input type="text" className="form-control d-inline" id="telefone" value={empresa && empresa.telefone_empresa ? empresa.telefone_empresa : ""} readOnly />
         
       </div>
     </div>
@@ -140,7 +140,7 @@ const EditProfile = ({ empresa, setSection }) => {
   // Inicializando os valores com os dados existentes da empresa
   const [nome, setNome] = useState(empresa ? empresa.nome_empresa : "");
   const [descricao, setDescricao] = useState(empresa ? empresa.descricao_empresa : "");
-  const [telefone, setTelefone] = useState();
+  const [telefone, setTelefone] = useState(empresa ? empresa.telefone_empresa : "");
   const [email, setEmail] = useState(empresa && empresa.usuario ? empresa.usuario.email_usuario : "");
   const [cep, setCep] = useState(empresa ? empresa.cep : "");
   const [rua, setRua] = useState(empresa ? empresa.rua : "");
@@ -149,12 +149,14 @@ const EditProfile = ({ empresa, setSection }) => {
   const [cidade, setCidade] = useState(empresa ? empresa.cidade : "");
   const [nomePessoal, setNomePessoal] = useState(empresa && empresa.usuario ? empresa.usuario.nome_usuario.split(" ")[0] : "");
   const [ultimoNome, setUltimoNome] = useState(empresa && empresa.usuario ? empresa.usuario.nome_usuario.split(" ").slice(1).join(" ") : "");
+  const [senha] = useState(empresa ? empresa.usuario.senha_usuario : "");
 
   const nomeCompleto = nomePessoal + " " + ultimoNome;
 
   const dadosEmpresa = {
     nome_empresa: nome,
     descricao_empresa: descricao,
+    telefone_empresa: telefone,
     cep,
     rua,
     bairro,
@@ -165,6 +167,7 @@ const EditProfile = ({ empresa, setSection }) => {
   const dadosUsuario = {
     email_usuario: email,
     nome_usuario: nomeCompleto,
+    senha_usuario: senha
   };
 
   const editarDados = async (e) => {
@@ -172,12 +175,16 @@ const EditProfile = ({ empresa, setSection }) => {
     try {
       // Atualiza a empresa
       await axios.put(`http://localhost:8080/empresa/${empresa.cnpj}`, dadosEmpresa);
+      
 
       // Atualiza o usuário vinculado
       await axios.put(`http://localhost:8080/usuario/${empresa.usuario.cpf}`, dadosUsuario);
 
       alert("Dados atualizados com sucesso!");
-      setSection('profile'); // Volta para a página de perfil após editar
+      console.log('Dados da empresa:', dadosEmpresa);
+      console.log('Dados do usuário:', dadosUsuario);
+      location.reload();
+
     } catch (error) {
       console.error('Erro ao atualizar dados:', error);
       alert("Erro ao atualizar os dados. Tente novamente.");
@@ -230,7 +237,12 @@ const EditProfile = ({ empresa, setSection }) => {
     <div className="userItens1 mt-4">
       <div className="form-group">
         <label htmlFor="telefone">Telefone:</label>
-        <input type="text" className="form-control d-inline" id="telefone"placeholder='Telefone' value={telefone} onChange={(e) => setTelefone(e.target.value)} />
+        <input type="text"
+         className="form-control d-inline"
+         id="telefone"placeholder='Telefone'
+         value={telefone}
+         maxLength={13}
+         onChange={(e) => setTelefone(e.target.value)} />
         
         
       </div>
@@ -275,7 +287,7 @@ const EditProfile = ({ empresa, setSection }) => {
             <input
               type="text"
               id="numero"
-              max={5}
+              maxLength={5}
               value={numero}
               onChange={(e) => setNumero(e.target.value)}
               className="form-control"
@@ -395,6 +407,7 @@ function UserPage() {
       const responseEmpresa = await axios.delete(`http://localhost:8080/empresa/${cnpj}`);
       const responseUser = await axios.delete(`http://localhost:8080/usuario/${cpf}`)
       console.log('Conta apagada com sucesso:', responseEmpresa.data);
+      sessionStorage.clear();
       navigate("/")
       
     } catch (error) {

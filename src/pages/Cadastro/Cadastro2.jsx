@@ -12,6 +12,7 @@ function Cadastro2() {
   const [cidade, setCidade] = useState('');
   const [numero, setNumero] = useState('');
   const [select, setSelect] = useState('');
+  const [telefone, setTelefone] = useState('')
 
   const navigate = useNavigate();
 
@@ -21,6 +22,7 @@ function Cadastro2() {
   const handleCepChange = (e) => setCep(e.target.value);
   const handleNumeroChange = (e) => setNumero(e.target.value);
   const handleSelectChange = (e) => setSelect(e.target.value);
+  const hanfleInputTelefone = (e) => setTelefone(e.target.value);
 
   // Função para formatar o CNPJ
   const handleInputChange = (e) => {
@@ -71,6 +73,7 @@ function Cadastro2() {
       nome_empresa: nome,
       descricao_empresa: descricao,
       cep,
+      telefone_empresa: telefone,
       rua,
       bairro,
       cidade,
@@ -147,6 +150,15 @@ function Cadastro2() {
             value={descricao}></textarea>
           <label>Descrição</label>
         </div>
+        <div className="nameInput mt-4">
+          <input
+            type="text"
+            id="telefone"
+            className="form-control"
+            placeholder='Telefone de contato'
+            onChange={hanfleInputTelefone}
+          />
+          </div>
 
         <div className="cepInputs mt-4">
           <div className="itens1 mb-4">
