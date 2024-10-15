@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react'; // Importando useEffect
 import axios from 'axios'; // Importando axios
 import '../assets/css/userPage.css';
 import ImagensUser from '../shared/ImagensUser';
+import { useNavigate } from 'react-router-dom';
+
 
 // Componentes para diferentes seções
-const UserProfile = ({ empresa }) => (
+const UserProfile = ({ empresa, apagarConta }) => (
+  
   <div className='userProfile p-4 mb-4'>
     <h2>Configurações da Conta</h2>
     <p>Gerencie detalhes de sua conta.</p>
@@ -128,7 +131,7 @@ const UserProfile = ({ empresa }) => (
         </div>
       </div>
       <button className="btn btn-outline-secondary mt-4">Editar Dados</button>
-      <button className="btn btn-danger mt-2">Excluir conta</button>
+      <button className="btn btn-danger mt-2" onClick={apagarConta}>Excluir conta</button>
     </div>
 
 );
@@ -152,11 +155,14 @@ const UserOrders = () => (
 );
 
 
+
+
 // Funções - Inicio
 
 function UserPage() {
   const [section, setSection] = useState('profile');
   const [empresa, setEmpresa] = useState(null); // Estado para armazenar os dados da empresa
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchEmpresaByCnpj(); // Chama a função para buscar a empresa quando o componente monta
@@ -165,7 +171,7 @@ function UserPage() {
   const fetchEmpresaByCnpj = async () => {
     const empresaString = sessionStorage.getItem('empresa');
     if (empresaString) {
-      const dadosEmpresa = JSON.parse(empresaString);
+      const dadosEmpresa = JSON.parse(empresaString); //Converte os dados do sessionStorage
       const cnpj = dadosEmpresa.cnpj;
 
       try {
@@ -178,18 +184,33 @@ function UserPage() {
       console.error('Dados da empresa não encontrados no sessionStorage');
     }
   };
+  
+  const apagarConta = async () => {
+    try {
+      let cnpj = empresa.cnpj;
+      let cpf = empresa.usuario.cpf;
+      const responseEmpresa = await axios.delete(`http://localhost:8080/empresa/${cnpj}`);
+      const responseUser = await axios.delete(`http://localhost:8080/usuario/${cpf}`)
+      console.log('Conta apagada com sucesso:', responseEmpresa.data);
+      navigate("/")
+      
+    } catch (error) {
+      console.error('Erro ao apagar conta:', error);
+    }
+  };
+  
 
   // Irá mostrar de acordo com o valor definido
   const renderSection = () => {
     switch (section) {
       case 'profile':
-        return <UserProfile empresa={empresa} />; // Passa a empresa como props
+        return <UserProfile empresa={empresa} apagarConta={apagarConta}/>; // Passa a empresa como props
       case 'settings':
         return <UserSettings />;
       case 'orders':
         return <UserOrders />;
       default:
-        return <UserProfile empresa={empresa} />;
+        return <UserProfile empresa={empresa} apagarConta={apagarConta}/>;
     }
   };
 
