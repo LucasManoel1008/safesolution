@@ -156,6 +156,7 @@ function Cadastro2() {
             id="telefone"
             className="form-control"
             placeholder='Telefone de contato'
+            maxLength={11}
             onChange={hanfleInputTelefone}
           />
           </div>

@@ -95,6 +95,7 @@ function Login() {
                 type="password"  
                 className='form-control' 
                 id='password'
+                placeholder='Senha'
                 onChange={handleInputSenha}
                 value={senha}
                 required
