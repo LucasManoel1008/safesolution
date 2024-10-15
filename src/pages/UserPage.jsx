@@ -22,7 +22,6 @@ const UserProfile = ({ empresa }) => (
           value={empresa ? empresa.nome_empresa : ''}
           readOnly
         />
-        <span><i className="fa-solid fa-pen-to-square"></i></span>
       </div>
       <div className="form-group">
         <label htmlFor="exampleFormControlInput1">Email cadastrado:</label>
@@ -33,7 +32,7 @@ const UserProfile = ({ empresa }) => (
           value={empresa && empresa.usuario ? empresa.usuario.email_usuario : ''} // Email fixo, pode ser alterado para ser dinâmico
           readOnly
         />
-        <span><i className="fa-solid fa-pen-to-square"></i></span>
+      
       </div>
     </div>
     <div className="userItens2 form-group">
@@ -52,10 +51,11 @@ const UserProfile = ({ empresa }) => (
       <div className="form-group">
         <label htmlFor="telefone">Telefone:</label>
         <input type="text" className="form-control d-inline" id="telefone" value={"(00) 00000-0000"} readOnly />
-        <span><i className="fa-solid fa-pen-to-square"></i></span>
+        
       </div>
     </div>
     <div className="endereco mt-4">
+      <p>Endereço</p>
       <div className="cepInputs mt-4">
         <div className="itens1 mb-4">
           <div>
@@ -107,9 +107,6 @@ const UserProfile = ({ empresa }) => (
             placeholder={empresa && empresa.cidade ? empresa.cidade : ''}
           />
         </div>
-        <div>
-          <button type="button" className="btn btn-primary editar">Editar</button>
-        </div>
       </div>
     </div>
     <div className="dadosPessoais mt-4">
@@ -120,12 +117,18 @@ const UserProfile = ({ empresa }) => (
           <div className="form-group">
             <label htmlFor="primeiroNome">Nome:</label>
             <input type="text" className="form-control d-inline nomeExibicao" id="primeiroNome" value={empresa && empresa.usuario ? empresa.usuario.nome_usuario : ''} readOnly />
-            <span><i className="fa-solid fa-pen-to-square"></i></span>
+           
           </div>
-
+          <div className="form-group">
+            <label htmlFor="primeiroNome">CPF:</label>
+            <input type="text" className="form-control d-inline nomeExibicao" id="primeiroNome" value={empresa && empresa.usuario ? empresa.usuario.cpf : ''} readOnly />
+          
+          </div>
           </div>
         </div>
       </div>
+      <button className="btn btn-outline-secondary mt-4">Editar Dados</button>
+      <button className="btn btn-danger mt-2">Excluir conta</button>
     </div>
 
 );

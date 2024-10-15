@@ -70,7 +70,7 @@ strong{
         color: gray;
         font-size: 20px !important;
     }
-    .firstImage .leftContent button.text-button{
+    .firstImage .leftContent .text-button{
         color: white;
         background-color: var(--blue3);
         cursor: pointer;

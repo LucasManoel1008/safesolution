@@ -37,7 +37,7 @@ function Home() {
           <div className="leftContent">
             <h4>Mais de 1000 empresas em <br/> um só lugar</h4>
             <p>Descubra, contrate e conecte-se <br/> com uma variedade de empresas</p>
-            <button className="text-button btn">Descubra já</button>
+            <Link to="/Servicos" className="text-button btn">Descubra já</Link>
           </div>
           <div className="rightContent">
             <img src={Imagemindex.plumber} alt="Engineer"/>
