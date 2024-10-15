@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react'; // Importando useEffect
 import axios from 'axios'; // Importando axios
-import '../assets/css/userPage.css';
-import ImagensUser from '../shared/ImagensUser';
+import '../../assets/css/userPage.css';
+import ImagensUser from '../../shared/ImagensUser';
 import { useNavigate } from 'react-router-dom';
 
 
 // Componentes para diferentes seções
-const UserProfile = ({ empresa, apagarConta }) => (
-  
+const UserProfile = ({ empresa, apagarConta,setSection}) => (
   <div className='userProfile p-4 mb-4'>
     <h2>Configurações da Conta</h2>
     <p>Gerencie detalhes de sua conta.</p>
@@ -32,7 +31,7 @@ const UserProfile = ({ empresa, apagarConta }) => (
           type="email"
           className="form-control d-inline nomeExibicao"
           id="exampleFormControlInput1"
-          value={empresa && empresa.usuario ? empresa.usuario.email_usuario : ''} // Email fixo, pode ser alterado para ser dinâmico
+          value={empresa && empresa.usuario ? empresa.usuario.email_usuario : ''} 
           readOnly
         />
       
@@ -67,7 +66,7 @@ const UserProfile = ({ empresa, apagarConta }) => (
               id="cep"
               readOnly
               className="form-control"
-              placeholder={empresa && empresa.cep ? empresa.cep : ''}
+              value={empresa && empresa.cep ? empresa.cep : ''}
             />
           </div>
           <div>
@@ -77,7 +76,7 @@ const UserProfile = ({ empresa, apagarConta }) => (
               readOnly
               maxLength={5}
               className="form-control"
-              placeholder={empresa && empresa.rua ? empresa.rua : ''}
+              value={empresa && empresa.rua ? empresa.rua : ''}
             />
           </div>
         </div>
@@ -88,7 +87,7 @@ const UserProfile = ({ empresa, apagarConta }) => (
               id="bairro"
               readOnly
               className="form-control"
-              placeholder={empresa && empresa.bairro ? empresa.bairro : ''}
+              value={empresa && empresa.bairro ? empresa.bairro : ''}
             />
           </div>
           <div>
@@ -97,7 +96,7 @@ const UserProfile = ({ empresa, apagarConta }) => (
               id="numero"
               readOnly
               className="form-control"
-              placeholder={empresa && empresa.numero ? empresa.numero : ''}
+              value={empresa && empresa.numero ? empresa.numero : ''}
             />
           </div>
         </div>
@@ -130,11 +129,116 @@ const UserProfile = ({ empresa, apagarConta }) => (
           </div>
         </div>
       </div>
-      <button className="btn btn-outline-secondary mt-4">Editar Dados</button>
+      <button className="btn btn-outline-secondary mt-4" onClick={() => setSection("edit")}>Editar Dados</button>
+      
       <button className="btn btn-danger mt-2" onClick={apagarConta}>Excluir conta</button>
+     
     </div>
 
 );
+const EditProfile =() =>{
+  return(
+  <div className='edit userProfile'>
+    <h4>Editar conta</h4>
+     <div className="userItens1 mt-3">
+      <div className="form-group">
+        <label htmlFor="exampleFormControlInput1">Nome de exibição:</label>
+        <input
+          type="text"
+          className="form-control d-inline nomeExibicao"
+          id="exampleFormControlInput1"
+          placeholder='Informe o novo nome de exibição'
+          
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="exampleFormControlInput1">Email cadastrado:</label>
+        <input
+          type="email"
+          className="form-control d-inline nomeExibicao"
+          id="exampleFormControlInput1"
+          placeholder='Informe o novo endereço de email'
+          
+        />
+      
+      </div>
+    </div>
+    <div className="userItens2 form-group">
+    <label htmlFor="exampleFormControlInput1">Descrição:</label>
+    <input
+      type="text"
+      id='exampleFormControlInput1'
+      className="form-control d-inline"
+      style={{ overflowY: 'auto' }}
+      placeholder='Informe a nova descrição da empresa'
+    />
+      
+    </div>
+    <div className="userItens1 mt-4">
+      <div className="form-group">
+        <label htmlFor="telefone">Telefone:</label>
+        <input type="text" className="form-control d-inline" id="telefone"placeholder='Informe um número de telefone' />
+        
+        
+      </div>
+    </div>
+    <div className="endereco mt-4">
+      <p>Endereço</p>
+      <div className="cepInputs mt-4">
+        <div className="itens1 mb-4">
+          <div>
+            <input
+              type="text"
+              id="cep"
+              className="form-control"
+              placeholder='Informe o novo CEP'
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              id="rua"
+              maxLength={5}
+              className="form-control"
+              placeholder='Informe a nova rua'
+            />
+          </div>
+        </div>
+        <div className="itens2 mb-4">
+          <div>
+            <input
+              type="text"
+              id="bairro"
+              readOnly
+              className="form-control"
+              placeholder="Informe o novo bairro"
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              id="numero"
+              readOnly
+              className="form-control"
+              placeholder="Informe o número do local"
+            />
+          </div>
+        </div>
+        <div className="mb-4 cidade">
+          <input
+            type="text"
+            id="cidade"
+            readOnly
+            className="form-control"
+            placeholder="Informe a nova cidade"
+          />
+        </div>
+      </div>
+      </div>
+      <button className='btn btn-primary'> Salvar alterações</button>
+  </div>
+  )
+}
 
 const UserSettings = () => (
   <div className='userSettings mt-4'>
@@ -153,6 +257,7 @@ const UserOrders = () => (
     <strong className='iconClosed'><i className="fa-solid fa-square-xmark"></i></strong>
   </div>
 );
+
 
 
 
@@ -184,6 +289,21 @@ function UserPage() {
       console.error('Dados da empresa não encontrados no sessionStorage');
     }
   };
+  const renderSection = () => {
+    switch (section) {
+      case 'profile':
+        return <UserProfile empresa={empresa} apagarConta={apagarConta} setSection={setSection}/>; // Passa a empresa como props
+      case 'settings':
+        return <UserSettings />;
+      case 'orders':
+        return <UserOrders />;
+      case 'edit':
+        return <EditProfile/>;
+      default:
+        return <UserProfile empresa={empresa} apagarConta={apagarConta} setSection={setSection}/>;
+    }
+  };
+  
   
   const apagarConta = async () => {
     try {
@@ -201,18 +321,7 @@ function UserPage() {
   
 
   // Irá mostrar de acordo com o valor definido
-  const renderSection = () => {
-    switch (section) {
-      case 'profile':
-        return <UserProfile empresa={empresa} apagarConta={apagarConta}/>; // Passa a empresa como props
-      case 'settings':
-        return <UserSettings />;
-      case 'orders':
-        return <UserOrders />;
-      default:
-        return <UserProfile empresa={empresa} apagarConta={apagarConta}/>;
-    }
-  };
+  
 
   return (
     <div className='user-page mb-5'>
@@ -235,6 +344,7 @@ function UserPage() {
         <div className='section-date ml-5'>
           {renderSection()}
         </div>
+        
       </section>
     </div>
   );

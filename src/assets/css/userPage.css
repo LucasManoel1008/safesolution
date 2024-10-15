@@ -120,6 +120,10 @@
     width: 200px;
 }
 
+.edit{
+    padding: 20px;
+    color: var(--blue3);
+}
 
 /* userSettings - Formatações */
 
@@ -135,6 +139,8 @@
     margin: 0 auto;
     
 }
+
+
 
 @media screen and (max-width: 1200px){
     .user-page{

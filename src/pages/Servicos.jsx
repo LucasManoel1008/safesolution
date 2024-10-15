@@ -200,12 +200,11 @@ const handleComponentChange = (component) => {
             </section>
             
             <div> {/* Troca dos componentes */}
-            
-        {currentComponent === 'none' && <None />}
-        {currentComponent === 'manutencao' && <Manutencao />}
-        {currentComponent === 'limpeza' && <Limpeza />}
-        {currentComponent === 'montador' && <Montador />}
-      </div>
+                {currentComponent === 'none' && <None />}
+                {currentComponent === 'manutencao' && <Manutencao />}
+                {currentComponent === 'limpeza' && <Limpeza />}
+                {currentComponent === 'montador' && <Montador />}
+            </div>
         </div>
     </div>
   )

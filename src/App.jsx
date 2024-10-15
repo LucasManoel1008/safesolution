@@ -3,7 +3,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Cadastro from './pages/Cadastro/Cadastro'
 import Cadastro2 from './pages/Cadastro/Cadastro2'
-import UserPage from './pages/UserPage'
+import UserPage from './pages/User/UserPage'
 import Termos from './pages/subPages/Termos'
 import Politicas from './pages/subPages/Politicas'
 import Servicos from './pages/Servicos'
@@ -48,11 +48,7 @@ function App() {
       <Route path='/Validar-Codigo' element ={<ValidarCodigo/>}/>
       <Route path='/Redefinicao-Senha' element ={<RedefinicaoDeSenha/>}/>
       <Route path='/Solicitação' element ={<Solicitação/>}/>
-
-
       <Route path='*' element ={<NotFound/>} />
-      
- 
     </Routes>
     </BrowserRouter>
     <Footer/>
