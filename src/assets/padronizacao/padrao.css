@@ -219,8 +219,9 @@ body{
         text-decoration: none;
         color: var(--blue3);
         font-weight: bolder;
-        padding:5px;
+        padding: 5px;
         font-size: 12px;
+        border: 1px solid white;
     }
     .left-header-desktop .login{
         border: 1px solid var(--blue3);

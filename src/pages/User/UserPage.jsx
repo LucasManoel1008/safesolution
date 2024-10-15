@@ -370,15 +370,27 @@ function UserPage() {
     if (empresaString) {
       const dadosEmpresa = JSON.parse(empresaString); 
       console.log('Dados da empresa recuperados do sessionStorage:', dadosEmpresa);
-      const cnpj = dadosEmpresa.cnpj;
-      
-      try {
-        const response = await axios.get(`http://localhost:8080/empresa/${cnpj}`);
-        console.log('Dados da empresa recebidos do backend:', response.data);
-        setEmpresa(response.data); 
-      } catch (error) {
-        console.error('Erro ao buscar empresa:', error);
+      const cnpj = dadosEmpresa.cnpj.replace(/[./-]/g, '');;
+      console.log("CNPJ COLETADO:", cnpj)
+      if (cnpj){
+        try {
+          const response = await axios.get(`http://localhost:8080/empresa/${cnpj}`);
+          console.log('Dados da empresa recebidos do backend:', response.data);
+          setEmpresa(response.data); 
+        } catch (error) {
+          console.error('Erro ao buscar empresa:', error);
+        }
       }
+      else if(dadosEmpresa){
+        try {
+          const response = await axios.get(`http://localhost:8080/empresa/${dadosEmpresa}`);
+          console.log('Dados da empresa recebidos do backend:', response.data);
+          setEmpresa(response.data); 
+        } catch (error) {
+          console.error('Erro ao buscar empresa:', error);
+        }
+      }
+      
     } else {
       console.error('Dados da empresa não encontrados no sessionStorage');
     }
@@ -414,7 +426,10 @@ function UserPage() {
       console.error('Erro ao apagar conta:', error);
     }
   };
-  
+    const sairConta = () => {
+      sessionStorage.clear();
+      navigate('/')
+    }
 
   // Irá mostrar de acordo com o valor definido
   
@@ -435,7 +450,9 @@ function UserPage() {
           <button className='nav-item' id='profile' onClick={() => setSection('profile')}><i className="fa-solid fa-user pr-2"></i>Perfil</button>
           <button className='nav-item ' onClick={() => setSection('settings')}><i className="fa-solid fa-gear pr-2"></i>Configurações</button>
           <button className='nav-item ' onClick={() => setSection('orders')}><i className="fa-solid fa-cart-shopping pr-2"></i>Compras</button>
+          <button className='sairConta btn' onClick={sairConta}>sair</button>
         </nav>
+        
         {/* Conteúdo que muda com base na seção selecionada */}
         <div className='section-date ml-5'>
           {renderSection()}
