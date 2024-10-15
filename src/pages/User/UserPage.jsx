@@ -74,7 +74,6 @@ const UserProfile = ({ empresa, apagarConta,setSection}) => (
               type="text"
               id="rua"
               readOnly
-              maxLength={5}
               className="form-control"
               value={empresa && empresa.rua ? empresa.rua : ''}
             />
@@ -95,6 +94,7 @@ const UserProfile = ({ empresa, apagarConta,setSection}) => (
               type="text"
               id="numero"
               readOnly
+              max={5}
               className="form-control"
               value={empresa && empresa.numero ? empresa.numero : ''}
             />
@@ -136,7 +136,55 @@ const UserProfile = ({ empresa, apagarConta,setSection}) => (
     </div>
 
 );
-const EditProfile =() =>{
+const EditProfile = ({ empresa, setSection }) => {
+  // Inicializando os valores com os dados existentes da empresa
+  const [nome, setNome] = useState(empresa ? empresa.nome_empresa : "");
+  const [descricao, setDescricao] = useState(empresa ? empresa.descricao_empresa : "");
+  const [telefone, setTelefone] = useState();
+  const [email, setEmail] = useState(empresa && empresa.usuario ? empresa.usuario.email_usuario : "");
+  const [cep, setCep] = useState(empresa ? empresa.cep : "");
+  const [rua, setRua] = useState(empresa ? empresa.rua : "");
+  const [bairro, setBairro] = useState(empresa ? empresa.bairro : "");
+  const [numero, setNumero] = useState(empresa ? empresa.numero : "");
+  const [cidade, setCidade] = useState(empresa ? empresa.cidade : "");
+  const [nomePessoal, setNomePessoal] = useState(empresa && empresa.usuario ? empresa.usuario.nome_usuario.split(" ")[0] : "");
+  const [ultimoNome, setUltimoNome] = useState(empresa && empresa.usuario ? empresa.usuario.nome_usuario.split(" ").slice(1).join(" ") : "");
+
+  const nomeCompleto = nomePessoal + " " + ultimoNome;
+
+  const dadosEmpresa = {
+    nome_empresa: nome,
+    descricao_empresa: descricao,
+    cep,
+    rua,
+    bairro,
+    cidade,
+    numero,
+  };
+
+  const dadosUsuario = {
+    email_usuario: email,
+    nome_usuario: nomeCompleto,
+  };
+
+  const editarDados = async (e) => {
+    e.preventDefault();
+    try {
+      // Atualiza a empresa
+      await axios.put(`http://localhost:8080/empresa/${empresa.cnpj}`, dadosEmpresa);
+
+      // Atualiza o usuário vinculado
+      await axios.put(`http://localhost:8080/usuario/${empresa.usuario.cpf}`, dadosUsuario);
+
+      alert("Dados atualizados com sucesso!");
+      setSection('profile'); // Volta para a página de perfil após editar
+    } catch (error) {
+      console.error('Erro ao atualizar dados:', error);
+      alert("Erro ao atualizar os dados. Tente novamente.");
+      console.log('Dados da empresa:', dadosEmpresa);
+      console.log('Dados do usuário:', dadosUsuario);
+    }
+  };
   return(
   <div className='edit userProfile'>
     <h4>Editar conta</h4>
@@ -147,7 +195,9 @@ const EditProfile =() =>{
           type="text"
           className="form-control d-inline nomeExibicao"
           id="exampleFormControlInput1"
-          placeholder='Informe o novo nome de exibição'
+          placeholder='Novo nome empresarial'
+          value={nome}
+          onChange={(e) => setNome(e.target.value)}
           
         />
       </div>
@@ -157,8 +207,9 @@ const EditProfile =() =>{
           type="email"
           className="form-control d-inline nomeExibicao"
           id="exampleFormControlInput1"
-          placeholder='Informe o novo endereço de email'
-          
+          placeholder='Novo email'
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
       
       </div>
@@ -170,14 +221,16 @@ const EditProfile =() =>{
       id='exampleFormControlInput1'
       className="form-control d-inline"
       style={{ overflowY: 'auto' }}
-      placeholder='Informe a nova descrição da empresa'
+      placeholder='Nova descrição'
+      value={descricao}
+      onChange={(e) => setDescricao(e.target.value)}
     />
       
     </div>
     <div className="userItens1 mt-4">
       <div className="form-group">
         <label htmlFor="telefone">Telefone:</label>
-        <input type="text" className="form-control d-inline" id="telefone"placeholder='Informe um número de telefone' />
+        <input type="text" className="form-control d-inline" id="telefone"placeholder='Telefone' value={telefone} onChange={(e) => setTelefone(e.target.value)} />
         
         
       </div>
@@ -191,16 +244,19 @@ const EditProfile =() =>{
               type="text"
               id="cep"
               className="form-control"
-              placeholder='Informe o novo CEP'
+              placeholder='CEP'
+              value={cep}
+              onChange={(e) => setCep(e.target.value)}
             />
           </div>
           <div>
             <input
               type="text"
               id="rua"
-              maxLength={5}
               className="form-control"
-              placeholder='Informe a nova rua'
+              placeholder='Rua'
+              value={rua}
+              onChange={(e) => setRua(e.target.value)}
             />
           </div>
         </div>
@@ -209,18 +265,21 @@ const EditProfile =() =>{
             <input
               type="text"
               id="bairro"
-              readOnly
+              value={bairro}
+              onChange={(e) => setBairro(e.target.value)}
               className="form-control"
-              placeholder="Informe o novo bairro"
+              placeholder="Bairro"
             />
           </div>
           <div>
             <input
               type="text"
               id="numero"
-              readOnly
+              max={5}
+              value={numero}
+              onChange={(e) => setNumero(e.target.value)}
               className="form-control"
-              placeholder="Informe o número do local"
+              placeholder="Número"
             />
           </div>
         </div>
@@ -228,14 +287,34 @@ const EditProfile =() =>{
           <input
             type="text"
             id="cidade"
-            readOnly
-            className="form-control"
-            placeholder="Informe a nova cidade"
+            className="form-control"  
+            placeholder="Cidade"
+            onChange={(e) => setCidade(e.target.value)}
+            value={cidade}
           />
         </div>
       </div>
       </div>
-      <button className='btn btn-primary'> Salvar alterações</button>
+      <div className="dadosPessoais mt-4">
+      <div className="inputsPessoais"></div>
+      <p>Dados pessoais</p>
+      <div className="nome-ultimo">
+        <div className="userItens1 mt-4">
+          <div className="form-group">
+            <label htmlFor="primeiroNome">Nome:</label>
+            <input type="text" className="form-control d-inline nomeExibicao"  id="primeiroNome" onChange={(e) => setNomePessoal(e.target.value)} value={nomePessoal}/>
+           
+          </div>
+          <div className="form-group">
+            <label htmlFor="ultimoNome">Ultimo nome:</label>
+            <input type="text" className="form-control d-inline nomeExibicao"  id="ultimoNome" onChange={(e) => setUltimoNome(e.target.value)} value={ultimoNome}/>
+          
+          </div>
+          </div>
+        </div>
+      </div>
+      <button className='btn btn-primary' role='submit' onClick={editarDados}> Salvar alterações</button>
+      <button className="btn btn-outline-secondary mt-2" onClick={() => setSection("profile")}>Voltar</button>
   </div>
   )
 }
@@ -265,6 +344,7 @@ const UserOrders = () => (
 // Funções - Inicio
 
 function UserPage() {
+
   const [section, setSection] = useState('profile');
   const [empresa, setEmpresa] = useState(null); // Estado para armazenar os dados da empresa
   const navigate = useNavigate();
@@ -276,12 +356,14 @@ function UserPage() {
   const fetchEmpresaByCnpj = async () => {
     const empresaString = sessionStorage.getItem('empresa');
     if (empresaString) {
-      const dadosEmpresa = JSON.parse(empresaString); //Converte os dados do sessionStorage
+      const dadosEmpresa = JSON.parse(empresaString); 
+      console.log('Dados da empresa recuperados do sessionStorage:', dadosEmpresa);
       const cnpj = dadosEmpresa.cnpj;
-
+      
       try {
         const response = await axios.get(`http://localhost:8080/empresa/${cnpj}`);
-        setEmpresa(response.data); // Armazenar os dados da empresa no estado
+        console.log('Dados da empresa recebidos do backend:', response.data);
+        setEmpresa(response.data); 
       } catch (error) {
         console.error('Erro ao buscar empresa:', error);
       }
@@ -289,18 +371,19 @@ function UserPage() {
       console.error('Dados da empresa não encontrados no sessionStorage');
     }
   };
+  
   const renderSection = () => {
     switch (section) {
       case 'profile':
-        return <UserProfile empresa={empresa} apagarConta={apagarConta} setSection={setSection}/>; // Passa a empresa como props
+        return <UserProfile empresa={empresa} apagarConta={apagarConta} setSection={setSection} />;
       case 'settings':
         return <UserSettings />;
       case 'orders':
         return <UserOrders />;
       case 'edit':
-        return <EditProfile/>;
+        return <EditProfile setSection={setSection} empresa={empresa} />; // Passar empresa aqui
       default:
-        return <UserProfile empresa={empresa} apagarConta={apagarConta} setSection={setSection}/>;
+        return <UserProfile empresa={empresa} apagarConta={apagarConta} setSection={setSection} />;
     }
   };
   
