@@ -1,5 +1,5 @@
 .SolicitacaoContent {
-    margin: 200px auto 20vh auto;
+    margin: 230px auto 20vh 130px;
     width: 680px;
     height: 500px;
     display: flex;
@@ -8,6 +8,14 @@
     color:var(--blue3);
 }
 
-.SolicitacaoContent h4{
+.SolicitacaoContent p{
+
+        margin: 50px auto 20vh auto;
+
+
+}
+.SolicitacaoContent .DesignCell{
+
+    margin: -350px auto 20vh 1100px;
 
 }
