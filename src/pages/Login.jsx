@@ -86,6 +86,7 @@ function Login() {
                 onChange={handleInputChange}
                 value={cnpj}
                 className='form-control'
+                autoComplete='off'
                 maxLength={18}
               />
             </div>

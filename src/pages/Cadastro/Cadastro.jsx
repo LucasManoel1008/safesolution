@@ -13,8 +13,13 @@ function Cadastro() {
   const navigate = useNavigate();
   const nomeCompleto = nome + ' ' + sobreNome;
 
+  const validarSenha = () => {
+    
+  }
   const validarFormulario = (event) => {
     event.preventDefault();
+    const data = $('#date').val().split('-')
+    const anoNascimento = 2024 - data[0];
     const cleanedCPf =  cpf.replace(/[.-]/g, '');
     // Validações
     if (nome === '' || sobreNome === '') {
@@ -26,7 +31,12 @@ function Cadastro() {
     } else if (email.indexOf('@') === -1) {
       window.alert('Email incorreto!');
       return;
-    } else if (senha1.length < 8) {
+    }
+    else if (anoNascimento < 18){
+      window.alert("Você deve ser maior de idade para se cadastrar no sistema" )
+      return;
+    }
+     else if (senha1.length < 8) {
       window.alert('Senha deve ter pelo menos 8 caracteres');
       return;
     } else if (senha1 !== senha2) {
@@ -36,6 +46,7 @@ function Cadastro() {
       window.alert('Digite um CPF válido');
       return;
     }
+    
     const userData = {
       nome_usuario: nomeCompleto,
       senha_usuario: senha1,
@@ -99,12 +110,14 @@ function Cadastro() {
             className='form-control'
             placeholder='Primeiro nome'
             onChange={handleInputChangeNome}
+            autoComplete='off'
           />
           <input
             type='text'
             className='form-control'
             placeholder='Último nome'
             onChange={handleInputChangeSobreNome}
+            autoComplete='off'
           />
         </div>
         <div className='email'>
@@ -114,6 +127,7 @@ function Cadastro() {
             placeholder='Email'
             value={email}
             onChange={handleInputChangeEmail}
+            autoComplete='off'
           />
         </div>
         <div className='date mt-4'>
@@ -129,18 +143,25 @@ function Cadastro() {
           />
         </div>
         <div className='passwordInputCadastro mt-4 d-flex'>
-          <input
-            onChange={handleInputPass1}
-            type='password'
-            className='form-control'
-            placeholder='Digite uma senha'
-          />
-          <input
-            type='password'
-            className='form-control'
-            placeholder='Confirme sua senha'
-            onChange={handleInputPass2}
-          />
+          <div>
+            <input
+              onChange={handleInputPass1}
+              type='password'
+              className='form-control'
+              placeholder='Digite uma senha'
+              autoComplete='off'
+            />
+            
+          </div>
+          <div>
+            <input
+              type='password'
+              className='form-control'
+              placeholder='Confirme sua senha'
+              onChange={handleInputPass2}
+              autoComplete='off'
+            />
+          </div>
         </div>
         <div className='cpfInput mt-4'>
           <input
@@ -151,6 +172,7 @@ function Cadastro() {
             maxLength={14}
             value={cpf}
             onChange={handleInputChangeCpf}
+            autoComplete='off'
           />
         </div>
         <button role='submit' className='continuarCadastro1 btn btn-primary mt-4'>

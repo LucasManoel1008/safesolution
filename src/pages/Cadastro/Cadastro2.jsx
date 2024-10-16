@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
+
 function Cadastro2() {
   const [cnpj, setCnpj] = useState("");
   const [nome, setNome] = useState('');
@@ -122,6 +123,7 @@ function Cadastro2() {
             className="form-control"
             placeholder='Nome empresarial'
             onChange={handleInputNome}
+            autoComplete='off'
           />
           <input
             type="text"
@@ -131,6 +133,7 @@ function Cadastro2() {
             className='form-control'
             onChange={handleInputChange}
             value={cnpj}
+            autoComplete='off'
           />
         </div>
 
@@ -158,6 +161,7 @@ function Cadastro2() {
             placeholder='Telefone de contato'
             maxLength={11}
             onChange={hanfleInputTelefone}
+            autoComplete='off'
           />
           </div>
 
@@ -170,6 +174,7 @@ function Cadastro2() {
               onChange={handleCepChange}
               className="form-control"
               placeholder="CEP"
+              autoComplete='off'
             />
             <input
               type="text"
@@ -178,6 +183,7 @@ function Cadastro2() {
               readOnly
               className="form-control"
               placeholder="Rua"
+              autoComplete='off'
             />
           </div>
 
@@ -189,6 +195,7 @@ function Cadastro2() {
               readOnly
               className="form-control"
               placeholder="Bairro"
+              autoComplete='off'
             />
             <input
               type="text"
@@ -197,6 +204,7 @@ function Cadastro2() {
               onChange={handleNumeroChange}
               className="form-control"
               placeholder="Número"
+              autoComplete='off'
             />
           </div>
 
@@ -207,6 +215,7 @@ function Cadastro2() {
             readOnly
             className="form-control"
             placeholder="Cidade"
+            autoComplete='off'
           />
           <button type="button" className="btn btn-primary aplicar mt-2" onClick={getCEP}>Aplicar</button>
         </div>
