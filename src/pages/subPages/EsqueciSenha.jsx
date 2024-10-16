@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import '../../assets/css/esqueciSenha.css'
 import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios';
 function EsqueciSenha() {
 
   const [email, setEmail] = useState('');
   const navigate = useNavigate();
 
-  const validarEmail = (event) => {
+  const validarEmail = async (event) => {
     event.preventDefault();
 
 
@@ -16,9 +17,16 @@ function EsqueciSenha() {
 
     else if (email.indexOf("@") === -1) {
       window.alert("Email incorreto!");
-    } 
+    }
     else {
-      navigate('/Validar-Codigo'); 
+      try{
+        const emailEncontrado = await axios.get('http://localhost:8080/empresa?')
+        navigate('/Validar-Codigo'); 
+      }
+      catch{
+
+      }
+      
     }
   };
 
