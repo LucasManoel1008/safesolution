@@ -10,14 +10,14 @@ function Solicitação() {
         <div>
         <h4>Solicitação enviada com sucesso </h4>
 
-        <p>Foi criado um protocolo em seu aplicativo móvel. 
+         <p>Foi criado um protocolo em seu aplicativo móvel. 
          Acesse-o para mais detalhes de seu orçamento. </p>
         <div className='button'>
-        <Link to={"/Servicos"}> <button className= "btn-primary ">Volte aos serviços </button></Link>
-         </div>
-         <div className='DesignCell'>
-         <img src={Cell}  alt="Design  " />
-         </div>
+            <Link to={"/Servicos"}> <button className= "btn-primary ">Voltar aos serviços </button></Link>
+        </div>
+        <div className='DesignCell'>
+         <img src={Cell}  alt="Design" />
+        </div>
         </div>
     </div>
   )

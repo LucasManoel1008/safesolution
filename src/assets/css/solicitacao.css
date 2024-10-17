@@ -21,7 +21,6 @@
 
         margin: 50px auto 20vh auto;
 
-
 }
 .SolicitacaoContent .DesignCell{
 
@@ -31,6 +30,13 @@
 .SolicitacaoContent button{
 
 background-color: #1E2D3F;
-border-radius: 5px;
-padding: 5px;
+border-radius: 15px;
+margin-left: 80px;
+border-color: #1E2D3F;
+padding: 4px;
+width: 310px;
+height: 50px;
+font-size: 20px;
+
 }
+
