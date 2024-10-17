@@ -26,11 +26,11 @@ const UserProfile = ({ empresa, apagarConta,setSection}) => (
         />
       </div>
       <div className="form-group">
-        <label htmlFor="exampleFormControlInput1">Email cadastrado:</label>
+        <label htmlFor="email">Email cadastrado:</label>
         <input
           type="email"
           className="form-control d-inline nomeExibicao"
-          id="exampleFormControlInput1"
+          id="email"
           value={empresa && empresa.usuario ? empresa.usuario.email_usuario : ''} 
           readOnly
         />
@@ -122,8 +122,8 @@ const UserProfile = ({ empresa, apagarConta,setSection}) => (
            
           </div>
           <div className="form-group">
-            <label htmlFor="primeiroNome">CPF:</label>
-            <input type="text" className="form-control d-inline nomeExibicao" id="primeiroNome" value={empresa && empresa.usuario ? empresa.usuario.cpf : ''} readOnly />
+            <label htmlFor="cpf">CPF:</label>
+            <input type="text" className="form-control d-inline nomeExibicao" id="cpf" value={empresa && empresa.usuario ? empresa.usuario.cpf : ''} readOnly />
           
           </div>
           </div>

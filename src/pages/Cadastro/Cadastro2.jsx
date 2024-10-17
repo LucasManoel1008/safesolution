@@ -20,10 +20,29 @@ function Cadastro2() {
   // Funções para lidar com os inputs do formulário
   const handleInputNome = (e) => setNome(e.target.value);
   const handleInputDescricao = (e) => setDescricao(e.target.value);
-  const handleCepChange = (e) => setCep(e.target.value);
+  const handleCepChange = (e) => {
+    let cep = e.target.value;
+      if (cep.length > 5) {
+        cep = cep.replace(/^(\d{5})(\d)/, "$1-$2");
+      }
+      setCep(cep)
+    
+  }
   const handleNumeroChange = (e) => setNumero(e.target.value);
   const handleSelectChange = (e) => setSelect(e.target.value);
-  const hanfleInputTelefone = (e) => setTelefone(e.target.value);
+  const hanfleInputTelefone =(e) =>{
+    let telefone = e.target.value.replace(/\D/g, ""); // Remove qualquer caractere que não seja número
+      
+    if (telefone.length > 2) { // Verifica se há mais de dois caracteres
+        telefone = telefone.replace(/^(\d{2})(\d)/, "($1) $2"); // Formata o DDD
+    }
+
+    if (telefone.length > 6) { // Verifica se há mais de 6 caracteres
+        telefone = telefone.replace(/^(\d{2})\s?(\d{5})(\d)/, "($1) $2-$3"); // Formata para incluir o hífen
+    }
+
+    setTelefone(telefone); // Atualiza o estado com o telefone formatado
+  }
 
   // Função para formatar o CNPJ
   const handleInputChange = (e) => {
@@ -49,7 +68,7 @@ function Cadastro2() {
         setBairro(data.bairro || '');
         setCidade(data.localidade || '');
       })
-      .catch(error => console.log(error));
+      .catch(error => window.alert("CEP não encontrado"));
   };
 
   // Função para validar o formulário
@@ -59,7 +78,12 @@ function Cadastro2() {
     if (nome === '') {
       alert("Você deve preencher o campo 'Nome empresarial'");
       return;
-    } else if (descricao === '') {
+    }
+    else if (cnpj.length < 18){
+      window.alert("CNPJ inválido")
+      return
+    }
+     else if (descricao === '') {
       alert("Você precisa informar a descrição da empresa!");
       return;
     } else if (cep === "" || cep.length < 8) {
@@ -69,16 +93,17 @@ function Cadastro2() {
 
     const dadosArmazenados = sessionStorage.getItem('usuario');
     const cleanedCnpj = cnpj.replace(/[./-]/g, '');
+    const cleanTelefone = telefone.replace(/[()\s-]/g, '');
     const dadosEmpresa = {
       cnpj: cleanedCnpj,
       nome_empresa: nome,
       descricao_empresa: descricao,
       cep,
-      telefone_empresa: telefone,
+      telefone_empresa: cleanTelefone,
       rua,
       bairro,
       cidade,
-      numero,
+      numero:numero,
     };
     
 
@@ -159,7 +184,8 @@ function Cadastro2() {
             id="telefone"
             className="form-control"
             placeholder='Telefone de contato'
-            maxLength={11}
+            maxLength={14}
+            value={telefone}
             onChange={hanfleInputTelefone}
             autoComplete='off'
           />
@@ -175,12 +201,13 @@ function Cadastro2() {
               className="form-control"
               placeholder="CEP"
               autoComplete='off'
+              maxLength={9}
             />
             <input
               type="text"
               id="rua"
               value={rua}
-              readOnly
+              onChange={(e) => setRua(e.target.value)}
               className="form-control"
               placeholder="Rua"
               autoComplete='off'
@@ -192,7 +219,7 @@ function Cadastro2() {
               type="text"
               id="bairro"
               value={bairro}
-              readOnly
+              onChange={(e) => setBairro(e.target.value)}
               className="form-control"
               placeholder="Bairro"
               autoComplete='off'
@@ -212,12 +239,12 @@ function Cadastro2() {
             type="text"
             id="cidade"
             value={cidade}
-            readOnly
+            onChange={(e) => setCidade(e.target.value)}
             className="form-control"
             placeholder="Cidade"
             autoComplete='off'
           />
-          <button type="button" className="btn btn-primary aplicar mt-2" onClick={getCEP}>Aplicar</button>
+          <button type="button" className="btn btn-primary aplicar mt-2" onClick={getCEP}>Autocompletar</button>
         </div>
 
         <button type="submit" className="continuarCadastro1 btn btn-primary mt-4">Finalizar</button>

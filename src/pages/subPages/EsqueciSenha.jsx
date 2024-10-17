@@ -19,16 +19,11 @@ function EsqueciSenha() {
       window.alert("Email incorreto!");
     }
     else {
-      try{
-        const emailEncontrado = await axios.get('http://localhost:8080/empresa?')
         navigate('/Validar-Codigo'); 
       }
-      catch{
-
-      }
-      
     }
-  };
+    
+
 
   const handleInputChange = (e) => {
     setEmail(e.target.value); 

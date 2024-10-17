@@ -35,21 +35,33 @@ function CadastroServico({ onClick }) {
  
   const handleSubmit = (event) => {
     event.preventDefault();
-    const novoServico = {
-      nome_servico,
-      descricao_servico
-    };
- 
-    // Enviar os dados para a API
-    axios.post('http://localhost:8080/servico', novoServico)
+    
+    const empresaString = sessionStorage.getItem('empresa');
+    if (empresaString) {
+      const dadosEmpresa = JSON.parse(empresaString); 
+      console.log('Dados da empresa recuperados do sessionStorage:', dadosEmpresa);
+      const cnpj = dadosEmpresa.cnpj.replace(/[./-]/g, '');;
+      console.log("CNPJ COLETADO:", cnpj)
+      const novoServico = {
+        nome_servico,
+        descricao_servico,
+        cnpj_empresa: cnpj
+      };
+
+      axios.post(`http://localhost:8080/servico?cnpjEmpresa=${cnpj}`, novoServico)
       .then(response => {
         console.log('Serviço salvo com sucesso:', response.data);
+
         // Você pode adicionar um feedback visual para o usuário aqui
       })
       .catch(error => {
         console.error('Erro ao salvar o serviço:', error);
         // Você pode adicionar um feedback de erro para o usuário aqui
       });
+    }
+ 
+    // Enviar os dados para a API
+    
   };
  
   return (
@@ -94,7 +106,7 @@ function CadastroServico({ onClick }) {
                 <li key={index}>{categoria}</li>
               ))}
             </ul>
-            <button className='btn fw-bold blue2' onClick={handleAddCategoria}>Adicionar Categoria</button>
+         
           </div>
           <div className="criterios form-group">
             <h5>Critérios de Avaliação:</h5>

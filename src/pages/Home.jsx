@@ -9,17 +9,84 @@ import '../assets/css/index.css'
 
 
 function Home() {
-
+    const [nome, setNome] = useState('')
+    const [sobrenome, setSobrenome] = useState('')
+    const [email, setEmail] = useState('')
+    const [telefone, setTelefone] = useState('')
+    const [cidade, setCidade] = useState('')
+    const [mensagem, setMensagem] = useState("")
     const [assunto, validarAssunto] = useState('');   {/*  pega os dados do Assunto  */ }
+
+    const handleInputNome = (e) => {
+      const nome = e.target.value.replace(/\d/g, '')
+      setNome(nome)
+    }
+
+    const handleInputSobrenome = (e) =>{
+      const sobrenome = e.target.value.replace(/\d/g, '')
+      setSobrenome(sobrenome)
+    }
+    const handleInputEmail = (e) => {
+      setEmail(e.target.value)
+    }
+    const handleInputTelefone = (e) => {
+      let telefone = e.target.value.replace(/\D/g, ""); // Remove qualquer caractere que não seja número
+      
+      if (telefone.length > 2) { // Verifica se há mais de dois caracteres
+          telefone = telefone.replace(/^(\d{2})(\d)/, "($1) $2"); // Formata o DDD
+      }
+  
+      if (telefone.length > 6) { // Verifica se há mais de 6 caracteres
+          telefone = telefone.replace(/^(\d{2})\s?(\d{5})(\d)/, "($1) $2-$3"); // Formata para incluir o hífen
+      }
+  
+      setTelefone(telefone); // Atualiza o estado com o telefone formatado
+  };
+  
+  
+    const handleInputMensagem = (e) =>{
+      setMensagem(e.target.value);
+    }
+    const handleInputCidade =(e) =>{
+      setCidade(e.target.value)
+    }
+    
+
     const validarFormulario = (event) => {
       event.preventDefault(); {/*Impede o envio do formulário */}
-      if (assunto === 'assunto' || assunto === '') {
+
+      
+
+
+      {/* Validar Nome */}
+      if (nome == ""){
+        window.alert("O campo nome deve ser preenchido");
+        return;
+      }
+      else if (email == ""){
+        window.alert("O campo email deve ser preenchido")
+      }
+      
+      else if (assunto === 'assunto' || assunto === '') {
         window.alert('Selecione um Assunto diferente do padrão!');
-      } else {
+      } 
+      else if(mensagem == ""){
+        window.alert("O campo Mensagem deve ser preenchido")
+      }
+      else if (email.length === 0) {
+        window.alert("Digite um endereço de email para prosseguir!");
+      } 
+  
+      else if (email.indexOf("@") === -1) {
+        window.alert("Email incorreto!");
+      }
+      else {
         window.alert('Mensagem enviada com sucesso');
         location.reload();
         return true;
       }
+
+
     };
 
   return (
@@ -35,9 +102,9 @@ function Home() {
         <Fade  duration={1500} deley={400 } >
         <div className="firstImage d-flex">
           <div className="leftContent">
-            <h4>Mais de 1000 empresas em <br/> um só lugar</h4>
-            <p>Descubra, contrate e conecte-se <br/> com uma variedade de empresas</p>
-            <Link to="/Servicos" className="text-button btn">Descubra já</Link>
+            <h4>Conecte-se a Soluções Empresariais <br /> de Qualidade</h4>
+            <p>Encontre empresas confiáveis e <br /> serviços especializados para cada necessidade do seu negócio</p>
+            <Link to="/Cadastro" className="text-button btn">Comece já</Link>
           </div>
           <div className="rightContent">
             <img src={Imagemindex.plumber} alt="Engineer"/>
@@ -187,8 +254,8 @@ function Home() {
                     <label htmlFor="firstFAQ">Como usar a plataforma?</label>
                     <div className="faq-content">
                         <p>
-                        Como Provedor - você pode divulgar os serviços que sua empresa disponibiliza. <br/>  
-                        Como Cliente - Você poderá ter acesso a diversoso serviços disponiveis.
+                        Provedores: Cadastre sua empresa e alcance novos clientes, promovendo os serviços que você oferece de maneira simples e eficaz. <br/>  
+                        Clientes: Encontre diversos serviços em um só lugar e contrate facilmente o que precisar, com praticidade e segurança.
                         </p>
                     </div>
                 </li>
@@ -196,7 +263,6 @@ function Home() {
                 <Fade bottom duration={600}>
                 <li>
                     <input type="radio" name="faq" id="secondFAQ"/>
-                    {/* placeholder */}
                     <label htmlFor="secondFAQ">Que tipo de segurança a plataforma possui contra golpes?</label>
                     <div className="faq-content">
                         <p>
@@ -244,21 +310,21 @@ function Home() {
                 <p>*Entrada Obrigatória</p>
             </div>
                 <div className="forms-data">
-                    <input type="text" placeholder="*NOME" id="name"required />
-                    <input type="text" placeholder="SOBRENOME"/>
-                    <input type="email" placeholder="*EMAIL"required/>
-                    <input type="tel" placeholder="TELEFONE"/>
-                    <input type="text" placeholder="CIDADE"/>
+                    <input type="text" placeholder="*NOME" id="name" value={nome} onChange={handleInputNome} />
+                    <input type="text" placeholder="SOBRENOME" value={sobrenome} onChange={handleInputSobrenome}/>
+                    <input type="email" placeholder="*EMAIL"  value={email} onChange={handleInputEmail} />
+                    <input type="tel" placeholder="TELEFONE" maxLength={14} value={telefone} onChange={handleInputTelefone}/>
+                    <input type="text" placeholder="CIDADE" value={cidade} onClick={handleInputCidade}/>
                     <div className="razao">
                     <small>*Assunto</small>
-                    <select id="assunto" required  onChange={(e) => validarAssunto(e.target.value)}>
+                    <select id="assunto"   onChange={(e) => validarAssunto(e.target.value)}>
                         <option value='assunto'>*ASSUNTO</option>
                         <option value="Reclamacao" >RECLAMAÇÃO</option>
                         <option value="Elogio" >ELOGIO</option>
                     </select>
                     <div className="textarea">
-                        <textarea  rows="1" required
-                         placeholder="*Mensagem" id="mensagem" onFocus={js.ajustarTexto}></textarea>
+                        <textarea  rows="1" 
+                         placeholder="*Mensagem" id="mensagem" onFocus={js.ajustarTexto} value={mensagem} onChange={handleInputMensagem}></textarea>
                     </div>
                 </div>
                 </div>

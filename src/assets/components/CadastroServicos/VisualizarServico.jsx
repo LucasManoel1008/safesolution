@@ -36,7 +36,7 @@ function VisualizarServico({onClick}) {
               <th scope="row">{item.id}</th>
               <td>{item.nome_servico}</td>
               <td>{item.descricao_servico}</td>
-              <td><button className='btn btn-secondary'>Editar</button> <button className='btn btn-danger'>Excluir</button></td>
+              <td><button className="btn btn-primary">Visualizar</button> <button className='btn btn-secondary'>Editar</button> <button className='btn btn-danger'>Excluir</button></td>
             </tr>
           ))}
         </tbody>

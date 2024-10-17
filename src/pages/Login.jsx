@@ -10,40 +10,38 @@ function Login() {
   const navigate = useNavigate();
   
   // Função de validação do formulário
-  const validarFormulario = async (event) => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
     
-    event.preventDefault(); // Impede o comportamento padrão de envio do formulário
-    sessionStorage.clear();
-    const cleanCnpj = cnpj.replace(/[./-]/g, ''); // Remove pontos e traços do CNPJ
+    // Criação do objeto novoServico
+    const novoServico = {
+      nome_servico,
+      descricao_servico,
+    };
     
-    // Verifica se o CNPJ tem o formato válido
-    if (cleanCnpj.length !== 14) { // CNPJ precisa ter exatamente 14 dígitos
-      window.alert("Digite um CNPJ válido");
-      return;
-    }
+    const empresaString = sessionStorage.getItem('empresa');
     
-    try {
-      // Faz a requisição para o backend buscando a empresa pelo CNPJ
-      const response = await axios.get(`http://localhost:8080/empresa/${cleanCnpj}`);
+    if (empresaString) {
+      const dadosEmpresa = JSON.parse(empresaString); 
+      console.log('Dados da empresa recuperados do sessionStorage:', dadosEmpresa);
       
-      // Verificar o que está sendo retornado do backend
-      console.log(response.data);  // Verifique os dados no console do navegador
-      console.log("Senha recebida do backend:", response.data.usuario.senha_usuario);
-      console.log("Senha digitada pelo usuário:", senha);
-      if (response.data && response.data.usuario) {
-        // Verifica a senha diretamente no `response.data`
-        if (response.data.usuario.senha_usuario === senha) {
-          sessionStorage.setItem('empresa', JSON.stringify({ cnpj: cleanCnpj }));
-          navigate('/UserPage');
-        } else {
-          window.alert("Senha inválida. Por favor, tente novamente.");
-        }
-      } else {
-        window.alert("Empresa ou usuário não encontrado.");
-      }
-    } catch (error) {
-      console.error("Erro durante a requisição:", error);
-      window.alert('Conta não encontrada!');
+      // Limpeza do CNPJ
+      const cnpj = dadosEmpresa.cnpj.replace(/[./-]/g, '');
+      console.log("CNPJ COLETADO:", cnpj);
+  
+      // Envio da requisição POST
+      axios.post(`http://localhost:8080/servico?cnpjEmpresa=${cnpj}`, novoServico)
+        .then(response => {
+          console.log('Serviço salvo com sucesso:', response.data);
+          // Adicione um feedback visual para o usuário aqui
+        })
+        .catch(error => {
+          console.error('Erro ao salvar o serviço:', error);
+          // Adicione um feedback de erro para o usuário aqui
+        });
+    } else {
+      console.error('Dados da empresa não encontrados no sessionStorage.');
+      // Adicione um feedback de erro se a empresa não for encontrada
     }
   };
 
@@ -99,7 +97,6 @@ function Login() {
                 placeholder='Senha'
                 onChange={handleInputSenha}
                 value={senha}
-                required
               />
             </div>
             <input type="submit" className='btn btn-primary' value={`Login`} />

@@ -18,8 +18,8 @@ function Cadastro() {
   }
   const validarFormulario = (event) => {
     event.preventDefault();
-    const data = $('#date').val().split('-')
-    const anoNascimento = 2024 - data[0];
+    let data = $('#date').val().split('-')
+    let anoNascimento = 2024 - data[0];
     const cleanedCPf =  cpf.replace(/[.-]/g, '');
     // Validações
     if (nome === '' || sobreNome === '') {
@@ -30,6 +30,10 @@ function Cadastro() {
       return;
     } else if (email.indexOf('@') === -1) {
       window.alert('Email incorreto!');
+      return;
+    }
+    else if (data == null || data == 0){
+      window.alert("O campo 'data nascimento' deve ser preenchido")
       return;
     }
     else if (anoNascimento < 18){
@@ -46,7 +50,15 @@ function Cadastro() {
       window.alert('Digite um CPF válido');
       return;
     }
-    
+    if (email.length === 0) {
+      window.alert("Digite um endereço de email para prosseguir!");
+      return
+    } 
+
+    else if (email.indexOf("@") === -1) {
+      window.alert("Email incorreto!");
+      return
+    }
     const userData = {
       nome_usuario: nomeCompleto,
       senha_usuario: senha1,
@@ -54,12 +66,17 @@ function Cadastro() {
       cpf: cleanedCPf,
       email_usuario: email,
     };
+
     
     sessionStorage.setItem('usuario', JSON.stringify(userData));
-
+    
     // Navegar para a próxima página
     navigate('/Cadastro2');
-  };
+
+    }
+  
+    
+    
 
   const handleInputChangeCpf = (e) => {
     let cpf = e.target.value.replace(/\D/g, '');
@@ -81,11 +98,13 @@ function Cadastro() {
   };
 
   const handleInputChangeNome = (e) => {
-    setNome(e.target.value);
+    let nome = e.target.value.replace(/\d/g, '')
+    setNome(nome);
   };
 
   const handleInputChangeSobreNome = (e) => {
-    setSobrenome(e.target.value);
+    let sobrenome =e.target.value.replace(/\d/g, '')
+    setSobrenome(sobrenome);
   };
 
   const handleInputPass1 = (e) => {
@@ -109,13 +128,15 @@ function Cadastro() {
             type='text'
             className='form-control'
             placeholder='Primeiro nome'
+            value={nome}
             onChange={handleInputChangeNome}
-            autoComplete='off'
+            
           />
           <input
             type='text'
             className='form-control'
             placeholder='Último nome'
+            value={sobreNome}
             onChange={handleInputChangeSobreNome}
             autoComplete='off'
           />
