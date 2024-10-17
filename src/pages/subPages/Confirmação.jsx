@@ -9,7 +9,7 @@ function Confirmação() {
              <span class="visually-hidden">Loading...</span>
         </div>
         <h2 id='h2'>Enviando dados..</h2>
-        <meta http-equiv="refresh" content="3.5; /Servicos " />
+        <meta http-equiv="refresh" content="2; /Solicitação " />
       </div>
   )
 }

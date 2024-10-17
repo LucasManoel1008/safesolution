@@ -1,3 +1,12 @@
+:root {
+    --blue3: #234063;
+    --blue4: #1E2D3F;
+    --white: #EDF2F4;
+    --text-color: #333;
+    --link-color: #1E2D3F;
+    --heading-color: #234063;
+}
+
 .SolicitacaoContent {
     margin: 230px auto 20vh 130px;
     width: 680px;
@@ -18,4 +27,10 @@
 
     margin: -350px auto 20vh 1000px;
 
+}
+.SolicitacaoContent button{
+
+background-color: #1E2D3F;
+border-radius: 5px;
+padding: 5px;
 }

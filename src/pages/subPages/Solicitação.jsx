@@ -1,5 +1,6 @@
 import React from 'react'
 import '../../assets/css/solicitacao.css'
+import { Link } from 'react-router-dom'
 import Cell from '../../assets/img/imagensServicos/Cell.png'
 
 function Solicitação() {
@@ -11,9 +12,9 @@ function Solicitação() {
 
         <p>Foi criado um protocolo em seu aplicativo móvel. 
          Acesse-o para mais detalhes de seu orçamento. </p>
-
-         <button id='Button' className= 'btn btn-primary'>Voltar aos serviços</button>
-
+        <div className='button'>
+        <Link to={"/Servicos"}> <button className= "btn-primary ">Volte aos serviços </button></Link>
+         </div>
          <div className='DesignCell'>
          <img src={Cell}  alt="Design  " />
          </div>
