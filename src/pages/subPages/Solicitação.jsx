@@ -15,7 +15,7 @@ function Solicitação() {
          <button id='Button' className= 'btn btn-primary'>Voltar aos serviços</button>
 
          <div className='DesignCell'>
-         <img src={Cell} width={500} height={640} alt="Design  " />
+         <img src={Cell}  alt="Design  " />
          </div>
         </div>
     </div>
