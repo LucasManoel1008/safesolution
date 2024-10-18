@@ -361,40 +361,40 @@ function UserPage() {
   const [empresa, setEmpresa] = useState(null); // Estado para armazenar os dados da empresa
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetchEmpresaByCnpj(); // Chama a função para buscar a empresa quando o componente monta
-  }, []);
+    useEffect(() => {
+      fetchEmpresaByCnpj(); // Chama a função para buscar a empresa quando o componente monta
+    }, []);
 
-  const fetchEmpresaByCnpj = async () => {
-    const empresaString = sessionStorage.getItem('empresa');
-    if (empresaString) {
-      const dadosEmpresa = JSON.parse(empresaString); 
-      console.log('Dados da empresa recuperados do sessionStorage:', dadosEmpresa);
-      const cnpj = dadosEmpresa.cnpj.replace(/[./-]/g, '');;
-      console.log("CNPJ COLETADO:", cnpj)
-      if (cnpj){
-        try {
-          const response = await axios.get(`http://localhost:8080/empresa/${cnpj}`);
-          console.log('Dados da empresa recebidos do backend:', response.data);
-          setEmpresa(response.data); 
-        } catch (error) {
-          console.error('Erro ao buscar empresa:', error);
+    const fetchEmpresaByCnpj = async () => {
+      const empresaString = sessionStorage.getItem('empresa');
+      if (empresaString) {
+        const dadosEmpresa = JSON.parse(empresaString); 
+        console.log('Dados da empresa recuperados do sessionStorage:', dadosEmpresa);
+        const cnpj = dadosEmpresa.cnpj.replace(/[./-]/g, '');;
+        console.log("CNPJ COLETADO:", cnpj)
+        if (cnpj){
+          try {
+            const response = await axios.get(`http://localhost:8080/empresa/${cnpj}`);
+            console.log('Dados da empresa recebidos do backend:', response.data);
+            setEmpresa(response.data); 
+          } catch (error) {
+            console.error('Erro ao buscar empresa:', error);
+          }
         }
-      }
-      else if(dadosEmpresa){
-        try {
-          const response = await axios.get(`http://localhost:8080/empresa/${dadosEmpresa}`);
-          console.log('Dados da empresa recebidos do backend:', response.data);
-          setEmpresa(response.data); 
-        } catch (error) {
-          console.error('Erro ao buscar empresa:', error);
+        else if(dadosEmpresa){
+          try {
+            const response = await axios.get(`http://localhost:8080/empresa/${dadosEmpresa}`);
+            console.log('Dados da empresa recebidos do backend:', response.data);
+            setEmpresa(response.data); 
+          } catch (error) {
+            console.error('Erro ao buscar empresa:', error);
+          }
         }
+        
+      } else {
+        console.error('Dados da empresa não encontrados no sessionStorage');
       }
-      
-    } else {
-      console.error('Dados da empresa não encontrados no sessionStorage');
-    }
-  };
+    };
   
   const renderSection = () => {
     switch (section) {

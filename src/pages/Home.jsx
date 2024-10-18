@@ -314,7 +314,7 @@ function Home() {
                     <input type="text" placeholder="SOBRENOME" value={sobrenome} onChange={handleInputSobrenome}/>
                     <input type="email" placeholder="*EMAIL"  value={email} onChange={handleInputEmail} />
                     <input type="tel" placeholder="TELEFONE" maxLength={14} value={telefone} onChange={handleInputTelefone}/>
-                    <input type="text" placeholder="CIDADE" value={cidade} onClick={handleInputCidade}/>
+                    <input type="text" placeholder="CIDADE" value={cidade} onChange={handleInputCidade}/>
                     <div className="razao">
                     <small>*Assunto</small>
                     <select id="assunto"   onChange={(e) => validarAssunto(e.target.value)}>

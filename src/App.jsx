@@ -20,6 +20,7 @@ import ValidarCodigo from './pages/subPages/ValidarCodigo'
 import RedefinicaoDeSenha from './pages/subPages/RedefinicaoDeSenha'
 import CadastroServico from './pages/CadastroServico'
 import Solicitação from './pages/subPages/Solicitação'
+import Pagamento from './pages/Pagamento'
 
 
 
@@ -48,6 +49,7 @@ function App() {
       <Route path='/Validar-Codigo' element ={<ValidarCodigo/>}/>
       <Route path='/Redefinicao-Senha' element ={<RedefinicaoDeSenha/>}/>
       <Route path='/Solicitação' element ={<Solicitação/>}/>
+      <Route path='/Pagamento' element ={<Pagamento/>}/>
       <Route path='*' element ={<NotFound/>} />
     </Routes>
     </BrowserRouter>

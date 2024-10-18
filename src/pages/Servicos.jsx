@@ -191,7 +191,7 @@ const handleComponentChange = (component) => {
             <button className="servico w-100 btn" onClick={() => handleComponentChange('montador')}>                     
                         <img src={imagensServicos.logo3} width={50} height={50} alt="Logo empresa" className='mr-4'/>
                     <div className="rightText">
-                        <span className="title">Montador de Móveis</span>
+                        <span className="title">Montagem de Móveis</span>
                         <h6>O Montador</h6>
                         <small className='d-block'>Carapicuíba, São Paulo</small>
                         <small>Há 1 mês</small>

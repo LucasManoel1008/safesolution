@@ -13,7 +13,7 @@ function Solicitação() {
          <p>Foi criado um protocolo em seu aplicativo móvel. 
          Acesse-o para mais detalhes de seu orçamento. </p>
         <div className='button'>
-            <Link to={"/Servicos"}> <button className= "btn-primary ">Voltar aos serviços </button></Link>
+            <Link to={"/Servicos"}> <button className= "btn-primary btn ">Voltar aos serviços </button></Link>
         </div>
         <div className='DesignCell'>
          <img src={Cell}  alt="Design" />

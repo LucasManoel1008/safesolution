@@ -50,7 +50,7 @@ function Orcamento2() {
         
         <div className="voltar-prosseguir">
           <Link to={"/Orcamento"}><button className="btn btn-primary prosseguir">Voltar</button></Link>
-          <Link to={"/Confirmacao"}><button className="btn btn-primary prosseguir">Concluir</button></Link>
+          <Link to={"/Pagamento"}><button className="btn btn-primary prosseguir">Concluir</button></Link>
         </div>
       </form>
     </div>
