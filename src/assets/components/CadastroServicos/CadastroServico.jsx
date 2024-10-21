@@ -1,47 +1,31 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import AddImagem from './AddImagem'
 import '../../css/novoServico.css';
 import { Link } from 'react-router-dom';
- 
-function CategoriaAdd({ onChange }) {
-  return (
-    <div className='mb-2'>
-      <select className="form-select" onChange={onChange}>
-        <option value="">- Escolha uma categoria -</option>
-        <option value="arquitetura">Arquitetura</option>
-        <option value="limpeza">Limpeza</option>
-        <option value="transporte">Transporte</option>
-        <option value="segurança">Segurança</option>
-        <option value="encanador">Encanador</option>
-        <option value="tecnologia">Tecnologia</option>
-      </select>
-    </div>
-  );
-}
- 
+
 function CadastroServico({ onClick }) {
   const [nome_servico, setNome] = useState('');
   const [descricao_servico, setDescricao] = useState('');
   const [categorias, setCategorias] = useState([]);
-  const [novaCategoria, setNovaCategoria] = useState('');
- 
-  const handleAddCategoria = (event) => {
-    event.preventDefault();
-    if (novaCategoria && !categorias.includes(novaCategoria)) {
-      setCategorias([...categorias, novaCategoria]);
-      setNovaCategoria(''); // Limpar o campo após adicionar
-    }
-  };
- 
+  const [criterios, setCriterios] = useState('');
+  const [images, setImages] = useState([]);
+
+  const addImagem = () => {
+    setImages([...images, <AddImagem key={images.length}/>]);
+  }
+
+  const mostrar = () =>{
+    window.alert(criterios)
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
     
     const empresaString = sessionStorage.getItem('empresa');
     if (empresaString) {
       const dadosEmpresa = JSON.parse(empresaString); 
-      console.log('Dados da empresa recuperados do sessionStorage:', dadosEmpresa);
       const cnpj = dadosEmpresa.cnpj.replace(/[./-]/g, '');;
-      console.log("CNPJ COLETADO:", cnpj)
       const novoServico = {
         nome_servico,
         descricao_servico,
@@ -51,7 +35,7 @@ function CadastroServico({ onClick }) {
       axios.post(`http://localhost:8080/servico?cnpjEmpresa=${cnpj}`, novoServico)
       .then(response => {
         console.log('Serviço salvo com sucesso:', response.data);
-
+        location.reload('')
         // Você pode adicionar um feedback visual para o usuário aqui
       })
       .catch(error => {
@@ -68,6 +52,7 @@ function CadastroServico({ onClick }) {
     <div className="m-4 CadastroServicoContent">
       <h4>Novo Serviço</h4>
       <section className="produtoLayout">
+      
         <div className="titleReturn">
           <h5>Nome e descrição:</h5>
           <button className='btn btn-primary' onClick={onClick}>
@@ -99,14 +84,25 @@ function CadastroServico({ onClick }) {
               ></textarea>
             </div>
           </div>
+          <div className="imagemServico d-flex m-4">
+            <AddImagem />
+            {images.map((imagem) => imagem)}
+            <button className='btn' onClick={addImagem}>+</button>
+           
+              
+          </div>
           <div className="Categoria">
-            <CategoriaAdd />
-            <ul>
-              {categorias.map((categoria, index) => (
-                <li key={index}>{categoria}</li>
-              ))}
-            </ul>
-         
+          <div className='mb-2'>
+            <select className="form-select" value={categorias} onChange={(e) => setCategorias(e.target.value)}>
+              <option value="">- Escolha uma categoria -</option>
+              <option value="arquitetura">Arquitetura</option>
+              <option value="limpeza">Limpeza</option>
+              <option value="transporte">Transporte</option>
+              <option value="segurança">Segurança</option>
+              <option value="encanador">Encanador</option>
+              <option value="tecnologia">Tecnologia</option>
+            </select>
+          </div>  
           </div>
           <div className="criterios form-group">
             <h5>Critérios de Avaliação:</h5>
@@ -116,7 +112,8 @@ function CadastroServico({ onClick }) {
               className="form-control"
               id="criterios"
               rows="3"
- 
+              value={criterios} 
+              onChange={(e) => setCriterios(e.target.value)}
             ></textarea>
             <div className="form-check mb-4">
               <input className="form-check-input" type="checkbox" id="flexCheckDefault" />

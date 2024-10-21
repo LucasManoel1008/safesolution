@@ -321,6 +321,7 @@ function Home() {
                         <option value='assunto'>*ASSUNTO</option>
                         <option value="Reclamacao" >RECLAMAÇÃO</option>
                         <option value="Elogio" >ELOGIO</option>
+                        <option value="informacao" >Informação</option>
                     </select>
                     <div className="textarea">
                         <textarea  rows="1" 

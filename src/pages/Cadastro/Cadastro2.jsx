@@ -244,7 +244,7 @@ function Cadastro2() {
             placeholder="Cidade"
             autoComplete='off'
           />
-          <button type="button" className="btn btn-primary aplicar mt-2" onClick={getCEP}>Autocompletar</button>
+          <button type="button" className="btn btn-primary aplicar mt-2" onClick={getCEP}>Auto completar</button>
         </div>
 
         <button type="submit" className="continuarCadastro1 btn btn-primary mt-4">Finalizar</button>
