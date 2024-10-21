@@ -333,7 +333,8 @@ const EditProfile = ({ empresa, setSection }) => {
 
 const UserSettings = () => (
   <div className='userSettings mt-4'>
-    <h4 className='text-center'><strong>Em Breve</strong></h4>
+   <h2 className='text-center textocentral'> Segurança e Privacidade </h2>
+   <p className='text-center bru'>Gerencie as configuranças de segurança de sua conta, altere a senha da conta/orgão e ative autenticação de dois fatores.</p>
     <h5 className='text-center'>Esta seção ainda não está pronta</h5>
     <h5 className='text-center'>Volte novamente mais tarde</h5>
     <strong className='iconClosed'><i className="fa-solid fa-square-xmark"></i></strong>
@@ -440,7 +441,7 @@ function UserPage() {
         <button className='btn btn-primary mb-2 openMenu'>Open menu</button>
         <div className="nav-links">
           <button className='nav-item mr-1 btn' id='profile' onClick={() => setSection('profile')}><i className="fa-solid fa-user pr-2"></i>Perfil</button>
-          <button className='nav-item mr-1 btn' onClick={() => setSection('settings')}><i className="fa-solid fa-gear pr-2"></i>Configurações</button>
+          <button className='nav-item mr-1 btn' onClick={() => setSection('settings')}><i class="fa-solid fa-shield pr-2"></i>Segurança e Privacidade</button>
           <button className='nav-item mr-1 btn' onClick={() => setSection('orders')}><i className="fa-solid fa-cart-shopping pr-2"></i>Compras</button>
         </div>
       </div>
@@ -448,7 +449,7 @@ function UserPage() {
       <section className='user-nav'>
         <nav className='user-nav-links'>
           <button className='nav-item' id='profile' onClick={() => setSection('profile')}><i className="fa-solid fa-user pr-2"></i>Perfil</button>
-          <button className='nav-item ' onClick={() => setSection('settings')}><i className="fa-solid fa-gear pr-2"></i>Configurações</button>
+          <button className='nav-item ' onClick={() => setSection('settings')}><i class="fa-solid fa-shield pr-2"></i>Segurança e Privacidade</button>
           <button className='nav-item ' onClick={() => setSection('orders')}><i className="fa-solid fa-cart-shopping pr-2"></i>Compras</button>
           <button className='sairConta btn' onClick={sairConta}>sair</button>
         </nav>

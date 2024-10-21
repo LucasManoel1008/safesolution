@@ -132,13 +132,21 @@
     height: 600px;
     display: flex;
     flex-direction: column;
+    color: var(--blue3);
+
+
     
+}
+.userSettings .textocentral {
+    text-align: center;
 }
 .userSettings .iconClosed{
     font-size: 200px;
     margin: 0 auto;
     
 }
+
+
 
 
 
