@@ -123,6 +123,7 @@ function Cadastro2() {
          
           if (select === 'provedor') {
             navigate('/Cadastro-Servico');
+
           } else {
             navigate('/UserPage');
           }

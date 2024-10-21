@@ -29,8 +29,9 @@ import Pagamento from './pages/Pagamento'
 function App() {
   return (
     <div>
-    <Header />
+   
     <BrowserRouter>
+    <Header />
     <Routes>
       <Route index element={<Home/>} />
       <Route path='/Login' element={<Login/>} />
@@ -52,8 +53,9 @@ function App() {
       <Route path='/Pagamento' element ={<Pagamento/>}/>
       <Route path='*' element ={<NotFound/>} />
     </Routes>
-    </BrowserRouter>
     <Footer/>
+    </BrowserRouter>
+   
     </div>
   )
 }

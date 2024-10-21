@@ -91,6 +91,13 @@ body{
     padding: 2px;
     text-align: center;
 }
+.left-header-desktop div .conteudoUsuario {
+    background-color: transparent;
+    border: none;
+}
+.left-header-desktop div .conteudoUsuario img{
+    border-radius: 100%;
+}
 .elements-header #logo-header img{
     width: 250px;
 }

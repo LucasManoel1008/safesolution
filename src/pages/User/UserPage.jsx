@@ -430,6 +430,7 @@ function UserPage() {
     const sairConta = () => {
       sessionStorage.clear();
       navigate('/')
+      
     }
 
   // Irá mostrar de acordo com o valor definido
