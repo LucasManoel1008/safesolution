@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import AddImagem from './AddImagem'
+import AddImagem from './AddImagem';
 import '../../css/novoServico.css';
 import { Link } from 'react-router-dom';
 
@@ -10,27 +10,21 @@ function CadastroServico({ onClick }) {
   const [categorias, setCategorias] = useState([]);
   const [criterios, setCriterios] = useState('');
   const [images, setImages] = useState([]);
-  const [remover, setRemover] = useState(false)
-  const [contador, setContador] = useState(0)
+  const [contador, setContador] = useState(1);
+
   const addImagem = () => {
-    setImages([...images, <AddImagem key={images.length}/>]);
-    if (images.length > -1){
-    setRemover(true)
-    setContador((contador) => contador = contador+1)
-  }
-    
-  }
-  const removeImage = () => {
-    setImages(prevImagem => prevImagem.slice(0, -1));
-    if (images.length < 2 ){
-      setRemover(false);
-      setContador((contador) => contador = contador-1)
+    if (contador < 3) { 
+      setImages([...images, <AddImagem key={images.length}/>]);
+      setContador(contador + 1); 
     }
   };
 
-  const mostrar = () =>{
-    window.alert(criterios)
-  }
+  const removeImage = () => {
+    if (images.length > 0) {
+      setImages(prevImagem => prevImagem.slice(0, -1));
+      setContador(contador - 1); 
+    }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -38,7 +32,7 @@ function CadastroServico({ onClick }) {
     const empresaString = sessionStorage.getItem('empresa');
     if (empresaString) {
       const dadosEmpresa = JSON.parse(empresaString); 
-      const cnpj = dadosEmpresa.cnpj.replace(/[./-]/g, '');;
+      const cnpj = dadosEmpresa.cnpj.replace(/[./-]/g, '');
       const novoServico = {
         nome_servico,
         descricao_servico,
@@ -46,33 +40,24 @@ function CadastroServico({ onClick }) {
       };
 
       axios.post(`http://localhost:8080/servico?cnpjEmpresa=${cnpj}`, novoServico)
-      .then(response => {
-        console.log('Serviço salvo com sucesso:', response.data);
-        location.reload('')
-        // Você pode adicionar um feedback visual para o usuário aqui
-      })
-      .catch(error => {
-        console.error('Erro ao salvar o serviço:', error);
-        // Você pode adicionar um feedback de erro para o usuário aqui
-      });
+        .then(response => {
+          console.log('Serviço salvo com sucesso:', response.data);
+          location.reload('');
+        })
+        .catch(error => {
+          console.error('Erro ao salvar o serviço:', error);
+        });
     }
-    
- 
-    // Enviar os dados para a API
-    
-  };
-  const Remover = () =>{
-    return (
-      <button className="remover" onClick={removeImage}>-</button>
-    )
   };
 
- 
+  const Remover = () => (
+    <button className="remover" onClick={removeImage}>-</button>
+  );
+
   return (
     <div className="m-4 CadastroServicoContent">
       <h4>Novo Serviço</h4>
       <section className="produtoLayout">
-      
         <div className="titleReturn">
           <h5>Nome e descrição:</h5>
           <button className='btn btn-primary' onClick={onClick}>
@@ -105,32 +90,29 @@ function CadastroServico({ onClick }) {
             </div>
           </div>
           <div className="imagemServicomt-4 mb-4">
-            <div className=" d-flex justify-content-between">
+            <div className="d-flex justify-content-between">
               <h5>Adicione uma imagem de seu serviço</h5>
               <h5>&#8317; {contador} &#8318;</h5>
             </div>
             <div className="d-flex">
               <AddImagem />
               {images.map((imagem) => imagem)}
-              <button className='adicionar' onClick={addImagem}>+</button>
-              {remover && <Remover />}
-              
+              <button className='adicionar' onClick={addImagem} disabled={contador >= 3}>+</button>
+              {images.length > 0 && <Remover />} {/* Exibe o botão de remoção apenas se houver imagens */}
             </div>
-           
-              
           </div>
           <div className="Categoria">
-          <div className='mb-2'>
-            <select className="form-select" value={categorias} onChange={(e) => setCategorias(e.target.value)}>
-              <option value="">- Escolha uma categoria -</option>
-              <option value="arquitetura">Arquitetura</option>
-              <option value="limpeza">Limpeza</option>
-              <option value="transporte">Transporte</option>
-              <option value="segurança">Segurança</option>
-              <option value="encanador">Encanador</option>
-              <option value="tecnologia">Tecnologia</option>
-            </select>
-          </div>  
+            <div className='mb-2'>
+              <select className="form-select" value={categorias} onChange={(e) => setCategorias(e.target.value)}>
+                <option value="">- Escolha uma categoria -</option>
+                <option value="arquitetura">Arquitetura</option>
+                <option value="limpeza">Limpeza</option>
+                <option value="transporte">Transporte</option>
+                <option value="segurança">Segurança</option>
+                <option value="encanador">Encanador</option>
+                <option value="tecnologia">Tecnologia</option>
+              </select>
+            </div>  
           </div>
           <div className="criterios form-group">
             <h5>Critérios de Avaliação:</h5>
@@ -156,5 +138,5 @@ function CadastroServico({ onClick }) {
     </div>
   );
 }
- 
+
 export default CadastroServico;
