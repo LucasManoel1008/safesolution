@@ -10,10 +10,23 @@ function CadastroServico({ onClick }) {
   const [categorias, setCategorias] = useState([]);
   const [criterios, setCriterios] = useState('');
   const [images, setImages] = useState([]);
-
+  const [remover, setRemover] = useState(false)
+  const [contador, setContador] = useState(0)
   const addImagem = () => {
     setImages([...images, <AddImagem key={images.length}/>]);
+    if (images.length > -1){
+    setRemover(true)
+    setContador((contador) => contador = contador+1)
   }
+    
+  }
+  const removeImage = () => {
+    setImages(prevImagem => prevImagem.slice(0, -1));
+    if (images.length < 2 ){
+      setRemover(false);
+      setContador((contador) => contador = contador-1)
+    }
+  };
 
   const mostrar = () =>{
     window.alert(criterios)
@@ -43,10 +56,17 @@ function CadastroServico({ onClick }) {
         // Você pode adicionar um feedback de erro para o usuário aqui
       });
     }
+    
  
     // Enviar os dados para a API
     
   };
+  const Remover = () =>{
+    return (
+      <button className="remover" onClick={removeImage}>-</button>
+    )
+  };
+
  
   return (
     <div className="m-4 CadastroServicoContent">
@@ -84,10 +104,18 @@ function CadastroServico({ onClick }) {
               ></textarea>
             </div>
           </div>
-          <div className="imagemServico d-flex m-4">
-            <AddImagem />
-            {images.map((imagem) => imagem)}
-            <button className='btn' onClick={addImagem}>+</button>
+          <div className="imagemServicomt-4 mb-4">
+            <div className=" d-flex justify-content-between">
+              <h5>Adicione uma imagem de seu serviço</h5>
+              <h5>&#8317; {contador} &#8318;</h5>
+            </div>
+            <div className="d-flex">
+              <AddImagem />
+              {images.map((imagem) => imagem)}
+              <button className='adicionar' onClick={addImagem}>+</button>
+              {remover && <Remover />}
+              
+            </div>
            
               
           </div>

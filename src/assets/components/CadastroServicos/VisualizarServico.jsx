@@ -42,7 +42,7 @@ function VisualizarServico({onClick}) {
         </tbody>
       </table>
 
-      <button className='btn btn-primary align-center adicionar' onClick={onClick}>Adicionar Serviço</button>
+      <button className='btn btn-primary align-center adicionarServico' onClick={onClick}>Adicionar Serviço</button>
     </div>
   )
 }
