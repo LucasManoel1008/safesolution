@@ -78,7 +78,7 @@ function CadastroServico({ onClick }) {
                 onChange={(e) => setNome(e.target.value)}
               />
             </div>
-            <div className='form-group'>
+            <div className="form-group">
               <label htmlFor="descricao">Descrição do Serviço</label>
               <textarea
                 className="form-control"
@@ -89,21 +89,33 @@ function CadastroServico({ onClick }) {
               ></textarea>
             </div>
           </div>
-          <div className="imagemServicomt-4 mb-4">
+
+          <div className="imagemServico mt-4 mb-4">
             <div className="d-flex justify-content-between">
               <h5>Adicione uma imagem de seu serviço</h5>
-              <h5>&#8317; {contador} &#8318;</h5>
+              <p>&#8317; {contador} &#8318;</p>
             </div>
             <div className="d-flex">
               <AddImagem />
               {images.map((imagem) => imagem)}
-              <button className='adicionar' onClick={addImagem} disabled={contador >= 3}>+</button>
-              {images.length > 0 && <Remover />} {/* Exibe o botão de remoção apenas se houver imagens */}
+              <button
+                className="adicionar"
+                onClick={addImagem}
+                disabled={contador >= 3}
+              >
+                +
+              </button>
+              {images.length > 0 && <Remover />}
             </div>
           </div>
+
           <div className="Categoria">
-            <div className='mb-2'>
-              <select className="form-select" value={categorias} onChange={(e) => setCategorias(e.target.value)}>
+            <div className="mb-2">
+              <select
+                className="form-select"
+                value={categorias}
+                onChange={(e) => setCategorias(e.target.value)}
+              >
                 <option value="">- Escolha uma categoria -</option>
                 <option value="arquitetura">Arquitetura</option>
                 <option value="limpeza">Limpeza</option>
@@ -112,27 +124,37 @@ function CadastroServico({ onClick }) {
                 <option value="encanador">Encanador</option>
                 <option value="tecnologia">Tecnologia</option>
               </select>
-            </div>  
+            </div>
           </div>
+
           <div className="criterios form-group">
             <h5>Critérios de Avaliação:</h5>
-            <p>Escreva, de forma detalhada, quais serão os critérios para o orçamento do serviço</p>
+            <span>Escreva, de forma detalhada, quais serão os critérios para o orçamento do serviço</span>
             <label htmlFor="criterios">Critérios Avaliativos</label>
             <textarea
               className="form-control"
               id="criterios"
               rows="3"
-              value={criterios} 
+              value={criterios}
               onChange={(e) => setCriterios(e.target.value)}
             ></textarea>
             <div className="form-check mb-4">
-              <input className="form-check-input" type="checkbox" id="flexCheckDefault" />
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="flexCheckDefault"
+              />
               <label className="form-check-label" htmlFor="flexCheckDefault">
-                Ao continuar, afirmo que li e concordo com a <Link to="/Politicas-de-Privacidade">Política de privacidade</Link> e os <Link to="/Termos">Termos de uso</Link> da Safe Solutions.
+                Ao continuar, afirmo que li e concordo com a{" "}
+                <Link to="/Politicas-de-Privacidade">Política de privacidade</Link> e os{" "}
+                <Link to="/Termos">Termos de uso</Link> da Safe Solutions.
               </label>
             </div>
           </div>
-          <button type='submit' className='btn btn-primary'>Salvar</button>
+
+          <button type="submit" className="btn btn-primary">
+            Salvar
+          </button>
         </form>
       </section>
     </div>

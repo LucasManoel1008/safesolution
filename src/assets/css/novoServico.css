@@ -25,6 +25,10 @@
     border-radius: 20%;
     transition: all 0.2s;
     }
+    .CadastroServicoContent .produtoLayout p{
+        color: var(--blue3);
+        font-weight: 600;
+    }
 .adicionar:active, .remover:active {
     background-color: var(--blue3);
     color: white;
