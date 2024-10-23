@@ -26,16 +26,20 @@ function VisualizarServico({onClick}) {
           <tr>
             <th scope="col">#ID</th>
             <th scope="col">Nome</th>
-            <th scope="col">Descrição</th>
+            <th scope="col">Categoria</th>
+            <th scope='col'>Atuação</th>
+            <th scope="col">Status</th>
             <th scope='col'>Ações</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className=''>
           {dados.map((item, idx) => (
             <tr key={idx}>
               <th scope="row">{item.id}</th>
               <td>{item.nome_servico}</td>
-              <td>{item.descricao_servico}</td>
+              <td>{item.categoria_servico}</td>
+              <td>{item.local_servico}</td>
+              <td>{item.status_servico ? 'Ativo' : 'Inativo'}</td>
               <td><button className="btn btn-primary">Visualizar</button> <button className='btn btn-secondary'>Editar</button> <button className='btn btn-danger'>Excluir</button></td>
             </tr>
           ))}
