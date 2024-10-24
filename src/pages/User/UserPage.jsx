@@ -335,9 +335,25 @@ const UserSettings = () => (
   <div className='userSettings mt-4'>
    <h2 className='text-center textocentral'> Segurança e Privacidade </h2>
    <p className='text-center bru'>Gerencie as configuranças de segurança de sua conta, altere a senha da conta/orgão e ative autenticação de dois fatores.</p>
-    <h5 className='text-center'>Esta seção ainda não está pronta</h5>
-    <h5 className='text-center'>Volte novamente mais tarde</h5>
-    <strong className='iconClosed'><i className="fa-solid fa-square-xmark"></i></strong>
+    <h3 className='subtitleadf'> Autenticação de dois fatores</h3>
+    <section className='FAQ2'>
+            <ul className="FAQ-container">
+        
+                <li>
+                    <input type="radio" name="faq" id="firstFAQ" />
+                    <label htmlFor="firstFAQ">O que é a autenticação de dois fatores?</label>
+                    <div className="faq-content mt-4">
+                        <p>
+                        A autenticação de dois fatores (2FA) é um método de segurança que exige duas etapas de verificação para acessar
+                         uma conta: algo que você sabe (como uma senha) e algo que você tem (como um código enviado por SMS ou um aplicativo autenticador). Isso torna mais difícil para invasores acessarem sua conta, mesmo se tiverem sua senha.
+
+
+
+                        </p>
+                    </div>
+                </li>
+                </ul>
+                </section>
   </div>
 );
 

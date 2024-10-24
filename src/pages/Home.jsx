@@ -268,7 +268,7 @@ function Home() {
                         <p>
                             Instalações e serviços empresariais, no geral, demandam muitas etapas, 
                             um contato individual com as servidoras, e uma burocracia que precisa
-                            perder espaço com a rapidez do mercado moderno. A grandiosa vantagem 
+                            ,perder espaço com a rapidez do mercado moderno. A grandiosa vantagem 
                             da Safe Soluction© é reunir todas as etapas do processo num único lugar,
                             otimizando tempo e unificando também a contatação para todas as empresas,
                             sejam elas prestadoras ou solicitantes de serviços.</p>
