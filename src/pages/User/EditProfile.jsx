@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import styles from '../../assets/css/UserProfile.module.css';
 function EditProfile  ({ empresa, setSection }) {
     // Inicializando os valores com os dados existentes da empresa
     const [nome, setNome] = useState(empresa ? empresa.nome_empresa : "");
@@ -33,6 +34,18 @@ function EditProfile  ({ empresa, setSection }) {
       nome_usuario: nomeCompleto,
       senha_usuario: senha
     };
+    const handleNomeChange = (e) => setNome(e.target.value);
+  const handleDescricaoChange = (e) => setDescricao(e.target.value);
+  const handleTelefoneChange = (e) => setTelefone(e.target.value);
+  const handleEmailChange = (e) => setEmail(e.target.value);
+  const handleCepChange = (e) => setCep(e.target.value);
+  const handleRuaChange = (e) => setRua(e.target.value);
+  const handleBairroChange = (e) => setBairro(e.target.value);
+  const handleNumeroChange = (e) => setNumero(e.target.value);
+  const handleCidadeChange = (e) => setCidade(e.target.value);
+  const handleNomePessoalChange = (e) => setNomePessoal(e.target.value);
+  const handleUltimoNomeChange = (e) => setUltimoNome(e.target.value);
+
   
     const editarDados = async (e) => {
       e.preventDefault();
@@ -57,10 +70,10 @@ function EditProfile  ({ empresa, setSection }) {
       }
     };
     return(
-    <div className='edit userProfile'>
+    <div className={`edit ${styles.userProfile}`}>
       <h4>Editar conta</h4>
-       <div className="userItens1 mt-3">
-        <div className="form-group">
+       <div className={`${styles.gridItens} form-group`}>
+        <div className="item1">
           <label htmlFor="exampleFormControlInput1">Nome de exibição:</label>
           <input
             type="text"
@@ -68,11 +81,11 @@ function EditProfile  ({ empresa, setSection }) {
             id="exampleFormControlInput1"
             placeholder='Novo nome empresarial'
             value={nome}
-            onChange={(e) => setNome(e.target.value)}
+            onChange={handleNomeChange}
             
           />
         </div>
-        <div className="form-group">
+        <div className="item2">
           <label htmlFor="exampleFormControlInput1">Email cadastrado:</label>
           <input
             type="email"
@@ -80,12 +93,12 @@ function EditProfile  ({ empresa, setSection }) {
             id="exampleFormControlInput1"
             placeholder='Novo email'
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={handleEmailChange}
           />
         
         </div>
       </div>
-      <div className="userItens2 form-group">
+      <div className="entireColumn form-group w-100">
       <label htmlFor="exampleFormControlInput1">Descrição:</label>
       <input
         type="text"
@@ -93,103 +106,62 @@ function EditProfile  ({ empresa, setSection }) {
         className="form-control d-inline"
         placeholder='Nova descrição'
         value={descricao}
-        onChange={(e) => setDescricao(e.target.value)}
+        onChange={handleDescricaoChange}
       />
         
       </div>
-      <div className="userItens1 mt-4">
-        <div className="form-group">
+      <div className= {`entireColumn form-group w-100`}>
           <label htmlFor="telefone">Telefone:</label>
           <input type="text"
-           className="form-control d-inline"
+           className="form-control"
            id="telefone"placeholder='Telefone'
            value={telefone}
            maxLength={13}
-           onChange={(e) => setTelefone(e.target.value)} />
-          
-          
-        </div>
+           onChange={handleTelefoneChange} />
       </div>
-      <div className="endereco mt-4">
+      <div className={`enderecoEmpresa w-100 mt-4`}>
         <p>Endereço</p>
-        <div className="cepInputs mt-4">
-          <div className="itens1 mb-4">
-            <div>
-              <input
-                type="text"
-                id="cep"
-                className="form-control"
-                placeholder='CEP'
-                value={cep}
-                onChange={(e) => setCep(e.target.value)}
-              />
+        <div className={`${styles.cepGridItens} form-group`}>
+            <div className="iten1">
+              <label htmlFor="cepEmpresa">CEP</label>
+              <input type="text" className="form-control" id="cepEmpresa" value={cep} onChange={handleCepChange}  />
             </div>
-            <div>
-              <input
-                type="text"
-                id="rua"
-                className="form-control"
-                placeholder='Rua'
-                value={rua}
-                onChange={(e) => setRua(e.target.value)}
-              />
+            <div className="iten2">
+              <label htmlFor="cidadeEmpresa">Cidade</label>
+              <input type="text" className="form-control" id="cidadeEmpresa" value={cidade} onChange={handleCidadeChange}   />
             </div>
-          </div>
-          <div className="itens2 mb-4">
-            <div>
-              <input
-                type="text"
-                id="bairro"
-                value={bairro}
-                onChange={(e) => setBairro(e.target.value)}
-                className="form-control"
-                placeholder="Bairro"
-              />
+
+            <div className="iten2">
+              <label htmlFor="bairroEmpresa">Bairro</label>
+              <input type="text" className="form-control" id="bairroEmpresa" value={bairro} onChange={handleBairroChange}   />
             </div>
-            <div>
-              <input
-                type="text"
-                id="numero"
-                maxLength={5}
-                value={numero}
-                onChange={(e) => setNumero(e.target.value)}
-                className="form-control"
-                placeholder="Número"
-              />
+            <div className="iten1">
+              <label htmlFor="ruaEmpresa">Rua</label>
+              <input type="text" className="form-control" id="ruaEmpresa" value={rua} onChange={handleRuaChange} />
+            </div>
+            <div className="iten2">
+              <label htmlFor="numeroEmpresa">Número</label>
+              <input type="text" className="form-control" id="numeroEmpresa" value={numero} onChange={handleNumeroChange}  />
             </div>
           </div>
-          <div className="mb-4 cidade">
-            <input
-              type="text"
-              id="cidade"
-              className="form-control"  
-              placeholder="Cidade"
-              onChange={(e) => setCidade(e.target.value)}
-              value={cidade}
-            />
-          </div>
-        </div>
-        </div>
         <div className="dadosPessoais mt-4">
-        <div className="inputsPessoais"></div>
-        <p>Dados pessoais</p>
-        <div className="nome-ultimo">
-          <div className="userItens1 mt-4">
-            <div className="form-group">
+          <p>Dados pessoais</p>
+        <div className={styles.gridItens}>
+          <div>
               <label htmlFor="primeiroNome">Nome:</label>
-              <input type="text" className="form-control d-inline nomeExibicao"  id="primeiroNome" onChange={(e) => setNomePessoal(e.target.value)} value={nomePessoal}/>
-             
-            </div>
+              <input type="text" className="form-control d-inline nomeExibicao"  id="primeiroNome" onChange={handleNomePessoalChange} value={nomePessoal}/>
+          </div>
             <div className="form-group">
               <label htmlFor="ultimoNome">Ultimo nome:</label>
-              <input type="text" className="form-control d-inline nomeExibicao"  id="ultimoNome" onChange={(e) => setUltimoNome(e.target.value)} value={ultimoNome}/>
-            
+              <input type="text" className="form-control d-inline nomeExibicao"  id="ultimoNome" onChange={handleUltimoNomeChange} value={ultimoNome}/>
             </div>
-            </div>
-          </div>
         </div>
+        </div>
+      </div>
+      <div className="botoesEscolha d-flex flex-column w-100 align-itens-center mt-4">
         <button className='btn btn-primary' role='submit' onClick={editarDados}> Salvar alterações</button>
-        <button className="btn btn-outline-secondary mt-2" onClick={() => setSection("profile")}>Voltar</button>
+          <button className="btn btn-outline-secondary mt-2" onClick={() => setSection("profile")}>Voltar</button>
+        </div>
     </div>
     )
   }

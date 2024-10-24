@@ -89,10 +89,13 @@
         width: 100% !important;
     }
     .userData{
-        width: 80% !important;
+        width: 100% !important;
     }
     .userPageHeader{
         width: 80% !important;
+    }
+    .userInputs{
+        width: 100% !important;
     }
     .gridItens {
         grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
@@ -101,5 +104,23 @@
         grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
     }
     
+}
+@media screen and (max-width: 450px) {
+    .userInputs{
+        width: 70% !important;
+        margin: 0 auto;
+    }
+    .userData{
+        width: 100% !important;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .userData h5{
+        text-align: center !important;
+    }
+    .userProfile button{
+        width: 70% !important;
+        margin: 0 auto;
+    }
 }
 

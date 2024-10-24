@@ -26,7 +26,7 @@ const UserProfile = ({ empresa, apagarConta, setSection }) => (
         </div>
         <div className="entireColumn form-group">
           <label htmlFor='descricaoEmpresa'>Descrição da empresa</label>
-          <textarea className='form-control' id='descricaoEmpresa' value={empresa && empresa.descricao ? empresa.descricao : " "} disabled />
+          <textarea className='form-control' id='descricaoEmpresa' value = {empresa && empresa.descricao ? empresa.descricao : " "} disabled />
         </div>
         <div className={`${styles.gridItens} form-group`}>
           <div className="iten1">
@@ -48,10 +48,6 @@ const UserProfile = ({ empresa, apagarConta, setSection }) => (
             <div className="iten2">
               <label htmlFor="cidadeEmpresa">Cidade</label>
               <input type="text" className="form-control" id="cidadeEmpresa" value={empresa && empresa.cidade ? empresa.cidade : " "} disabled />
-            </div>
-            <div className="iten1">
-              <label htmlFor="estadoEmpresa">Estado</label>
-              <input type="text" className="form-control" id="estadoEmpresa" value={empresa && empresa.estado ? empresa.estado : " "} disabled />
             </div>
             <div className="iten2">
               <label htmlFor="bairroEmpresa">Bairro</label>
