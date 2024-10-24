@@ -1,0 +1,105 @@
+ /* formatações gerais para a página de perfil do usuário */
+ label {
+    color: var(--blue3);
+    opacity: 0.7;	}
+
+.userProfile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    background-color: white;
+}
+/* Formatações do card de perfil */
+
+/* Formatações do titulo do card */
+.userPageHeader{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.userPageHeader h4{
+    color: var(--blue3);
+}
+.userPageHeader p{
+    opacity: 0.7;
+}
+
+/* Formatações da logo */
+.logoEmpresa{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+.logoEmpresa:hover{
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+/* Dados do usuario */
+.userData {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%;
+}
+.userData h5{
+    text-align: left !important;
+    color: var(--blue3);
+}
+.gridItens {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 20px;
+    width: 100%;
+}
+.cepGridItens{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 2fr));
+    grid-gap: 20px;
+    width: 100%;
+}
+@media screen and (max-width: 1200px) {
+    .gridItens {
+        grid-template-columns: repeat(auto-fit, minmax(700px, 1fr));
+    }
+    .cepGridItens{
+        grid-template-columns: repeat(auto-fit, minmax(700px, 1fr));
+    }
+    
+}
+@media screen and (max-width: 800px) {
+    .userProfile{
+        margin-top: 0;
+    }
+    .gridItens {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
+    .cepGridItens{
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
+}
+@media screen and (max-width: 500px) {
+    input, textarea{
+        width: 100% !important;
+    }
+    .userData{
+        width: 80% !important;
+    }
+    .userPageHeader{
+        width: 80% !important;
+    }
+    .gridItens {
+        grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
+    }
+    .cepGridItens{
+        grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
+    }
+    
+}
+

@@ -111,7 +111,7 @@ body{
     display: none;
     justify-content: flex-end;
 }
-.menuOculto a{
+.menuOculto a, .menuOculto button{
     text-decoration: none;
     color: #fff;
     padding: 8px 8px 8px 32px;

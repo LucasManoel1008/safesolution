@@ -52,73 +52,6 @@
     box-shadow: 0px 3px 12px -3px rgba(0,0,0,0.36);
 }
 
-/* UserProfile - Formatações */
-.userProfile{
-    width: 100%;
-    margin: 0 auto;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-.userProfile .logoEmpresaContent{
-    display: flex;
-    justify-content: center;
-}
-.userProfile .logoEmpresaContent .logoEmpresa{
-    width: 120px;
-    align-self: center;
-    border-radius: 100%;  
-}
-.userProfile .logoEmpresaContent .editIcon{
-    width: 20px;
-    margin-top: 100px;
-    position: relative;
-    right: 13px;
-}
-.userProfile p, .userProfile h2{
-    text-align: center;   
-}
-.userProfile h2{
-    color: var(--blue3);
-}
-.userProfile p{
-    opacity: .7;
-}
-.userProfile .userItens1{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-between;
-}
-.userProfile .userItens1 .form-group .nomeExibicao{
-    width: 100%;
-}
-.userProfile .endereco p{
-    opacity: 0.7;
-    text-align: left;
-}
-.userProfile .endereco .cepInputs .itens1,
-.userProfile .endereco .cepInputs .itens2,
-.userProfile .endereco .cepInputs .itens3{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-.userProfile .endereco .cepInputs input{
-    width: 380px;
-}
-.userProfile .endereco .cepInputs  .editar {
-    background-color: var(--blue3);
-    border: none;
-}
-
-.userProfile .dadosPessoais p{
-    text-align: left;
-}
-
-.userProfile .dadosPessoais .nome-ultimo input{
-    width: 200px;
-}
 
 .edit{
     padding: 20px;
@@ -161,17 +94,6 @@
         width: 100%;
         justify-content: space-around;
     }
-    .userProfile .userItens1 input{
-        width: 300px !important;
-        display: block !important;
-        ;
-
-        
-    }
-    .userProfile .endereco .cepInputs input{
-        width: clamp(300px, 35vw, 350px) ;
-    }
-
     .user-page .user-nav .section-date .userProfile .userItens1 i{
         display: block;
     }
@@ -207,36 +129,8 @@
     }
     .user-page .menuResponsivo .openMenu{
         width: 100%;
+        background-color: var(--blue3)
     }
-    .userProfile{
-        width: 100%;
-    }
-    
-    @media screen and (max-width: 720px){
-        .userProfile .userItens1{
-            align-items: center;
-            flex-direction: column;
-        }
-        .userProfile .userItens1 .form-group,
-        .userProfile .userItens2{
-            margin: 0 auto;
-            width: 80%;
-        }
-        .userProfile .userItens1 .form-group input{
-            width: 100% !important;
-        }
-        .userProfile .endereco .cepInputs .itens1,
-        .userProfile .endereco .cepInputs .itens2,
-        .userProfile .endereco .cepInputs .cidade{
-            gap: 20px;
-            align-items: center;
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-        }
-        .userProfile .endereco .cepInputs {
-            width: 100%;
-        }
-    }
+
     
 }
