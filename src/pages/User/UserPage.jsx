@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react'; // Importando useEffect
-import axios from 'axios'; // Importando axios
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import '../../assets/css/userPage.css';
-import ImagensUser from '../../shared/ImagensUser';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -335,25 +334,9 @@ const UserSettings = () => (
   <div className='userSettings mt-4'>
    <h2 className='text-center textocentral'> Segurança e Privacidade </h2>
    <p className='text-center bru'>Gerencie as configuranças de segurança de sua conta, altere a senha da conta/orgão e ative autenticação de dois fatores.</p>
-    <h3 className='subtitleadf'> Autenticação de dois fatores</h3>
-    <section className='FAQ2'>
-            <ul className="FAQ-container">
-        
-                <li>
-                    <input type="radio" name="faq" id="firstFAQ" />
-                    <label htmlFor="firstFAQ">O que é a autenticação de dois fatores?</label>
-                    <div className="faq-content mt-4">
-                        <p>
-                        A autenticação de dois fatores (2FA) é um método de segurança que exige duas etapas de verificação para acessar
-                         uma conta: algo que você sabe (como uma senha) e algo que você tem (como um código enviado por SMS ou um aplicativo autenticador). Isso torna mais difícil para invasores acessarem sua conta, mesmo se tiverem sua senha.
-
-
-
-                        </p>
-                    </div>
-                </li>
-                </ul>
-                </section>
+    <h5 className='text-center'>Esta seção ainda não está pronta</h5>
+    <h5 className='text-center'>Volte novamente mais tarde</h5>
+    <strong className='iconClosed'><i className="fa-solid fa-square-xmark"></i></strong>
   </div>
 );
 
@@ -373,46 +356,44 @@ const UserOrders = () => (
 // Funções - Inicio
 
 function UserPage() {
-
   const [section, setSection] = useState('profile');
-  const [empresa, setEmpresa] = useState(null); // Estado para armazenar os dados da empresa
+  const [empresa, setEmpresa] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false); // Estado para controlar a visibilidade do menu
   const navigate = useNavigate();
 
-    useEffect(() => {
-      fetchEmpresaByCnpj(); // Chama a função para buscar a empresa quando o componente monta
-    }, []);
+  useEffect(() => {
+    fetchEmpresaByCnpj();
+  }, []);
 
-    const fetchEmpresaByCnpj = async () => {
-      const empresaString = sessionStorage.getItem('empresa');
-      if (empresaString) {
-        const dadosEmpresa = JSON.parse(empresaString); 
-        console.log('Dados da empresa recuperados do sessionStorage:', dadosEmpresa);
-        const cnpj = dadosEmpresa.cnpj.replace(/[./-]/g, '');;
-        console.log("CNPJ COLETADO:", cnpj)
-        if (cnpj){
-          try {
-            const response = await axios.get(`http://localhost:8080/empresa/${cnpj}`);
-            console.log('Dados da empresa recebidos do backend:', response.data);
-            setEmpresa(response.data); 
-          } catch (error) {
-            console.error('Erro ao buscar empresa:', error);
-          }
+  const fetchEmpresaByCnpj = async () => {
+    const empresaString = sessionStorage.getItem('empresa');
+    if (empresaString) {
+      const dadosEmpresa = JSON.parse(empresaString);
+      console.log('Dados da empresa recuperados do sessionStorage:', dadosEmpresa);
+      const cnpj = dadosEmpresa.cnpj.replace(/[./-]/g, '');
+      console.log("CNPJ COLETADO:", cnpj);
+      if (cnpj) {
+        try {
+          const response = await axios.get(`http://localhost:8080/empresa/${cnpj}`);
+          console.log('Dados da empresa recebidos do backend:', response.data);
+          setEmpresa(response.data);
+        } catch (error) {
+          console.error('Erro ao buscar empresa:', error);
         }
-        else if(dadosEmpresa){
-          try {
-            const response = await axios.get(`http://localhost:8080/empresa/${dadosEmpresa}`);
-            console.log('Dados da empresa recebidos do backend:', response.data);
-            setEmpresa(response.data); 
-          } catch (error) {
-            console.error('Erro ao buscar empresa:', error);
-          }
+      } else if (dadosEmpresa) {
+        try {
+          const response = await axios.get(`http://localhost:8080/empresa/${dadosEmpresa}`);
+          console.log('Dados da empresa recebidos do backend:', response.data);
+          setEmpresa(response.data);
+        } catch (error) {
+          console.error('Erro ao buscar empresa:', error);
         }
-        
-      } else {
-        console.error('Dados da empresa não encontrados no sessionStorage');
       }
-    };
-  
+    } else {
+      console.error('Dados da empresa não encontrados no sessionStorage');
+    }
+  };
+
   const renderSection = () => {
     switch (section) {
       case 'profile':
@@ -422,59 +403,58 @@ function UserPage() {
       case 'orders':
         return <UserOrders />;
       case 'edit':
-        return <EditProfile setSection={setSection} empresa={empresa} />; // Passar empresa aqui
+        return <EditProfile setSection={setSection} empresa={empresa} />;
       default:
         return <UserProfile empresa={empresa} apagarConta={apagarConta} setSection={setSection} />;
     }
   };
-  
-  
+
   const apagarConta = async () => {
     try {
       let cnpj = empresa.cnpj;
       let cpf = empresa.usuario.cpf;
       const responseEmpresa = await axios.delete(`http://localhost:8080/empresa/${cnpj}`);
-      const responseUser = await axios.delete(`http://localhost:8080/usuario/${cpf}`)
+      const responseUser = await axios.delete(`http://localhost:8080/usuario/${cpf}`);
       console.log('Conta apagada com sucesso:', responseEmpresa.data);
       sessionStorage.clear();
-      navigate("/")
-      
+      navigate("/");
     } catch (error) {
       console.error('Erro ao apagar conta:', error);
     }
   };
-    const sairConta = () => {
-      sessionStorage.clear();
-      navigate('/')
-    }
 
-  // Irá mostrar de acordo com o valor definido
-  
+  const sairConta = () => {
+    sessionStorage.clear();
+    navigate('/');
+  };
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen); // Alterna a visibilidade do menu
+  };
 
   return (
     <div className='user-page mb-5'>
       <div className="menuResponsivo mb-2">
-        <button className='btn btn-primary mb-2 openMenu'>Open menu</button>
-        <div className="nav-links">
-          <button className='nav-item mr-1 btn' id='profile' onClick={() => setSection('profile')}><i className="fa-solid fa-user pr-2"></i>Perfil</button>
-          <button className='nav-item mr-1 btn' onClick={() => setSection('settings')}><i class="fa-solid fa-shield pr-2"></i>Segurança e Privacidade</button>
-          <button className='nav-item mr-1 btn' onClick={() => setSection('orders')}><i className="fa-solid fa-cart-shopping pr-2"></i>Compras</button>
-        </div>
+        <button className='btn btn-primary mb-2 openMenu' onClick={toggleMenu}>{menuOpen ? "Fechar navegação" : "Abrir navegação"}</button>
+        {menuOpen && ( // Renderiza o menu apenas se menuOpen for true
+          <div className="nav-links">
+            <button className='nav-item mr-1 btn' id='profile' onClick={() => setSection('profile')}><i className="fa-solid fa-user pr-2"></i>Perfil</button>
+            <button className='nav-item mr-1 btn' onClick={() => setSection('settings')}><i className="fa-solid fa-shield pr-2"></i>Segurança e Privacidade</button>
+            <button className='nav-item mr-1 btn' onClick={() => setSection('orders')}><i className="fa-solid fa-cart-shopping pr-2"></i>Compras</button>
+            <button className='sairConta btn' onClick={sairConta}>sair</button>
+          </div>
+        )}
       </div>
-      {/* Menu de navegação */}
       <section className='user-nav'>
         <nav className='user-nav-links'>
           <button className='nav-item' id='profile' onClick={() => setSection('profile')}><i className="fa-solid fa-user pr-2"></i>Perfil</button>
-          <button className='nav-item ' onClick={() => setSection('settings')}><i class="fa-solid fa-shield pr-2"></i>Segurança e Privacidade</button>
+          <button className='nav-item ' onClick={() => setSection('settings')}><i className="fa-solid fa-shield pr-2"></i>Segurança e Privacidade</button>
           <button className='nav-item ' onClick={() => setSection('orders')}><i className="fa-solid fa-cart-shopping pr-2"></i>Compras</button>
           <button className='sairConta btn' onClick={sairConta}>sair</button>
         </nav>
-        
-        {/* Conteúdo que muda com base na seção selecionada */}
         <div className='section-date ml-5'>
           {renderSection()}
         </div>
-        
       </section>
     </div>
   );
