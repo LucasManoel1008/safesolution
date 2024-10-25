@@ -38,7 +38,7 @@ function Cadastro2() {
     }
 
     if (telefone.length > 6) { // Verifica se há mais de 6 caracteres
-        telefone = telefone.replace(/^(\d{2})\s?(\d{5})(\d)/, "($1) $2-$3"); // Formata para incluir o hífen
+        telefone = telefone.replace(/ (\d{5})(\d)/, `$1-$2`); // Formata para incluir o hífen
     }
 
     setTelefone(telefone); // Atualiza o estado com o telefone formatado

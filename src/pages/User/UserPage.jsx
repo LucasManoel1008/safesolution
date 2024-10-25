@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import UserProfile from './UserProfile';
 import UserSettings from './UserSettings';
 import UserOrders from './UserOrders';
+import EditProfile from './EditProfile';
 
 // Funções - Inicio
 
@@ -88,7 +89,7 @@ function UserPage() {
   return (
     <div className='user-page mb-5'>
       <div className="menuResponsivo mb-2">
-        <button className='btn btn-primary mb-2 openMenu' onClick={toggleMenu}>{menuOpen ? "Fechar navegação" : "Abrir navegação"}</button>
+        <button className='btn btn-primary mb-2 openMenu' onClick={toggleMenu}>{menuOpen ? <i class="fa-solid fa-caret-up"></i> : <i class="fa-solid fa-caret-down"></i>}</button>
         {menuOpen && ( // Renderiza o menu apenas se menuOpen for true
           <div className="nav-links">
             <button className='nav-item mr-1 btn' id='profile' onClick={() => setSection('profile')}><i className="fa-solid fa-user pr-2"></i>Perfil</button>

@@ -1,6 +1,7 @@
 import React from 'react';
 import ImagensUser from '../../shared/ImagensUser';
 import styles from '../../assets/css/UserProfile.module.css';
+import EditProfile from './EditProfile';
 
 const UserProfile = ({ empresa, apagarConta, setSection }) => (
   <div className={`${styles.userProfile} p-4 mb-4`}>

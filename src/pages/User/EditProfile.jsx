@@ -17,11 +17,11 @@ function EditProfile  ({ empresa, setSection }) {
     const [senha] = useState(empresa ? empresa.usuario.senha_usuario : "");
   
     const nomeCompleto = nomePessoal + " " + ultimoNome;
-  
+    const cleanTelefone = telefone.replace(/[()\s-]/g, '');
     const dadosEmpresa = {
       nome_empresa: nome,
       descricao_empresa: descricao,
-      telefone_empresa: telefone,
+      telefone_empresa: cleanTelefone,
       cep,
       rua,
       bairro,
@@ -34,17 +34,57 @@ function EditProfile  ({ empresa, setSection }) {
       nome_usuario: nomeCompleto,
       senha_usuario: senha
     };
-    const handleNomeChange = (e) => setNome(e.target.value);
+    const handleNomeChange = (e) => {
+      let nome = e.target.value.replace(/\d/g, '');
+      setNome(nome);
+    };
   const handleDescricaoChange = (e) => setDescricao(e.target.value);
-  const handleTelefoneChange = (e) => setTelefone(e.target.value);
+  const handleTelefoneChange =(e) =>{
+    let telefone = e.target.value.replace(/\D/g, ""); // Remove qualquer caractere que não seja número
+      
+    if (telefone.length > 2) { // Verifica se há mais de dois caracteres
+        telefone = telefone.replace(/^(\d{2})(\d)/, "($1) $2"); // Formata o DDD
+    }
+
+    if (telefone.length > 6) { // Verifica se há mais de 6 caracteres
+        telefone = telefone.replace(/ (\d{5})(\d)/, `$1-$2`); // Formata para incluir o hífen
+    }
+
+    setTelefone(telefone); // Atualiza o estado com o telefone formatado
+  }
   const handleEmailChange = (e) => setEmail(e.target.value);
-  const handleCepChange = (e) => setCep(e.target.value);
-  const handleRuaChange = (e) => setRua(e.target.value);
-  const handleBairroChange = (e) => setBairro(e.target.value);
-  const handleNumeroChange = (e) => setNumero(e.target.value);
-  const handleCidadeChange = (e) => setCidade(e.target.value);
-  const handleNomePessoalChange = (e) => setNomePessoal(e.target.value);
-  const handleUltimoNomeChange = (e) => setUltimoNome(e.target.value);
+  const handleCepChange = (e) => {
+    let cep = e.target.value.replace(/\D/g, "");
+      if (cep.length > 5) {
+        cep = cep.replace(/^(\d{5})(\d)/, "$1-$2");
+      }
+      setCep(cep)
+    
+  }
+  const handleRuaChange = (e) => {
+    let rua = e.target.value.replace(/\d/g, '');
+    setRua(rua);
+  };
+  const handleBairroChange = (e) => {
+    let bairro = e.target.value.replace(/\d/g, '');
+    setBairro(bairro);
+  };
+  const handleNumeroChange = (e) => {
+    let numero = e.target.value.replace(/\D/g, '');
+    setNumero(numero);
+  };
+  const handleCidadeChange = (e) => {
+    let cidade = e.target.value.replace(/\d/g, '');
+    setCidade(cidade);
+  };
+  const handleNomePessoalChange = (e) => {
+    let nome = e.target.value.replace(/\d/g, '');
+    setNomePessoal(nome);
+  };
+  const handleUltimoNomeChange = (e) => {
+    let nome = e.target.value.replace(/\d/g, '');
+    setUltimoNome(nome);
+  };
 
   
     const editarDados = async (e) => {
@@ -116,7 +156,7 @@ function EditProfile  ({ empresa, setSection }) {
            className="form-control"
            id="telefone"placeholder='Telefone'
            value={telefone}
-           maxLength={13}
+           maxLength={14}
            onChange={handleTelefoneChange} />
       </div>
       <div className={`enderecoEmpresa w-100 mt-4`}>
@@ -124,7 +164,7 @@ function EditProfile  ({ empresa, setSection }) {
         <div className={`${styles.cepGridItens} form-group`}>
             <div className="iten1">
               <label htmlFor="cepEmpresa">CEP</label>
-              <input type="text" className="form-control" id="cepEmpresa" value={cep} onChange={handleCepChange}  />
+              <input type="text" className="form-control" id="cepEmpresa" value={cep} maxLength={9} onChange={handleCepChange}  />
             </div>
             <div className="iten2">
               <label htmlFor="cidadeEmpresa">Cidade</label>
