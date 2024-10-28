@@ -74,6 +74,7 @@ strong{
         color: white;
         background-color: var(--blue3);
         cursor: pointer;
+        font-weight: 600;
         margin-top: 30px;
        
     }

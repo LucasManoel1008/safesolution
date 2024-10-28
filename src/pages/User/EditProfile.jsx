@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import axios from "axios";
 import styles from '../../assets/css/UserProfile.module.css';
 function EditProfile  ({ empresa, setSection }) {
     // Inicializando os valores com os dados existentes da empresa

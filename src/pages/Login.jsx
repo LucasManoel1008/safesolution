@@ -32,15 +32,8 @@ function Login() {
     
     
     try {
-      // Faz a requisição para o backend buscando a empresa pelo CNPJ
       const response = await axios.get(`http://localhost:8080/empresa/${cleanCnpj}`);
-      
-      // Verificar o que está sendo retornado do backend
-      console.log(response.data);  // Verifique os dados no console do navegador
-      console.log("Senha recebida do backend:", response.data.usuario.senha_usuario);
-      console.log("Senha digitada pelo usuário:", senha);
       if (response.data && response.data.usuario) {
-        // Verifica a senha diretamente no `response.data`
         if (response.data.usuario.senha_usuario === senha) {
           sessionStorage.setItem('empresa', JSON.stringify({ cnpj: cleanCnpj }));
           navigate('/UserPage');

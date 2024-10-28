@@ -1,9 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ImagensUser from '../../shared/ImagensUser';
 import styles from '../../assets/css/UserProfile.module.css';
 import EditProfile from './EditProfile';
 
-const UserProfile = ({ empresa, apagarConta, setSection }) => (
+
+function UserProfile ({ empresa, apagarConta, setSection }){
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+
+  return (
   <div className={`${styles.userProfile} p-4 mb-4`}>
     <div className={styles.userPageHeader}>
       <h4 className="text-center">Perfil da Empresa</h4>
@@ -22,12 +29,12 @@ const UserProfile = ({ empresa, apagarConta, setSection }) => (
           </div>
           <div className="iten2">
             <label htmlFor='emailEmpresa'>Email da empresa</label>
-            <input className='form-control' type="email" id='emailEmpresa' value={empresa && empresa.email ? empresa.email : " "} disabled />
+            <input className='form-control' type="email" id='emailEmpresa' value={empresa && empresa.usuario ? empresa.usuario.email_usuario : " "} disabled />
           </div>
         </div>
         <div className="entireColumn form-group">
           <label htmlFor='descricaoEmpresa'>Descrição da empresa</label>
-          <textarea className='form-control' id='descricaoEmpresa' value = {empresa && empresa.descricao ? empresa.descricao : " "} disabled />
+          <textarea className='form-control' id='descricaoEmpresa' value = {empresa && empresa.descricao_empresa ? empresa.descricao_empresa : " "} disabled />
         </div>
         <div className={`${styles.gridItens} form-group`}>
           <div className="iten1">
@@ -69,7 +76,7 @@ const UserProfile = ({ empresa, apagarConta, setSection }) => (
           <div className={`${styles.gridItens} form-group`}>
             <div className="iten1">
               <label htmlFor="nomeUsuario">Nome do usuário</label>
-              <input type="text" className="form-control" id="nomeUsuario" value={empresa && empresa.usuario.nome ? empresa.usuario.nome : " "} disabled />
+              <input type="text" className="form-control" id="nomeUsuario" value={empresa && empresa.usuario.nome_usuario ? empresa.usuario.nome_usuario : " "} disabled />
             </div>
             <div className="iten2">
               <label htmlFor="cpfUsuario">CPF</label>
@@ -78,7 +85,7 @@ const UserProfile = ({ empresa, apagarConta, setSection }) => (
           </div>
           <div className="entireColumn form-group">
             <label htmlFor="dataNacimento">Data de nascimento</label>
-            <input type="date" name="dataNascimento" id="dataNascicmento" className='form-control' value={empresa && empresa.usuario ? empresa.usuario.data_nascimento : " "} disabled/>
+            <input type="text" name="dataNascimento" id="dataNascicmento" className='form-control' value={empresa && empresa.usuario ? formatDate(empresa.usuario.data_nascimento) : ""} disabled/>
           </div>
         </div>
       </div>
@@ -89,5 +96,6 @@ const UserProfile = ({ empresa, apagarConta, setSection }) => (
     </div>
   </div>
 );
+}
 
 export default UserProfile;

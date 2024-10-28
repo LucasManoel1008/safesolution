@@ -18,14 +18,16 @@ function CadastroServico({ onClick }) {
   const [cidade, setCidade] = useState('');
   const [valorMinimo, setValorMinimo] = useState('');
 
-  const addImagem = () => {
+  const addImagem = (e) => {
+    e.preventDefault(); // Evita o envio do formulário
     if (contador < 3) {
       setImages([...images, <AddImagem key={images.length} />]);
       setContador(contador + 1);
     }
   };
 
-  const removeImage = () => {
+  const removeImage = (e) => {
+    e.preventDefault(); // Evita o envio do formulário
     if (images.length > 0) {
       setImages(prevImagem => prevImagem.slice(0, -1));
       setContador(contador - 1);
@@ -115,7 +117,7 @@ function CadastroServico({ onClick }) {
           <div className="imagemServico mt-4 mb-4 pb-4">
             <div className="d-flex justify-content-between">
               <h5>Adicione uma imagem de seu serviço</h5>
-              <h5>&#8317; {contador} &#8318;</h5>
+              <h5>&#8317; {contador} / 3 &#8318;</h5>
             </div>
             <div className="d-flex">
               <AddImagem />
@@ -123,6 +125,7 @@ function CadastroServico({ onClick }) {
               <button
                 className="adicionar"
                 onClick={addImagem}
+                role='button'
                 disabled={contador >= 3}
               >
                 +
@@ -207,9 +210,10 @@ function CadastroServico({ onClick }) {
             </div>
           </div>
 
-          <div className="criterios form-group pb-4">
+          <div className="criterios pb-4">
             <h5>Critérios de Avaliação:</h5>
             <span>Escreva, de forma detalhada, quais serão os critérios para o orçamento do serviço</span>
+            <div className="form-group">
             <label htmlFor="criterios">Critérios Avaliativos</label>
             <textarea
               className="form-control"
@@ -219,6 +223,7 @@ function CadastroServico({ onClick }) {
               onChange={(e) => setCriterios(e.target.value)}
               required
             ></textarea>
+            </div>  
           </div>
 
           <div className="disponibilidade pb-4">

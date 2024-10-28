@@ -23,13 +23,13 @@ function UserPage() {
     const empresaString = sessionStorage.getItem('empresa');
     if (empresaString) {
       const dadosEmpresa = JSON.parse(empresaString);
-      console.log('Dados da empresa recuperados do sessionStorage:', dadosEmpresa);
+    
       const cnpj = dadosEmpresa.cnpj.replace(/[./-]/g, '');
-      console.log("CNPJ COLETADO:", cnpj);
+     
       if (cnpj) {
         try {
           const response = await axios.get(`http://localhost:8080/empresa/${cnpj}`);
-          console.log('Dados da empresa recebidos do backend:', response.data);
+        
           setEmpresa(response.data);
         } catch (error) {
           console.error('Erro ao buscar empresa:', error);
@@ -67,15 +67,17 @@ function UserPage() {
     try {
       let cnpj = empresa.cnpj;
       let cpf = empresa.usuario.cpf;
-      const responseEmpresa = await axios.delete(`http://localhost:8080/empresa/${cnpj}`);
-      const responseUser = await axios.delete(`http://localhost:8080/usuario/${cpf}`);
-      console.log('Conta apagada com sucesso:', responseEmpresa.data);
+      await axios.delete(`http://localhost:8080/servico?cnpjEmpresa=${cnpj}`);
+      await axios.delete(`http://localhost:8080/empresa/${cnpj}`);
+      await axios.delete(`http://localhost:8080/usuario/${cpf}`);
+      console.log('Conta apagada com sucesso');
       sessionStorage.clear();
       navigate("/");
     } catch (error) {
       console.error('Erro ao apagar conta:', error);
     }
-  };
+};
+
 
   const sairConta = () => {
     sessionStorage.clear();
@@ -89,7 +91,7 @@ function UserPage() {
   return (
     <div className='user-page mb-5'>
       <div className="menuResponsivo mb-2">
-        <button className='btn btn-primary mb-2 openMenu' onClick={toggleMenu}>{menuOpen ? <i class="fa-solid fa-caret-up"></i> : <i class="fa-solid fa-caret-down"></i>}</button>
+        <button className='btn btn-primary mb-2 openMenu' onClick={toggleMenu}>{menuOpen ? <i className="fa-solid fa-caret-up"></i> : <i className="fa-solid fa-caret-down"></i>}</button>
         {menuOpen && ( // Renderiza o menu apenas se menuOpen for true
           <div className="nav-links">
             <button className='nav-item mr-1 btn' id='profile' onClick={() => setSection('profile')}><i className="fa-solid fa-user pr-2"></i>Perfil</button>

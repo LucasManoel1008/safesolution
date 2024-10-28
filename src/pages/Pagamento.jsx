@@ -3,7 +3,7 @@ import '../assets/css/pagamento.css'
 import { Link } from 'react-router-dom'
 function Pagamento() {
   return (
-    <div className='pagamento'>
+    <div className='pagamento mb-3'>
         <h4>Montagem de móveis</h4>
         <span><h5>Método de pagamento</h5></span>
 
