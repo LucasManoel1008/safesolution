@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useLocation } from 'react-router-dom'; // Importa o hook useLocation
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom'; // Importa o hook useLocation
 import Imagenspadroes from '../../shared/Imagespadroes';
 import ImagensUser from '../../shared/ImagensUser';
 import * as js from '../js';
@@ -46,8 +45,8 @@ function Header() {
   const LeftHeader = React.memo(() => {
     return (
       <div className="left-header-desktop">
-        <a href="/Login" className="login">Login</a>
-        <a href="/Cadastro" className="registro">Junte-se a nós</a>
+        <Link to="/Login" className="login">Login</Link>
+        <Link to="/Cadastro" className="registro">Junte-se a nós</Link>
       </div>
     );
   });
@@ -72,10 +71,10 @@ function Header() {
     return (
       <div className="menuOculto" id="menuOculto">
         <button className="btn-close-x" onClick={js.fecharNav}>&times;</button>
-        <a href="/Servicos">Serviços</a>
-        <a href="/">Sobre Nós</a>
-        <a href="/Login">Entrar</a>
-        <a href="/Cadastro">Junte-se a nós</a>
+        <Link to="/Servicos">Serviços</Link>
+        <Link to="/">Sobre Nós</Link>
+        <Link to="/Login">Entrar</Link>
+        <Link to="/Cadastro">Junte-se a nós</Link>
       </div>
     );
   });
@@ -109,11 +108,11 @@ function Header() {
             style={{ fontSize: "30px", cursor: "pointer" }}
           />
           <div className="elementsHeader-desktop">
-            <a href="/Servicos">SERVIÇOS</a>
-            <a href="/">SOBRE NÓS</a>
+            <Link to="/Servicos">SERVIÇOS</Link>
+            <Link to="/">SOBRE NÓS</Link>
           </div>
           <div className="logo">
-            <a href="/" id="logo-header"><img src={Imagenspadroes.logo} alt="Logo" /></a>
+            <Link to="/" id="logo-header"><img src={Imagenspadroes.logo} alt="Logo" /></Link>
           </div>
           {/* Troca de cabeçalho baseado no estado "logado" */}
           {logado ? <LoggedHeader /> : <LeftHeader />}
