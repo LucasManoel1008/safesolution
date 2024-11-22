@@ -3,14 +3,13 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../assets/css/cadServico.css'
 import ImagensUser from '../shared/ImagensUser'
-import EmAndamento from '../assets/components/CadastroServicos/EmAndamento';
-import Servicos from '../assets/components/CadastroServicos/Servicos';
-import Pedidos from '../assets/components/CadastroServicos/Pedidos';
+import EmAndamento from './CadastroServicos/EmAndamento';
+import Servicos from './CadastroServicos/Servicos';
+import Pedidos from './CadastroServicos/Pedidos';
 
 function CadastroServico() {
     const [section, setSection] = useState('profile');
     const [empresa, setEmpresa] = useState('')
-    const [nome, setNome] = useState(empresa ? empresa.nome_empresa : "")
     useEffect(() => {
       fetchEmpresaByCnpj(); // Chama a função para buscar a empresa quando o componente monta
     }, []);
@@ -28,7 +27,7 @@ function CadastroServico() {
            
             setEmpresa(response.data); 
           } catch (error) {
-           
+            window.alert("Erro ao buscar empresa")
           }
         }
         else if(dadosEmpresa){
@@ -37,13 +36,11 @@ function CadastroServico() {
            
             setEmpresa(response.data); 
           } catch (error) {
-           
+            window.alert("Erro ao buscar empresa")
           }
         }
         
-      } else {
-        console.error('Dados da empresa não encontrados no sessionStorage');
-      }
+      } 
     };
    
   // Irá mostrar de acordo com o valor definido

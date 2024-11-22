@@ -9,10 +9,10 @@ function VisualizarServico({onClick}) {
       axios.get("http://localhost:8080/servico")
       .then((response) => {
         setDados(response.data)
-        const dadosArmazenados = localStorage.getItem('usuario');
-
       })
-      .catch(e => console.log(e.message))
+      .catch(() => {
+        
+      })
     }
 
     useEffect(() => {
