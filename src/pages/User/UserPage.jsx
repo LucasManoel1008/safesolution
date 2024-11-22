@@ -48,6 +48,7 @@ function UserPage() {
     }
   };
 
+
   const renderSection = () => {
     switch (section) {
       case 'profile':

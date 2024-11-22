@@ -266,13 +266,21 @@ strong{
     overflow: hidden;
     transition: max-height 0.5s, padding 0.5s;
 }
-.FAQ-container li input[type="radio"]:checked+ label + .faq-content{
+.FAQ-container li input[type="radio"]:checked + label + .faq-content {
     max-height: 300px;
     padding: 10px 10px 20px;
 }
+
+/* Add this CSS to allow toggling the FAQ content */
+.FAQ-container li input[type="radio"]:not(:checked) + label + .faq-content {
+    max-height: 0;
+    padding: 0 10px;
+}
+
 .FAQ-container li input[type="radio"]:checked+ label::before{
     content: "-";
 }
+
 
 /* Formularios */
 .forms{

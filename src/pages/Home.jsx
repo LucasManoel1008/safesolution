@@ -88,6 +88,7 @@ function Home() {
 
 
     };
+   
 
   return (
     <div className='mb-5'>
@@ -258,7 +259,7 @@ function Home() {
                         Clientes: Encontre diversos serviços em um só lugar e contrate facilmente o que precisar, com praticidade e segurança.
                         </p>
                     </div>
-                </li>
+                </li> 
                 </Fade>
                 <Fade bottom duration={600}>
                 <li>
@@ -275,7 +276,7 @@ function Home() {
                     </div>
                 </li>
                 </Fade>
-                {/* <Fade bottom duration={600}>
+                <Fade bottom duration={600}>
                 <li>
                     <input type="radio" name="faq" id="thirdFAQ"/>
                     <label htmlFor="thirdFAQ">Por que usar a plataforma de vocês?</label>
@@ -285,7 +286,7 @@ function Home() {
                         </p>
                     </div>
                 </li>
-                </Fade> */}
+                </Fade>
                 <Fade bottom duration={600}>
                 <li>
                     <input type="radio" name="faq" id="fourthFAQ"/>
