@@ -73,10 +73,7 @@ function CadastroServico() {
                 <button className='btn' onClick={() => setSection('statistics')}><i className="fa-solid fa-chart-simple mr-2"></i>Em andamento</button>
                 <button className='btn' onClick={() => setSection('pedidos')}>¹<i className="fa-solid fa-bell mr-2"></i>Pedidos</button>
             </ul>
-            <div className="form-check form-switch provedor">
-              <input className="form-check-input" type="checkbox" id="flexSwitchCheckChecked"   />
-              <label className="form-check-label" htmlFor="flexSwitchCheckChecked" >Sou Provedor</label>
-            </div>
+           
         </nav>
         <div className='conteudoPrincipal border-left'>
             {renderSection()}

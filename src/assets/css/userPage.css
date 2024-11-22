@@ -221,6 +221,21 @@
         width: 100%;
         background-color: var(--blue3)
     }
+   
 
+    
+}
+@media screen and (max-width: 736px){
+    .user-page .menuResponsivo{
+        display: flex;
+        align-items: flex-start;
+    }
+    .user-page .menuResponsivo .nav-links{
+        flex-direction: column;
+        display: flex;
+    }
+    .user-page .menuResponsivo .nav-links button{
+        text-align: left;
+    }
     
 }
