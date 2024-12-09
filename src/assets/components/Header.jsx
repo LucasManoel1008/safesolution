@@ -57,7 +57,7 @@ function Header() {
         <div className="btn-group">
           <button type="button" className="conteudoUsuario" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <img src={ImagensUser.paladins} width={40} className='mr-1' alt="Foto de perfil" />
-            <span>{dados && dados.nome_empresa ? dados.nome_empresa : ""}</span>
+            <span className='blue2 font-bold'>{dados && dados.nome_empresa ? dados.nome_empresa : ""}</span>
           </button>
           <div className="dropdown-menu">
             <button className="dropdown-item" onClick={acessarPerfil} type="button">Perfil</button>

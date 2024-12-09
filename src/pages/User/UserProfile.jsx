@@ -1,6 +1,6 @@
 import React from 'react';
 import ImagensUser from '../../shared/ImagensUser';
-import styles from '../../assets/css/UserProfile.module.css';
+import styles from '../../assets/css/userProfile.module.css';
 
 
 function UserProfile ({ empresa, apagarConta, setSection }){

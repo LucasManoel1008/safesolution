@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
-import styles from '../../assets/css/UserProfile.module.css';
+import styles from '../../assets/css/userProfile.module.css';
 function EditProfile  ({ empresa, setSection }) {
     // Inicializando os valores com os dados existentes da empresa
     const [nome, setNome] = useState(empresa ? empresa.nome_empresa : "");
