@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-
+import Loading from "../../assets/components/Loading";
 
 function Cadastro2() {
   const [cnpj, setCnpj] = useState("");
@@ -58,7 +58,7 @@ function Cadastro2() {
   const getCEP = () => {
     if (cep === "" || cep.length < 8) {
       alert("Você precisa digitar o CEP corretamente!");
-      return;
+      return false;
     }
     const url = `https://viacep.com.br/ws/${cep}/json`;
     axios.get(url)
@@ -74,6 +74,7 @@ function Cadastro2() {
   // Função para validar o formulário
   const validarFormulario = (event) => {
     event.preventDefault();
+    
 
     if (nome === '') {
       alert("Você deve preencher o campo 'Nome empresarial'");
@@ -106,8 +107,8 @@ function Cadastro2() {
       numero:numero,
     };
     
-
     if (dadosArmazenados) {
+
       const dados = JSON.parse(dadosArmazenados);
 
       // Primeira requisição para salvar o usuário
@@ -138,6 +139,7 @@ function Cadastro2() {
 
   return (
     <div className='cadastroContent'>
+
       <h4 className="mt-4">Quase lá</h4>
       <form onSubmit={validarFormulario} className="pb-5">
         <p>

@@ -24,40 +24,40 @@ function Cadastro() {
     // Validações
     if (nome === '' || sobreNome === '') {
       window.alert('Nome incompleto!');
-      return;
+      return false;
     } else if (email.length === 0) {
       window.alert('Digite um endereço de email para prosseguir!');
-      return;
+      return false;
     } else if (email.indexOf('@') === -1) {
       window.alert('Email incorreto!');
-      return;
+      return false;
     }
     else if (data == null || data == 0){
       window.alert("O campo 'data nascimento' deve ser preenchido")
-      return;
+      return false;
     }
     else if (anoNascimento < 18){
       window.alert("Você deve ser maior de idade para se cadastrar no sistema" )
-      return;
+      return false;
     }
      else if (senha1.length < 8) {
       window.alert('Senha deve ter pelo menos 8 caracteres');
-      return;
+      return false;
     } else if (senha1 !== senha2) {
       window.alert('Senhas não correspondem');
-      return;
+      return false;
     } else if (cpf.length < 14) {
       window.alert('Digite um CPF válido');
-      return;
+      return false;
     }
     if (email.length === 0) {
       window.alert("Digite um endereço de email para prosseguir!");
-      return
+      return false;
     } 
 
     else if (email.indexOf("@") === -1) {
       window.alert("Email incorreto!");
-      return
+      return false;
     }
     const userData = {
       nome_usuario: nomeCompleto,
