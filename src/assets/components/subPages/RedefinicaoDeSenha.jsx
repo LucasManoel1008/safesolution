@@ -1,5 +1,5 @@
 import React, {useState } from 'react'
-import '../../assets/css/redefine.css'
+import '../../css/redefine.css'
 import { useNavigate } from 'react-router-dom';
 
 function RedefinicaoDeSenha() {

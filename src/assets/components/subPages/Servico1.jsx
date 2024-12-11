@@ -1,5 +1,5 @@
 import React from 'react'
-import '../../assets/css/servico.css'
+import '../../css/servico.css'
 function Servico1() {
   return (
     <div className='servicoTemplate'>

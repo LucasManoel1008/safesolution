@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import '../../assets/css/cadastro.css';
+import '../assets/css/cadastro.css';
 
 function Cadastro() {
   const [cpf, setCpf] = useState('');

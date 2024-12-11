@@ -2,9 +2,9 @@ import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import '../assets/css/cadServico.css'
 import ImagensUser from '../shared/ImagensUser'
-import EmAndamento from './CadastroServicos/EmAndamento';
-import Servicos from './CadastroServicos/Servicos';
-import Pedidos from './CadastroServicos/Pedidos';
+import EmAndamento from '../assets/components/CadastroServicos/EmAndamento';
+import Servicos from '../assets/components/CadastroServicos/Servicos';
+import Pedidos from '../assets/components/CadastroServicos/Pedidos';
 
 function CadastroServico() {
 

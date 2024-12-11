@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../../assets/css/userPage.css';
+import '../assets/css/userPage.css';  
 import { useNavigate } from 'react-router-dom';
-import UserProfile from './UserProfile';
-import UserSettings from './UserSettings';
-import UserOrders from './UserOrders';
-import EditProfile from './EditProfile';
+import UserProfile from '../assets/components/User/UserProfile';
+import UserSettings from '../assets/components/User/UserSettings';
+import UserOrders from '../assets/components/User/UserOrders';
+import EditProfile from '../assets/components/User/EditProfile';
 
 // Funções - Inicio
 

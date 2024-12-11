@@ -1,5 +1,5 @@
 import React from 'react'
-import "../../assets/css/termos.css"
+import "../../css/termos.css"
 function Termos() {
   return (
     <div className='termoContent'>

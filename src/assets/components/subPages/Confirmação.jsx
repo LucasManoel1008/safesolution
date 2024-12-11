@@ -1,5 +1,5 @@
 import React from 'react'
-import '../../assets/css/confirmacao.css'
+import '../../css/confirmacao.css'
 
 
 function Confirmação() {

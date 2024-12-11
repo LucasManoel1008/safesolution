@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import Loading from "../../assets/components/Loading";
+import LoadingData from "./LoadingData";
+
 
 function Cadastro2() {
   const [cnpj, setCnpj] = useState("");
@@ -14,7 +15,7 @@ function Cadastro2() {
   const [numero, setNumero] = useState('');
   const [select, setSelect] = useState('');
   const [telefone, setTelefone] = useState('')
-
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   // Funções para lidar com os inputs do formulário
@@ -110,7 +111,7 @@ function Cadastro2() {
     if (dadosArmazenados) {
 
       const dados = JSON.parse(dadosArmazenados);
-
+      setLoading(true);
       // Primeira requisição para salvar o usuário
       axios.post('http://localhost:8080/usuario', dados)
         .then(() => {
@@ -131,6 +132,7 @@ function Cadastro2() {
         })
         .catch(error => {
           console.error('Erro ao salvar a Empresa ou Usuário:', error);
+          setLoading(false);
         });
     } else {
       console.log('Nenhum dado de usuário encontrado no localStorage.');
@@ -139,7 +141,7 @@ function Cadastro2() {
 
   return (
     <div className='cadastroContent'>
-
+      {loading ? LoadingData() : null}
       <h4 className="mt-4">Quase lá</h4>
       <form onSubmit={validarFormulario} className="pb-5">
         <p>

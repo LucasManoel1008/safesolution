@@ -1,7 +1,7 @@
 import React from 'react'
-import '../../assets/css/solicitacao.css'
+import '../../css/solicitacao.css'
 import { Link } from 'react-router-dom'
-import Cell from '../../assets/img/imagensServicos/Cell.png'
+import Cell from '../../img/imagensServicos/Cell.png'
 
 function Solicitação() {
   return (

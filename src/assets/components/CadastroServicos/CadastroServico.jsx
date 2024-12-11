@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import {NumericFormat} from 'react-number-format';
 import AddImagem from './AddImagem';
-import '../../assets/css/novoServico.css';
+import '../../css/novoServico.css';
 import { Link } from 'react-router-dom';
 
 function CadastroServico({ onClick }) {

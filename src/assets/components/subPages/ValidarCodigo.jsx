@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import '../../assets/css/validarCodigo.css'
+import '../../css/validarCodigo.css'
 import { Link, useNavigate } from 'react-router-dom'
 function ValidarCodigo() {
   
