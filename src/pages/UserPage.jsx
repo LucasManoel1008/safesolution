@@ -65,11 +65,9 @@ function UserPage() {
 
   const apagarConta = async () => {
     try {
-      let cnpj = empresa.cnpj;
-      let cpf = empresa.usuario.cpf;
-      await axios.delete(`http://localhost:8080/servico?cnpjEmpresa=${cnpj}`);
-      await axios.delete(`http://localhost:8080/empresa/${cnpj}`);
-      await axios.delete(`http://localhost:8080/usuario/${cpf}`);
+      await axios.delete(`http://localhost:8080/servico?cnpjEmpresa=${empresa.cnpj}`);
+      await axios.delete(`http://localhost:8080/empresa/${empresa.cnpj}`);
+      await axios.delete(`http://localhost:8080/usuario/${empresa.usuario.cpf}`);
       console.log('Conta apagada com sucesso');
       sessionStorage.clear();
       navigate("/");

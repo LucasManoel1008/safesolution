@@ -1,13 +1,38 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import ImagensUser from '../../../shared/ImagensUser.jsx';
 import styles from '../../css/userProfile.module.css';
+import axios from 'axios';
 
-
-const UserProfile = React.memo(({ empresa, apagarConta, setSection }) => {
+const UserProfile = React.memo(({empresa , apagarConta, setSection }) => {
+  const [fotoAtualizada, setFotoAtualizada] = useState(null);
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
+  
+
+  useEffect(() => {
+    if (fotoAtualizada) {
+      const formData = new FormData();
+      formData.append("file", fotoAtualizada); // Aqui você adiciona o arquivo
+      formData.append("empresa", JSON.stringify(empresa)); // Adiciona o objeto empresa como string JSON
+  
+      // Configuração de Axios
+      axios.post(`http://localhost:8080/empresa?cnpj=${empresa.cnpj}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data", // Cabeçalho para multipart/form-data
+        },
+      })
+      .then((response) => {
+        console.log("Upload realizado com sucesso:", response.data);
+      })
+      .catch((error) => {
+        console.error("Erro ao fazer upload:", error.response ? error.response.data : error.message);
+      });
+    }
+  }, [fotoAtualizada]);
+  
+  
 
   return (
   <div className={`${styles.userProfile} p-4 mb-4`}>
@@ -16,7 +41,20 @@ const UserProfile = React.memo(({ empresa, apagarConta, setSection }) => {
       <p>Gerencie as configurações do perfil de sua empresa</p>
     </div>
     <div className='d-flex flex-column align-items-center'>
-      <img className={styles.logoEmpresa} src={ImagensUser.paladins} alt="Imagem empresa" />
+      
+      <div className={styles.fileInput}>
+        <label for="file-upload" className={styles.logoEmpresa}>
+          {empresa && empresa.logo_empresa ? empresa.logo_empresa : <img className='rounded' src={ImagensUser.paladins} width={120} />}
+        </label>
+        <input
+  id="file-upload"
+  type="file"
+  name='file'
+  onChange={(e) => setFotoAtualizada(e.target.files[0])} // Usa o arquivo selecionado
+/>
+
+      </div>
+
     </div>
     <section className={styles.userData}>
       <h5>Dados de sua empresa</h5>
