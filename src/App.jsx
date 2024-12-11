@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {BrowserRouter , Routes, Route} from 'react-router-dom'
 import Home from './pages/Home'
 import Login from './pages/Login'
@@ -21,6 +21,8 @@ import RedefinicaoDeSenha from '../src/assets/components/subPages/RedefinicaoDeS
 import CadastroServico from './pages/CadastroServico'
 import Solicitação from '../src/assets/components/subPages/Solicitação'
 import Pagamento from './pages/Pagamento'
+
+
 
 
 
