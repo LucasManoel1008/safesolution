@@ -12,10 +12,8 @@ function Cadastro() {
   const [email, setEmail] = useState('');
   const navigate = useNavigate();
   const nomeCompleto = nome + ' ' + sobreNome;
+  const [erro, setErro] = useState('');
 
-  const validarSenha = () => {
-    
-  }
   const validarFormulario = (event) => {
     event.preventDefault();
     let data = $('#date').val().split('-')
@@ -23,49 +21,39 @@ function Cadastro() {
     const cleanedCPf =  cpf.replace(/[.-]/g, '');
     // Validações
     if (nome === '' || sobreNome === '') {
-      window.alert('Nome incompleto!');
+      setErro('Nome incompleto!');
       return false;
-    } else if (email.length === 0) {
-      window.alert('Digite um endereço de email para prosseguir!');
-      return false;
-    } else if (email.indexOf('@') === -1) {
-      window.alert('Email incorreto!');
+    } else if (email.length === 0 || email.indexOf('@') === -1) {
+      setErro('Digite um endereço de email para prosseguir!');
       return false;
     }
     else if (data == null || data == 0){
-      window.alert("O campo 'data nascimento' deve ser preenchido")
+      setErro("O campo deve ser preenchido")
       return false;
     }
     else if (anoNascimento < 18){
-      window.alert("Você deve ser maior de idade para se cadastrar no sistema" )
+     setErro("Você deve ser maior de idade para se cadastrar no sistema" )
       return false;
     }
      else if (senha1.length < 8) {
-      window.alert('Senha deve ter pelo menos 8 caracteres');
+      setErro('Senha deve ter pelo menos 8 caracteres');
       return false;
     } else if (senha1 !== senha2) {
-      window.alert('Senhas não correspondem');
+     setErro('Senhas não correspondem');
       return false;
     } else if (cpf.length < 14) {
-      window.alert('Digite um CPF válido');
+      setErro('Digite um CPF válido');
       return false;
     }
-    if (email.length === 0) {
-      window.alert("Digite um endereço de email para prosseguir!");
-      return false;
-    } 
 
-    else if (email.indexOf("@") === -1) {
-      window.alert("Email incorreto!");
-      return false;
-    }
-    const userData = {
-      nome_usuario: nomeCompleto,
-      senha_usuario: senha1,
-      data_nascimento: dataNascimento,
-      cpf: cleanedCPf,
-      email_usuario: email,
+      const userData = {
+        nome_usuario: nomeCompleto,
+        senha_usuario: senha1,
+        data_nascimento: dataNascimento,
+        cpf: cleanedCPf,
+        email_usuario: email,
     };
+  
 
     
     sessionStorage.setItem('usuario', JSON.stringify(userData));
@@ -124,6 +112,7 @@ function Cadastro() {
       <h4 className='mt-3'>Cadastro</h4>
       <form onSubmit={validarFormulario}>
         <div className='nameInput mt-4'>
+          <div className='text-left'>
           <input
             type='text'
             className='form-control'
@@ -132,6 +121,9 @@ function Cadastro() {
             onChange={handleInputChangeNome}
             
           />
+          <p className='error'>{erro === "Nome incompleto!" ? erro : null}</p>
+          </div>
+          <div>
           <input
             type='text'
             className='form-control'
@@ -140,8 +132,9 @@ function Cadastro() {
             onChange={handleInputChangeSobreNome}
             autoComplete='off'
           />
+          </div>
         </div>
-        <div className='email'>
+        <div className='email text-left'>
           <input
             type='email'
             className='form-control mt-4'
@@ -150,8 +143,9 @@ function Cadastro() {
             onChange={handleInputChangeEmail}
             autoComplete='off'
           />
+          <p className='error'>{erro === "Digite um endereço de email para prosseguir!" ? erro : null}</p>
         </div>
-        <div className='date mt-4'>
+        <div className='date mt-4 text-left'>
           <label className='float-left' htmlFor='date'>
             Data de nascimento
           </label>
@@ -162,9 +156,10 @@ function Cadastro() {
             value={dataNascimento}
             onChange={handleInputDataNascimento}
           />
+          <p className='error'>{erro === "O campo deve ser preenchido" || erro === "Você deve ser maior de idade para se cadastrar no sistema" ? erro : null}</p>
         </div>
         <div className='passwordInputCadastro mt-4 d-flex'>
-          <div>
+          <div className='text-left'>
             <input
               onChange={handleInputPass1}
               type='password'
@@ -172,7 +167,7 @@ function Cadastro() {
               placeholder='Digite uma senha'
               autoComplete='off'
             />
-            
+            <p className='error'>{erro === "Senha deve ter pelo menos 8 caracteres" || erro === "Senhas não correspondem" ? erro : null}</p>
           </div>
           <div>
             <input
@@ -184,7 +179,7 @@ function Cadastro() {
             />
           </div>
         </div>
-        <div className='cpfInput mt-4'>
+        <div className='cpfInput mt-4 text-left'>
           <input
             type='text'
             className='form-control'
@@ -195,6 +190,7 @@ function Cadastro() {
             onChange={handleInputChangeCpf}
             autoComplete='off'
           />
+          <p className='error'>{erro === "Digite um CPF válido" ? erro : null}</p>
         </div>
         <button role='submit' className='continuarCadastro1 btn btn-primary mt-4'>
           Continuar

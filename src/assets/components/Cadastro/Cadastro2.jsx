@@ -13,9 +13,9 @@ function Cadastro2() {
   const [bairro, setBairro] = useState('');
   const [cidade, setCidade] = useState('');
   const [numero, setNumero] = useState('');
-  const [select, setSelect] = useState('');
   const [telefone, setTelefone] = useState('')
   const [loading, setLoading] = useState(false);
+  const [erro, setErro] = useState('');
   const navigate = useNavigate();
 
   // Funções para lidar com os inputs do formulário
@@ -30,7 +30,6 @@ function Cadastro2() {
     
   }
   const handleNumeroChange = (e) => setNumero(e.target.value);
-  const handleSelectChange = (e) => setSelect(e.target.value);
   const hanfleInputTelefone =(e) =>{
     let telefone = e.target.value.replace(/\D/g, ""); // Remove qualquer caractere que não seja número
       
@@ -78,21 +77,43 @@ function Cadastro2() {
     
 
     if (nome === '') {
-      alert("Você deve preencher o campo 'Nome empresarial'");
+     setErro("Você deve informar o nome de sua empresa");
       return;
     }
     else if (cnpj.length < 18){
-      window.alert("CNPJ inválido")
-      return
+      setErro("CNPJ inválido")
+      return;
     }
      else if (descricao === '') {
-      alert("Você precisa informar a descrição da empresa!");
+      setErro("Informe a descrição de sua empresa");
+      return;
+     }
+    else if (telefone === '') {
+      setErro("Informe o telefone de contato");
       return;
     } else if (cep === "" || cep.length < 8) {
-      alert("Você precisa digitar o CEP corretamente!");
+      setErro("Informe o CEP corretamente");
       return;
     }
-
+    else if (rua === '') {
+      setErro("Informe a rua do estabelecimento");
+      return;
+    }
+    else if (bairro === '') {
+      setErro("Informe o bairro do estabelecimento");
+      return;
+    }
+    else if (cidade === '') {
+      setErro("Informe a cidade do estabelecimento");
+      return;
+    }
+    else if (numero === '') {
+      setErro("Informe o número do estabelecimento");
+      return;
+    }
+    else {
+      setErro('');
+    }
     const dadosArmazenados = sessionStorage.getItem('usuario');
     const cleanedCnpj = cnpj.replace(/[./-]/g, '');
     const cleanTelefone = telefone.replace(/[()\s-]/g, '');
@@ -122,13 +143,7 @@ function Cadastro2() {
           sessionStorage.clear();
           sessionStorage.setItem('empresa',JSON.stringify(dadosEmpresa))
           console.log('Empresa salva com sucesso:', response.data);
-         
-          if (select === 'provedor') {
-            navigate('/Cadastro-Servico');
-
-          } else {
-            navigate('/UserPage');
-          }
+          navigate('/UserPage');
         })
         .catch(error => {
           console.error('Erro ao salvar a Empresa ou Usuário:', error);
@@ -148,96 +163,110 @@ function Cadastro2() {
           Preencha os campos abaixo com as informações essenciais sobre o seu negócio. Essas informações nos ajudarão a conectar você com clientes e outros serviços.
         </p>
         <div className="nameInput nome-cnpj mt-4">
-          <input
-            type="text"
-            className="form-control"
-            placeholder='Nome empresarial'
-            onChange={handleInputNome}
-            autoComplete='off'
-          />
-          <input
-            type="text"
-            id="cnpj"
-            placeholder="CNPJ"
-            maxLength="18"
-            className='form-control'
-            onChange={handleInputChange}
-            value={cnpj}
-            autoComplete='off'
-          />
+          <div className="text-left">
+            <input
+              type="text"
+              className="form-control"
+              placeholder='Nome empresarial'
+              onChange={handleInputNome}
+              autoComplete='off'
+            />
+            <p className="error">{erro === "Você deve informar o nome de sua empresa" ? erro : null}</p>
+          </div>
+          <div className="text-left">
+            <input
+              type="text"
+              id="cnpj"
+              placeholder="CNPJ"
+              maxLength="18"
+              className='form-control'
+              onChange={handleInputChange}
+              value={cnpj}
+              autoComplete='off'
+            />
+            <p className="error">{erro === "CNPJ inválido" ? erro : null}</p>
+          </div>
         </div>
 
-        <div className="form-floating mt-4 interesse">
-          <select onChange={handleSelectChange} value={select} className="form-select">
-            <option value="contratante">Sou Contratante</option>
-            <option value="provedor">Sou Provedor</option>
-          </select>
-          <label>Área de Interesse</label>
-        </div>
-
-        <div className="form-floating descricao mt-4">
+        <div className="form-floating descricao mt-4 text-left">
           <textarea
             className="form-control"
             placeholder="Descrição"
             onChange={handleInputDescricao}
             value={descricao}></textarea>
           <label>Descrição</label>
+          <p className="error">{erro === "Informe a descrição de sua empresa" ? erro : null}</p>
         </div>
-        <div className="nameInput mt-4">
-          <input
-            type="text"
-            id="telefone"
-            className="form-control"
-            placeholder='Telefone de contato'
-            maxLength={14}
-            value={telefone}
-            onChange={hanfleInputTelefone}
-            autoComplete='off'
-          />
+        <div className="nameInput mt-4 text-left">
+          <div className="w-100">
+            <input
+              type="text"
+              id="telefone"
+              className="form-control"
+              placeholder='Telefone de contato'
+              maxLength={14}
+              value={telefone}
+              onChange={hanfleInputTelefone}
+              autoComplete='off'
+            />
+            <p className="error">{erro === "Informe o telefone de contato" ? erro : null}</p>
+          </div>
           </div>
 
         <div className="cepInputs mt-4">
           <div className="itens1 mb-4">
-            <input
-              type="text"
-              id="cep"
-              value={cep}
-              onChange={handleCepChange}
-              className="form-control"
-              placeholder="CEP"
-              autoComplete='off'
-              maxLength={9}
-            />
-            <input
-              type="text"
-              id="rua"
-              value={rua}
-              onChange={(e) => setRua(e.target.value)}
-              className="form-control"
-              placeholder="Rua"
-              autoComplete='off'
-            />
+            <div className="text-left">
+              <input
+                type="text"
+                id="cep"
+                value={cep}
+                onChange={handleCepChange}
+                className="form-control"
+                placeholder="CEP"
+                autoComplete='off'
+                maxLength={9}
+              />
+              <p className="error">{erro === "Informe o CEP corretamente" ? erro : null}</p>
+            </div>
+            <div>
+              <input
+                type="text"
+                id="rua"
+                value={rua}
+                onChange={(e) => setRua(e.target.value)}
+                className="form-control"
+                placeholder="Rua"
+                autoComplete='off'
+              />
+              <p className="error">{erro === "Informe a rua do estabelecimento" ? erro : null}</p>
+            </div>
           </div>
 
-          <div className="itens2 mb-4">
-            <input
-              type="text"
-              id="bairro"
-              value={bairro}
-              onChange={(e) => setBairro(e.target.value)}
-              className="form-control"
-              placeholder="Bairro"
-              autoComplete='off'
-            />
-            <input
-              type="text"
-              id="numero"
-              value={numero}
-              onChange={handleNumeroChange}
-              className="form-control"
-              placeholder="Número"
-              autoComplete='off'
-            />
+          <div className="itens1 mb-4">
+            <div>
+                <input
+                type="text"
+                id="bairro"
+                value={bairro}
+                onChange={(e) => setBairro(e.target.value)}
+                className="form-control"
+                placeholder="Bairro"
+                autoComplete='off'
+                />
+              <p className="error">{erro === "Informe o bairro do estabelecimento" ? erro : null}</p>
+              </div>
+            <div>
+              <input
+                type="text"
+                id="numero"
+                value={numero}
+                onChange={handleNumeroChange}
+                className="form-control"
+                placeholder="Número"
+                autoComplete='off'
+              />
+              <p className="error">{erro === "Informe o número do estabelecimento" ? erro : null}</p>
+            </div>
           </div>
 
           <input
@@ -249,6 +278,7 @@ function Cadastro2() {
             placeholder="Cidade"
             autoComplete='off'
           />
+          <p className="error">{erro === "Informe a cidade do estabelecimento" ? erro : null}</p>
           <button type="button" className="btn btn-primary aplicar mt-2" onClick={getCEP}>Auto completar</button>
         </div>
 

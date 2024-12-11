@@ -3,7 +3,7 @@ import ImagensUser from '../../../shared/ImagensUser.jsx';
 import styles from '../../css/userProfile.module.css';
 
 
-function UserProfile ({ empresa, apagarConta, setSection }){
+const UserProfile = React.memo(({ empresa, apagarConta, setSection }) => {
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
     return new Date(dateString).toLocaleDateString(undefined, options);
@@ -95,6 +95,6 @@ function UserProfile ({ empresa, apagarConta, setSection }){
     </div>
   </div>
 );
-}
+})
 
 export default UserProfile;

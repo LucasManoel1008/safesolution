@@ -1,3 +1,7 @@
+.error {
+    color: rgba(255,0,0,0.78);
+    margin: 0;  
+}
 .cadastroContent{
     width: 750px;
     height: clamp(740px,fit-content,100%);
