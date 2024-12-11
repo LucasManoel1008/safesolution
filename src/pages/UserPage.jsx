@@ -6,6 +6,7 @@ import UserProfile from '../assets/components/User/UserProfile';
 import UserSettings from '../assets/components/User/UserSettings';
 import UserOrders from '../assets/components/User/UserOrders';
 import EditProfile from '../assets/components/User/EditProfile';
+import ConfirmMessage from '../assets/components/User/ConfirmMessage';
 
 // Funções - Inicio
 
@@ -88,6 +89,7 @@ function UserPage() {
 
   return (
     <div className='user-page mb-5'>
+      <ConfirmMessage />
       <div className="menuResponsivo mb-2">
         <button className='btn btn-primary mb-2 openMenu' onClick={toggleMenu}>{menuOpen ? <i className="fa-solid fa-caret-up"></i> : <i className="fa-solid fa-caret-down"></i>}</button>
         {menuOpen && ( // Renderiza o menu apenas se menuOpen for true
@@ -110,6 +112,7 @@ function UserPage() {
           {renderSection()}
         </div>
       </section>
+
     </div>
   );
 }

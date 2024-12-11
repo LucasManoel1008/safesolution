@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import styles from '../../css/userProfile.module.css';
+
 function EditProfile  ({ empresa, setSection }) {
     // Inicializando os valores com os dados existentes da empresa
     const [nome, setNome] = useState(empresa ? empresa.nome_empresa : "");
@@ -203,6 +204,7 @@ function EditProfile  ({ empresa, setSection }) {
         <button className='btn btn-primary' role='submit' onClick={editarDados}> Salvar alterações</button>
           <button className="btn btn-outline-secondary mt-2" onClick={() => setSection("profile")}>Voltar</button>
         </div>
+        
     </div>
     )
   }

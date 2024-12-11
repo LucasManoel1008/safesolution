@@ -1,0 +1,38 @@
+.confirm {
+    width: 250px;
+    height: 100px;
+    border-radius: 10px;
+    position: fixed;
+    top: 10%;
+    right: -250px;
+    z-index: 1000;
+    box-shadow:  0 0 10px 0 rgba(0, 0, 0, 0.2);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    background-color: #fff;
+    animation: aparecerMensagem 5.5s ease-in-out;
+}
+.confirm span{
+    padding-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--blue3);
+    margin-top: 10px;
+}
+
+@keyframes aparecerMensagem {
+    0% {
+        right: -250px;
+    }
+    50% {
+        right: 10px;
+    }
+    75% {
+        right: 10px;
+    }
+    100% {
+       right: -250px;
+    }
+    
+}
