@@ -21,6 +21,7 @@ import RedefinicaoDeSenha from '../src/assets/components/subPages/RedefinicaoDeS
 import CadastroServico from './pages/CadastroServico'
 import Solicitação from '../src/assets/components/subPages/Solicitação'
 import Pagamento from './pages/Pagamento'
+import EditarServico from './assets/components/CadastroServicos/EditarServico'
 
 
 
@@ -48,6 +49,7 @@ function App() {
       <Route path='/Politicas-de-Privacidade' element = {<Politicas/>} />
       <Route path='/Orcamento2' element={<Orcamento2/>}/>
       <Route path='/Cadastro-Servico' element={<CadastroServico/>}/>
+      <Route path='EditarServico/:id' element={<EditarServico />}/>
       <Route path='/Confirmacao' element={<Confirmação/>}/>
       <Route path='/Validar-Codigo' element ={<ValidarCodigo/>}/>
       <Route path='/Redefinicao-Senha' element ={<RedefinicaoDeSenha/>}/>

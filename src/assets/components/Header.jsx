@@ -113,7 +113,7 @@ function Header() {
               <button className="btn  dropdown-toggle font-bold blue2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 Serviços
               </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li>{logado ? <Link to="/Cadastro-Servico">Meus Serviços</Link> : <Link to="/Login">Meus Serviços</Link>}</li>
                 <li><Link to="/Servicos" href="#">Buscar Serviços</Link></li>
 

@@ -73,7 +73,6 @@ function EditProfile  ({ empresa, setSection }) {
     setBairro(bairro);
   };
   const handleNumeroChange = (e) => {
-    let numero = e.target.value.replace(/\D/g, '');
     setNumero(numero);
   };
   const handleCidadeChange = (e) => {

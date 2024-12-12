@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-function VisualizarServico({ onClick }) {
+import { useNavigate } from 'react-router-dom';
+function VisualizarServico({ onOptionChange }) {
   const [time, setTime] = useState(10); // Tempo inicial (em segundos)
   const [message, setMessage] = useState(""); // Mensagem a ser exibida
   const [dados, setDados] = useState([]);
   const [loading, setLoading] = useState(true); // Estado de carregamento
+  const navigate = useNavigate();
 
   // Função para buscar os serviços com base no CNPJ
   const Busca = () => {
@@ -24,10 +26,11 @@ function VisualizarServico({ onClick }) {
           setLoading(false); // Finaliza o loading quando a requisição terminar
         });
     } else {
-      setMessage("CNPJ não encontrado.");
+      setMessage("Login não encontrado");
       setLoading(false); // Caso não tenha um CNPJ no sessionStorage
     }
   };
+
 
   // Inicia o timer
   useEffect(() => {
@@ -61,6 +64,10 @@ function VisualizarServico({ onClick }) {
       setLoading(true);
     }
   };
+  // Passa o id como prop para o EditarServiço e muda a opção para "Editar"
+  const handleEditarServico = (id) => {
+    onOptionChange("Editar", id);
+  }
   return (
     <div className='servicos mt-4'>
       <table className="table">
@@ -85,7 +92,7 @@ function VisualizarServico({ onClick }) {
                 <td>{item.status_servico ? 'Ativo' : 'Inativo'}</td>
                 <td>
                   <button className="btn btn-primary mr-2">Visualizar</button>
-                  <button className="btn btn-secondary mr-2">Editar</button>
+                  <button className="btn btn-secondary mr-2" onClick={() => handleEditarServico(item.id)}>Editar</button>
                   <button className="btn btn-danger" onClick={() => handleDelete(item.id)}>Excluir</button>
                 </td>
               </tr>
@@ -114,7 +121,8 @@ function VisualizarServico({ onClick }) {
         ) : null}
       </div>
 
-      <button className='btn btn-primary align-center adicionarServico' onClick={onClick}>Adicionar Serviço</button>
+      <button className='btn btn-primary align-center adicionarServico' onClick={() => onOptionChange("Cadastrar")}>Adicionar Serviço</button>
+
     </div>
   );
 }

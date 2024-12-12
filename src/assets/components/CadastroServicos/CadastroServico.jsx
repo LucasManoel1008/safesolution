@@ -5,7 +5,9 @@ import AddImagem from './AddImagem';
 import '../../css/novoServico.css';
 import { Link } from 'react-router-dom';
 import LoadingData from '../Cadastro/LoadingData';
-function CadastroServico({ onClick }) {
+
+
+function CadastroServico({ onOptionChange }) {
   const [nome_servico, setNome] = useState('');
   const [descricao_servico, setDescricao] = useState('');
   const [categorias, setCategorias] = useState('');
@@ -70,11 +72,9 @@ function CadastroServico({ onClick }) {
       setLoading(true);
       axios.post(`http://localhost:8080/servico?cnpjEmpresa=${cnpj}`, novoServico)
         .then(response => {
-          console.log('Serviço salvo com sucesso:', response.data);
           location.reload('');
         })
         .catch(error => {
-          console.error('Erro ao salvar o serviço:', error);
         });
     }
   };
@@ -86,7 +86,7 @@ function CadastroServico({ onClick }) {
       <section className="produtoLayout pb-4">
         <div className="titleReturn">
           <h5>Nome e descrição:</h5>
-          <button className='btn btn-primary' onClick={onClick}>
+          <button className='btn btn-primary' onClick={() => onOptionChange("visualizar")}>
             <i className="mr-2 fa-solid fa-arrow-left"></i>Voltar
           </button>
         </div>
