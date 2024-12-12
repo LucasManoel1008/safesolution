@@ -50,23 +50,22 @@ function  EditarServico({ onOptionChange,id}) {
       return;
     }
 
-    if (disponibilidade === 'true' && (!inicio)) {
+    if (disponibilidade === 'true' && !disponibilidade_servico) {
       window.alert('Por favor, preencha a data de início do serviço.');
       return;
     }
+    if (disponibilidade === 'false') {
       const editarServico = {
         nome_servico,
         descricao_servico,
         categoria_servico: categorias,
         criterios_servico: criterios,
         status_servico: disponibilidade,
-        disponibilidade_servico,
         local_servico,
         valor_estimado_servico,
       };
       window.scrollTo(0, 0);
       setIsLoading(true);
-      console.log(editarServico);
       axios.put(`http://localhost:8080/servico/${id}`, editarServico)
         .then(response => {
           location.reload('');
@@ -74,6 +73,29 @@ function  EditarServico({ onOptionChange,id}) {
         .catch(error => {
             setIsLoading(false);
         });
+    }
+    else{
+      const editarServico = {
+        nome_servico,
+        descricao_servico,
+        categoria_servico: categorias,
+        criterios_servico: criterios,
+        status_servico: disponibilidade,
+        local_servico,
+        valor_estimado_servico,
+        disponibilidade_servico,
+      };
+      window.scrollTo(0, 0);
+      setIsLoading(true);
+      axios.put(`http://localhost:8080/servico/${id}`, editarServico)
+        .then(response => {
+          location.reload('');
+        })
+        .catch(error => {
+            setIsLoading(false);
+    });
+  }
+      
     }
   
 
@@ -180,7 +202,7 @@ function  EditarServico({ onOptionChange,id}) {
                             placeholder="R$ 0.00"
                             value={valor_estimado_servico}
                             onValueChange={(values) => {
-                              const { formattedValue, value } = values;
+                              const { value } = values;
                               setValor_estimado_servico(value);
                             }}
                             maxLength={9}
