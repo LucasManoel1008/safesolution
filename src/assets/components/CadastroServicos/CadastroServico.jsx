@@ -4,7 +4,7 @@ import {NumericFormat} from 'react-number-format';
 import AddImagem from './AddImagem';
 import '../../css/novoServico.css';
 import { Link } from 'react-router-dom';
-
+import LoadingData from '../Cadastro/LoadingData';
 function CadastroServico({ onClick }) {
   const [nome_servico, setNome] = useState('');
   const [descricao_servico, setDescricao] = useState('');
@@ -17,6 +17,7 @@ function CadastroServico({ onClick }) {
   const [estado, setEstado] = useState('');
   const [cidade, setCidade] = useState('');
   const [valorMinimo, setValorMinimo] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const addImagem = (e) => {
     e.preventDefault(); // Evita o envio do formulário
@@ -28,6 +29,7 @@ function CadastroServico({ onClick }) {
 
   const removeImage = (e) => {
     e.preventDefault(); // Evita o envio do formulário
+
     if (images.length > 0) {
       setImages(prevImagem => prevImagem.slice(0, -1));
       setContador(contador - 1);
@@ -37,7 +39,7 @@ function CadastroServico({ onClick }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const local_servico = `${cidade}, ${estado}`;
-
+    
     // Validação de preenchimento
     if (!nome_servico || !descricao_servico || !categorias || !criterios || !disponibilidade || !local_servico || !valorMinimo) {
       window.alert('Por favor, preencha todos os campos obrigatórios.');
@@ -64,7 +66,8 @@ function CadastroServico({ onClick }) {
         local_servico,
         valor_estimado_servico: valorMinimo,
       };
-
+      window.scrollTo(0, 0);
+      setLoading(true);
       axios.post(`http://localhost:8080/servico?cnpjEmpresa=${cnpj}`, novoServico)
         .then(response => {
           console.log('Serviço salvo com sucesso:', response.data);
@@ -78,6 +81,7 @@ function CadastroServico({ onClick }) {
 
   return (
     <div className="m-4 CadastroServicoContent">
+      {loading ? <LoadingData/> : null}
       <h4>Novo Serviço</h4>
       <section className="produtoLayout pb-4">
         <div className="titleReturn">

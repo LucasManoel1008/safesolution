@@ -8,6 +8,7 @@ import UserOrders from '../assets/components/User/UserOrders';
 import EditProfile from '../assets/components/User/EditProfile';
 import ConfirmMessage from '../assets/components/User/ConfirmMessage';
 
+
 // Funções - Inicio
 
 function UserPage() {
@@ -34,6 +35,11 @@ function UserPage() {
         } catch (error) {
           console.error('Erro ao buscar empresa:', error);
         }
+        finally {
+          setTimeout(() => {
+          sessionStorage.removeItem('dadosSalvos');
+          },4000);
+        }
       } else if (dadosEmpresa) {
         try {
           const response = await axios.get(`http://localhost:8080/empresa/${dadosEmpresa}`);
@@ -42,6 +48,7 @@ function UserPage() {
         } catch (error) {
           console.error('Erro ao buscar empresa:', error);
         }
+        
       }
     } else {
       console.error('Dados da empresa não encontrados no sessionStorage');
@@ -89,7 +96,7 @@ function UserPage() {
 
   return (
     <div className='user-page mb-5'>
-      <ConfirmMessage />
+      {sessionStorage.getItem('dadosSalvos') && <ConfirmMessage />}
       <div className="menuResponsivo mb-2">
         <button className='btn btn-primary mb-2 openMenu' onClick={toggleMenu}>{menuOpen ? <i className="fa-solid fa-caret-up"></i> : <i className="fa-solid fa-caret-down"></i>}</button>
         {menuOpen && ( // Renderiza o menu apenas se menuOpen for true
@@ -112,7 +119,7 @@ function UserPage() {
           {renderSection()}
         </div>
       </section>
-
+      
     </div>
   );
 }

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
 function VisualizarServico({ onClick }) {
   const [time, setTime] = useState(10); // Tempo inicial (em segundos)
   const [message, setMessage] = useState(""); // Mensagem a ser exibida
@@ -14,7 +13,7 @@ function VisualizarServico({ onClick }) {
       const empresa = JSON.parse(empresaString); // Parse do objeto JSON
       console.log(empresa.cnpj);
       axios
-        .get(`http://localhost:8080/servico?cnpj_empresa=${empresa.cnpj}`)
+        .get(`http://localhost:8080/servico/empresa/${empresa.cnpj}`)
         .then((response) => {
           setDados(response.data);
         })
@@ -49,7 +48,19 @@ function VisualizarServico({ onClick }) {
   useEffect(() => {
     Busca();
   }, []);
-
+  const handleDelete = async (id) => {
+    setLoading(false);
+    try {
+      await axios.delete(`http://localhost:8080/servico/${id}`);
+      setDados(dados.filter((servico) => servico.id !== id));
+      setLoading(false);
+      
+    } catch (error) {
+      console.error('Erro ao deletar serviço:', error);
+      setMessage("Erro ao deletar serviço.");
+      setLoading(true);
+    }
+  };
   return (
     <div className='servicos mt-4'>
       <table className="table">
@@ -75,7 +86,7 @@ function VisualizarServico({ onClick }) {
                 <td>
                   <button className="btn btn-primary mr-2">Visualizar</button>
                   <button className="btn btn-secondary mr-2">Editar</button>
-                  <button className="btn btn-danger">Excluir</button>
+                  <button className="btn btn-danger" onClick={() => handleDelete(item.id)}>Excluir</button>
                 </td>
               </tr>
             ))
