@@ -66,7 +66,7 @@ const UserProfile = React.memo(({empresa , apagarConta, setSection }) => {
           </div>
           <div className="iten2">
             <label htmlFor='emailEmpresa'>Email da empresa</label>
-            <input className='form-control' type="email" id='emailEmpresa' value={empresa && empresa.usuario ? empresa.usuario.email_usuario : " "} disabled />
+            <input className='form-control' type="email" id='emailEmpresa' value={empresa && empresa.usuario ? empresa.usuario.email : " "} disabled />
           </div>
         </div>
         <div className="entireColumn form-group">

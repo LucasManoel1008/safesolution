@@ -51,7 +51,7 @@ function Cadastro() {
         senha_usuario: senha1,
         data_nascimento: dataNascimento,
         cpf: cleanedCPf,
-        email_usuario: email,
+        email,
     };
   
 
