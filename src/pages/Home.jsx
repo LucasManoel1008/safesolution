@@ -335,10 +335,10 @@ function Home() {
                     <div className="razao">
                     <small>*Assunto</small>
                     <select id="assunto"   onChange={(e) => validarAssunto(e.target.value)}>
-                        <option value='assunto'>*ASSUNTO</option>
-                        <option value="Reclamacao" >RECLAMAÇÃO</option>
+                        <option value='Assunto'>*ASSUNTO</option>
+                        <option value="Reclamação" >RECLAMAÇÃO</option>
                         <option value="Elogio" >ELOGIO</option>
-                        <option value="informacao" >Informação</option>
+                        <option value="Informação" >INFORMAÇÃO</option>
                     </select>
                     <div className="textarea">
                         <textarea  rows="1" 
