@@ -4,7 +4,7 @@ import { Fade } from 'react-reveal'
 import Imagemindex from '../shared/Imagesindex'
 import * as js from '../assets/js/index.js'
 import '../assets/css/index.css'
-
+import emailjs from 'emailjs-com'
 
 
 
@@ -55,9 +55,6 @@ function Home() {
     const validarFormulario = (event) => {
       event.preventDefault(); {/*Impede o envio do formulário */}
 
-      
-
-
       {/* Validar Nome */}
       if (nome == ""){
         window.alert("O campo nome deve ser preenchido");
@@ -81,12 +78,31 @@ function Home() {
         window.alert("Email incorreto!");
       }
       else {
-        window.alert('Mensagem enviada com sucesso');
-        location.reload();
-        return true;
+          const templateParams = {
+            assunto: assunto,
+            nome: nome,
+            message: mensagem,
+            email: email,
+          };
+          emailjs.send("service_e3eqp7s", "template_0iwid6d", templateParams, "f3oNKxzSSwUaAoUcD")
+          .then((response) => {
+            console.log('SUCCESS!', response.status, response.text);
+            window.alert('Mensagem enviada com sucesso');
+            setNome('');
+            setSobrenome('');
+            setEmail('');
+            setTelefone('');
+            setCidade('');
+            validarAssunto('');
+            setMensagem('');
+            return true;
+          
+        }, (error) => {
+          console.log('FAILED...', error);
+          window.alert('Erro ao enviar a mensagem');
+          return false;
+        });
       }
-
-
     };
    
 
