@@ -1,27 +1,37 @@
 import React, { useState } from 'react'
 import '../../css/esqueciSenha.css'
 import { Link, useNavigate } from 'react-router-dom'
-
-function EsqueciSenha() {
+import axios from 'axios'
+ 
+const EsqueciSenha = ({onSectionChange}) => {
 
   const [email, setEmail] = useState('');
-  const navigate = useNavigate();
 
   const validarEmail = async (event) => {
     event.preventDefault();
 
 
-    if (email.length === 0) {
+    if (email.length === 0 || email.indexOf('@') === -1 || email.indexOf('.') === -1) {
       window.alert("Digite um endereço de email para prosseguir!");
-    } 
+      return;
+    }  
+    try{
+      await axios.get(`http://localhost:5173/usuario/email/${email}`)
+        .then (response => {
+          if (response.status === 200) {
+            onSectionChange(2, email);
+          }
+        }
+      ).catch(() => {
+        window.alert("Email não cadastrado!");
+      });
 
-    else if (email.indexOf("@") === -1) {
-      window.alert("Email incorreto!");
+      
+    } 
+    catch (error) {
+      console.log(error);
     }
-    else {
-        navigate('/Validar-Codigo'); 
-      }
-    }
+  }
     
 
 
@@ -43,7 +53,7 @@ function EsqueciSenha() {
         placeholder='E-mail' />
         <button role='submit' className="irParaValidarCodigo btn btn-primary mt-4 mb-2">Continuar</button>
       </form>
-      <Link to="/Login">Retornar à tela de login</Link>
+      <Link to="/Login" className='retornarLogin'>Retornar à tela de login</Link>
    </div>
    
   )

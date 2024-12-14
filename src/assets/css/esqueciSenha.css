@@ -12,6 +12,10 @@
     align-self: center;
     width: 400px;
 }
+.retornarLogin {
+    width: fit-content !important;
+    margin: 0 auto;
+}
 .contentSenha .bolsonaro {
     align-self: center;
     width: 400px;

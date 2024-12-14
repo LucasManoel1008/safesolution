@@ -1,11 +1,16 @@
 import React, {useState} from 'react'
 import '../../css/validarCodigo.css'
 import { Link, useNavigate } from 'react-router-dom'
-function ValidarCodigo() {
+
+function ValidarCodigo({onSectionChange, email}) {
   
   const [codigo, setCodigo] = useState('')
   const navigate = useNavigate();
 
+
+  const tentarOutroEmail = () => {
+    onSectionChange(1);
+  }
   const validacaoCodigo = (event) =>{
     event.preventDefault();
 
@@ -31,9 +36,9 @@ function ValidarCodigo() {
         placeholder='000000000 (9 dígitos)'
         onChange={handleInputChange}  />
       <button role="submit" className="botãokljay btn btn-primary mt-4 mb-4">Confirmar</button>
-      <Link className="d-block p-2 tentOutrat" to="/Esqueci-Senha">Tentar outro email</Link>
+      <button className="d-block p-2 tentOutrat btn" onClick={tentarOutroEmail} >Tentar outro email</button>
+      
     </form>
-    
    </div>
    
   )
