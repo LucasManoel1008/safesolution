@@ -127,6 +127,7 @@ function Cadastro2() {
       bairro,
       cidade,
       numero:numero,
+      
     };
     
     if (dadosArmazenados) {

@@ -1,43 +1,44 @@
 import React, { useState } from 'react'
 import '../../css/esqueciSenha.css'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+
 import axios from 'axios'
  
 const EsqueciSenha = ({onSectionChange}) => {
 
   const [email, setEmail] = useState('');
-
-  const validarEmail = async (event) => {
-    event.preventDefault();
-
-
-    if (email.length === 0 || email.indexOf('@') === -1 || email.indexOf('.') === -1) {
-      window.alert("Digite um endereço de email para prosseguir!");
-      return;
-    }  
-    try{
-      await axios.get(`http://localhost:5173/usuario/email/${email}`)
-        .then (response => {
-          if (response.status === 200) {
-            onSectionChange(2, email);
-          }
-        }
-      ).catch(() => {
-        window.alert("Email não cadastrado!");
-      });
-
-      
-    } 
-    catch (error) {
-      console.log(error);
-    }
-  }
-    
+  const [mensagem, setMensagem] = useState('');
 
 
   const handleInputChange = (e) => {
     setEmail(e.target.value); 
   };
+
+
+  const validarEmail = async (event) => {
+    event.preventDefault();
+  
+    if (email.length === 0 || email.indexOf('@') === -1 || email.indexOf('.') === -1) {
+      alert("Digite um endereço de email para prosseguir!");
+      return;
+    }
+    console.log(email);
+    try {
+      const response = await axios.post(`http://localhost:8080/usuario/recuperar-senha`, { email_usuario: email });
+      if (response.status === 200) {
+        setMensagem('E-mail enviado com sucesso!');
+        onSectionChange(2, email);
+      }
+    } catch (error) {
+      console.error('Erro ao solicitar recuperação de senha:', error);
+      setMensagem('Ocorreu um erro ao tentar enviar o e-mail.');
+    }
+  };
+  
+    
+
+
+
 
   return (
    <div className='contentSenha pt-2'>
@@ -53,6 +54,7 @@ const EsqueciSenha = ({onSectionChange}) => {
         placeholder='E-mail' />
         <button role='submit' className="irParaValidarCodigo btn btn-primary mt-4 mb-2">Continuar</button>
       </form>
+      {mensagem && <p>{mensagem}</p>}
       <Link to="/Login" className='retornarLogin'>Retornar à tela de login</Link>
    </div>
    

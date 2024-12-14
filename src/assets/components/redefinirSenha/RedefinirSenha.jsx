@@ -17,7 +17,7 @@ function RedefinirSenha() {
             case 2:
                 return <ValidarCodigo  onSectionChange={handleSection} email = {userEmail}/>
             case 3:
-                return <RedefinicaoDeSenha />
+                return <RedefinicaoDeSenha email = {userEmail} />
             default:
                 return <EsqueciSenha />
         }

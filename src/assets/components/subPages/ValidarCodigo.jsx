@@ -1,26 +1,41 @@
 import React, {useState} from 'react'
 import '../../css/validarCodigo.css'
 import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 function ValidarCodigo({onSectionChange, email}) {
   
   const [codigo, setCodigo] = useState('')
   const navigate = useNavigate();
-
+  const [erroValidacao, setErroValidacao] = useState('');
 
   const tentarOutroEmail = () => {
     onSectionChange(1);
   }
-  const validacaoCodigo = (event) =>{
+  const validacaoCodigo = async (event) =>{
     event.preventDefault();
 
     if (codigo.length === 0 || codigo.length < 9){
       window.alert("Digite o código corretamente para prosseguir!");
     }
     else{
-      navigate('/Redefinicao-Senha');
+      try{
+      const response = await axios.get(`http://localhost:8080/usuario/email/${email}`);
+      if (response.status === 200){
+        const data = response.data;
+        if (data.token === codigo){
+          onSectionChange(3, email);
+        }else{
+          setErroValidacao('Código inválido. Tente novamente.');
+        }
+      }
+    } 
+    catch (error){
+      console.error('Erro ao validar o código:', error);
+      setErroValidacao('Erro ao validar o código. Tente novamente.');
     }
   }
+}
   const handleInputChange = (e) => {
     setCodigo(e.target.value);
   }
