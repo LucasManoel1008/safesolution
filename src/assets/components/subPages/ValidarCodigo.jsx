@@ -6,7 +6,6 @@ import axios from 'axios'
 function ValidarCodigo({onSectionChange, email}) {
   
   const [codigo, setCodigo] = useState('')
-  const navigate = useNavigate();
   const [erroValidacao, setErroValidacao] = useState('');
 
   const tentarOutroEmail = () => {
@@ -16,7 +15,7 @@ function ValidarCodigo({onSectionChange, email}) {
     event.preventDefault();
 
     if (codigo.length === 0 || codigo.length < 9){
-      window.alert("Digite o código corretamente para prosseguir!");
+     setErroValidacao('Código inválido. Tente novamente.');
     }
     else{
       try{
@@ -51,9 +50,11 @@ function ValidarCodigo({onSectionChange, email}) {
         placeholder='000000000 (9 dígitos)'
         onChange={handleInputChange}  />
       <button role="submit" className="botãokljay btn btn-primary mt-4 mb-4">Confirmar</button>
-      <button className="d-block p-2 tentOutrat btn" onClick={tentarOutroEmail} >Tentar outro email</button>
+      
       
     </form>
+    <p className='erroValidacao'>{erroValidacao}</p>
+    <button className="d-block p-2 tentOutrat btn" onClick={tentarOutroEmail} >Tentar outro email</button>
    </div>
    
   )

@@ -24,7 +24,6 @@ function RedefinicaoDeSenha({email}) {
     }
     const email_usuario = email;
     try {
-      // Aqui você pode fazer uma requisição para o backend
       const response = await axios.put(`http://localhost:8080/usuario/${email_usuario}/senha`, {
         novaSenha: senha1,
       });
