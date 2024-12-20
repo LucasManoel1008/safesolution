@@ -15,7 +15,8 @@ function Home() {
     const [telefone, setTelefone] = useState('')
     const [cidade, setCidade] = useState('')
     const [mensagem, setMensagem] = useState("")
-    const [assunto, validarAssunto] = useState('');   {/*  pega os dados do Assunto  */ }
+    const [assunto, validarAssunto] = useState('')  /*  pega os dados do Assunto  */ 
+    const [envioEmail, setEnvioEmail] = useState(false)
 
     const handleInputNome = (e) => {
       const nome = e.target.value.replace(/\d/g, '')
@@ -80,14 +81,13 @@ function Home() {
       else {
           const templateParams = {
             assunto: assunto,
-            nome: nome,
+            nome: nome + " " + sobrenome,
             message: mensagem,
             email: email,
           };
           emailjs.send("service_e3eqp7s", "template_0iwid6d", templateParams, "f3oNKxzSSwUaAoUcD")
           .then((response) => {
-            console.log('SUCCESS!', response.status, response.text);
-            window.alert('Mensagem enviada com sucesso');
+            setEnvioEmail(true)
             setNome('');
             setSobrenome('');
             setEmail('');
@@ -346,7 +346,9 @@ function Home() {
                     </div>
                 </div>
                 </div>
+                <p>{envioEmail ? "Mensagem enviada com sucesso!" : ""}</p>
                 <input type="submit" value="enviar"/>
+                
         </form>
 
   
