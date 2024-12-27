@@ -118,7 +118,7 @@ function CadastroServico({ onOptionChange }) {
             </div>
           </div>
 
-          <div className="imagemServico mt-4 mb-4 pb-4">
+          {/* <div className="imagemServico mt-4 mb-4 pb-4">
             <div className="d-flex justify-content-between">
               <h5>Adicione uma imagem de seu serviço</h5>
               <h5>&#8317; {contador} / 3 &#8318;</h5>
@@ -136,7 +136,7 @@ function CadastroServico({ onOptionChange }) {
               </button>
               {images.length > 0 && <button className="remover" onClick={removeImage}>-</button>}
             </div>
-          </div>
+          </div> */}
 
           <div className="Categoria pb-4">
             <h5>Escolha uma categoria para seu serviço</h5>

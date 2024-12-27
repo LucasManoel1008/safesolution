@@ -4,7 +4,7 @@ import { Fade } from 'react-reveal'
 import Imagemindex from '../shared/Imagesindex'
 import * as js from '../assets/js/index.js'
 import '../assets/css/index.css'
-import emailjs from 'emailjs-com'
+import emailjs from '@emailjs/browser';
 
 
 

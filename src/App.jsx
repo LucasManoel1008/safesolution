@@ -38,7 +38,6 @@ function App() {
     <Routes>
       <Route index element={<Home/>} />
       <Route path='/Login' element={<Login/>} />
-      <Route path='/Esqueci-Senha' element={<EsqueciSenha/>}/>
       <Route path='/cadastro' element={<Cadastro/>} />
       <Route path='/Cadastro1' element={<Cadastro1/>} />
       <Route path='/Cadastro2' element={<Cadastro2/>} />
@@ -54,7 +53,7 @@ function App() {
       <Route path='/Confirmacao' element={<Confirmação/>}/>
       <Route path='/Solicitação' element ={<Solicitação/>}/>
       <Route path='/Pagamento' element ={<Pagamento/>}/>
-      <Route path='Redefinicao-de-senha' element={<RedefinirSenha/>}/>
+      <Route path='/Redefinicao-de-senha' element={<RedefinirSenha/>}/>
       <Route path='/Redefinir-Senha/:token' element={<RedefinicaoDeSenha/>}/>
       <Route path='*' element ={<NotFound/>} />
     </Routes>
