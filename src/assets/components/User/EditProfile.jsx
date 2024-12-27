@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import styles from '../../css/userProfile.module.css';
+import LoadingData from '../../components/Cadastro/LoadingData';
 function EditProfile  ({ empresa, setSection }) {
     // Inicializando os valores com os dados existentes da empresa
     const [nome, setNome] = useState(empresa ? empresa.nome_empresa : "");
@@ -16,6 +17,7 @@ function EditProfile  ({ empresa, setSection }) {
     const [nomePessoal, setNomePessoal] = useState(empresa && empresa.usuario ? empresa.usuario.nome_usuario.split(" ")[0] : "");
     const [ultimoNome, setUltimoNome] = useState(empresa && empresa.usuario ? empresa.usuario.nome_usuario.split(" ").slice(1).join(" ") : "");
     const [senha] = useState(empresa ? empresa.usuario.senha_usuario : "");
+    const [loading, setLoading] = useState(false);
   
     const nomeCompleto = nomePessoal + " " + ultimoNome;
     const cleanTelefone = telefone.replace(/[()\s-]/g, '');
@@ -31,12 +33,12 @@ function EditProfile  ({ empresa, setSection }) {
     };
   
     const dadosUsuario = {
-      email_usuario: email,
+      email,
       nome_usuario: nomeCompleto,
       senha_usuario: senha
     };
     const handleNomeChange = (e) => {
-      let nome = e.target.value.replace(/\d/g, '');
+      let nome = e.target.value;
       setNome(nome);
     };
   const handleDescricaoChange = (e) => setDescricao(e.target.value);
@@ -71,7 +73,6 @@ function EditProfile  ({ empresa, setSection }) {
     setBairro(bairro);
   };
   const handleNumeroChange = (e) => {
-    let numero = e.target.value.replace(/\D/g, '');
     setNumero(numero);
   };
   const handleCidadeChange = (e) => {
@@ -90,28 +91,33 @@ function EditProfile  ({ empresa, setSection }) {
   
     const editarDados = async (e) => {
       e.preventDefault();
+      setLoading(true);
+      window.scrollTo(0, 0);
+
       try {
         // Atualiza a empresa
         await axios.put(`http://localhost:8080/empresa/${empresa.cnpj}`, dadosEmpresa);
-        
-  
         // Atualiza o usuário vinculado
         await axios.put(`http://localhost:8080/usuario/${empresa.usuario.cpf}`, dadosUsuario);
-  
-        alert("Dados atualizados com sucesso!");
         console.log('Dados da empresa:', dadosEmpresa);
         console.log('Dados do usuário:', dadosUsuario);
+        sessionStorage.setItem("dadosSalvos", "true");
         location.reload();
   
       } catch (error) {
+        setLoading(false);
         console.error('Erro ao atualizar dados:', error);
         alert("Erro ao atualizar os dados. Tente novamente.");
         console.log('Dados da empresa:', dadosEmpresa);
         console.log('Dados do usuário:', dadosUsuario);
       }
+      finally {
+        document.body.style.overflow = 'auto'; // Reativa a rolagem
+      }
     };
     return(
     <div className={`edit ${styles.userProfile}`}>
+    {loading ? <LoadingData /> : null}
       <h4>Editar conta</h4>
        <div className={`${styles.gridItens} form-group`}>
         <div className="item1">
@@ -203,6 +209,7 @@ function EditProfile  ({ empresa, setSection }) {
         <button className='btn btn-primary' role='submit' onClick={editarDados}> Salvar alterações</button>
           <button className="btn btn-outline-secondary mt-2" onClick={() => setSection("profile")}>Voltar</button>
         </div>
+        
     </div>
     )
   }

@@ -4,7 +4,9 @@
     flex-direction: column;
     justify-content: center;
     height: 100vh;
+    left: 0;
     position: absolute;
+    margin: 0 auto;
     z-index: 20;
     background-color: rgba(0, 0, 0, 0.5);
     top: 0;

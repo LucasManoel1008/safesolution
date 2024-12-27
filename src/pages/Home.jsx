@@ -4,7 +4,7 @@ import { Fade } from 'react-reveal'
 import Imagemindex from '../shared/Imagesindex'
 import * as js from '../assets/js/index.js'
 import '../assets/css/index.css'
-
+import emailjs from 'emailjs-com'
 
 
 
@@ -15,7 +15,8 @@ function Home() {
     const [telefone, setTelefone] = useState('')
     const [cidade, setCidade] = useState('')
     const [mensagem, setMensagem] = useState("")
-    const [assunto, validarAssunto] = useState('');   {/*  pega os dados do Assunto  */ }
+    const [assunto, validarAssunto] = useState('')  /*  pega os dados do Assunto  */ 
+    const [envioEmail, setEnvioEmail] = useState(false)
 
     const handleInputNome = (e) => {
       const nome = e.target.value.replace(/\d/g, '')
@@ -55,9 +56,6 @@ function Home() {
     const validarFormulario = (event) => {
       event.preventDefault(); {/*Impede o envio do formulário */}
 
-      
-
-
       {/* Validar Nome */}
       if (nome == ""){
         window.alert("O campo nome deve ser preenchido");
@@ -81,12 +79,30 @@ function Home() {
         window.alert("Email incorreto!");
       }
       else {
-        window.alert('Mensagem enviada com sucesso');
-        location.reload();
-        return true;
+          const templateParams = {
+            assunto: assunto,
+            nome: nome + " " + sobrenome,
+            message: mensagem,
+            email: email,
+          };
+          emailjs.send("service_e3eqp7s", "template_0iwid6d", templateParams, "f3oNKxzSSwUaAoUcD")
+          .then((response) => {
+            setEnvioEmail(true)
+            setNome('');
+            setSobrenome('');
+            setEmail('');
+            setTelefone('');
+            setCidade('');
+            validarAssunto('');
+            setMensagem('');
+            return true;
+          
+        }, (error) => {
+          console.log('FAILED...', error);
+          window.alert('Erro ao enviar a mensagem');
+          return false;
+        });
       }
-
-
     };
    
 
@@ -319,10 +335,10 @@ function Home() {
                     <div className="razao">
                     <small>*Assunto</small>
                     <select id="assunto"   onChange={(e) => validarAssunto(e.target.value)}>
-                        <option value='assunto'>*ASSUNTO</option>
-                        <option value="Reclamacao" >RECLAMAÇÃO</option>
+                        <option value='Assunto'>*ASSUNTO</option>
+                        <option value="Reclamação" >RECLAMAÇÃO</option>
                         <option value="Elogio" >ELOGIO</option>
-                        <option value="informacao" >Informação</option>
+                        <option value="Informação" >INFORMAÇÃO</option>
                     </select>
                     <div className="textarea">
                         <textarea  rows="1" 
@@ -330,7 +346,9 @@ function Home() {
                     </div>
                 </div>
                 </div>
+                <p>{envioEmail ? "Mensagem enviada com sucesso!" : ""}</p>
                 <input type="submit" value="enviar"/>
+                
         </form>
 
   

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {BrowserRouter , Routes, Route} from 'react-router-dom'
 import Home from './pages/Home'
 import Login from './pages/Login'
@@ -12,16 +12,18 @@ import Servicos from './pages/Servicos'
 import Orcamento from './pages/Orcamento'
 import Orcamento2 from './pages/Orcamento2'
 import Confirmação from '../src/assets/components/subPages/Confirmação'
-import EsqueciSenha from '../src/assets/components/subPages/EsqueciSenha'
 import Servico1 from '../src/assets/components/subPages/Servico1'
 import Header from './assets/components/Header'
 import Footer from './assets/components/Footer'
 import NotFound from '../src/assets/components/subPages/NotFound'
-import ValidarCodigo from '../src/assets/components/subPages/ValidarCodigo'
-import RedefinicaoDeSenha from '../src/assets/components/subPages/RedefinicaoDeSenha'
 import CadastroServico from './pages/CadastroServico'
 import Solicitação from '../src/assets/components/subPages/Solicitação'
 import Pagamento from './pages/Pagamento'
+import EditarServico from './assets/components/CadastroServicos/EditarServico'
+import RedefinirSenha from './assets/components/redefinirSenha/RedefinirSenha'
+import RedefinicaoDeSenha from './assets/components/subPages/RedefinicaoDeSenha'
+
+
 
 
 
@@ -48,11 +50,12 @@ function App() {
       <Route path='/Politicas-de-Privacidade' element = {<Politicas/>} />
       <Route path='/Orcamento2' element={<Orcamento2/>}/>
       <Route path='/Cadastro-Servico' element={<CadastroServico/>}/>
+      <Route path='EditarServico/:id' element={<EditarServico />}/>
       <Route path='/Confirmacao' element={<Confirmação/>}/>
-      <Route path='/Validar-Codigo' element ={<ValidarCodigo/>}/>
-      <Route path='/Redefinicao-Senha' element ={<RedefinicaoDeSenha/>}/>
       <Route path='/Solicitação' element ={<Solicitação/>}/>
       <Route path='/Pagamento' element ={<Pagamento/>}/>
+      <Route path='Redefinicao-de-senha' element={<RedefinirSenha/>}/>
+      <Route path='/Redefinir-Senha/:token' element={<RedefinicaoDeSenha/>}/>
       <Route path='*' element ={<NotFound/>} />
     </Routes>
     <Footer/>

@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import '../assets/css/login.css';
-
+import LoadingData from '../assets/components/Cadastro/LoadingData'
 function Login() {
   const [cnpj, setCnpj] = useState('');
   const [senha, setSenha] = useState('');
+  const [erro, setErro] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   
   const navigate = useNavigate();
   
@@ -18,34 +20,40 @@ function Login() {
     
     // Verifica se o CNPJ tem o formato válido
     if (cleanCnpj.length !== 14) { // CNPJ precisa ter exatamente 14 dígitos
-      window.alert("Digite um CNPJ válido");
+      setErro(1);
+      console.log(erro)
       return;
     }
     else if (senha ==""){
-      window.alert("O campo senha não pode ser vazio")
+      setErro(2);
+
       return
     }
     else if(senha.length < 8){
-      window.alert("A senha deve conter no mínimo 8 caracteres")
+      setErro(2);
+
       return
     }
     
     
     try {
+      setIsLoading(true);
       const response = await axios.get(`http://localhost:8080/empresa/${cleanCnpj}`);
       if (response.data && response.data.usuario) {
         if (response.data.usuario.senha_usuario === senha) {
           sessionStorage.setItem('empresa', JSON.stringify({ cnpj: cleanCnpj }));
           navigate('/UserPage');
         } else {
-          window.alert("Senha inválida. Por favor, tente novamente.");
+          setIsLoading(false);
+          setErro(3);
         }
       } else {
-        window.alert("Empresa ou usuário não encontrado.");
+        setIsLoading(false);
+        setErro(3);
       }
     } catch (error) {
-      console.error("Erro durante a requisição:", error);
-      window.alert('Conta não encontrada!');
+      setIsLoading(false);
+      setErro(3);
     }
   };
 
@@ -75,12 +83,13 @@ function Login() {
 
   return (
     <div>
+      {isLoading ? <LoadingData /> : ''}
       <section className='loginBox'>
         <div className="content container pt-4">
           <h4>Login</h4>
           <p>Faça login com sua conta</p>
           <form className="entradaDados" onSubmit={validarFormulario}>
-            <div className="text mb-4">
+            <div className="text mb-4 text-left">
               <input 
                 type="text" 
                 id='cnpj'
@@ -91,7 +100,9 @@ function Login() {
                 autoComplete='off'
                 maxLength={18}
               />
+              {erro === 1 ? <small className='text-danger'>CNPJ inválido. Tente novamente.</small> : ''}
             </div>
+            
 
             <div className="passwordInput mb-4">
               <input 
@@ -102,10 +113,12 @@ function Login() {
                 onChange={handleInputSenha}
                 value={senha}
               />
+              {erro === 2 ? <small className='text-danger'>Senha inválida. Tente novamente.</small> : ''}
+              {erro === 3 ? <small className='text-danger'>Senha ou usuario incorretos. Tente novamente.</small> : ''}
             </div>
             <input type="submit" className='btn btn-primary' value={`Login`} />
           </form>
-          <Link to="/Esqueci-Senha">Esqueci minha senha</Link>
+          <Link to="/Redefinicao-de-senha">Esqueci minha senha</Link>
           <Link to="/Cadastro" className='d-block p-2 cadConta '>Cadastrar Nova Conta</Link>
         </div>
       </section>

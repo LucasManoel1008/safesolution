@@ -128,6 +128,7 @@ function Cadastro2({userData}) {
       bairro,
       cidade,
       numero:numero,
+      
     };
     
     if (userData) {

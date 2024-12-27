@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import ImagensUser from '../../../shared/ImagensUser.jsx';
 import styles from '../../css/userProfile.module.css';
+import axios from 'axios';
 
+const UserProfile = React.memo(({empresa , apagarConta, setSection }) => {
 
-const UserProfile = React.memo(({ empresa, apagarConta, setSection }) => {
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
     return new Date(dateString).toLocaleDateString(undefined, options);
@@ -15,7 +16,19 @@ const UserProfile = React.memo(({ empresa, apagarConta, setSection }) => {
       <p>Gerencie as configurações do perfil de sua empresa</p>
     </div>
     <div className='d-flex flex-column align-items-center'>
-      <img className={styles.logoEmpresa} src={ImagensUser.paladins} alt="Imagem empresa" />
+      
+      <div className={styles.fileInput}>
+        <label for="file-upload" className={styles.logoEmpresa}>
+          {empresa && empresa.logo_empresa ? empresa.logo_empresa : <img className='rounded' src={ImagensUser.paladins} width={120} />}
+        </label>
+        <input
+  id="file-upload"
+  type="file"
+  name='file'
+/>
+
+      </div>
+
     </div>
     <section className={styles.userData}>
       <h5>Dados de sua empresa</h5>
