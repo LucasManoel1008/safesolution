@@ -7,8 +7,7 @@ const UserProfile = React.memo(({ empresa, apagarConta, setSection }) => {
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
     return new Date(dateString).toLocaleDateString(undefined, options);
-  };
-
+  };  
   return (
   <div className={`${styles.userProfile} p-4 mb-4`}>
     <div className={styles.userPageHeader}>
@@ -28,7 +27,7 @@ const UserProfile = React.memo(({ empresa, apagarConta, setSection }) => {
           </div>
           <div className="iten2">
             <label htmlFor='emailEmpresa'>Email da empresa</label>
-            <input className='form-control' type="email" id='emailEmpresa' value={empresa && empresa.usuario ? empresa.usuario.email_usuario : " "} disabled />
+            <input className='form-control' type="email" id='emailEmpresa' value={empresa && empresa.usuario ? empresa.usuario.email : " "} disabled />
           </div>
         </div>
         <div className="entireColumn form-group">

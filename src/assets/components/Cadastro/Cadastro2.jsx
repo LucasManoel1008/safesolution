@@ -4,7 +4,7 @@ import axios from 'axios';
 import LoadingData from "./LoadingData";
 
 
-function Cadastro2() {
+function Cadastro2({userData}) {
   const [cnpj, setCnpj] = useState("");
   const [nome, setNome] = useState('');
   const [descricao, setDescricao] = useState('');
@@ -17,6 +17,8 @@ function Cadastro2() {
   const [loading, setLoading] = useState(false);
   const [erro, setErro] = useState('');
   const navigate = useNavigate();
+
+
 
   // Funções para lidar com os inputs do formulário
   const handleInputNome = (e) => setNome(e.target.value);
@@ -74,7 +76,8 @@ function Cadastro2() {
   // Função para validar o formulário
   const validarFormulario = (event) => {
     event.preventDefault();
-    
+    const cleanedCnpj = cnpj.replace(/[./-]/g, '');
+    const cleanedTelefone = telefone.replace(/[() -]/g, '');
 
     if (nome === '') {
      setErro("Você deve informar o nome de sua empresa");
@@ -114,33 +117,29 @@ function Cadastro2() {
     else {
       setErro('');
     }
-    const dadosArmazenados = sessionStorage.getItem('usuario');
-    const cleanedCnpj = cnpj.replace(/[./-]/g, '');
-    const cleanTelefone = telefone.replace(/[()\s-]/g, '');
+    
     const dadosEmpresa = {
       cnpj: cleanedCnpj,
       nome_empresa: nome,
       descricao_empresa: descricao,
       cep,
-      telefone_empresa: cleanTelefone,
+      telefone_empresa: cleanedTelefone,
       rua,
       bairro,
       cidade,
       numero:numero,
     };
     
-    if (dadosArmazenados) {
+    if (userData) {
 
-      const dados = JSON.parse(dadosArmazenados);
       setLoading(true);
       // Primeira requisição para salvar o usuário
-      axios.post('http://localhost:8080/usuario', dados)
+      axios.post('http://localhost:8080/usuario', userData)
         .then(() => {
           // Segunda requisição para salvar a empresa com o CPF do usuário
-          return axios.post(`http://localhost:8080/empresa?cpfUsuario=${dados.cpf}`, dadosEmpresa);
+          return axios.post(`http://localhost:8080/empresa?cpfUsuario=${userData.cpf}`, dadosEmpresa);
         })
         .then(response => {
-          sessionStorage.clear();
           sessionStorage.setItem('empresa',JSON.stringify(dadosEmpresa))
           console.log('Empresa salva com sucesso:', response.data);
           navigate('/UserPage');
@@ -284,6 +283,7 @@ function Cadastro2() {
 
         <button type="submit" className="continuarCadastro1 btn btn-primary mt-4">Finalizar</button>
       </form>
+
     </div>
   );
 }

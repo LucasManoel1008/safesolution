@@ -2,7 +2,8 @@ import React from 'react'
 import {BrowserRouter , Routes, Route} from 'react-router-dom'
 import Home from './pages/Home'
 import Login from './pages/Login'
-import Cadastro from '../src/pages/Cadastro'
+import Cadastro from './pages/Cadastro'
+import Cadastro1 from '../src/assets/components/Cadastro/Cadastro1'
 import Cadastro2 from '../src/assets/components/Cadastro/Cadastro2'
 import UserPage from './pages/UserPage'
 import Termos from '../src/assets/components/subPages/Termos'
@@ -36,7 +37,8 @@ function App() {
       <Route index element={<Home/>} />
       <Route path='/Login' element={<Login/>} />
       <Route path='/Esqueci-Senha' element={<EsqueciSenha/>}/>
-      <Route path='/Cadastro' element={<Cadastro/>} />
+      <Route path='/cadastro' element={<Cadastro/>} />
+      <Route path='/Cadastro1' element={<Cadastro1/>} />
       <Route path='/Cadastro2' element={<Cadastro2/>} />
       <Route path='/Termos' element={<Termos/>} />
       <Route path='/UserPage' element={<UserPage/>} />

@@ -7,7 +7,7 @@ function EditProfile  ({ empresa, setSection }) {
     const [nome, setNome] = useState(empresa ? empresa.nome_empresa : "");
     const [descricao, setDescricao] = useState(empresa ? empresa.descricao_empresa : "");
     const [telefone, setTelefone] = useState(empresa ? empresa.telefone_empresa : "");
-    const [email, setEmail] = useState(empresa && empresa.usuario ? empresa.usuario.email_usuario : "");
+    const [email, setEmail] = useState(empresa && empresa.usuario ? empresa.usuario.email : "");
     const [cep, setCep] = useState(empresa ? empresa.cep : "");
     const [rua, setRua] = useState(empresa ? empresa.rua : "");
     const [bairro, setBairro] = useState(empresa ? empresa.bairro : "");
