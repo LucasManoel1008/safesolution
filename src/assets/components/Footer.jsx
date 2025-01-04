@@ -20,6 +20,7 @@ function Footer() {
                     <li><Link to="#">Transportes</Link></li>
                     <li><Link to="#">Segurança</Link></li>
                     <li><Link to="#">Encanador</Link></li>
+                    <li><Link to="#">Tecnologia</Link></li>
                </ul>
                
                <ul className="container3 d-flex flex-column mt-3">

@@ -13,7 +13,6 @@ function VisualizarServico({ onOptionChange }) {
     const empresaString = sessionStorage.getItem('empresa');
     if (empresaString) {
       const empresa = JSON.parse(empresaString); // Parse do objeto JSON
-      console.log(empresa.cnpj);
       axios
         .get(`http://localhost:8080/servico/empresa/${empresa.cnpj}`)
         .then((response) => {

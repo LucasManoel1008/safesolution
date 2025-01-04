@@ -190,12 +190,12 @@ function Home() {
             </Fade>
             <Fade bottom duration={700}>
             <h4 className="peopleName">Luiza Meneses</h4>
-            <p>O sistema de serviços compartilhados
+            <p>"O sistema de serviços compartilhados
                 é uma verdadeira revolução! Agora posso
                 acessar uma variedade de serviços de
                 diferentes empresas em um só lugar. É 
                 incrível como isso facilita minha vida como 
-                empreendedora.</p>
+                empreendedora."</p>
             </Fade>
           </div>
           
@@ -206,13 +206,13 @@ function Home() {
           </Fade>
           <Fade bottom duration={700}>
             <h4 className="peopleName">José Santos</h4>
-            <p>Como proprietário de uma pequena empresa,
+            <p>"Como proprietário de uma pequena empresa,
                 sempre estou buscando maneiras de expandir 
                 minha rede de serviços sem gastar muito. O
                 sistema de serviços compartilhados é uma 
                 solução brilhante. Posso acessar uma ampla
                 gama de serviços de alta qualidade sem comprometer
-                meu orçamento.</p>
+                meu orçamento."</p>
           </Fade>
 
           </div>
@@ -223,7 +223,7 @@ function Home() {
             </Fade>
             <Fade bottom duration={700}>
             <h4 className="peopleName">Fernanda Almeida</h4>
-            <p>Como proprietária de uma loja no setor 
+            <p>"Como proprietária de uma loja no setor 
                 de varejo, é importante manter uma 
                 aparência impecável e oferecer um 
                 ambiente agradável aos clientes. O 
@@ -233,7 +233,7 @@ function Home() {
                 de limpeza, manutenção e reparos, permitindo
                 que eu me concentre em oferecer a 
                 melhor experiência de compra para 
-                meus clientes.
+                meus clientes."
             </p>
             </Fade>
           </div>
@@ -243,7 +243,7 @@ function Home() {
             </Fade>
             <Fade bottom duration={700}>
             <h4 className="peopleName">André Ferreira</h4>
-            <p>Como empresário, sempre estou em busca
+            <p>"Como empresário, sempre estou em busca
                 de soluções eficientes para otimizar
                 minhas operações. O sistema de serviços
                 compartilhados me permite acessar uma
@@ -251,7 +251,7 @@ function Home() {
                 minha empresa de forma rápida e fácil
                 . É uma ferramenta indispensável para
                 quem busca crescimento e eficiência 
-                nos negócios.</p>
+                nos negócios."</p>
                 </Fade>
           </div>
         </div>
