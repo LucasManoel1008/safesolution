@@ -91,6 +91,7 @@ body{
     padding: 2px;
     text-align: center;
 }
+
 .left-header-desktop div .conteudoUsuario {
     background-color: transparent;
     border: none;
@@ -222,12 +223,12 @@ body{
         background-color: transparent;
         border: 2px solid var(--blue);
     }
-    .elementsHeader-desktop a , .left-header-desktop a{
+    .elementsHeader-desktop a , .left-header-desktop a, .elementsHeader-desktop .servicosLink{
         text-decoration: none;
         color: var(--blue3);
         font-weight: bolder;
         padding: 5px;
-        font-size: 14px;
+        font-size: 16px;
        
     }
     .left-header-desktop .login{
@@ -237,6 +238,7 @@ body{
     }
     .left-header-desktop .registro{
         color: white;
+        border: 1px solid var(--blue3);
         background-color: var(--blue3);
         border-radius: 4px;
         transition: opacity 0.5s;

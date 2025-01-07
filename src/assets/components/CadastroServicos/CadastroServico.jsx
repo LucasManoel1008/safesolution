@@ -75,6 +75,7 @@ function CadastroServico({ onOptionChange }) {
           location.reload('');
         })
         .catch(error => {
+          setLoading(false);
         });
     }
   };

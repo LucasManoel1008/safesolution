@@ -23,14 +23,17 @@
     width: 60%;
     height: 63vh;
 }
+.servico .conteudo .textServico{
+    opacity: .7;
+    font-size: 14px;
+}
+
 .servicos .servicosBox{
     width: 100%;
     padding:10px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-
-
 }
 .servicos .servicosBox .servicoInfo{
     float: right;
@@ -45,5 +48,73 @@
 }
 .item2 span{
     position: relative;
-    top: 20px;
+    top: 14px;
+    opacity: .7;
+    align-self: flex-end;
+}
+.servico .conteudo .precoServico{
+    position: relative;
+    top: -4px;
+    align-self: flex-end;
+}
+
+/*Loading dos serviços*/
+.servicoLoading{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+.servicoLoading div{
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    background-color: var(--blue3);
+    margin: 5px;
+
+}
+.servicoLoading .bar1{
+    animation: jumping1 1s infinite ease-in-out;
+}
+.servicoLoading .bar2{
+    animation: jumping2 1s infinite ease-in-out;
+}
+.servicoLoading .bar3{
+    animation: jumping3 1s infinite ease-in-out;
+}
+@keyframes jumping1{
+    0%{
+        transform: translateY(0);
+    }
+    50%{
+        transform: translateY(-10px);
+    }
+    100%{
+        transform: translateY(0);
+    }
+}
+@keyframes jumping2{
+    0%{
+        transform: translateY(0);
+    }
+    70%{
+        transform: translateY(-10px);
+    }
+    100%{
+        transform: translateY(0);
+    }
+
+}
+@keyframes jumping3{
+    
+    0%{
+        transform: translateY(0);
+    }
+    80%{
+        transform: translateY(-10px);
+    }
+    100%{
+        transform: translateY(0);
+    }
+
 }

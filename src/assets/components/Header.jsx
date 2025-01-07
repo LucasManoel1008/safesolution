@@ -110,7 +110,7 @@ function Header() {
           />
           <div className="elementsHeader-desktop">
             <div className="dropdown">
-              <button className="btn  dropdown-toggle font-bold blue2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              <button className="btn dropdown-toggle font-bold blue2 servicosLink" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 Serviços
               </button>
               <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -119,7 +119,7 @@ function Header() {
 
               </ul>
             </div>
-            <Link to="/">SOBRE NÓS</Link>
+            <Link to="/">Sobre nós</Link>
           </div>
           <div className="logo">
             <Link to="/" id="logo-header"><img src={Imagenspadroes.logo} alt="Logo" /></Link>

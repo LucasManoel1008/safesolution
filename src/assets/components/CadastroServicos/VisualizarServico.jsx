@@ -6,6 +6,7 @@ function VisualizarServico({ onOptionChange }) {
   const [message, setMessage] = useState(""); // Mensagem a ser exibida
   const [dados, setDados] = useState([]);
   const [loading, setLoading] = useState(true); // Estado de carregamento
+  
   const navigate = useNavigate();
 
   // Função para buscar os serviços com base no CNPJ
