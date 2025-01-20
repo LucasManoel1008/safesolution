@@ -12,16 +12,28 @@
 .servico .filtro{
     width: 20%;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
-    padding: 15px;
     margin-right: 5%;
     align-self: flex-start;
     margin-bottom: 30px;
 }
+.filtro form{
+    padding: 15px;
+}
+.categoria div input[type="radio"]{
+    margin-right: 10px;
+}
+.reload{
+    cursor: pointer;
+}
+
+
+
 
 /* Container com os serviços */
 .servico .conteudo{
     width: 60%;
-    height: 63vh;
+    min-height: 63vh;
+    max-height: 100%;
 }
 .servico .conteudo .textServico{
     opacity: .7;
@@ -72,6 +84,14 @@
     background-color: var(--blue3);
     margin: 5px;
 
+}
+.limparFiltro{
+    border: none;
+    background-color: transparent;
+}
+.limparFiltro:hover{
+    cursor: pointer;
+    text-decoration: underline;
 }
 .servicoLoading .bar1{
     animation: jumping1 1s infinite ease-in-out;

@@ -22,10 +22,10 @@ const UserProfile = React.memo(({empresa , apagarConta, setSection }) => {
           {empresa && empresa.logo_empresa ? empresa.logo_empresa : <img className='rounded' src={ImagensUser.paladins} width={120} />}
         </label>
         <input
-  id="file-upload"
-  type="file"
-  name='file'
-/>
+          id="file-upload"
+          type="file"
+          name='file'
+        />
 
       </div>
 

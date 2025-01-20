@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import '../assets/css/userPage.css';  
 import { useNavigate } from 'react-router-dom';
@@ -21,7 +21,7 @@ function UserPage() {
     fetchEmpresaByCnpj();
   }, []);
 
-  const fetchEmpresaByCnpj = async () => {
+  const fetchEmpresaByCnpj = useCallback(async () => {
     const empresaString = sessionStorage.getItem('empresa');
     if (empresaString) {
       const dadosEmpresa = JSON.parse(empresaString);
@@ -33,7 +33,7 @@ function UserPage() {
           const response = await axios.get(`http://localhost:8080/empresa/${cnpj}`);
           setEmpresa(response.data);
         } catch (error) {
-          console.error('Erro ao buscar empresa:', error);
+          
         }
         finally {
           setTimeout(() => {
@@ -43,17 +43,17 @@ function UserPage() {
       } else if (dadosEmpresa) {
         try {
           const response = await axios.get(`http://localhost:8080/empresa/${dadosEmpresa}`);
-          console.log('Dados da empresa recebidos do backend:', response.data);
+          
           setEmpresa(response.data);
         } catch (error) {
-          console.error('Erro ao buscar empresa:', error);
+          
         }
         
       }
     } else {
-      console.error('Dados da empresa não encontrados no sessionStorage');
+      
     }
-  };
+  }, []);
 
 
   const renderSection = () => {

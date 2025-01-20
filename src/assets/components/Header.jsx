@@ -43,6 +43,10 @@ function Header() {
     navigate('/UserPage');
   }, [navigate]);
 
+  const acessarMeusServicos = useCallback(() => {
+    navigate('/Cadastro-Servico');
+  }, [navigate]);
+
   const LeftHeader = React.memo(() => {
     return (
       <div className="left-header-desktop">
@@ -62,6 +66,7 @@ function Header() {
           </button>
           <div className="dropdown-menu">
             <button className="dropdown-item" onClick={acessarPerfil} type="button">Perfil</button>
+            {logado ? <button onClick={acessarMeusServicos} className='dropdown-item'>Meus Serviços</button> : <Link to="/Login">Meus Serviços</Link>}
             <button className="dropdown-item" onClick={sairConta} type="button">Sair</button>
           </div>
         </div>
@@ -109,16 +114,7 @@ function Header() {
             style={{ fontSize: "30px", cursor: "pointer" }}
           />
           <div className="elementsHeader-desktop">
-            <div className="dropdown">
-              <button className="btn dropdown-toggle font-bold blue2 servicosLink" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                Serviços
-              </button>
-              <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li>{logado ? <Link to="/Cadastro-Servico">Meus Serviços</Link> : <Link to="/Login">Meus Serviços</Link>}</li>
-                <li><Link to="/Servicos" href="#">Buscar Serviços</Link></li>
-
-              </ul>
-            </div>
+            <Link to="/Servicos" href="#">Serviços</Link>
             <Link to="/">Sobre nós</Link>
           </div>
           <div className="logo">

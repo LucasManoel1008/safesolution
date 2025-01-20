@@ -6,6 +6,7 @@ function Servicos() {
 
   const [option, setOption] = useState('visualizar');
   const [selectedId, setSelectedId] = useState(null);
+  
   // Passa o id selecionado para o EditarServiço
   // A função é passada para os outros componentes
   const handleOption = (option, id = null) => {

@@ -121,7 +121,7 @@ function VisualizarServico({ onOptionChange }) {
         ) : null}
       </div>
 
-      <button className='btn btn-primary align-center adicionarServico' onClick={() => onOptionChange("Cadastrar")}>Adicionar Serviço</button>
+      <button className='btn btn-primary align-center adicionarServico mb-4' onClick={() => onOptionChange("Cadastrar")}>Adicionar Serviço</button>
 
     </div>
   );

@@ -48,11 +48,20 @@ function CadastroServico({ onOptionChange }) {
       return;
     }
 
-    if (disponibilidade === 'true' && (!inicio)) {
+    if (disponibilidade === 'false' && (!inicio)) {
       window.alert('Por favor, preencha a data de início do serviço.');
       return;
     }
+    
+    let disponibilidade_servico;
 
+    if (disponibilidade === 'true') {
+      const data = new Date();
+      disponibilidade_servico = data.toISOString().split('T')[0];
+    } else {
+      disponibilidade_servico = disponibilidade_servico;
+    }
+  
     const empresaString = sessionStorage.getItem('empresa');
     if (empresaString) {
       const dadosEmpresa = JSON.parse(empresaString);
@@ -64,7 +73,7 @@ function CadastroServico({ onOptionChange }) {
         categoria_servico: categorias,
         criterios_servico: criterios,
         status_servico: disponibilidade,
-        disponibilidade_servico: inicio,
+        disponibilidade_servico: disponibilidade_servico,
         local_servico,
         valor_estimado_servico: valorMinimo,
       };
@@ -264,7 +273,7 @@ function CadastroServico({ onOptionChange }) {
             </div>
           </div>
 
-          {disponibilidade === 'true' && (
+          {disponibilidade == 'false' && (
             <div className="disponibilidade pb-4">
               <h5>Defina quando o serviço estará disponível:</h5>
               <span>Informe a data de início do serviço</span>
