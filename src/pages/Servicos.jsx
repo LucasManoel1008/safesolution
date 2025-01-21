@@ -20,16 +20,19 @@ function Servicos() {
     const [quantidade, setQuantidade] = useState([]);
     
     const quantidadeFiltro = () => {
-        
-        const servico = JSON.parse(sessionStorage.getItem('servicos'));
-        let todos = servico.length;
-        let arquitetura = servico.filter((servico) => servico.categoria_servico === "arquitetura").length;
-        let limpeza = servico.filter((servico) => servico.categoria_servico === "limpeza").length;
-        let transporte = servico.filter((servico) => servico.categoria_servico === "transporte").length;
-        let seguranca = servico.filter((servico) => servico.categoria_servico === "segurança").length;
-        let encanador = servico.filter((servico) => servico.categoria_servico === "encanador").length;
-        let tecnologia = servico.filter((servico) => servico.categoria_servico === "tecnologia").length;
-        setQuantidade([todos, arquitetura, limpeza, transporte, seguranca, encanador, tecnologia]);
+        try{
+            const servico = JSON.parse(sessionStorage.getItem('servicos'));
+            let todos = servico.length;
+            let arquitetura = servico.filter((servico) => servico.categoria_servico === "arquitetura").length;
+            let limpeza = servico.filter((servico) => servico.categoria_servico === "limpeza").length;
+            let transporte = servico.filter((servico) => servico.categoria_servico === "transporte").length;
+            let seguranca = servico.filter((servico) => servico.categoria_servico === "segurança").length;
+            let encanador = servico.filter((servico) => servico.categoria_servico === "encanador").length;
+            let tecnologia = servico.filter((servico) => servico.categoria_servico === "tecnologia").length;
+            setQuantidade([todos, arquitetura, limpeza, transporte, seguranca, encanador, tecnologia]);
+        }catch(error){
+            setMessage("Ocorreu um erro interno. Tente novamente mais tarde.");
+        }
     }
     
     const getServicos = async () => {

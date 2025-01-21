@@ -58,7 +58,7 @@ function Footer() {
               
             </div>
           
-               <span className="align-text">© 2024 Safe Solutions. Todos os direitos reservados.</span>
+               <span className="text-center">© 2025 Safe Solutions. Todos os direitos reservados.</span>
         </footer>
     </div>
   )

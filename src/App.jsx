@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {BrowserRouter , Routes, Route} from 'react-router-dom'
-import Home from './pages/Home'
+import Home from './pages/HomePage/Home'
 import Login from './pages/Login'
 import Cadastro from './pages/Cadastro'
 import Cadastro1 from '../src/assets/components/Cadastro/Cadastro1'

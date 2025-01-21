@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom'; // Importa o hook useLocation
 import Imagenspadroes from '../../shared/Imagespadroes';
 import ImagensUser from '../../shared/ImagensUser';
-import * as js from '../js';
+import * as js from '../../Services/HeaderFunctions/HeaderGenericFunctions';
 import '../padronizacao/padrao.css';
 import axios from 'axios';
 
@@ -11,7 +11,7 @@ function Header() {
   const [dados, setDados] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
-
+  
   // UseEffect para verificar o sessionStorage toda vez que a página mudar
   useEffect(() => {
     const validarLogin = async () => {

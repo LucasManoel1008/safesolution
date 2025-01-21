@@ -70,7 +70,7 @@ strong{
         color: gray;
         font-size: 20px !important;
     }
-    .firstImage .leftContent .text-button{
+    .firstImage .leftContent .textButton{
         color: white;
         background-color: var(--blue3);
         cursor: pointer;
@@ -105,14 +105,14 @@ strong{
 }
 
 /* Formatações sobre os 4 elementos que informam o objetivo no site */
-.title-main-text{
+.titleMainText{
     margin-top: 70px;
     font-weight: bold;
     color:var(--blue3);
     text-align: center;
 }
 
-.text-body{
+.textBody{
     display: grid;
     grid-template-columns: repeat(2,1fr);
     gap: 20px;
@@ -124,16 +124,16 @@ strong{
     
 
 }
-.text-body .Text{
+.textBody .text{
     margin: 20px auto;
 }
-.Text{
+.text{
     margin: 20px 40px 20px 0;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
     max-width: 400px;
     height: 500px;
 }
-.Text p{
+.text p{
     margin-bottom: 3rem;
 }
 
@@ -223,14 +223,14 @@ strong{
     
 
 }
-.FAQ-container{
+.FAQContainer{
     margin: 70px auto;
     width: calc(250px + 5%) ;
     display: grid;
     width: 100%;
 
 }
-.FAQ-container li{
+.FAQContainer li{
     list-style-type: none;
     margin: 20px;
     padding: 10px;
@@ -239,7 +239,7 @@ strong{
                 -6px -6px 10px -1px rgba(35, 64, 99, 0.40) ;
     cursor: pointer;
 }
-.FAQ-container li label{
+.FAQContainer li label{
     display: flex;
     align-items: center;
     padding: 10px;
@@ -248,17 +248,17 @@ strong{
     cursor: pointer;
     color: var(--blue3);
 }
-.FAQ-container li label::before{
+.FAQContainer li label::before{
     content: "+";
     margin-right: 10px;
     font-size: 24px;
     font-weight: bold;
     color: var(--blue2);
 }
-.FAQ-container li input[type="radio"]{
+.FAQContainer li input[type="radio"]{
     display: none;
 }
-.faq-content{
+.FAQContent{
     color: var(--blue2);
     padding: 0 10px;
     line-height: 26px;
@@ -266,17 +266,17 @@ strong{
     overflow: hidden;
     transition: max-height 0.5s, padding 0.5s;
 }
-.FAQ-container li input[type="radio"]:checked + label + .faq-content {
+.FAQContainer li input[type="radio"]:checked + label + .FAQContent {
     max-height: 300px;
     padding: 10px 10px 20px;
 }
 
-.FAQ-container li input[type="radio"]:not(:checked) + label + .faq-content {
+.FAQContainer li input[type="radio"]:not(:checked) + label + .FAQContent {
     max-height: 0;
     padding: 0 10px;
 }
 
-.FAQ-container li input[type="radio"]:checked+ label::before{
+.FAQContainer li input[type="radio"]:checked+ label::before{
     content: "-";
 }
 
@@ -286,23 +286,23 @@ strong{
     text-align: center;
     color: var(--blue3);
 }
-.forms-title{
+.formsTitle{
     margin: auto;
     width: fit-content;
     font-weight: bold;
 }
-.forms-title p{
+.formsTitle p{
     text-align: left;
     margin-left: 10px;
 }
-.forms-data{
+.formsData{
     display: flex;
     flex-direction: column;
     width: 70vw;
     margin: 40px auto;
 
 }
-.forms-data input{
+.formsData input{
     margin-bottom: 2em;
     border:none;
     border-bottom:1px solid rgba(0, 0, 0, 0.4);
@@ -310,10 +310,10 @@ strong{
     padding-bottom: 6px;
     
 }
-.forms-data input:focus{
+.formsData input:focus{
     outline: none;
 }
-.forms-data .razao{
+.formsData .razao{
     align-self: flex-start;
     text-align: left;
 }
@@ -342,10 +342,10 @@ strong{
 }
 
 
-.textarea{
+.textArea{
     margin: 2em 0 10px 0;
 }
-.textarea textarea{
+.textArea textarea{
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.4);
     resize: none;
@@ -357,7 +357,7 @@ strong{
 
 
 @media screen and (max-width:620px){
-    .servicos-links{
+    .servicosLinks{
         max-width: clamp(300px, 40%, 500px);
     }
     
@@ -382,10 +382,10 @@ strong{
 }
 
 @media screen and (max-width: 1200px){
-    .text-body{
+    .textBody{
         grid-template-columns: repeat(1,1fr);
     }
-    .Text{
+    .text{
         height: fit-content;
     }
     @media screen and (max-width: 400px){

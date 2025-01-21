@@ -6,7 +6,7 @@ import axios from 'axios'
  
 const EsqueciSenha = ({onSectionChange}) => {
 
-  const [email, setEmail] = useState('');
+  const [emailUsuario, setEmail] = useState('');
   const [mensagem, setMensagem] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -18,16 +18,22 @@ const EsqueciSenha = ({onSectionChange}) => {
   const validarEmail = async (event) => {
     event.preventDefault();
   
-    if (email.length === 0 || email.indexOf('@') === -1 || email.indexOf('.') === -1) {
+    if (emailUsuario.length === 0 || emailUsuario.indexOf('@') === -1 || emailUsuario.indexOf('.') === -1) {
       setMensagem('E-mail inválido.');
       return;
     }
     try {
       setLoading(true);
-      const response = await axios.post(`http://localhost:8080/usuario/recuperar-senha`, { email_usuario: email });
+      console.log(emailUsuario);
+      const response = await axios.get(`http://localhost:8080/usuario/validar-email-usuario`, {
+        params: {
+          email: emailUsuario
+        }
+      })
       if (response.status === 200) {
         setMensagem('');
-        onSectionChange(2, email);
+        onSectionChange(2, emailUsuario);
+        setLoading(false);
       }
     } catch (error) {
       if (error.response && error.response.status === 404) {
@@ -38,6 +44,8 @@ const EsqueciSenha = ({onSectionChange}) => {
         setMensagem('Erro ao enviar e-mail.');
         setLoading(false);
       }
+    } finally {
+      setLoading(false);
     }
   };
   
@@ -54,7 +62,7 @@ const EsqueciSenha = ({onSectionChange}) => {
     <form onSubmit={validarEmail}>
         <input
         type='text'
-        value={email}
+        value={emailUsuario}
         className='form-control skibidi pt-1 pb-1 p-4'
         id='skibidi'
         onChange={handleInputChange}
