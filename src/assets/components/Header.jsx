@@ -1,60 +1,44 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { useLocation, useNavigate, Link } from 'react-router-dom'; // Importa o hook useLocation
+import React, { useState, useEffect } from 'react';
+import { useLocation, Link, useNavigate } from 'react-router-dom';
 import Imagenspadroes from '../../shared/Imagespadroes';
 import ImagensUser from '../../shared/ImagensUser';
+import * as headerFunction from '../../Services/HeaderFunctions/HeaderFunctions';
 import * as js from '../../Services/HeaderFunctions/HeaderGenericFunctions';
-import '../padronizacao/padrao.css';
-import axios from 'axios';
 
 function Header() {
-  const [logado, setLogado] = useState(false);
-  const [dados, setDados] = useState(null);
-  const navigate = useNavigate();
+  const [existentLogin, setExistentLogin] = useState(false);
+  const [userData, setUserData] = useState(null);
   const location = useLocation();
-  
-  // UseEffect para verificar o sessionStorage toda vez que a página mudar
+  const navigate = useNavigate();
+
   useEffect(() => {
-    const validarLogin = async () => {
-      const isLogged = sessionStorage.getItem('empresa');
-      if (isLogged) {
-        const date = JSON.parse(isLogged);
-        const cnpj = date.cnpj.replace(/[./-]/g, '');
-        setLogado(true); // Atualiza logado com true
-        try {
-          const response = await axios.get(`http://localhost:8080/empresa/${cnpj}`);
-          setDados(response.data);
-          sessionStorage.setItem('empresa', JSON.stringify(response.data));
-        } catch (error) {
-          console.log(error);
-        }
-      } else {
-        setLogado(false); // Atualiza logado com false
-      }
-    };
-    validarLogin();
-  }, [location]); // O useEffect será disparado toda vez que a localização mudar
+    headerFunction.validateUserSession(setExistentLogin, setUserData);
+  }, [location]); 
 
-  const sairConta = useCallback(() => {
-    sessionStorage.clear();
-    navigate('/');
-  }, [navigate]);
+  const exitAccount = () => {
+      sessionStorage.clear();
+      setUserData(null);
+      setExistentLogin(false);
+      navigate('/');
+  }
+  
+  const profilePage =() => {
+      navigate('/UserPage');
+  }
+  const servicesPage =() => {
+      navigate('/Cadastro-Servico');
+  }
 
-  const acessarPerfil = useCallback(() => {
-    navigate('/UserPage');
-  }, [navigate]);
 
-  const acessarMeusServicos = useCallback(() => {
-    navigate('/Cadastro-Servico');
-  }, [navigate]);
 
-  const LeftHeader = React.memo(() => {
-    return (
-      <div className="left-header-desktop">
-        <Link to="/Login" className="login">Login</Link>
-        <Link to="/Cadastro" className="registro">Junte-se a nós</Link>
+const RightHeader = React.memo(() => {
+  return (
+    <div className="left-header-desktop">
+      <Link to="/Login" className="login">Login</Link>
+      <Link to="/cadastro" className="registro">Junte-se a nós</Link>
       </div>
-    );
-  });
+  );
+});
 
   const LoggedHeader = React.memo(() => {
     return (
@@ -62,12 +46,12 @@ function Header() {
         <div className="btn-group">
           <button type="button" className="conteudoUsuario" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <img src={ImagensUser.paladins} width={40} className='mr-1' alt="Foto de perfil" />
-            <span className='blue2 font-bold'>{dados && dados.nome_empresa ? dados.nome_empresa : ""}</span>
+            <span className='blue2 font-bold'>{userData && userData.nome_empresa ? userData.nome_empresa : ""}</span>
           </button>
           <div className="dropdown-menu">
-            <button className="dropdown-item" onClick={acessarPerfil} type="button">Perfil</button>
-            {logado ? <button onClick={acessarMeusServicos} className='dropdown-item'>Meus Serviços</button> : <Link to="/Login">Meus Serviços</Link>}
-            <button className="dropdown-item" onClick={sairConta} type="button">Sair</button>
+            <button className="dropdown-item" onClick={profilePage} type="button">Perfil</button>
+            {existentLogin ? <button onClick={servicesPage} className='dropdown-item'>Meus Serviços</button> : <Link to="/Login">Meus Serviços</Link>}
+            <button className="dropdown-item" onClick={exitAccount} type="button">Sair</button>
           </div>
         </div>
       </div>
@@ -80,7 +64,7 @@ function Header() {
         <Link to="/Servicos">Serviços</Link>
         <Link to="/">Sobre Nós</Link>
         <Link to="/Login">Entrar</Link>
-        <Link to="/Cadastro">Junte-se a nós</Link>
+        <Link to="/cadastro">Junte-se a nós</Link>
       </div>
     );
   });
@@ -91,7 +75,7 @@ function Header() {
         <a href="/UserPage">Perfil</a>
         <a href="/Servicos">Serviços</a>
         <a href="/">Sobre Nós</a>
-        <button role='button' className='btn' style={{ fontWeight: "600" }} onClick={sairConta}>SAIR</button>
+        <button role='button' className='btn' style={{ fontWeight: "600" }} onClick={exitAccount}>SAIR</button>
       </div>
     );
   });
@@ -100,7 +84,7 @@ function Header() {
       <button id="botaoScroll" onClick={js.voltartopo}>&uarr;</button>
       <header className="header" id="header">
         {/* Menu versão mobile */}
-        {logado ? <LoggedHeaderMobile /> : <LinksMobile />}
+        {existentLogin ? <LoggedHeaderMobile /> : <LinksMobile />}
         
 
 
@@ -121,7 +105,7 @@ function Header() {
             <Link to="/" id="logo-header"><img src={Imagenspadroes.logo} alt="Logo" /></Link>
           </div>
           {/* Troca de cabeçalho baseado no estado "logado" */}
-          {logado ? <LoggedHeader /> : <LeftHeader />}
+          {existentLogin ? <LoggedHeader /> : <RightHeader />}
         </div>
       </header>
     </div>

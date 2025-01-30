@@ -1,7 +1,6 @@
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react'
-import LoadingData from '../Cadastro/LoadingData';
+import LoadingData from '../Loading/LoadingData';
 import styles from '../../css/editarServico.module.css';
 import {NumericFormat} from 'react-number-format';
 function  EditarServico({ onOptionChange,id}) {

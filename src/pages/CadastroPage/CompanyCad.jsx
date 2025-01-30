@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import LoadingData from "./LoadingData";
+import LoadingData from "../../assets/components/Loading/LoadingData";
 
 
-function Cadastro2({userData}) {
+function CompanyCad({userData}) {
   const [cnpj, setCnpj] = useState("");
   const [nome, setNome] = useState('');
   const [descricao, setDescricao] = useState('');
@@ -289,4 +289,4 @@ function Cadastro2({userData}) {
   );
 }
 
-export default Cadastro2;
+export default CompanyCad;

@@ -1,5 +1,4 @@
 import styles from  '../../../pages/HomePage/index.module.css'
-import MESSAGE from '../../../Services/HomeFunctions/HomeTextFunctions';
 import Imagemindex from '../../../shared/Imagesindex';
 
 const SafeSolutionInformation = ({ imageName, sectionText, hasLink }) => {

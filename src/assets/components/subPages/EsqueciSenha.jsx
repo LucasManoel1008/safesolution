@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import '../../css/esqueciSenha.css'
 import { Link } from 'react-router-dom'
-import LoadingData from '../Cadastro/LoadingData'
+import LoadingData from '../Loading/LoadingData'
 import axios from 'axios'
  
 const EsqueciSenha = ({onSectionChange}) => {

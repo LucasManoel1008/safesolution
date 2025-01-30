@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Fade } from 'react-reveal';
 import Imagemindex from '../../shared/Imagesindex.jsx';
 import * as handleInputs from '../../Services/HomeFunctions/HomeHandleInputs.jsx'
 import * as formValidation from '../../Services/HomeFunctions/HomeValidationFunctions.jsx'
+import { returnTopOnLoad } from '../../Services/HomeFunctions/HomeGenericFunctions.js';
 import styles from '../HomePage/index.module.css';
 import SafeSolutionInformation from '../../assets/components/HomeComponents/SafeSolutionInformation.jsx';
-import MESSAGE from '../../Services/HomeFunctions/HomeTextFunctions.jsx';
+import ABOUT_SAFE_SOLUTION from '../../Services/HomeFunctions/HomeTextAboutSafeSolution.jsx';
+import CLIENTS_FEEDBACK from '../../Services/HomeFunctions/HomeTextClientsFeedback.jsx';
+import ClientsFeedbackContainer from '../../assets/components/HomeComponents/ClientsFeedbackContainer.jsx';
+
 function Home() {
   const [nome, setNome] = useState('');
   const [sobrenome, setSobrenome] = useState('');
@@ -36,6 +40,11 @@ function Home() {
     setMensagem,
     setError
   }
+
+  useEffect(() => {
+    returnTopOnLoad()
+  }, []);
+
   return (
     <div className='mb-5'>
       {/* Botão disponível apenas no mobile. Junte-se a nós */}
@@ -64,12 +73,12 @@ function Home() {
         </Fade>
         
         <Fade bottom duration={1500} delay={400}>
-          <h4 id="quemSomos" className={`fade-in ${styles.titleMainText}`}>Quem é a Safe Solution?</h4>
+          <h4 id="quemSomos" className={`fade-in ${styles.titleMainText}`}>Quem é a Safe Solutions?</h4>
           <section className={styles.textBody}>
-            <SafeSolutionInformation imageName="Safety" sectionText={MESSAGE.SAFESOLUTION_OBJECTIVE} hasLink={false} />
-            <SafeSolutionInformation imageName="tecnico" sectionText={MESSAGE.SAFESOLUTION_HOW_IT_WORKS} hasLink={false} />
-            <SafeSolutionInformation imageName="gastos" sectionText={MESSAGE.SAFESOLUTION_WHY_USE} hasLink={true} />
-            <SafeSolutionInformation imageName="Quest" sectionText={MESSAGE.SAFESOLUTION_OUR_MISSION} hasLink={false} />
+            <SafeSolutionInformation imageName="Safety" sectionText={ABOUT_SAFE_SOLUTION.SAFESOLUTION_OBJECTIVE} hasLink={false} />
+            <SafeSolutionInformation imageName="tecnico" sectionText={ABOUT_SAFE_SOLUTION.SAFESOLUTION_HOW_IT_WORKS} hasLink={false} />
+            <SafeSolutionInformation imageName="gastos" sectionText={ABOUT_SAFE_SOLUTION.SAFESOLUTION_WHY_USE} hasLink={true} />
+            <SafeSolutionInformation imageName="Quest" sectionText={ABOUT_SAFE_SOLUTION.SAFESOLUTION_OUR_MISSION} hasLink={false} />
           </section>
         </Fade>
 
@@ -86,84 +95,18 @@ function Home() {
         </div>
       </main>
 
-      {/* Feedbacks de outros Clientes */}
       <Fade bottom duration={500}>
         <section id="relatos" className={styles.commentsArea}>
           <h4 className={`title-main-text ${styles.titleMainText}`}>Feedback de nossos clientes</h4>
           <div className={styles.comments}>
-            <div className={styles.container}>
-              <Fade bottom duration={600}>
-                <img src={Imagemindex.woman1} alt="Luiza Mineto" />
-              </Fade>
-              <Fade bottom duration={700}>
-                <h4 className={styles.peopleName}>Luiza Mineto</h4>
-                <p>"O sistema de serviços compartilhados
-                    é uma verdadeira revolução! Agora posso
-                    acessar uma variedade de serviços de
-                    diferentes empresas em um só lugar. É 
-                    incrível como isso facilita minha vida como 
-                    empreendedora."</p>
-              </Fade>
-            </div>
-            
-            <div className={styles.container}>
-              <Fade bottom duration={600}>
-                <img src={Imagemindex.man1} alt="José Santos" />
-              </Fade>
-              <Fade bottom duration={700}>
-                <h4 className={styles.peopleName}>José Santos</h4>
-                <p>"Como proprietário de uma pequena empresa,
-                    sempre estou buscando maneiras de expandir 
-                    minha rede de serviços sem gastar muito. O
-                    sistema de serviços compartilhados é uma 
-                    solução brilhante. Posso acessar uma ampla
-                    gama de serviços de alta qualidade sem comprometer
-                    meu orçamento."</p>
-              </Fade>
-            </div>
-            
-            <div className={styles.container}>
-              <Fade bottom duration={600}>
-                <img src={Imagemindex.woman2} alt="Fernanda Almeida" />
-              </Fade>
-              <Fade bottom duration={700}>
-                <h4 className={styles.peopleName}>Fernanda Almeida</h4>
-                <p>"Como proprietária de uma loja no setor 
-                    de varejo, é importante manter uma 
-                    aparência impecável e oferecer um 
-                    ambiente agradável aos clientes. O 
-                    sistema de serviços compartilhados 
-                    torna mais fácil encontrar profissionais 
-                    confiáveis para lidar com as necessidades 
-                    de limpeza, manutenção e reparos, permitindo
-                    que eu me concentre em oferecer a 
-                    melhor experiência de compra para 
-                    meus clientes."
-                </p>
-              </Fade>
-            </div>
-            <div className={styles.container}>
-              <Fade bottom duration={600}>
-                <img src={Imagemindex.man2} alt="André Ferreira" />
-              </Fade>
-              <Fade bottom duration={700}>
-                <h4 className={styles.peopleName}>André Ferreira</h4>
-                <p>"Como empresário, sempre estou em busca
-                    de soluções eficientes para otimizar
-                    minhas operações. O sistema de serviços
-                    compartilhados me permite acessar uma
-                    variedade de serviços essenciais para 
-                    minha empresa de forma rápida e fácil
-                    . É uma ferramenta indispensável para
-                    quem busca crescimento e eficiência 
-                    nos negócios."</p>
-              </Fade>
-            </div>
+            <ClientsFeedbackContainer clientFeedback={CLIENTS_FEEDBACK.LUIZA_MINETO_FEEDBACK} imageName="woman1" peopleName={CLIENTS_FEEDBACK.LUIZA_MINETO} />
+            <ClientsFeedbackContainer clientFeedback={CLIENTS_FEEDBACK.JOSE_SANTOS_FEEDBACK} imageName="man1" peopleName={CLIENTS_FEEDBACK.JOSE_SANTOS} />
+            <ClientsFeedbackContainer clientFeedback={CLIENTS_FEEDBACK.FERNANDA_ALMEIDA_FEEDBACK} imageName="woman2" peopleName={CLIENTS_FEEDBACK.FERNANDA_ALMEIDA} />
+            <ClientsFeedbackContainer clientFeedback={CLIENTS_FEEDBACK.ANDRE_FERREIRA_FEEDBACK} imageName="man2" peopleName={CLIENTS_FEEDBACK.ANDRE_FERREIRA} />
           </div>
         </section>
       </Fade>
 
-      {/* Barra de pesquisa + Categorias - Inicio */}
       <Fade bottom duration={500}>
         <section className={styles.FAQ}>
           <h4 className={`title-main-text blue2 align-text ${styles.titleMainText}`}>Perguntas Frequentes</h4>

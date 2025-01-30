@@ -4,7 +4,7 @@ import {NumericFormat} from 'react-number-format';
 import AddImagem from './AddImagem';
 import '../../css/novoServico.css';
 import { Link } from 'react-router-dom';
-import LoadingData from '../Cadastro/LoadingData';
+import LoadingData from '../Loading/LoadingData';
 
 
 function CadastroServico({ onOptionChange }) {

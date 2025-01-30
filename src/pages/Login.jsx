@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import '../assets/css/login.css';
-import LoadingData from '../assets/components/Cadastro/LoadingData'
+import LoadingData from '../assets/components/Loading/LoadingData'
 function Login() {
   const [cnpj, setCnpj] = useState('');
   const [senha, setSenha] = useState('');
@@ -86,8 +86,8 @@ function Login() {
       {isLoading ? <LoadingData /> : ''}
       <section className='loginBox'>
         <div className="content container pt-4">
-          <h4>Login</h4>
-          <p>Faça login com sua conta</p>
+          <h4 className='text-center'>Login</h4>
+          <p className='text-center'>Faça login com sua conta</p>
           <form className="entradaDados" onSubmit={validarFormulario}>
             <div className="text mb-4 text-left">
               <input 
@@ -113,13 +113,14 @@ function Login() {
                 onChange={handleInputSenha}
                 value={senha}
               />
+               <Link to="/Redefinicao-de-senha">Esqueci minha senha</Link>
               {erro === 2 ? <small className='text-danger'>Senha inválida. Tente novamente.</small> : ''}
               {erro === 3 ? <small className='text-danger'>Senha ou usuario incorretos. Tente novamente.</small> : ''}
             </div>
             <input type="submit" className='btn btn-primary' value={`Login`} />
+            <Link to="/Cadastro" className='d-block p-2 cadConta mt-2 text-center '>Cadastrar Nova Conta</Link>  
           </form>
-          <Link to="/Redefinicao-de-senha">Esqueci minha senha</Link>
-          <Link to="/Cadastro" className='d-block p-2 cadConta '>Cadastrar Nova Conta</Link>
+         
         </div>
       </section>
     </div>
