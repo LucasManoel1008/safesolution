@@ -33,17 +33,17 @@ function CompanyCad({userData}) {
   }
   const handleNumeroChange = (e) => setNumero(e.target.value);
   const hanfleInputTelefone =(e) =>{
-    let telefone = e.target.value.replace(/\D/g, ""); // Remove qualquer caractere que não seja número
+    let telefone = e.target.value.replace(/\D/g, "");
       
-    if (telefone.length > 2) { // Verifica se há mais de dois caracteres
-        telefone = telefone.replace(/^(\d{2})(\d)/, "($1) $2"); // Formata o DDD
+    if (telefone.length > 2) { 
+        telefone = telefone.replace(/^(\d{2})(\d)/, "($1) $2"); 
     }
 
-    if (telefone.length > 6) { // Verifica se há mais de 6 caracteres
-        telefone = telefone.replace(/ (\d{5})(\d)/, `$1-$2`); // Formata para incluir o hífen
+    if (telefone.length > 6) { 
+        telefone = telefone.replace(/ (\d{5})(\d)/, `$1-$2`); 
     }
 
-    setTelefone(telefone); // Atualiza o estado com o telefone formatado
+    setTelefone(telefone); 
   }
 
   // Função para formatar o CNPJ
@@ -284,7 +284,8 @@ function CompanyCad({userData}) {
 
         <button type="submit" className="continuarCadastro1 btn btn-primary mt-4">Finalizar</button>
       </form>
-
+      <button onClick={testToastify}>Testar</button>
+     
     </div>
   );
 }

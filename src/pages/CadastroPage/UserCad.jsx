@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../../assets/css/cadastro.css';
 import * as handleInput from '../../Services/CadastroFunctions/CadastroHandleInputs'
-import * as validade from '../../Services/CadastroFunctions/CadastroValidation'
+import * as check from '../../Services/CadastroFunctions/CadastroValidation'
 function UserCad({setSection, setUserData}) {
   const [cpf, setCpf] = useState('');
   const [password, setPassword] = useState('');
@@ -25,12 +25,18 @@ function UserCad({setSection, setUserData}) {
     confirmPassword,
     birthDate,
   }
-  
+  const updateSetParams = {
+    setUserData,
+    setError,
+    setErrorCode,
+    setSection
+  }
   const validarFormulario = (e) => {
     e.preventDefault()
-    validade.checkInputValues(inputValues, setError, setUserData, setSection, setErrorCode, errorCode, error)
+    check.checkInputValues(inputValues,updateSetParams)
     
   }
+
   return (
     <div className='cadastroContent'>
       <h4 className='mt-3'>Cadastro</h4>

@@ -8,10 +8,10 @@ export const validateUserSession = async (setExistentLogin,setUserData) => {
     }
 };
 
-const fetchUserData = async (setExistentLogin,setUserDate, cleanCnpj) => {
+const fetchUserData = async (setExistentLogin,setUserData, cleanCnpj) => {
     try {
         const response = await axios.get(`http://localhost:8080/empresa/${cleanCnpj}`);
-        setUserDate(response.data);
+        setUserData(response.data);
         sessionStorage.setItem('empresa', JSON.stringify(response.data));
         setExistentLogin(true);
     } catch (error) {  

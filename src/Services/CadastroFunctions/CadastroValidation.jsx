@@ -1,8 +1,9 @@
 import axios from "axios";
 import CAD_ERROR_MESSAGES from "./CadasTextError";
 
-export const checkInputValues = async (inputValues, setError, setUserData, setSection, setErrorCode) => {
+export const checkInputValues = async (inputValues, updateSetParams) => {
   const { name, lastName, email, cpf, password, confirmPassword, birthDate } = inputValues;
+  const { setUserData, setError, setErrorCode, setSection } = updateSetParams;
   if (name === '' || lastName === '') return handleError(1, CAD_ERROR_MESSAGES.INCOMPLETE_NAME, setError, setErrorCode);
 
   if (email === '' || email.indexOf('@') === -1) {
@@ -27,7 +28,6 @@ export const checkInputValues = async (inputValues, setError, setUserData, setSe
   }
   const emailExists = await checkEmailExists(email, setError, setErrorCode);
   if (emailExists) return;
-
   console.log("Email válido");
   const userData = {
     nome_usuario: `${name} ${lastName}`,
