@@ -3,6 +3,7 @@ import Imagenspadroes from '../../shared/Imagespadroes'
 import '../padronizacao/padrao.css'
 import { Link } from 'react-router-dom'
 function Footer() {
+    const currentFooterYear = new Date().getFullYear();
   return (
     <div>
         <footer className="footer">
@@ -58,7 +59,7 @@ function Footer() {
               
             </div>
           
-               <span className="text-center">© 2025 Safe Solutions. Todos os direitos reservados.</span>
+               <span className="text-center">{`© ${currentFooterYear} Safe Solutions. Todos os direitos reservados.`}</span>
         </footer>
     </div>
   )

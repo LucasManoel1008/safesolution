@@ -1,94 +1,100 @@
 import axios from "axios";
 import CAD_ERROR_MESSAGES from "./CadasTextError";
 
+
 export const checkInputValues = async (inputValues, updateSetParams) => {
+    
+  let novosErros = []
   const { name, lastName, email, cpf, password, confirmPassword, birthDate } = inputValues;
-  const { setUserData, setError, setErrorCode, setSection } = updateSetParams;
-  if (name === '' || lastName === '') return handleError(1, CAD_ERROR_MESSAGES.INCOMPLETE_NAME, setError, setErrorCode);
+  const { setError } = updateSetParams;
+  
+
+  if (name === '')  novosErros.nome = CAD_ERROR_MESSAGES.INCOMPLETE_NAME;
+
+  if (lastName === '') novosErros.lastName = CAD_ERROR_MESSAGES.INCOMPLETE_LASTNAME;
 
   if (email === '' || email.indexOf('@') === -1) {
-    handleError(2, CAD_ERROR_MESSAGES.INCOMPLETE_EMAIL, setError, setErrorCode);
-    return;
+    novosErros.email = CAD_ERROR_MESSAGES.INCOMPLETE_EMAIL;
   }
-  if (birthDate == '') {
-    handleError(3, CAD_ERROR_MESSAGES.INVALID_AGE, setError, setErrorCode);
-    return;
-  } else if (!checkBirthDate(birthDate, setError, setErrorCode)) {
-    return;
+  else{
+    await checkEmailExists(email, novosErros);
   }
 
-  if (password === '') return handleError(5, CAD_ERROR_MESSAGES.INVALID_PASSWORD, setError, setErrorCode); 
-  else if (confirmPassword === '') return handleError(6, CAD_ERROR_MESSAGES.DIFFERENT_PASSWORDS, setError, setErrorCode);
-  else if (!comparePasswords(password, confirmPassword, setError, setErrorCode)) return;
+  if (birthDate == '') {
+    novosErros.birthDate = CAD_ERROR_MESSAGES.INVALID_AGE;
+  }
+  else{
+    checkBirthDate(birthDate, novosErros);
+  }
+
+  if (password === '')novosErros.password = CAD_ERROR_MESSAGES.INVALID_PASSWORD; 
+
+  else if (confirmPassword === '') novosErros.confirmPassword = CAD_ERROR_MESSAGES.INVALID_PASSWORD;
+
+  else{
+    comparePasswords(password, confirmPassword, novosErros);
+  }
 
   if (cpf.length < 14) {
-    console.log("CPF inválido");
-    handleError(7, CAD_ERROR_MESSAGES.INVALID_CPF, setError, setErrorCode);
-    return;
+   novosErros.cpf = CAD_ERROR_MESSAGES.INVALID_CPF;
   }
-  const emailExists = await checkEmailExists(email, setError, setErrorCode);
-  if (emailExists) return;
-  console.log("Email válido");
-  const userData = {
-    nome_usuario: `${name} ${lastName}`,
-    senha_usuario: password,
-    data_nascimento: birthDate,
-    cpf: sanitizeCpf(cpf),
-    email,
-  };
+  else{
+    await checkCpfExists(sanitizeCpf(cpf), novosErros);
+  }
 
-  nextSession(setUserData, userData, setSection);
+  
+  if (Object.keys(novosErros).length > 0){
+    setError(novosErros);
+    return false;
+  }
+  return true;
 };
 
 // Funções auxiliares
-const nextSession = (setUserData, userData, setSection) => {
-  setUserData(userData);
-  setSection(2);
-};
 
-const checkEmailExists = async (email, setError, setErrorCode) => {
-  try {
-    const response = await axios.get(`http://localhost:8080/usuario/check-email/${email}`);
-    console.log(response.data);
-    if (response.data == 1) {
-      handleError(2, CAD_ERROR_MESSAGES.EMAIL_ALREADY_REGISTERED, setError, setErrorCode);
-      return true;
-    }
-    return false;
-  } catch (error) {
-    console.log("Não foi possível verificar o email");
-    handleError(2, CAD_ERROR_MESSAGES.CANT_CHECK_EMAIL, setError, setErrorCode);
-    return false;
-  }
-};
-
-
-const checkBirthDate = (birthDate, setError, setErrorCode) => {
+const checkBirthDate = (birthDate, novosErros) => {
   const birthYear = new Date(birthDate).getFullYear();
   const currentYear = new Date().getFullYear();
   if (currentYear - birthYear < 18) {
-      handleError(4, CAD_ERROR_MESSAGES.MINIMUM_AGE_REQUIREMENT, setError, setErrorCode);
-      return false;
+    novosErros.birthDate = CAD_ERROR_MESSAGES.INVALID_AGE
   }
-  return true;
 };
 
+const checkEmailExists = async (email, novosErros) => {
+  try {
+    const response = await axios.get(`http://localhost:8080/usuario/check-email/${email}`);
+    
+    if (response.data == 1) {
+      novosErros.email = CAD_ERROR_MESSAGES.EMAIL_ALREADY_REGISTERED;
+      return true;
+    }
+  } catch (error) {
+   novosErros.email = CAD_ERROR_MESSAGES.CANT_CHECK_EMAIL
+  }
+};
 
-const comparePasswords = (password, confirmPassword, setError, setErrorCode) => {
+const checkCpfExists = async (cpf, novosErros) => {
+
+    const response = await axios.get(`http://localhost:8080/usuario/${cpf}`);
+    if(response.data == 1){
+      novosErros.cpf = CAD_ERROR_MESSAGES.CPF_ALREADY_REGISTERED;
+    }
+}
+
+const comparePasswords = (password, confirmPassword, novosErros) => {
   if (password !== confirmPassword) {
-    handleError(6, CAD_ERROR_MESSAGES.DIFFERENT_PASSWORDS, setError, setErrorCode);
-    return false;
+    novosErros.confirmPassword = CAD_ERROR_MESSAGES.DIFFERENT_PASSWORDS;
   }
   return true;
 };
 
-const sanitizeCpf = (cpf) => {
+export const sanitizeCpf = (cpf) => {
   return cpf.replace(/[.-]/g, '');
 };
 
-const handleError = (code, message, setError, setErrorCode) => {
-  console.log("Função foi chamada");
-  setError(message);
-  setErrorCode(code);
-  return;
+
+
+export const formatBirthDate = (birthDate) => {
+  const formatedBirthDate = new Date(birthDate).toLocaleDateString('pt-BR');
+  return formatedBirthDate;
 }

@@ -2,18 +2,33 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
 import Imagenspadroes from '../../shared/Imagespadroes';
 import ImagensUser from '../../shared/ImagensUser';
-import * as headerFunction from '../../Services/HeaderFunctions/HeaderFunctions';
+import * as userSessionManager from '../../Services/HeaderFunctions/HeaderFunctions';
 import * as js from '../../Services/HeaderFunctions/HeaderGenericFunctions';
-
+import { toast } from 'react-toastify';
 function Header() {
+
   const [existentLogin, setExistentLogin] = useState(false);
   const [userData, setUserData] = useState(null);
   const location = useLocation();
   const navigate = useNavigate();
 
+
   useEffect(() => {
-    headerFunction.validateUserSession(setExistentLogin, setUserData);
+    validateAndFetchUserData();
   }, [location]); 
+
+  const validateAndFetchUserData = async () => {
+    const fetchedUserData = userSessionManager.getUserData();
+    
+    if (fetchedUserData){
+      const cleanCnpj = userSessionManager.formatUserCnpj(fetchedUserData.cnpj);
+      try{
+        await userSessionManager.retrieveUserData(setExistentLogin, setUserData, cleanCnpj);
+      } catch(error){
+        errorToast(error);
+      }
+    }
+  }
 
   const exitAccount = () => {
       sessionStorage.clear();
@@ -27,6 +42,21 @@ function Header() {
   }
   const servicesPage =() => {
       navigate('/Cadastro-Servico');
+  }
+
+  const errorToast = (error) => {
+    toast.error('Erro ao buscar dados do usuário. Código de erro: ' + error, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    })
+    
   }
 
 

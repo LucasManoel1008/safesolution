@@ -41,6 +41,7 @@ function Login() {
       const response = await axios.get(`http://localhost:8080/empresa/${cleanCnpj}`);
       if (response.data && response.data.usuario) {
         if (response.data.usuario.senha_usuario === senha) {
+          localStorage.setItem('empresa', JSON.stringify({ cnpj: cleanCnpj }));
           sessionStorage.setItem('empresa', JSON.stringify({ cnpj: cleanCnpj }));
           navigate('/UserPage');
         } else {

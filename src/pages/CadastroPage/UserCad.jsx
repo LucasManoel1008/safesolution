@@ -11,8 +11,7 @@ function UserCad({setSection, setUserData}) {
   const [lastName, setLastName] = useState('');
   const [birthDate, setBirthDate] = useState('');
   const [email, setEmail] = useState('');
-  const [error, setError] = useState('');
-  const [errorCode, setErrorCode] = useState(0)
+  const [error, setError] = useState({});
   const completeName = `${name} ${lastName}`
 
   const inputValues = {
@@ -23,18 +22,27 @@ function UserCad({setSection, setUserData}) {
     cpf,
     password,
     confirmPassword,
-    birthDate,
+    birthDate: check.formatBirthDate(birthDate),
   }
   const updateSetParams = {
-    setUserData,
     setError,
-    setErrorCode,
-    setSection
   }
-  const validarFormulario = (e) => {
+  const validarFormulario = async (e) => {
     e.preventDefault()
-    check.checkInputValues(inputValues,updateSetParams)
-    
+    if (await check.checkInputValues(inputValues, updateSetParams) == false)  {
+      return;
+    }
+    const userData = {
+      nome_usuario: `${name} ${lastName}`,
+      senha_usuario: password,
+      data_nascimento: birthDate,
+      cpf: check.sanitizeCpf(cpf),
+      email,
+    };
+    console.log(userData)
+    setError({})
+    setUserData(userData)
+    setSection(2)
   }
 
   return (
@@ -51,7 +59,7 @@ function UserCad({setSection, setUserData}) {
             onChange={(e) => handleInput.handleInputChangeName(e, setName)}
             
           />
-          <p className='error'>{errorCode == 1 ? error : null}</p>
+          {error.nome && <span className='error'>{error.nome}</span>}
           </div>
           <div>
           <input
@@ -62,6 +70,7 @@ function UserCad({setSection, setUserData}) {
             onChange={(e) => handleInput.handleInputChangeLastName(e, setLastName)}
             autoComplete='off'
           />
+          {error.lastName && <span className='error float-left'>{error.lastName}</span>}
           </div>
         </div>
         <div className='email text-left'>
@@ -73,20 +82,22 @@ function UserCad({setSection, setUserData}) {
             onChange={(e) => handleInput.handleInputChangeEmail(e, setEmail)}
             autoComplete='off'
           />
-          <p className='error'>{errorCode === 2 ? error : null}</p>
+          {error.email && <span className='error'>{error.email}</span>}
         </div>
         <div className='date mt-4 text-left'>
           <label className='float-left' htmlFor='date'>
             Data de nascimento
           </label>
           <input
-            type='date'
+            type='text'
             className='form-control'
             id='date'
             value={birthDate}
+            placeholder='dd/mm/aaaa'
+            maxLength={10}
             onChange={(e) => handleInput.handleInputBirthDate(e, setBirthDate)}
           />
-          <p className='error'>{errorCode === 3 || errorCode === 4 ? error : null}</p>
+          {error.birthDate && <span className='error'>{error.birthDate}</span>}
         </div>
         <div className='passwordInputCadastro mt-4 d-flex'>
           <div className='text-left'>
@@ -97,7 +108,7 @@ function UserCad({setSection, setUserData}) {
               placeholder='Digite uma senha'
               autoComplete='off'
             />
-            <p className='error'>{errorCode === 5 ? error : null}</p>
+            {error.password && <span className='error'>{error.password}</span>}
           </div>
           <div>
             <input
@@ -107,7 +118,7 @@ function UserCad({setSection, setUserData}) {
               onChange={(e) => handleInput.handleInputConfirmPassword(e, setConfirmPassword)}
               autoComplete='off'
             />
-            <p className='error float-left'>{errorCode === 6 ? error : null}</p>
+            {error.password && <span className='error float-left'>{error.password}</span>}
           </div>
         </div>
         <div className='cpfInput mt-4 text-left'>
@@ -121,7 +132,7 @@ function UserCad({setSection, setUserData}) {
             onChange={(e) => handleInput.handleInputChangeCpf(e, setCpf)}
             autoComplete='off'
           />
-          <p className='error'>{errorCode === 7 ? error : null}</p>
+          {error.cpf && <span className='error'>{error.cpf}</span>}
         </div>
         <button role='button' onClick={validarFormulario} className='continuarCadastro1 btn btn-primary mt-4'>
           Continuar

@@ -19,7 +19,14 @@ export const handleInputConfirmPassword = (e, setConfirmPassword) => {
 };
 
 export const handleInputBirthDate = (e, setBirthDate) => {
-    setBirthDate(e.target.value);
+    let birthDate = e.target.value;
+    if (birthDate.length > 2) {
+        birthDate = birthDate.replace(/^(\d{2})(\d)/, '$1/$2');
+    }
+    if (birthDate.length > 5) {
+        birthDate = birthDate.replace(/^(\d{2})\/(\d{2})(\d)/, '$1/$2/$3');
+    }
+    setBirthDate(birthDate);
 };
 
 export const handleInputChangeCpf = (e, setCpf) => {

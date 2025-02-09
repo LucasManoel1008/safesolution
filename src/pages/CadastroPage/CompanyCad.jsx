@@ -22,7 +22,9 @@ function CompanyCad({userData}) {
 
   // Funções para lidar com os inputs do formulário
   const handleInputNome = (e) => setNome(e.target.value);
+
   const handleInputDescricao = (e) => setDescricao(e.target.value);
+  
   const handleCepChange = (e) => {
     let cep = e.target.value;
       if (cep.length > 5) {
@@ -141,6 +143,7 @@ function CompanyCad({userData}) {
           return axios.post(`http://localhost:8080/empresa?cpfUsuario=${userData.cpf}`, dadosEmpresa);
         })
         .then(response => {
+          localStorage.setItem('empresa',JSON.stringify(dadosEmpresa))
           sessionStorage.setItem('empresa',JSON.stringify(dadosEmpresa))
           console.log('Empresa salva com sucesso:', response.data);
           navigate('/UserPage');
@@ -284,7 +287,7 @@ function CompanyCad({userData}) {
 
         <button type="submit" className="continuarCadastro1 btn btn-primary mt-4">Finalizar</button>
       </form>
-      <button onClick={testToastify}>Testar</button>
+
      
     </div>
   );
