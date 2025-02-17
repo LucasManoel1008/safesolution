@@ -14,6 +14,8 @@ function UserCad({setSection, setUserData}) {
   const [error, setError] = useState({});
   const completeName = `${name} ${lastName}`
 
+
+
   const inputValues = {
     name,
     completeName,
@@ -24,22 +26,20 @@ function UserCad({setSection, setUserData}) {
     confirmPassword,
     birthDate: check.formatBirthDate(birthDate),
   }
-  const updateSetParams = {
-    setError,
-  }
+
   const validarFormulario = async (e) => {
     e.preventDefault()
-    if (await check.checkInputValues(inputValues, updateSetParams) == false)  {
+    if (await check.checkInputValues(inputValues, setError) == false)  {
       return;
     }
+    const data_nascimento = new Date(birthDate)
     const userData = {
       nome_usuario: `${name} ${lastName}`,
       senha_usuario: password,
-      data_nascimento: birthDate,
+      data_nascimento,
       cpf: check.sanitizeCpf(cpf),
       email,
     };
-    console.log(userData)
     setError({})
     setUserData(userData)
     setSection(2)

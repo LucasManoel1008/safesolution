@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
 import LoadingData from "../../assets/components/Loading/LoadingData";
+import * as handleInput from '../../Services/CadastroFunctions/CadastroHandleInputs'
+import * as handleForm from '../../Services/CadastroFunctions/CadastroValidation'
+import * as ApiRequest from '../../Services/CadastroFunctions/CadastroApiRequest'
+import { ToastContainer } from "react-toastify";
+import * as error from '../../Services/CadastroFunctions/CadastroToast'
 
 
 function CompanyCad({userData}) {
   const [cnpj, setCnpj] = useState("");
-  const [nome, setNome] = useState('');
+  const [name, setName] = useState('');
   const [descricao, setDescricao] = useState('');
   const [cep, setCep] = useState('');
   const [rua, setRua] = useState('');
@@ -15,153 +19,61 @@ function CompanyCad({userData}) {
   const [numero, setNumero] = useState('');
   const [telefone, setTelefone] = useState('')
   const [loading, setLoading] = useState(false);
-  const [erro, setErro] = useState('');
+  const [erro, setErro] = useState({});
   const navigate = useNavigate();
 
-
-
-  // Funções para lidar com os inputs do formulário
-  const handleInputNome = (e) => setNome(e.target.value);
-
-  const handleInputDescricao = (e) => setDescricao(e.target.value);
-  
-  const handleCepChange = (e) => {
-    let cep = e.target.value;
-      if (cep.length > 5) {
-        cep = cep.replace(/^(\d{5})(\d)/, "$1-$2");
-      }
-      setCep(cep)
-    
-  }
-  const handleNumeroChange = (e) => setNumero(e.target.value);
-  const hanfleInputTelefone =(e) =>{
-    let telefone = e.target.value.replace(/\D/g, "");
-      
-    if (telefone.length > 2) { 
-        telefone = telefone.replace(/^(\d{2})(\d)/, "($1) $2"); 
-    }
-
-    if (telefone.length > 6) { 
-        telefone = telefone.replace(/ (\d{5})(\d)/, `$1-$2`); 
-    }
-
-    setTelefone(telefone); 
-  }
-
-  // Função para formatar o CNPJ
-  const handleInputChange = (e) => {
-    let value = e.target.value.replace(/\D/g, "");
-    if (value.length > 2) value = value.replace(/^(\d{2})(\d)/, "$1.$2");
-    if (value.length > 5) value = value.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3");
-    if (value.length > 8) value = value.replace(/^(\d{2})\.(\d{3})\.(\d{3})(\d)/, "$1.$2.$3/$4");
-    if (value.length > 12) value = value.replace(/^(\d{2})\.(\d{3})\.(\d{3})\/(\d{4})(\d)/, "$1.$2.$3/$4-$5");
-    setCnpj(value);
-  };
-
-  // Função para buscar dados do CEP via API
-  const getCEP = () => {
-    if (cep === "" || cep.length < 8) {
-      alert("Você precisa digitar o CEP corretamente!");
-      return false;
-    }
-    const url = `https://viacep.com.br/ws/${cep}/json`;
-    axios.get(url)
-      .then(response => {
-        const data = response.data;
-        setRua(data.logradouro || '');
-        setBairro(data.bairro || '');
-        setCidade(data.localidade || '');
-      })
-      .catch(error => window.alert("CEP não encontrado"));
-  };
-
   // Função para validar o formulário
-  const validarFormulario = (event) => {
-    event.preventDefault();
-    const cleanedCnpj = cnpj.replace(/[./-]/g, '');
-    const cleanedTelefone = telefone.replace(/[() -]/g, '');
+  const inputValues ={
+    cnpj,
+    name,
+    descricao,
+    cep,
+    rua,
+    bairro,
+    cidade,
+    numero,
+    telefone
+  }
 
-    if (nome === '') {
-     setErro("Você deve informar o nome de sua empresa");
-      return;
-    }
-    else if (cnpj.length < 18){
-      setErro("CNPJ inválido")
-      return;
-    }
-     else if (descricao === '') {
-      setErro("Informe a descrição de sua empresa");
-      return;
-     }
-    else if (telefone === '') {
-      setErro("Informe o telefone de contato");
-      return;
-    } else if (cep === "" || cep.length < 8) {
-      setErro("Informe o CEP corretamente");
-      return;
-    }
-    else if (rua === '') {
-      setErro("Informe a rua do estabelecimento");
-      return;
-    }
-    else if (bairro === '') {
-      setErro("Informe o bairro do estabelecimento");
-      return;
-    }
-    else if (cidade === '') {
-      setErro("Informe a cidade do estabelecimento");
-      return;
-    }
-    else if (numero === '') {
-      setErro("Informe o número do estabelecimento");
-      return;
-    }
-    else {
-      setErro('');
-    }
+  const dadosEmpresa = {
+    cnpj: handleForm.sanitizeCnpj(cnpj),
+    nome_empresa: name,
+    descricao_empresa: descricao,
+    cep,
+    telefone_empresa: handleForm.sanitizeTelefone(telefone),
+    rua,
+    bairro,
+    cidade,
+    numero:numero,
     
-    const dadosEmpresa = {
-      cnpj: cleanedCnpj,
-      nome_empresa: nome,
-      descricao_empresa: descricao,
-      cep,
-      telefone_empresa: cleanedTelefone,
-      rua,
-      bairro,
-      cidade,
-      numero:numero,
-      
-    };
-    
-    if (userData) {
-
-      setLoading(true);
-      // Primeira requisição para salvar o usuário
-      axios.post('http://localhost:8080/usuario', userData)
-        .then(() => {
-          // Segunda requisição para salvar a empresa com o CPF do usuário
-          return axios.post(`http://localhost:8080/empresa?cpfUsuario=${userData.cpf}`, dadosEmpresa);
-        })
-        .then(response => {
-          localStorage.setItem('empresa',JSON.stringify(dadosEmpresa))
-          sessionStorage.setItem('empresa',JSON.stringify(dadosEmpresa))
-          console.log('Empresa salva com sucesso:', response.data);
-          navigate('/UserPage');
-        })
-        .catch(error => {
-          console.error('Erro ao salvar a Empresa ou Usuário:', error);
-          setLoading(false);
-        });
-    } else {
-      console.log('Nenhum dado de usuário encontrado no localStorage.');
-    }
   };
+
+  const cepRequest = (e) => {
+    e.preventDefault();
+    if(!ApiRequest.getAndSetCep(cep, setRua, setBairro, setCidade) == false){
+      error.cepRequestError()
+      return
+    } 
+  }
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    if(await handleForm.checkCompanyInputValues(e, inputValues, setErro) == false){
+      return;
+    }
+    setErro({});
+    if(userData){
+      setLoading(true);
+      await ApiRequest.createUserCad(userData, dadosEmpresa, setLoading, navigate);
+    }
+
+  }
 
   return (
     <div className='cadastroContent'>
       {loading ? LoadingData() : null}
       <h4 className="mt-4">Quase lá</h4>
-      <form onSubmit={validarFormulario} className="pb-5">
+      <form className="pb-5">
         <p>
           Preencha os campos abaixo com as informações essenciais sobre o seu negócio. Essas informações nos ajudarão a conectar você com clientes e outros serviços.
         </p>
@@ -171,10 +83,11 @@ function CompanyCad({userData}) {
               type="text"
               className="form-control"
               placeholder='Nome empresarial'
-              onChange={handleInputNome}
+              onChange={(e) => handleInput.handleInputChangeCompanyName(e, setName)}
+              value={name}
               autoComplete='off'
             />
-            <p className="error">{erro === "Você deve informar o nome de sua empresa" ? erro : null}</p>
+             {erro.name && <span className='error'>{erro.name}</span>}
           </div>
           <div className="text-left">
             <input
@@ -183,11 +96,11 @@ function CompanyCad({userData}) {
               placeholder="CNPJ"
               maxLength="18"
               className='form-control'
-              onChange={handleInputChange}
+              onChange={(e) => handleInput.handleInputChangeCnpj(e, setCnpj)}
               value={cnpj}
               autoComplete='off'
             />
-            <p className="error">{erro === "CNPJ inválido" ? erro : null}</p>
+            {erro.cnpj && <span className='error'>{erro.cnpj}</span>}
           </div>
         </div>
 
@@ -195,10 +108,10 @@ function CompanyCad({userData}) {
           <textarea
             className="form-control"
             placeholder="Descrição"
-            onChange={handleInputDescricao}
+            onChange={(e) => handleInput.handleInputChangeDescricao(e, setDescricao)}
             value={descricao}></textarea>
           <label>Descrição</label>
-          <p className="error">{erro === "Informe a descrição de sua empresa" ? erro : null}</p>
+          {erro.descricao && <span className='error'>{erro.descricao}</span>}
         </div>
         <div className="nameInput mt-4 text-left">
           <div className="w-100">
@@ -209,10 +122,10 @@ function CompanyCad({userData}) {
               placeholder='Telefone de contato'
               maxLength={14}
               value={telefone}
-              onChange={hanfleInputTelefone}
+              onChange={(e) => handleInput.handleInputChangeTelefone(e, setTelefone)}
               autoComplete='off'
             />
-            <p className="error">{erro === "Informe o telefone de contato" ? erro : null}</p>
+            {erro.telefone && <span className='error'>{erro.telefone}</span>}
           </div>
           </div>
 
@@ -223,25 +136,25 @@ function CompanyCad({userData}) {
                 type="text"
                 id="cep"
                 value={cep}
-                onChange={handleCepChange}
+                onChange={(e) => handleInput.handleInputChangeCep(e, setCep)}
                 className="form-control"
                 placeholder="CEP"
                 autoComplete='off'
                 maxLength={9}
               />
-              <p className="error">{erro === "Informe o CEP corretamente" ? erro : null}</p>
+              {erro.cep && <span className='error'>{erro.cep}</span>}
             </div>
             <div>
               <input
                 type="text"
                 id="rua"
                 value={rua}
-                onChange={(e) => setRua(e.target.value)}
+                onChange={(e) => handleInput.handleInputChangeRua(e, setRua)}
                 className="form-control"
                 placeholder="Rua"
                 autoComplete='off'
               />
-              <p className="error">{erro === "Informe a rua do estabelecimento" ? erro : null}</p>
+              {erro.rua && <span className='error float-left'>{erro.rua}</span>}
             </div>
           </div>
 
@@ -251,24 +164,24 @@ function CompanyCad({userData}) {
                 type="text"
                 id="bairro"
                 value={bairro}
-                onChange={(e) => setBairro(e.target.value)}
+                onChange={(e) => handleInput.handleInputChangeBairro(e, setBairro)}
                 className="form-control"
                 placeholder="Bairro"
                 autoComplete='off'
                 />
-              <p className="error">{erro === "Informe o bairro do estabelecimento" ? erro : null}</p>
+                {erro.bairro && <span className='error float-left'>{erro.bairro}</span>}
               </div>
             <div>
               <input
                 type="text"
                 id="numero"
                 value={numero}
-                onChange={handleNumeroChange}
+                onChange={(e) => handleInput.handleInputChangeNumero(e, setNumero)}
                 className="form-control"
                 placeholder="Número"
                 autoComplete='off'
               />
-              <p className="error">{erro === "Informe o número do estabelecimento" ? erro : null}</p>
+              {erro.numero && <span className='error float-left'>{erro.numero}</span>}
             </div>
           </div>
 
@@ -276,16 +189,20 @@ function CompanyCad({userData}) {
             type="text"
             id="cidade"
             value={cidade}
-            onChange={(e) => setCidade(e.target.value)}
+            onChange={(e) => handleInput.handleInputChangeCidade(e, setCidade)}
             className="form-control"
             placeholder="Cidade"
             autoComplete='off'
           />
-          <p className="error">{erro === "Informe a cidade do estabelecimento" ? erro : null}</p>
-          <button type="button" className="btn btn-primary aplicar mt-2" onClick={getCEP}>Auto completar</button>
-        </div>
+          {erro.cidade && <span className='error float-left'>{erro.cidade}</span>}
+          
+        </div> 
 
-        <button type="submit" className="continuarCadastro1 btn btn-primary mt-4">Finalizar</button>
+        <div className="buttonGroup">
+          <button type="button" className="btn btn-primary aplicar mt-2" onClick={(e) => cepRequest(e)}>Auto completar</button>
+          <button type="button" onClick={handleFormSubmit} className="continuarCadastro2 btn btn-primary mt-4">Finalizar</button>
+        </div>
+        <ToastContainer />
       </form>
 
      

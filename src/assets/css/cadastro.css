@@ -18,6 +18,7 @@
     flex-direction: column;
     margin: 0 auto;
     align-items: center;
+    padding: 30px;
 }
 .cadastroContent form .logoCadastro{
     align-self: flex-start;
@@ -58,6 +59,10 @@
     width: 80%;
     background-color: var(--blue3);
 }
+.cadastroContent form .buttonGroup .continuarCadastro2{
+    width: 100%;
+    background-color: var(--blue3);
+}
 .cadastroContent form .termos-e-politicas{
     width: 80%;
     opacity: 0.4;
@@ -80,23 +85,35 @@
     flex-direction: row;
     justify-content: space-between;
 }
-.cadastroContent form .cepInputs  .aplicar{
+
+.cadastroContent form .buttonGroup .aplicar{
     background-color: var(--blue3);
+    align-self: flex-start;
     float: left;
+}
+.cadastroContent form .buttonGroup{
+    width: 80%;
+    
 }
 .cadastroContent form .cpfInput{
     width: 80%;
 }
 
+
 @media screen and (max-width: 820px){
+    .error{
+        font-size: 14px;
+    }
     .cadastroContent form .logoCadastro{
         display: none;
     }
     .cadastroContent{
         width: 540px;
     }
+
 }
 @media screen and (max-width: 552px){
+
     .cadastroContent{
         box-shadow: none;
         width: 100%;

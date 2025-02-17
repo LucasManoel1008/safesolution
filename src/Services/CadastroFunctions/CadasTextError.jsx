@@ -9,7 +9,21 @@ const INVALID_PASSWORD = "Senha inválida";
 const DIFFERENT_PASSWORDS = "Senhas diferentes";
 const INVALID_CPF = "CPF inválido";
 const CPF_ALREADY_REGISTERED = "CPF já cadastrado";
-const CAD_ERROR_MESSAGES = {
+
+const INCOMPLETE_COMPANY_NAME = "Nome da empresa inválido";
+const INVALID_CNPJ = "CNPJ inválido";
+const CNPJ_ALREADY_REGISTERED = "CNPJ já cadastrado";
+const INCOMPLETE_COMPANY_DESCRIPTION = "Descrição da empresa inválida";
+const INCOMPLETE_COMPANY_TELEPHONE = "Telefone da empresa inválido";
+const INCOMPLETE_COMPANY_CEP = "CEP da empresa inválido";
+const CEP_NOT_FOUND = 'CEP não encontrado';
+const INCOMPLETE_COMPANY_STREET = "Rua da empresa inválida";
+const INCOMPLETE_COMPANY_DISTRICT = "Bairro da empresa inválido";
+const INCOMPLETE_COMPANY_CITY = "Cidade da empresa inválida";
+const INCOMPLETE_COMPANY_NUMBER = "Número da empresa inválido";
+
+
+export const CAD_USER_ERROR_MESSAGES = {
     INCOMPLETE_NAME,
     INCOMPLETE_LASTNAME,
     INCOMPLETE_EMAIL,
@@ -20,8 +34,22 @@ const CAD_ERROR_MESSAGES = {
     DIFFERENT_PASSWORDS,
     INVALID_CPF,
     CANT_CHECK_EMAIL,
-    CPF_ALREADY_REGISTERED
+    CPF_ALREADY_REGISTERED,
+    INCOMPLETE_COMPANY_NAME,
+    INVALID_CNPJ,
+    CNPJ_ALREADY_REGISTERED,
+    INCOMPLETE_COMPANY_DESCRIPTION,
+    INCOMPLETE_COMPANY_TELEPHONE,
+    INCOMPLETE_COMPANY_CEP,
+    CEP_NOT_FOUND,
+    INCOMPLETE_COMPANY_STREET,
+    INCOMPLETE_COMPANY_DISTRICT,
+    INCOMPLETE_COMPANY_CITY,
+    INCOMPLETE_COMPANY_NUMBER
 
 };
 
-export default CAD_ERROR_MESSAGES;
+export default CAD_USER_ERROR_MESSAGES;
+
+
+

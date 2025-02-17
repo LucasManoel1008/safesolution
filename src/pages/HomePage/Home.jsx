@@ -10,6 +10,7 @@ import SafeSolutionInformation from '../../assets/components/HomeComponents/Safe
 import ABOUT_SAFE_SOLUTION from '../../Services/HomeFunctions/HomeTextAboutSafeSolution.jsx';
 import CLIENTS_FEEDBACK from '../../Services/HomeFunctions/HomeTextClientsFeedback.jsx';
 import ClientsFeedbackContainer from '../../assets/components/HomeComponents/ClientsFeedbackContainer.jsx';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Home() {
   const [nome, setNome] = useState('');

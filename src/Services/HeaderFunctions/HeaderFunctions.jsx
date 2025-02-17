@@ -16,7 +16,7 @@ export const formatUserCnpj = (cnpj) => {
     return cnpj.replace(/[./-]/g, '');
 }
 export const getUserData = () =>{
-    const userData = localStorage.getItem('empresa') || sessionStorage.getItem('empresa');
+    const userData =  sessionStorage.getItem('empresa');
     return userData ? JSON.parse(userData) : false;
 }
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import {BrowserRouter , Routes, Route} from 'react-router-dom'
 import Home from './pages/HomePage/Home'
-import Login from './pages/Login'
+import Login from './pages/Login/Login'
 import RenderCadastroPage from './pages/CadastroPage/RenderCadastroPage'
 import UserPage from './pages/UserPage'
 import Termos from '../src/assets/components/subPages/Termos'
