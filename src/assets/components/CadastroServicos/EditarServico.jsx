@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react'
 import LoadingData from '../Loading/LoadingData';
 import styles from '../../css/editarServico.module.css';
 import {NumericFormat} from 'react-number-format';
+import { DateTime } from 'luxon';
+
 function  EditarServico({ onOptionChange,id}) {
 
     const [isloading, setIsLoading] = useState(true);
@@ -15,7 +17,7 @@ function  EditarServico({ onOptionChange,id}) {
     const [cidade, setCidade] = useState('');
     const [estado, setEstado] = useState('');
     const [valor_estimado_servico, setValor_estimado_servico] = useState('');
-
+    const [inicio, setInicio] = useState('');
       
     useEffect(() =>{
         const buscarServico = async () => {
@@ -44,15 +46,21 @@ function  EditarServico({ onOptionChange,id}) {
     const local_servico = `${cidade}, ${estado}`;
     
     // Validação de preenchimento
-    if (!nome_servico || !descricao_servico || !categorias || !criterios || !disponibilidade || !local_servico || !valorMinimo) {
-      window.alert('Por favor, preencha todos os campos obrigatórios.');
-      return;
-    }
-
-    if (disponibilidade === 'true' && !disponibilidade_servico) {
-      window.alert('Por favor, preencha a data de início do serviço.');
-      return;
-    }
+      if (!nome_servico || !descricao_servico || !categorias || !criterios || !disponibilidade || !local_servico || !valorMinimo) {
+         window.alert('Por favor, preencha todos os campos obrigatórios.');
+         return;
+       }
+   
+       if (disponibilidade === 'false' && (!inicio)) {
+         window.alert('Por favor, preencha a data de início do serviço.');
+         return;
+       }
+       let disponibilidade_servico;
+       if (disponibilidade === 'true') {
+         disponibilidade_servico = DateTime.now().setZone('America/Sao_Paulo').toISO();
+       } else {
+         disponibilidade_servico = disponibilidade_servico;
+       }
     if (disponibilidade === 'false') {
       const editarServico = {
         nome_servico,
@@ -258,8 +266,8 @@ function  EditarServico({ onOptionChange,id}) {
                         </label>
                       </div>
                     </div>
-          
-                    {disponibilidade === 'true' && (
+
+                    {disponibilidade == 'false' && (
                       <div className="disponibilidade pb-4">
                         <h5>Defina quando o serviço estará disponível:</h5>
                         <span>Informe a data de início do serviço</span>
@@ -270,8 +278,8 @@ function  EditarServico({ onOptionChange,id}) {
                               type="date"
                               className="form-control"
                               id="inicio"
-                              value={disponibilidade_servico}
-                              onChange={(e) => setDisponibilidadeServico(e.target.value)}
+                              value={inicio}
+                              onChange={(e) => setInicio(e.target.value)}
                               required
                             />
                           </div>

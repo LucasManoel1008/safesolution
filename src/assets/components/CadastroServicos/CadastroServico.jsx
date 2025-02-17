@@ -5,7 +5,7 @@ import AddImagem from './AddImagem';
 import '../../css/novoServico.css';
 import { Link } from 'react-router-dom';
 import LoadingData from '../Loading/LoadingData';
-
+import { DateTime } from 'luxon';
 
 function CadastroServico({ onOptionChange }) {
   const [nome_servico, setNome] = useState('');
@@ -56,8 +56,7 @@ function CadastroServico({ onOptionChange }) {
     let disponibilidade_servico;
 
     if (disponibilidade === 'true') {
-      const data = new Date();
-      disponibilidade_servico = data.toISOString().split('T')[0];
+      disponibilidade_servico = DateTime.now().setZone('America/Sao_Paulo').toISO();
     } else {
       disponibilidade_servico = disponibilidade_servico;
     }

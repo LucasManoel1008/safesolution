@@ -15,6 +15,9 @@ function Header() {
 
   useEffect(() => {
     validateAndFetchUserData();
+    if (sessionStorage.getItem('empresa') == null) {
+      setExistentLogin(false);
+    }
   }, [location]); 
 
   const validateAndFetchUserData = async () => {
@@ -134,7 +137,6 @@ const RightHeader = React.memo(() => {
           <div className="logo">
             <Link to="/" id="logo-header"><img src={Imagenspadroes.logo} alt="Logo" /></Link>
           </div>
-          {/* Troca de cabeçalho baseado no estado "logado" */}
           {existentLogin ? <LoggedHeader /> : <RightHeader />}
         </div>
       </header>
