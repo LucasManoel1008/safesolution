@@ -74,10 +74,10 @@ function  EditarServico({ onOptionChange,id}) {
       window.scrollTo(0, 0);
       setIsLoading(true);
       axios.put(`http://localhost:8080/servico/${id}`, editarServico)
-        .then(response => {
+        .then( () => {
           location.reload('');
         })
-        .catch(error => {
+        .catch(() => {
             setIsLoading(false);
         });
     }
