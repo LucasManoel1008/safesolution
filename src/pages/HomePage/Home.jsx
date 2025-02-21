@@ -41,6 +41,10 @@ function Home() {
     setMensagem,
     setError
   }
+  const validarFormulario = (e) => {
+    e.preventDefault()
+    formValidation.formValidation(e, inputsValue, updateFormValues)
+  }
 
   useEffect(() => {
     returnTopOnLoad()
@@ -167,7 +171,7 @@ function Home() {
         </section>
       </Fade>
         
-      <form className={styles.forms} onSubmit={(e) => formValidation.formValidation(e, inputsValue, updateFormValues)}>
+      <form className={styles.forms} onSubmit={validarFormulario}>
         <div className={styles.formsTitle}>
           <h4>Ainda dúvidas? Entre em Contato Conosco!</h4>
           <p>*Entrada Obrigatória</p>
