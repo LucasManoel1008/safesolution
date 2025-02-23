@@ -1,20 +1,18 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-import '../assets/css/userPage.css';  
+import '../../assets/css/UserPage.css';
 import { useNavigate } from 'react-router-dom';
-import UserProfile from '../assets/components/User/UserProfile';
-import UserSettings from '../assets/components/User/UserSettings';
-import UserOrders from '../assets/components/User/UserOrders';
-import EditProfile from '../assets/components/User/EditProfile';
-import ConfirmMessage from '../assets/components/User/ConfirmMessage';
-
-
-// Funções - Inicio
-
+import UserProfile from './UserProfile';
+import UserSettings from './UserSettings';
+import UserOrders from './UserOrders';
+import EditProfile from './EditProfile';
+import ConfirmMessage from '../../assets/components/User/ConfirmMessage'
+import * as functions from '../../Services/UserService/UserFunctions';
+import { fetchUserData } from '../../Services/UserService/UserApiRequest';
 function UserPage() {
   const [section, setSection] = useState('profile');
   const [empresa, setEmpresa] = useState(null);
-  const [menuOpen, setMenuOpen] = useState(false); // Estado para controlar a visibilidade do menu
+  const [menuState, setMenuState] = useState(false); 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,39 +20,18 @@ function UserPage() {
   }, []);
 
   const fetchEmpresaByCnpj = useCallback(async () => {
-    const empresaString = sessionStorage.getItem('empresa');
-    if (empresaString) {
-      const dadosEmpresa = JSON.parse(empresaString);
-    
-      const cnpj = dadosEmpresa.cnpj.replace(/[./-]/g, '');
-     
-      if (cnpj) {
-        try {
-          const response = await axios.get(`http://localhost:8080/empresa/${cnpj}`);
-          setEmpresa(response.data);
-        } catch (error) {
-          
-        }
-        finally {
-          setTimeout(() => {
-          sessionStorage.removeItem('dadosSalvos');
-          },4000);
-        }
-      } else if (dadosEmpresa) {
-        try {
-          const response = await axios.get(`http://localhost:8080/empresa/${dadosEmpresa}`);
-          
-          setEmpresa(response.data);
-        } catch (error) {
-          
-        }
-        
-      }
-    } else {
-      
+    try {
+      const userData = await functions.getUserData();
+      const response = await fetchUserData(userData);
+      setEmpresa(response);
+    } catch (error) {
+      console.error('Erro ao buscar empresa:', error);
+    } finally {
+      setTimeout(() => {
+        sessionStorage.removeItem('dadosSalvos');
+      }, 4000);
     }
   }, []);
-
 
   const renderSection = () => {
     switch (section) {
@@ -91,15 +68,15 @@ function UserPage() {
   };
 
   const toggleMenu = () => {
-    setMenuOpen(!menuOpen); // Alterna a visibilidade do menu
+    setMenuState(!menuState);
   };
 
   return (
     <div className='user-page mb-5'>
       {sessionStorage.getItem('dadosSalvos') && <ConfirmMessage />}
       <div className="menuResponsivo mb-2">
-        <button className='btn btn-primary mb-2 openMenu' onClick={toggleMenu}>{menuOpen ? <i className="fa-solid fa-caret-up"></i> : <i className="fa-solid fa-caret-down"></i>}</button>
-        {menuOpen && ( // Renderiza o menu apenas se menuOpen for true
+        <button className='btn btn-primary mb-2 openMenu' onClick={toggleMenu}>{menuState ? <i className="fa-solid fa-caret-up"></i> : <i className="fa-solid fa-caret-down"></i>}</button>
+        {menuState && ( 
           <div className="nav-links">
             <button className='nav-item mr-1 btn' id='profile' onClick={() => setSection('profile')}><i className="fa-solid fa-user pr-2"></i>Perfil</button>
             <button className='nav-item mr-1 btn' onClick={() => setSection('settings')}><i className="fa-solid fa-shield pr-2"></i>Segurança e Privacidade</button>

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import ImagensUser from '../../../shared/ImagensUser.jsx';
-import styles from '../../css/userProfile.module.css';
+import ImagensUser from '../../shared/ImagensUser.jsx';
+import styles from '../../assets/css/userProfile.module.css'
 import axios from 'axios';
 
 const UserProfile = React.memo(({empresa , apagarConta, setSection }) => {
