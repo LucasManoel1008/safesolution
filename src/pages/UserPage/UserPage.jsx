@@ -22,8 +22,8 @@ function UserPage() {
   const fetchEmpresaByCnpj = useCallback(async () => {
     try {
       const userData = await functions.getUserData();
-      const response = await fetchUserData(userData);
-      setEmpresa(response);
+      const userDataResponse = await fetchUserData(userData);
+      setEmpresa(userDataResponse);
     } catch (error) {
       console.error('Erro ao buscar empresa:', error);
     } finally {
