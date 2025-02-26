@@ -1,40 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { getUserData } from '../../../Services/CadastroServicoFunctions/CadastroServicoFunctions';
+import { fetchUserData } from '../../../Services/CadastroServicoFunctions/CadastroServicoApiRequest';
+
 function VisualizarServico({ onOptionChange }) {
   const [time, setTime] = useState(10); // Tempo inicial (em segundos)
   const [message, setMessage] = useState(""); // Mensagem a ser exibida
   const [dados, setDados] = useState([]);
   const [loading, setLoading] = useState(true); // Estado de carregamento
-  
-  const navigate = useNavigate();
 
   // Função para buscar os serviços com base no CNPJ
-  const Busca = () => {
-    const empresaString = sessionStorage.getItem('empresa');
+  const FetchServiceData = async () => {
+    if (!getUserData()) return; // Retorna cedo se não houver dados
+    setLoading(true);
+    const empresaString = getUserData();
     if (empresaString) {
-      const empresa = JSON.parse(empresaString); // Parse do objeto JSON
-      axios
-        .get(`http://localhost:8080/servico/empresa/${empresa.cnpj}`)
-        .then((response) => {
-          setDados(response.data);
-        })
-        .catch(() => {
-          setMessage("Erro ao buscar serviços.");
-        })
-        .finally(() => {
-          setLoading(false); // Finaliza o loading quando a requisição terminar
-        });
+      try{
+        fetchUserData(empresaString.cnpj, setDados);
+        setLoading(false);
+
+      } catch (error) {
+        setMessage("Erro ao buscar serviços");
+        setLoading(false);
+      }
     } else {
       setMessage("Login não encontrado");
       setLoading(false); // Caso não tenha um CNPJ no sessionStorage
     }
   };
 
-
   // Inicia o timer
   useEffect(() => {
-    if (time <= 0) {
+    if (time <= 0 && dados.length === 0) {
       setMessage("Não foram encontrados serviços cadastrados");
       return;
     }
@@ -49,8 +46,9 @@ function VisualizarServico({ onOptionChange }) {
 
   // Executa a busca quando o componente for montado
   useEffect(() => {
-    Busca();
+    FetchServiceData();
   }, []);
+
   const handleDelete = async (id) => {
     setLoading(false);
     try {
@@ -105,7 +103,7 @@ function VisualizarServico({ onOptionChange }) {
                     <span className="visually-hidden">Carregando...</span>
                   </div>
                 ) : (
-                  <p>{message || "Não foram encontrados serviços cadastrados"}</p>
+                  <p>{message}</p>
                 )}
               </td>
             </tr>

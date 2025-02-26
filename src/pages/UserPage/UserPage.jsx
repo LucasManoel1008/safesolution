@@ -8,7 +8,8 @@ import UserOrders from './UserOrders';
 import EditProfile from './EditProfile';
 import ConfirmMessage from '../../assets/components/User/ConfirmMessage'
 import * as functions from '../../Services/UserService/UserFunctions';
-import { fetchUserData } from '../../Services/UserService/UserApiRequest';
+import { fetchUserData} from '../../Services//UserService/UserApiRequest'
+import { sanitizeCnpj } from '../../Services/CadastroFunctions/CadastroValidation';
 function UserPage() {
   const [section, setSection] = useState('profile');
   const [empresa, setEmpresa] = useState(null);
@@ -22,7 +23,8 @@ function UserPage() {
   const fetchEmpresaByCnpj = useCallback(async () => {
     try {
       const userData = await functions.getUserData();
-      const userDataResponse = await fetchUserData(userData);
+      const userCpnj = sanitizeCnpj(userData);
+      const userDataResponse = await fetchUserData(userCpnj);
       setEmpresa(userDataResponse);
     } catch (error) {
       console.error('Erro ao buscar empresa:', error);

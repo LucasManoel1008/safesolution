@@ -15,6 +15,7 @@ export const retrieveUserData = async (setExistentLogin,setUserData, cleanCnpj) 
 export const formatUserCnpj = (cnpj) => {
     return cnpj.replace(/[./-]/g, '');
 }
+
 export const getUserData = () =>{
     const userData =  sessionStorage.getItem('empresa');
     return userData ? JSON.parse(userData) : false;

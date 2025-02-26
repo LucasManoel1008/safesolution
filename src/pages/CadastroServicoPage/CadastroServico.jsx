@@ -1,26 +1,21 @@
 import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom';
-import '../assets/css/cadServico.css'
-import ImagensUser from '../shared/ImagensUser'
-import EmAndamento from '../assets/components/CadastroServicos/EmAndamento';
-import Servicos from '../assets/components/CadastroServicos/Servicos';
-import Pedidos from '../assets/components/CadastroServicos/Pedidos';
+import '../../assets/css/cadServico.css'
+import ImagensUser from '../../shared/ImagensUser'
+import EmAndamento from '../../assets/components/CadastroServicos/EmAndamento';
+import Servicos from '../../assets/components/CadastroServicos/Servicos';
+import Pedidos from '../../assets/components/CadastroServicos/Pedidos';
+import { fetchEmpresaByCnpj } from '../../Services/CadastroServicoFunctions/CadastroServicoFunctions';
 
 function CadastroServico() {
-
     const [section, setSection] = useState('profile');
     const [empresa, setEmpresa] = useState('')
 
     useEffect(() => {
-      fetchEmpresaByCnpj(); // Chama a função para buscar a empresa quando o componente monta
+      const empresaData = fetchEmpresaByCnpj();
+      setEmpresa(empresaData);
     }, []);
-  
-    const fetchEmpresaByCnpj = async () => {
-      const empresaString = sessionStorage.getItem('empresa');
-      if (!empresaString) return; // Retorna cedo se não houver dados
-      setEmpresa(JSON.parse(empresaString)); // Atualiza o estado com os dados da empresa
-    };
-  // Irá mostrar de acordo com o valor definido
+    
   const renderSection = () => {
     switch (section) {
       case 'servicos':

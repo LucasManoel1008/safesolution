@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import {NumericFormat} from 'react-number-format';
-import AddImagem from './AddImagem';
+
 import '../../css/novoServico.css';
 import { Link } from 'react-router-dom';
 import LoadingData from '../Loading/LoadingData';
@@ -21,22 +21,6 @@ function CadastroServico({ onOptionChange }) {
   const [valorMinimo, setValorMinimo] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const addImagem = (e) => {
-    e.preventDefault(); // Evita o envio do formulário
-    if (contador < 3) {
-      setImages([...images, <AddImagem key={images.length} />]);
-      setContador(contador + 1);
-    }
-  };
-
-  const removeImage = (e) => {
-    e.preventDefault(); // Evita o envio do formulário
-
-    if (images.length > 0) {
-      setImages(prevImagem => prevImagem.slice(0, -1));
-      setContador(contador - 1);
-    }
-  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -127,25 +111,7 @@ function CadastroServico({ onOptionChange }) {
             </div>
           </div>
 
-          {/* <div className="imagemServico mt-4 mb-4 pb-4">
-            <div className="d-flex justify-content-between">
-              <h5>Adicione uma imagem de seu serviço</h5>
-              <h5>&#8317; {contador} / 3 &#8318;</h5>
-            </div>
-            <div className="d-flex">
-              <AddImagem />
-              {images.map((imagem) => imagem)}
-              <button
-                className="adicionar"
-                onClick={addImagem}
-                role='button'
-                disabled={contador >= 3}
-              >
-                +
-              </button>
-              {images.length > 0 && <button className="remover" onClick={removeImage}>-</button>}
-            </div>
-          </div> */}
+
 
           <div className="Categoria pb-4">
             <h5>Escolha uma categoria para seu serviço</h5>

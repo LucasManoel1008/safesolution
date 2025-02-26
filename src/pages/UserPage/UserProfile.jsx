@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import ImagensUser from '../../shared/ImagensUser.jsx';
 import styles from '../../assets/css/userProfile.module.css'
-import axios from 'axios';
+
 
 const UserProfile = React.memo(({empresa , apagarConta, setSection }) => {
 
@@ -9,6 +9,7 @@ const UserProfile = React.memo(({empresa , apagarConta, setSection }) => {
     const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
     return new Date(dateString).toLocaleDateString(undefined, options);
   };  
+  
   return (
   <div className={`${styles.userProfile} p-4 mb-4`}>
     <div className={styles.userPageHeader}>

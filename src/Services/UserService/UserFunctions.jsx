@@ -1,3 +1,4 @@
+
     export const getUserData = async () => {
         const data = sessionStorage.getItem('empresa')
         if (!data) {
