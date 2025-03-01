@@ -24,8 +24,7 @@ function UserPage() {
     try {
       const userData = await functions.getUserData();
       const userCpnj = sanitizeCnpj(userData);
-      const userDataResponse = await fetchUserData(userCpnj);
-      setEmpresa(userDataResponse);
+      await fetchUserData(userCpnj, setEmpresa);
     } catch (error) {
       console.error('Erro ao buscar empresa:', error);
     } finally {

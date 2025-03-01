@@ -1,21 +1,20 @@
 import VisualizarServico from './VisualizarServico';
-import CadastroServico from './CadastroServico';
+import CadastroServico from './CadastrarServico';
 import EditarServico from './EditarServico';
 import { useState } from 'react';
-function Servicos() {
+function ServicosExibition() {
 
-  const [option, setOption] = useState('visualizar');
+  const [section, setSection] = useState('visualizar');
   const [selectedId, setSelectedId] = useState(null);
   
-  // Passa o id selecionado para o EditarServiço
-  // A função é passada para os outros componentes
-  const handleOption = (option, id = null) => {
-    setOption(option);
+
+  const handleOption = (section, id = null) => {
+    setSection(section);
     setSelectedId(id);
 
   }
   const renderSection = () => {
-    switch (option) {
+    switch (section) {
       case 'visualizar':
         // o onClick de visualizar serviço esta sendo passado como props aqui!
         return <VisualizarServico onOptionChange={handleOption} />;
@@ -36,4 +35,4 @@ function Servicos() {
   </div>
   )
 }
-export default Servicos
+export default ServicosExibition

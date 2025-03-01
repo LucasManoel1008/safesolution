@@ -1,7 +1,7 @@
   export const fetchEmpresaByCnpj = async (setEmpresa) => {
       const empresaString = sessionStorage.getItem('empresa');
       if (!empresaString) return; // Retorna cedo se não houver dados
-      return JSON.parse(empresaString); // Atualiza o estado com os dados da empresa
+      setEmpresa(JSON.parse(empresaString)) // Atualiza o estado com os dados da empresa
     };
 
   export const getUserData = () =>{

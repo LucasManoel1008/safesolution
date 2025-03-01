@@ -14,7 +14,6 @@ function VisualizarServico({ onOptionChange }) {
     if (!getUserData()) return; // Retorna cedo se não houver dados
     setLoading(true);
     const empresaString = getUserData();
-    if (empresaString) {
       try{
         fetchUserData(empresaString.cnpj, setDados);
         setLoading(false);
@@ -23,11 +22,8 @@ function VisualizarServico({ onOptionChange }) {
         setMessage("Erro ao buscar serviços");
         setLoading(false);
       }
-    } else {
-      setMessage("Login não encontrado");
-      setLoading(false); // Caso não tenha um CNPJ no sessionStorage
-    }
-  };
+    } 
+  
 
   // Inicia o timer
   useEffect(() => {
@@ -38,7 +34,7 @@ function VisualizarServico({ onOptionChange }) {
 
     const timer = setInterval(() => {
       setTime((prevTime) => prevTime - 1); // Reduz 1 a cada segundo
-    }, 40);
+    }, 80);
 
     // Limpa o intervalo quando o componente for desmontado ou `time` mudar
     return () => clearInterval(timer);

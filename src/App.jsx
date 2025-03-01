@@ -14,7 +14,7 @@ import Servico1 from '../src/assets/components/subPages/Servico1'
 import Header from './assets/components/Header'
 import Footer from './assets/components/Footer'
 import NotFound from './assets/components/NotFound'
-import CadastroServico from './pages/CadastroServicoPage/CadastroServico'
+import MeusServicos from './pages/CadastroServicoPage/MeusServicos'
 import Solicitação from '../src/assets/components/subPages/Solicitação'
 import Pagamento from './pages/Pagamento'
 import EditarServico from './assets/components/CadastroServicos/EditarServico'
@@ -38,7 +38,7 @@ function App() {
       <Route path='/Orcamento' element={<Orcamento/>}/>
       <Route path='/Politicas-de-Privacidade' element = {<Politicas/>} />
       <Route path='/Orcamento2' element={<Orcamento2/>}/>
-      <Route path='/Cadastro-Servico' element={<CadastroServico/>}/>
+      <Route path='/Cadastro-Servico' element={<MeusServicos/>}/>
       <Route path='EditarServico/:id' element={<EditarServico />}/>
       <Route path='/Confirmacao' element={<Confirmação/>}/>
       <Route path='/Solicitação' element ={<Solicitação/>}/>

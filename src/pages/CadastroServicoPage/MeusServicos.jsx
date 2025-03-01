@@ -1,31 +1,34 @@
 import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom';
-import '../../assets/css/cadServico.css'
+import './cadServico.css'
 import ImagensUser from '../../shared/ImagensUser'
 import EmAndamento from '../../assets/components/CadastroServicos/EmAndamento';
-import Servicos from '../../assets/components/CadastroServicos/Servicos';
+import ServicosExibition from '../../assets/components/CadastroServicos/ServicoExibition';
 import Pedidos from '../../assets/components/CadastroServicos/Pedidos';
 import { fetchEmpresaByCnpj } from '../../Services/CadastroServicoFunctions/CadastroServicoFunctions';
 
-function CadastroServico() {
+function MeusServicos() {
     const [section, setSection] = useState('profile');
     const [empresa, setEmpresa] = useState('')
 
     useEffect(() => {
-      const empresaData = fetchEmpresaByCnpj();
-      setEmpresa(empresaData);
+      const fetchData = async () => {
+        fetchEmpresaByCnpj(setEmpresa)
+      }
+
+      fetchData();
     }, []);
-    
+  
   const renderSection = () => {
     switch (section) {
       case 'servicos':
-        return <Servicos />
+        return <ServicosExibition />
       case 'statistics':
         return <EmAndamento />;
       case 'pedidos':
         return <Pedidos />;
       default:
-        return <Servicos />;
+        return <ServicosExibition />;
     }
     
   };
@@ -53,7 +56,7 @@ function CadastroServico() {
   
   return (
     <div className='cadServico'>
-      <MenuLateral nomeEmpresa={empresa.nome_empresa || 'Carregando...'} />
+      <MenuLateral nomeEmpresa={empresa.nome_empresa} />
         <div className='conteudoPrincipal border-left'>
             {renderSection()}
          </div>
@@ -61,4 +64,4 @@ function CadastroServico() {
   )
 }
 
-export default CadastroServico
+export default MeusServicos

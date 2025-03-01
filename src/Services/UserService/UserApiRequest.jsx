@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-    export const fetchUserData = async (cnpj) => {try {
+    export const fetchUserData = async (cnpj, setEmpresa) => {try {
         const response = await axios.get(`http://localhost:8080/empresa/${cnpj}`);
-        return response.data;
+        setEmpresa(response.data);
       } catch (error) {
         console.error('Erro ao buscar empresa:', error);
       }
