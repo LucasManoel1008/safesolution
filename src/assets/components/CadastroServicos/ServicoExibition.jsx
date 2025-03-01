@@ -16,7 +16,6 @@ function ServicosExibition() {
   const renderSection = () => {
     switch (section) {
       case 'visualizar':
-        // o onClick de visualizar serviço esta sendo passado como props aqui!
         return <VisualizarServico onOptionChange={handleOption} />;
       case 'Cadastrar':
         return <CadastroServico onOptionChange={handleOption} />

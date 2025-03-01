@@ -1,54 +1,36 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import {NumericFormat} from 'react-number-format';
-
+import { validateUserInput } from '../../../Services/CadastroServicoFunctions/CadastroServicoValidation';
 import '../../css/novoServico.css';
 import { Link } from 'react-router-dom';
 import LoadingData from '../Loading/LoadingData';
-import { DateTime } from 'luxon';
+import { getDateForService } from '../../../Services/CadastroServicoFunctions/CadastroServicoFunctions';
+import { sanitizeCnpj } from '../../../Services/CadastroFunctions/CadastroValidation';
+import { postService } from '../../../Services/CadastroServicoFunctions/CadastroServicoApiRequest';
 
 function CadastroServico({ onOptionChange }) {
   const [nome_servico, setNome] = useState('');
   const [descricao_servico, setDescricao] = useState('');
   const [categorias, setCategorias] = useState('');
   const [criterios, setCriterios] = useState('');
-  const [images, setImages] = useState([]);
-  const [contador, setContador] = useState(1);
   const [disponibilidade, setDisponibilidade] = useState('');
   const [inicio, setInicio] = useState('');
   const [estado, setEstado] = useState('');
   const [cidade, setCidade] = useState('');
   const [valorMinimo, setValorMinimo] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState([]);
 
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const local_servico = `${cidade}, ${estado}`;
-    
-    // Validação de preenchimento
-    if (!nome_servico || !descricao_servico || !categorias || !criterios || !disponibilidade || !local_servico || !valorMinimo) {
-      window.alert('Por favor, preencha todos os campos obrigatórios.');
-      return;
-    }
-
-    if (disponibilidade === 'false' && (!inicio)) {
-      window.alert('Por favor, preencha a data de início do serviço.');
-      return;
-    }
-    
-    let disponibilidade_servico;
-
-    if (disponibilidade === 'true') {
-      disponibilidade_servico = DateTime.now().setZone('America/Sao_Paulo').toISO();
-    } else {
-      disponibilidade_servico = disponibilidade_servico;
-    }
-  
+    setError({});
+    if(!validateUserInput(inputsValues, setError)) return;
+    let disponibilidade_servico = getDateForService(disponibilidade, inicio);
     const empresaString = sessionStorage.getItem('empresa');
     if (empresaString) {
       const dadosEmpresa = JSON.parse(empresaString);
-      const cnpj = dadosEmpresa.cnpj.replace(/[./-]/g, '');
+      const cnpj = sanitizeCnpj(dadosEmpresa.cnpj);
       const novoServico = {
         nome_servico,
         descricao_servico,
@@ -57,20 +39,36 @@ function CadastroServico({ onOptionChange }) {
         criterios_servico: criterios,
         status_servico: disponibilidade,
         disponibilidade_servico: disponibilidade_servico,
-        local_servico,
+        local_servico: `${cidade}, ${estado}`,
         valor_estimado_servico: valorMinimo,
       };
       window.scrollTo(0, 0);
       setLoading(true);
-      axios.post(`http://localhost:8080/servico?cnpjEmpresa=${cnpj}`, novoServico)
-        .then(response => {
-          location.reload('');
-        })
-        .catch(error => {
-          setLoading(false);
-        });
+      try{
+        await postService(novoServico, cnpj);
+        
+      }
+      catch(error){
+        console.error('Erro ao cadastrar serviço:', error);
+      }
+      finally{
+        setLoading(false);
+      }
     }
+        
   };
+
+  const inputsValues = {
+    nome_servico,
+    descricao_servico,
+    categorias,
+    criterios,
+    disponibilidade,
+    cidade,
+    estado,
+    inicio,
+    valorMinimo
+  }
 
   return (
     <div className="m-4 CadastroServicoContent">
@@ -95,8 +93,9 @@ function CadastroServico({ onOptionChange }) {
                 maxLength={100}
                 value={nome_servico}
                 onChange={(e) => setNome(e.target.value)}
-                required
+                
               />
+              {error.nome_servico && <span className='error' id='nome_servico' >{error.nome_servico}</span>}
             </div>
             <div className="form-group">
               <label htmlFor="descricao">Descrição do Serviço</label>
@@ -106,8 +105,9 @@ function CadastroServico({ onOptionChange }) {
                 rows="3"
                 value={descricao_servico}
                 onChange={(e) => setDescricao(e.target.value)}
-                required
+                
               ></textarea>
+              {error.descricao_servico && <span className='error' id='descricao_servico'>{error.descricao_servico}</span>}
             </div>
           </div>
 
@@ -121,7 +121,6 @@ function CadastroServico({ onOptionChange }) {
                 className="form-select"
                 value={categorias}
                 onChange={(e) => setCategorias(e.target.value)}
-                required
               >
                 <option value="">- Escolha uma categoria -</option>
                 <option value="arquitetura">Arquitetura</option>
@@ -131,6 +130,7 @@ function CadastroServico({ onOptionChange }) {
                 <option value="encanador">Encanador</option>
                 <option value="tecnologia">Tecnologia</option>
               </select>
+              {error.categorias && <span className='error' id="categorias">{error.categorias}</span>}
             </div>
           </div>
 
@@ -140,15 +140,42 @@ function CadastroServico({ onOptionChange }) {
             <div className="form-row">
               <div className="form-group col-md-6">
                 <label htmlFor="estado">Estado</label>
-                <input
-                  type='text'
-                  className="form-control"
+                <select
+                  className="form-select selectEstado"
                   id="estado"
-                  placeholder="Estado"
                   value={estado}
                   onChange={(e) => setEstado(e.target.value)}
-                  required
-                />
+                >
+                <option value="" disabled>- Escolha um estado -</option>
+                <option value="Acre">Acre</option>
+                <option value="Alagoas">Alagoas</option>
+                <option value="Amapá">Amapá</option>
+                <option value="Amazonas">Amazonas</option>
+                <option value="Bahia">Bahia</option>
+                <option value="Ceará">Ceará</option>
+                <option value="Distrito Federal">Distrito Federal</option>
+                <option value="Espírito Santo">Espírito Santo</option>
+                <option value="Goiás">Goiás</option>
+                <option value="Maranhão">Maranhão</option>
+                <option value="Mato Grosso">Mato Grosso</option>
+                <option value="Mato Grosso do Sul">Mato Grosso do Sul</option>
+                <option value="Minas Gerais">Minas Gerais</option>
+                <option value="Pará">Pará</option>
+                <option value="Paraíba">Paraíba</option>
+                <option value="Paraná">Paraná</option>
+                <option value="Pernambuco">Pernambuco</option>
+                <option value="Piauí">Piauí</option>
+                <option value="Rio de Janeiro">Rio de Janeiro</option>
+                <option value="Rio Grande do Norte">Rio Grande do Norte</option>
+                <option value="Rio Grande do Sul">Rio Grande do Sul</option>
+                <option value="Rondônia">Rondônia</option>
+                <option value="Roraima">Roraima</option>
+                <option value="Santa Catarina">Santa Catarina</option>
+                <option value="São Paulo">São Paulo</option>
+                <option value="Sergipe">Sergipe</option>
+                <option value="Tocantins">Tocantins</option>
+                </select>
+                {error.estado && <span className='error' id='estado'>{error.estado}</span>}
               </div>
               <div className="form-group col-md-6">
                 <label htmlFor="cidade">Cidade</label>
@@ -159,8 +186,9 @@ function CadastroServico({ onOptionChange }) {
                   placeholder="Cidade"
                   value={cidade}
                   onChange={(e) => setCidade(e.target.value)}
-                  required
+                  
                 />
+                {error.cidade && <span className='error' id='cidade'>{error.cidade}</span>}
               </div>
             </div>
           </div>
@@ -180,11 +208,12 @@ function CadastroServico({ onOptionChange }) {
                   value={valorMinimo}
                   onValueChange={(values) => {
                     const { formattedValue, value } = values;
-                    setValorMinimo(value);
+                    setValorMinimo(formattedValue);
                   }}
                   maxLength={9}
-                  required
+                  
                 />
+                {error.valorMinimo && <span className='error' id='valorMinimo'>{error.valorMinimo}</span>}
               </div>
             </div>
           </div>
@@ -200,8 +229,9 @@ function CadastroServico({ onOptionChange }) {
               rows="3"
               value={criterios}
               onChange={(e) => setCriterios(e.target.value)}
-              required
+              
             ></textarea>
+            {error.criterios && <span className='error' id='criterios'>{error.criterios}</span> }
             </div>  
           </div>
 
@@ -216,7 +246,6 @@ function CadastroServico({ onOptionChange }) {
                 id="disponivel"
                 value="true"
                 onChange={(e) => setDisponibilidade(e.target.value)}
-                required
               />
               <label className="form-check-label" htmlFor="disponivel">
                 Disponível
@@ -230,12 +259,12 @@ function CadastroServico({ onOptionChange }) {
                 id="indisponivel"
                 value= "false"
                 onChange={(e) => setDisponibilidade(e.target.value)}
-                required
               />
               <label className="form-check-label" htmlFor="indisponivel">
                 Indisponível
-              </label>
+              </label>          
             </div>
+            {error.disponibilidade && <span className='error' id='disponibilidade'>{error.disponibilidade}</span>}
           </div>
 
           {disponibilidade == 'false' && (
@@ -251,8 +280,10 @@ function CadastroServico({ onOptionChange }) {
                     id="inicio"
                     value={inicio}
                     onChange={(e) => setInicio(e.target.value)}
-                    required
+                    
                   />
+                  {error.inicio && <span className='error' id='inicio'>{error.inicio}</span>}
+                  
                 </div>
               </div>
             </div>
@@ -264,7 +295,7 @@ function CadastroServico({ onOptionChange }) {
               className="form-check-input"
               type="checkbox"
               id="flexCheckDefault"
-              required
+              
             />
             <label className="form-check-label" htmlFor="flexCheckDefault">
               Ao continuar, afirmo que li e concordo com a{" "}

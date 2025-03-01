@@ -15,23 +15,4 @@
 .CadastroServicoContent .produtoLayout h5{
     color: var(--blue3);
 }
-.adicionar, .remover{
-    height: fit-content;
-    align-self: center;
-    border: 1px solid var(--blue3);
-    margin-left: 10px;
-    padding: 5px 10px;
-    background-color: transparent;
-    border-radius: 20%;
-    transition: all 0.2s;
-    }
-    .CadastroServicoContent .produtoLayout p{
-        color: var(--blue3);
-        font-weight: 600;
-    }
-.adicionar:active, .remover:active {
-    background-color: var(--blue3);
-    color: white;
-    transition: all 0.7s;
-}
 
