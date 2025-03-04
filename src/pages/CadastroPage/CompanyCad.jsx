@@ -22,7 +22,6 @@ function CompanyCad({userData}) {
   const [erro, setErro] = useState({});
   const navigate = useNavigate();
 
-  // Função para validar o formulário
   const inputValues ={
     cnpj,
     name,

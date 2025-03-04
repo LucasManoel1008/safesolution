@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../../assets/css/cadastro.css';
 import * as handleInput from '../../Services/CadastroFunctions/CadastroHandleInputs'
@@ -14,7 +14,28 @@ function UserCad({setSection, setUserData}) {
   const [error, setError] = useState({});
   const completeName = `${name} ${lastName}`
 
+  useEffect(() => {
+    backupUserData()
+  }, [])
 
+  const backupUserData = () => {
+    const useBackup = JSON.parse(sessionStorage.getItem('userBackup'))
+    if(useBackup){
+      setName(useBackup.name)
+      setLastName(useBackup.lastName)
+      setEmail(useBackup.email)
+      setBirthDate(useBackup.birthDate)
+      setCpf(useBackup.cpf)
+    }
+  }
+
+  const backupData = {
+    name,
+    lastName,
+    email,
+    birthDate,
+    cpf,
+  }
 
   const inputValues = {
     name,
@@ -42,20 +63,23 @@ function UserCad({setSection, setUserData}) {
     };
     setError({})
     setUserData(userData)
+    sessionStorage.setItem('userBackup', JSON.stringify(backupData))
     setSection(2)
   }
 
   return (
     <div className='cadastroContent'>
+
       <h4 className='mt-3'>Cadastro</h4>
-      <form onSubmit={validarFormulario}>
+
+      <form onSubmit={validarFormulario} autoComplete='off'>
         <div className='nameInput mt-4'>
           <div className='text-left'>
           <input
             type='text'
             className='form-control'
             placeholder='Primeiro nome'
-            value={name}
+            value={name ?? ''}
             onChange={(e) => handleInput.handleInputChangeName(e, setName)}
             
           />
@@ -66,7 +90,7 @@ function UserCad({setSection, setUserData}) {
             type='text'
             className='form-control'
             placeholder='Último nome'
-            value={lastName}
+            value={lastName ?? ''}
             onChange={(e) => handleInput.handleInputChangeLastName(e, setLastName)}
             autoComplete='off'
           />
@@ -78,7 +102,7 @@ function UserCad({setSection, setUserData}) {
             type='email'
             className='form-control mt-4'
             placeholder='Email'
-            value={email}
+            value={email ?? ''}
             onChange={(e) => handleInput.handleInputChangeEmail(e, setEmail)}
             autoComplete='off'
           />
@@ -92,7 +116,7 @@ function UserCad({setSection, setUserData}) {
             type='text'
             className='form-control'
             id='date'
-            value={birthDate}
+            value={birthDate ?? ''}
             placeholder='dd/mm/aaaa'
             maxLength={10}
             onChange={(e) => handleInput.handleInputBirthDate(e, setBirthDate)}
@@ -106,7 +130,9 @@ function UserCad({setSection, setUserData}) {
               type='password'
               className='form-control'
               placeholder='Digite uma senha'
-              autoComplete='off'
+              autoComplete='new-password'
+              
+              value={password ?? ''}
             />
             {error.password && <span className='error'>{error.password}</span>}
           </div>
@@ -116,7 +142,8 @@ function UserCad({setSection, setUserData}) {
               className='form-control'
               placeholder='Confirme sua senha'
               onChange={(e) => handleInput.handleInputConfirmPassword(e, setConfirmPassword)}
-              autoComplete='off'
+              autoComplete='new-password'
+              value={confirmPassword ?? ''}
             />
             {error.password && <span className='error float-left'>{error.password}</span>}
           </div>
@@ -128,7 +155,7 @@ function UserCad({setSection, setUserData}) {
             placeholder='CPF'
             id='cpf'
             maxLength={14}
-            value={cpf}
+            value={cpf ?? ''}
             onChange={(e) => handleInput.handleInputChangeCpf(e, setCpf)}
             autoComplete='off'
           />

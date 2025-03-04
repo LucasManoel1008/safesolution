@@ -13,7 +13,7 @@ export const checkInputValues = async (inputValues, setError) => {
     novosErros.email = CAD_USER_ERROR_MESSAGES.INCOMPLETE_EMAIL;
   }
   else{
-    await checkEmailExists(email, novosErros);
+    checkEmailExists(email, novosErros);
   }
   if (birthDate == '') {
     novosErros.birthDate = CAD_USER_ERROR_MESSAGES.INVALID_AGE;
@@ -30,7 +30,7 @@ export const checkInputValues = async (inputValues, setError) => {
    novosErros.cpf = CAD_USER_ERROR_MESSAGES.INVALID_CPF;
   }
   else{
-    await checkCpfExists(sanitizeCpf(cpf), novosErros);
+    checkCpfExists(sanitizeCpf(cpf), novosErros);
   }
   if (Object.keys(novosErros).length > 0){
     setError(novosErros);
@@ -72,7 +72,6 @@ export const checkCompanyInputValues = async (e, inputValues, setErro) => {
 
 
 export const checkCepInput = (cep) => { 
-  console.log(cep);
   if (cep === "" || cep.length < 8) {
     cepRequestError();
     return false;

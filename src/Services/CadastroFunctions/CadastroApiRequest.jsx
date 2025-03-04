@@ -27,6 +27,7 @@ export const createUserCad = async (userData, dadosEmpresa, setLoading, navigate
         })
         .then(() => {
           sessionStorage.setItem('empresa',JSON.stringify(dadosEmpresa))
+          sessionStorage.removeItem('userBackup')
           navigate('/UserPage');
         })
         .catch(error => {
