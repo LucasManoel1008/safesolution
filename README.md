@@ -1,8 +1,12 @@
-# React + Vite
+# Projeto: Safe Solution
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Trabalho de Conclusão do Curso de Informática no ITB Brasílio Flores de Azevedo
 
-Currently, two official plugins are available:
+Participantes:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Bethânica Renero;
+Bruno Magno
+Geovanna Cunha;
+Lucas Bitencourt;
+Lucas Gabriel;
+Vinicius de Santana
