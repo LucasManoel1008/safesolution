@@ -6,7 +6,7 @@
     width: 750px;
     height: clamp(740px,fit-content,100%);
     margin: 120px auto 40px auto;
-    box-shadow: 0px 3px 12px -3px rgba(0,0,0,0.36);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -30,7 +30,7 @@
     font-size: 28px;
 }
 .cadastroContent form p{
-    opacity: .7;
+    opacity: .9;
 
 }
 .cadastroContent form .nameInput{
@@ -65,7 +65,7 @@
 }
 .cadastroContent form .termos-e-politicas{
     width: 80%;
-    opacity: 0.4;
+    opacity: 0.8;
 }
 .cadastroContent form .codeInput{
     width: 40%;

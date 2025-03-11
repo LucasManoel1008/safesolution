@@ -114,7 +114,7 @@ function Home() {
 
       <Fade bottom duration={500}>
         <section className={styles.FAQ}>
-          <h4 className={`title-main-text blue2 align-text ${styles.titleMainText}`}>Perguntas Frequentes</h4>
+          <h4 id='perguntas' className={`title-main-text blue2 align-text ${styles.titleMainText}`}>Perguntas Frequentes</h4>
           <ul className={styles.FAQContainer}>
             <Fade bottom duration={600}>
               <li>

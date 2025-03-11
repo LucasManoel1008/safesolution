@@ -2,6 +2,8 @@ import React from 'react'
 import Imagenspadroes from '../../shared/Imagespadroes'
 import '../padronizacao/padrao.css'
 import { Link } from 'react-router-dom'
+import styles from '../css/footer.module.css'
+import * as genericFunction from '../../Services/FooterFunctions/FooterGenericFunctions'
 function Footer() {
     const currentFooterYear = new Date().getFullYear();
   return (
@@ -26,8 +28,9 @@ function Footer() {
                
                <ul className="container3 d-flex flex-column mt-3">
                     <strong className="pb-2">Informações</strong>
-                    <li><Link to="/">Sobre nós</Link></li>
-                    <li><Link to="/#relatos">Relatos</Link></li>
+                    <li><button className={`${styles.footerButton}`} onClick={() => genericFunction.goToSection('aboutUs')}>Sobre nós</button></li>
+                    <li><button  className={`${styles.footerButton}`} onClick={() => genericFunction.goToSection('relatos')}>Relatos</button></li>
+                    <li><button  className={`${styles.footerButton}`} onClick={() => genericFunction.goToSection('perguntas')}>Perguntas Frequentes</button></li>
                     <li className='blue2 bold mt-3'>Contato:</li>
                     <li className='blue2'>safesolutionsempresa@gmail.com</li>
 

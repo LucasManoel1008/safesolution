@@ -1,0 +1,5 @@
+.footerButton {
+    border: none;
+    background-color: transparent;
+    color: var(--blue3);
+}
