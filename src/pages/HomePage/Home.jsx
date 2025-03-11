@@ -78,7 +78,7 @@ function Home() {
         </Fade>
         
         <Fade bottom duration={1500} delay={400}>
-          <h4 id="quemSomos" className={`fade-in ${styles.titleMainText}`}>Quem é a Safe Solutions?</h4>
+          <h4 id="aboutUs" className={`fade-in ${styles.titleMainText}`}>Quem é a Safe Solutions?</h4>
           <section className={styles.textBody}>
             <SafeSolutionInformation imageName="Safety" sectionText={ABOUT_SAFE_SOLUTION.SAFESOLUTION_OBJECTIVE} hasLink={false} />
             <SafeSolutionInformation imageName="tecnico" sectionText={ABOUT_SAFE_SOLUTION.SAFESOLUTION_HOW_IT_WORKS} hasLink={false} />

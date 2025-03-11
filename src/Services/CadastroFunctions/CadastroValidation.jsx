@@ -27,7 +27,7 @@ export const checkInputValues = async (inputValues, setError) => {
   else{
     checkBirthDate(birthDate, novosErros);
   }
-  if (password === '')novosErros.password = CAD_USER_ERROR_MESSAGES.INVALID_PASSWORD; 
+  if (password === '' || password.length < 8)novosErros.password = CAD_USER_ERROR_MESSAGES.INVALID_PASSWORD; 
 
   else if (confirmPassword === '') {
     novosErros.password = CAD_USER_ERROR_MESSAGES.INVALID_PASSWORD;

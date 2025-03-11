@@ -63,7 +63,7 @@ function RedefinicaoDeSenha({email}) {
           required
         />
         <button type="submit" className="botãottottlogin btn btn-primary mt-4">
-          Fazer login
+          Redefinir Senha
         </button>
       </form>
     </div>

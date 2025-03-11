@@ -4,15 +4,17 @@ import { sanitazeCnpj } from './LoginValidation';
     export const LoginApiRequest = async (cnpj, senha, setErro) => {
         let cleanCnpj = sanitazeCnpj(cnpj);
         try{
-            const response = await axios.get(`http://localhost:8080/empresa/${cleanCnpj}`);
-            if (response.data && response.data.usuario.senha_usuario == senha) {
-                sessionStorage.setItem('empresa', JSON.stringify({ cnpj: cnpj }));
+            const response = await axios.get(`http://localhost:8080/empresa/login/${cleanCnpj}`, {
+                params: { senha: senha }
+            });
+            if (response.data != null) {
+                sessionStorage.setItem('empresa', JSON.stringify({ cnpj:     cnpj }));
             } else {
-                setErro({ senha: 'Senha incorreta' });
+                setErro({ senha: 'CNPJ e/ou senha incorretos. Tente novamente.' });
                 return false;
             }
         } catch (error) {
-            setErro({ senha: 'Usuario não encontrado' });
+            setErro({ senha: 'Usuario e/ou senha incorretos. Tente novamente.' });
             return false;
         }
         return true;
