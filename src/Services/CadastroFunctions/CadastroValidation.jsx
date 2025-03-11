@@ -7,35 +7,49 @@ import { cepRequestError } from "./CadastroToast";
 export const checkInputValues = async (inputValues, setError) => {
   let novosErros = []
   const { name, lastName, email, cpf, password, confirmPassword, birthDate } = inputValues;
+
   if (name === '')  novosErros.nome = CAD_USER_ERROR_MESSAGES.INCOMPLETE_NAME;
+
   if (lastName === '') novosErros.lastName = CAD_USER_ERROR_MESSAGES.INCOMPLETE_LASTNAME;
+  
   if (email === '' || email.indexOf('@') === -1) {
     novosErros.email = CAD_USER_ERROR_MESSAGES.INCOMPLETE_EMAIL;
   }
+
   else{
-    checkEmailExists(email, novosErros);
+    await checkEmailExists(email, novosErros);
   }
-  if (birthDate == '') {
+
+  if (birthDate === '' || birthDate.length < 10 || birthDate === "Invalid Date") {
     novosErros.birthDate = CAD_USER_ERROR_MESSAGES.INVALID_AGE;
   }
+
   else{
     checkBirthDate(birthDate, novosErros);
   }
   if (password === '')novosErros.password = CAD_USER_ERROR_MESSAGES.INVALID_PASSWORD; 
-  else if (confirmPassword === '') novosErros.confirmPassword = CAD_USER_ERROR_MESSAGES.INVALID_PASSWORD;
+
+  else if (confirmPassword === '') {
+    novosErros.password = CAD_USER_ERROR_MESSAGES.INVALID_PASSWORD;
+  }
+
   else{
     comparePasswords(password, confirmPassword, novosErros);
   }
+
   if (cpf.length < 14) {
    novosErros.cpf = CAD_USER_ERROR_MESSAGES.INVALID_CPF;
   }
+
   else{
-    checkCpfExists(sanitizeCpf(cpf), novosErros);
+    await checkCpfExists(sanitizeCpf(cpf), novosErros);
   }
+
   if (Object.keys(novosErros).length > 0){
     setError(novosErros);
     return false;
   }
+
   return true;
 };
 
@@ -68,9 +82,6 @@ export const checkCompanyInputValues = async (e, inputValues, setErro) => {
   }
   return true;
 };
-
-
-
 export const checkCepInput = (cep) => { 
   if (cep === "" || cep.length < 8) {
     cepRequestError();
@@ -93,10 +104,8 @@ const checkBirthDate = (birthDate, novosErros) => {
 const checkEmailExists = async (email, novosErros) => {
   try {
     const response = await axios.get(`http://localhost:8080/usuario/check-email/${email}`);
-    
     if (response.data == 1) {
-      novosErros.email = CAD_USER_ERROR_MESSAGES.EMAIL_ALREADY_REGISTERED;
-      return true;
+      novosErros.email = CAD_USER_ERROR_MESSAGES.EMAIL_ALREADY_REGISTERED
     }
   } catch (error) {
    novosErros.email = CAD_USER_ERROR_MESSAGES.CANT_CHECK_EMAIL
@@ -112,7 +121,7 @@ const checkCpfExists = async (cpf, novosErros) => {
 
 const comparePasswords = (password, confirmPassword, novosErros) => {
   if (password !== confirmPassword) {
-    novosErros.confirmPassword = CAD_USER_ERROR_MESSAGES.DIFFERENT_PASSWORDS;
+    novosErros.password = CAD_USER_ERROR_MESSAGES.DIFFERENT_PASSWORDS;
   }
   return true;
 };
