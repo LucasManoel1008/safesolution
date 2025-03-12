@@ -5,6 +5,7 @@ import LoadingData from '../../assets/components/Loading/LoadingData'
 import * as handleInput from '../../Services/LoginFunctions/LoginHandleInputs'
 import * as validation from '../../Services/LoginFunctions/LoginValidation'
 import * as ApiRequest from '../../Services/LoginFunctions/LoginApiRequest'
+import { usuarioLogado } from '../../App';
 
 
 function Login() {
@@ -13,7 +14,7 @@ function Login() {
   const [erro, setErro] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  
+  const {isLogged, setIsLogged} = usuarioLogado()
   const authenticateUser = async (e) =>{
     e.preventDefault()
     if(!validation.validarFormulario(e, cnpj, senha, setErro)){
@@ -26,6 +27,7 @@ function Login() {
       return;
     }
     setIsLoading(false);
+    setIsLogged(true);
     navigate('/UserPage')
    
   }

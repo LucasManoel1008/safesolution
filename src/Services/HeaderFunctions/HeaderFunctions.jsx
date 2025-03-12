@@ -17,8 +17,9 @@ export const formatUserCnpj = (cnpj) => {
 }
 
 export const getUserData = () =>{
-    const userData =  sessionStorage.getItem('empresa');
-    return userData ? JSON.parse(userData) : false;
+    let userData =  sessionStorage.getItem('empresa');
+    userData = JSON.parse(userData);
+    return userData ? userData : false;
 }
 
     

@@ -64,6 +64,7 @@ function CompanyCad({userData}) {
     if(userData){
       setLoading(true);
       await ApiRequest.createUserCad(userData, dadosEmpresa, setLoading, navigate);
+      
     }
 
   }

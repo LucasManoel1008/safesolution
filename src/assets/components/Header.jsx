@@ -5,9 +5,10 @@ import ImagensUser from '../../shared/ImagensUser';
 import * as userSessionManager from '../../Services/HeaderFunctions/HeaderFunctions';
 import * as js from '../../Services/HeaderFunctions/HeaderGenericFunctions';
 import { toast } from 'react-toastify';
+import { usuarioLogado } from '../../App';
 function Header() {
 
-  const [existentLogin, setExistentLogin] = useState(false);
+  const {isLogged, setIsLogged} = usuarioLogado()
   const [userData, setUserData] = useState(null);
   const location = useLocation();
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ function Header() {
   useEffect(() => {
     validateAndFetchUserData();
     if (sessionStorage.getItem('empresa') == null) {
-      setExistentLogin(false);
+      setIsLogged(false);
     }
   }, [location]); 
 
@@ -24,19 +25,16 @@ function Header() {
     const fetchedUserData = userSessionManager.getUserData();
     
     if (fetchedUserData){
-      const cleanCnpj = userSessionManager.formatUserCnpj(fetchedUserData.cnpj);
-      try{
-        await userSessionManager.retrieveUserData(setExistentLogin, setUserData, cleanCnpj);
-      } catch(error){
-        errorToast(error);
+      setUserData(fetchedUserData);
+      setIsLogged(true);
       }
-    }
+    
   }
 
   const exitAccount = () => {
       sessionStorage.clear();
       setUserData(null);
-      setExistentLogin(false);
+      setIsLogged(false);
       navigate('/');
   }
   
@@ -44,7 +42,7 @@ function Header() {
       navigate('/UserPage');
   }
   const servicesPage =() => {
-      navigate('/Cadastro-Servico');
+      navigate('/Meus-Servicos');
   }
 
   const errorToast = (error) => {
@@ -83,7 +81,7 @@ const RightHeader = React.memo(() => {
           </button>
           <div className="dropdown-menu">
             <button className="dropdown-item" onClick={profilePage} type="button">Perfil</button>
-            {existentLogin ? <button onClick={servicesPage} className='dropdown-item'>Meus Serviços</button> : <Link to="/Login">Meus Serviços</Link>}
+            {isLogged ? <button onClick={servicesPage} className='dropdown-item'>Meus Serviços</button> : <Link to="/Login">Meus Serviços</Link>}
             <button className="dropdown-item" onClick={exitAccount} type="button">Sair</button>
           </div>
         </div>
@@ -117,7 +115,7 @@ const RightHeader = React.memo(() => {
       <button id="botaoScroll" onClick={js.voltartopo}>&uarr;</button>
       <header className="header" id="header">
         {/* Menu versão mobile */}
-        {existentLogin ? <LoggedHeaderMobile /> : <LinksMobile />}
+        {isLogged ? <LoggedHeaderMobile /> : <LinksMobile />}
         
 
 
@@ -137,7 +135,7 @@ const RightHeader = React.memo(() => {
           <div className="logo">
             <Link to="/" id="logo-header"><img src={Imagenspadroes.logo} alt="Logo" /></Link>
           </div>
-          {existentLogin ? <LoggedHeader /> : <RightHeader />}
+          {isLogged ? <LoggedHeader /> : <RightHeader />}
         </div>
       </header>
     </div>

@@ -8,8 +8,6 @@ import UserOrders from './UserOrders';
 import EditProfile from './EditProfile';
 import ConfirmMessage from '../../assets/components/User/ConfirmMessage'
 import * as functions from '../../Services/UserService/UserFunctions';
-import { fetchUserData} from '../../Services//UserService/UserApiRequest'
-import { sanitizeCnpj } from '../../Services/CadastroFunctions/CadastroValidation';
 function UserPage() {
   const [section, setSection] = useState('profile');
   const [empresa, setEmpresa] = useState(null);
@@ -17,14 +15,14 @@ function UserPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchEmpresaByCnpj();
+    fetchEmpresaPorSessao();
   }, []);
 
-  const fetchEmpresaByCnpj = useCallback(async () => {
+  const fetchEmpresaPorSessao = useCallback(async () => {
     try {
       const userData = await functions.getUserData();
-      const userCpnj = sanitizeCnpj(userData);
-      await fetchUserData(userCpnj, setEmpresa);
+      setEmpresa(userData);
+      console.log(empresa)
     } catch (error) {
       console.error('Erro ao buscar empresa:', error);
     } finally {

@@ -1,9 +1,9 @@
 
     export const getUserData = async () => {
-        const data = sessionStorage.getItem('empresa')
+        let data = sessionStorage.getItem('empresa')
         if (!data) {
             return null;
         }
-        const dadosEmpresa = JSON.parse(data);
-        return dadosEmpresa.cnpj
+        data = JSON.parse(data);
+        return data;
     }

@@ -89,32 +89,34 @@ function EditProfile  ({ empresa, setSection }) {
   };
 
   
-    const editarDados = async (e) => {
-      e.preventDefault();
-      setLoading(true);
-      window.scrollTo(0, 0);
+  const editarDados = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    window.scrollTo(0, 0);
 
-      try {
-        // Atualiza a empresa
+    try {
+        const storedData = JSON.parse(sessionStorage.getItem("empresa")) || {};
+        
+        const updatedEmpresa = { ...storedData, ...dadosEmpresa };
+        const updatedUsuario = { ...storedData.usuario, ...dadosUsuario };
+
         await axios.put(`http://localhost:8080/empresa/${empresa.cnpj}`, dadosEmpresa);
-        // Atualiza o usuário vinculado
         await axios.put(`http://localhost:8080/usuario/${empresa.usuario.cpf}`, dadosUsuario);
-        console.log('Dados da empresa:', dadosEmpresa);
-        console.log('Dados do usuário:', dadosUsuario);
+
         sessionStorage.setItem("dadosSalvos", "true");
+        sessionStorage.setItem("empresa", JSON.stringify({ ...updatedEmpresa, usuario: updatedUsuario }));
+
         location.reload();
-  
-      } catch (error) {
+
+    } catch (error) {
         setLoading(false);
         console.error('Erro ao atualizar dados:', error);
         alert("Erro ao atualizar os dados. Tente novamente.");
-        console.log('Dados da empresa:', dadosEmpresa);
-        console.log('Dados do usuário:', dadosUsuario);
-      }
-      finally {
-        document.body.style.overflow = 'auto'; // Reativa a rolagem
-      }
-    };
+    } finally {
+        document.body.style.overflow = 'auto';
+    }
+};
+
     return(
     <div className={`edit ${styles.userProfile}`}>
     {loading ? <LoadingData /> : null}

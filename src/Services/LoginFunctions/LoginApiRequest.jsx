@@ -8,7 +8,8 @@ import { sanitazeCnpj } from './LoginValidation';
                 params: { senha: senha }
             });
             if (response.data != null) {
-                sessionStorage.setItem('empresa', JSON.stringify({ cnpj:     cnpj }));
+                sessionStorage.setItem('empresa', JSON.stringify(response.data));
+                
             } else {
                 setErro({ senha: 'CNPJ e/ou senha incorretos. Tente novamente.' });
                 return false;

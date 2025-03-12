@@ -23,9 +23,11 @@ export const createUserCad = async (userData, dadosEmpresa, setLoading, navigate
   await axios.post('http://localhost:8080/usuario', userData)
         .then(() => {
           // Segunda requisição para salvar a empresa com o CPF do usuário
+          
           return axios.post(`http://localhost:8080/empresa?cpfUsuario=${userData.cpf}`, dadosEmpresa);
         })
         .then(() => {
+          dadosEmpresa = { ...dadosEmpresa, usuario: userData };
           sessionStorage.setItem('empresa',JSON.stringify(dadosEmpresa))
           sessionStorage.removeItem('userBackup')
           navigate('/UserPage');
@@ -34,4 +36,5 @@ export const createUserCad = async (userData, dadosEmpresa, setLoading, navigate
           ApiRequestError(error);
           setLoading(false);
         });
+        
 }
