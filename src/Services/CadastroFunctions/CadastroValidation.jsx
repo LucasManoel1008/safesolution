@@ -104,7 +104,7 @@ const checkBirthDate = (birthDate, novosErros) => {
 const checkEmailExists = async (email, novosErros) => {
   try {
     const response = await axios.get(`http://localhost:8080/usuario/check-email/${email}`);
-    if (response.data == 1) {
+    if (response.data == true) {
       novosErros.email = CAD_USER_ERROR_MESSAGES.EMAIL_ALREADY_REGISTERED
     }
   } catch (error) {

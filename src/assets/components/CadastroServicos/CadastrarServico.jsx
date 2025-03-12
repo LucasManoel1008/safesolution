@@ -52,6 +52,7 @@ function CadastroServico({ onOptionChange }) {
         console.error('Erro ao cadastrar serviço:', error);
       }
       finally{
+        console.log(novoServico)
         setLoading(false);
       }
     }

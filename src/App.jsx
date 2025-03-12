@@ -27,12 +27,7 @@ const Autenticacao = React.createContext();
 function App() {
  
   const [isLogged, setIsLogged] = React.useState(false);
-  const initialized = React.useRef(false); // Para garantir que a lógica só rode uma vez
-  React.useEffect(() => {
-    if (!initialized.current) {
-    
-    }
-  }, []);
+ 
   
   return (
     <div>

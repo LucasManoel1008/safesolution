@@ -1,7 +1,8 @@
 import { Outlet, Navigate } from 'react-router-dom';
 
-const BloquarUsuarioLogado = (isLogged) => {
-    const logged = isLogged;
-    return logged == true ? <Navigate to="/" /> : <Outlet />;
+const BloquarUsuarioLogado = () => {
+    let logged = sessionStorage.getItem('empresa')
+
+    return logged ? <Navigate to="/UserPage" /> : <Outlet />;
 }
 export default BloquarUsuarioLogado;

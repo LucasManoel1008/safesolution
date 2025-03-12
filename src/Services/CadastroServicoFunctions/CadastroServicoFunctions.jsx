@@ -20,4 +20,7 @@ import { DateTime } from 'luxon';
       return inicio
     }
   }
+  export const formatUserDate = () => {
+    const formatServiceDate = new Date(disponibilidade).toUTCString();
+  }
 
