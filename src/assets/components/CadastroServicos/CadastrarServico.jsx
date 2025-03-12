@@ -8,6 +8,8 @@ import LoadingData from '../Loading/LoadingData';
 import { getDateForService } from '../../../Services/CadastroServicoFunctions/CadastroServicoFunctions';
 import { sanitizeCnpj } from '../../../Services/CadastroFunctions/CadastroValidation';
 import { postService } from '../../../Services/CadastroServicoFunctions/CadastroServicoApiRequest';
+import { ToastContainer } from 'react-toastify';
+import * as errorToast from '../../../Services/CadastroServicoFunctions/CadastroServicoToast';
 
 function CadastroServico({ onOptionChange }) {
   const [nome_servico, setNome] = useState('');
@@ -21,11 +23,18 @@ function CadastroServico({ onOptionChange }) {
   const [valorMinimo, setValorMinimo] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState([]);
+  const [termos, setTermos] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setError({});
-    if(!validateUserInput(inputsValues, setError)) return;
+    if(termos == false) {
+      setError({termos: 'Você deve concordar com os termos de uso e política de privacidade para continuar'});
+      return
+    }
+    if(!validateUserInput(inputsValues, setError)){
+      return
+    }
     let disponibilidade_servico = getDateForService(disponibilidade, inicio);
     const empresaString = sessionStorage.getItem('empresa');
     if (empresaString) {
@@ -45,10 +54,13 @@ function CadastroServico({ onOptionChange }) {
       window.scrollTo(0, 0);
       setLoading(true);
       try{
+        
         await postService(novoServico, cnpj);
         
       }
       catch(error){
+        console.log("Deu erro")
+        errorToast.ApiRequestError(error); 
         console.error('Erro ao cadastrar serviço:', error);
       }
       finally{
@@ -295,21 +307,26 @@ function CadastroServico({ onOptionChange }) {
             <input
               className="form-check-input"
               type="checkbox"
-              id="flexCheckDefault"
-              
+              id="flexCheckDefault termos"
+              value={termos}
+              onChange={(e) => setTermos(e.target.checked)}
             />
             <label className="form-check-label" htmlFor="flexCheckDefault">
               Ao continuar, afirmo que li e concordo com a{" "}
               <Link to="/Politicas-de-Privacidade">Política de privacidade</Link> e os{" "}
               <Link to="/Termos">Termos de uso</Link> da Safe Solutions.
             </label>
+            <br />
+            {error.termos && <span className='error' id='termos'>{error.termos}</span>}
           </div>
+          
 
           <button type="submit" className="btn btn-primary">
             Salvar
           </button>
         </form>
       </section>
+      <ToastContainer />
     </div>
   );
 }
