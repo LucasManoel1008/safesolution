@@ -9,7 +9,7 @@ const ClientsFeedbackContainer = ({ clientFeedback, imageName, peopleName }) => 
         </Fade>
         <Fade bottom duration={700}>
             <h4 className={styles.peopleName}>{peopleName}</h4>
-            <p>{clientFeedback}</p>
+            <p>"{clientFeedback}"</p>
         </Fade>
     </div>
     );
