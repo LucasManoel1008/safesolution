@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-import '../../assets/css/UserPage.css';
+import '../../assets/css/userPage.css';
 import { useNavigate } from 'react-router-dom';
 import UserProfile from './UserProfile';
 import UserSettings from './UserSettings';
