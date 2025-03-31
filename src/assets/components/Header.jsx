@@ -92,10 +92,10 @@ const RightHeader = React.memo(() => {
     return (
       <div className="menuOculto" id="menuOculto">
         <button className="btn-close-x" onClick={js.fecharNav}>&times;</button>
-        <Link to="/Servicos">Serviços</Link>
-        <Link to="/">Sobre Nós</Link>
-        <Link to="/Login">Entrar</Link>
-        <Link to="/cadastro">Junte-se a nós</Link>
+        <Link to="/Servicos">SERVIÇOS</Link>
+        <Link to="/">SOBRE NÓS</Link>
+        <Link to="/Login">ENTRAR</Link>
+        <Link to="/cadastro">JUNTE-SE A NÓS</Link>
       </div>
     );
   });
