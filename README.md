@@ -5,8 +5,10 @@ Trabalho de Conclusão do Curso de Informática no ITB Brasílio Flores de Azeve
 Participantes:
 
 Bethânica Renero;
-Bruno Magno
+Bruno Magno;
 Geovanna Cunha;
+Fernanda Lopes;
 Lucas Bitencourt;
 Lucas Gabriel;
+Raphael de Oliveira;
 Vinicius de Santana
