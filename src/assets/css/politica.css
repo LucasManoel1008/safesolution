@@ -84,7 +84,7 @@ body {
 .conteudoPoliticas a:hover {
     color: var(--blue4);
 }
-/* Define cores e variáveis globais */
+
 :root {
     --blue3: #234063;
     --blue4: #1E2D3F;
@@ -94,14 +94,14 @@ body {
     --heading-color: #234063;
 }
 
-/* Reset básico */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Definindo a fonte global */
+
 body {
     font-family: 'Montserrat', sans-serif;
     line-height: 1.6;
@@ -110,7 +110,7 @@ body {
     padding: 10px;
 }
 
-/* Conteúdo principal da página */
+
 .conteudo {
     max-width: 1000px;
     margin: 0 auto;
@@ -159,7 +159,7 @@ body {
     color: var(--blue3);
 }
 
-/* Links */
+
 .conteudo a {
     color: var(--link-color);
     text-decoration: underline;
@@ -170,7 +170,6 @@ body {
     color: var(--blue4);
 }
 
-/* Responsividade para telas menores */
 @media screen and (max-width: 1200px) {
     .conteudo {
         max-width: 90%;
@@ -233,3 +232,20 @@ body {
 }
 
 
+.containerPoliticas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    height: 100vh;
+  }
+  
+  .conteudoPoliticas {
+    width: 80%;
+    max-width: 900px;
+    overflow-y: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+  }
+  
