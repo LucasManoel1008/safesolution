@@ -1,0 +1,17 @@
+.admDashboard{ 
+
+    min-height: 80vh;
+    width: 100%;
+    margin-top: 71px;
+    max-height: 100%;
+}
+.admHeader{
+width: 500px;
+border: 1px solid black;
+    
+}
+.Admcontainer {
+   
+    width: 1050px;
+    border: 1px solid black;
+}
