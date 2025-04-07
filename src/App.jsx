@@ -22,6 +22,8 @@ import RedefinirSenha from './assets/components/redefinirSenha/RedefinirSenha'
 import RedefinicaoDeSenha from './assets/components/subPages/RedefinicaoDeSenha'
 import BloquarUsuarioDeslogado from '../Filters/BloquarUsuarioDeslogado'
 import BloquarUsuarioLogado from '../Filters/BloquearUsuarioLogado'
+import Admpage from './pages/adm/admpage'
+
 const Autenticacao = React.createContext();
 
 function App() {
@@ -58,6 +60,7 @@ function App() {
         <Route path='/Redefinicao-de-senha' element={<RedefinirSenha/>}/>
         <Route path='/Redefinir-Senha/:token' element={<RedefinicaoDeSenha/>}/>
         <Route path='/Orcamento' element={<Orcamento/>}/>
+        <Route path='/Adm' element={<Admpage/>}/>
       </Route>
     </Routes>
     <Footer/>
