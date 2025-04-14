@@ -9,6 +9,7 @@ export const checkInputValues = async (inputValues, setError) => {
   const { name, lastName, email, cpf, password, confirmPassword, birthDate } = inputValues;
 
   if (name === '')  novosErros.nome = CAD_USER_ERROR_MESSAGES.INCOMPLETE_NAME;
+  
 
   if (lastName === '') novosErros.lastName = CAD_USER_ERROR_MESSAGES.INCOMPLETE_LASTNAME;
   
@@ -45,6 +46,8 @@ export const checkInputValues = async (inputValues, setError) => {
     await checkCpfExists(sanitizeCpf(cpf), novosErros);
   }
 
+  
+
   if (Object.keys(novosErros).length > 0){
     setError(novosErros);
     return false;
@@ -66,7 +69,7 @@ export const checkCompanyInputValues = async (e, inputValues, setErro) => {
 
   if (telefone === '' || telefone.length < 14) novosErros.telefone = CAD_USER_ERROR_MESSAGES.INCOMPLETE_COMPANY_TELEPHONE;
 
-  if (cep === '' || cep.length < 8) novosErros.cep = CAD_USER_ERROR_MESSAGES.INCOMPLETE_COMPANY_CEP;
+  if (cep === '' || cep.length < 9) novosErros.cep = CAD_USER_ERROR_MESSAGES.INCOMPLETE_COMPANY_CEP;
 
   if (rua === '') novosErros.rua = CAD_USER_ERROR_MESSAGES.INCOMPLETE_COMPANY_STREET;
 

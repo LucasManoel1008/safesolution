@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import '../../assets/css/cadastro.css';
 import * as handleInput from '../../Services/CadastroFunctions/CadastroHandleInputs'
 import * as check from '../../Services/CadastroFunctions/CadastroValidation'
+import { checkAllUserData } from '../../Services/CadastroFunctions/CadastroApiRequest';
 function UserCad({setSection, setUserData}) {
   const [cpf, setCpf] = useState('');
   const [password, setPassword] = useState('');
@@ -62,9 +63,21 @@ function UserCad({setSection, setUserData}) {
       email,
     };
     setError({})
-    setUserData(userData)
-    sessionStorage.setItem('userBackup', JSON.stringify(backupData))
-    setSection(2)
+    try{
+      const response = await checkAllUserData(userData)
+      setUserData(userData)
+      sessionStorage.setItem('userBackup', JSON.stringify(backupData))
+      setSection(2)
+    }
+    catch (erro){
+      if(erro.response){
+        const { message, status, type} = erro.response.data
+        setError(prev => ({ ...prev, [type]: message }));  // Ex.: "usuario" vira "usuario"
+        return;
+      }
+    }
+    
+
   }
 
   return (

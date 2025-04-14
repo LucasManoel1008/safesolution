@@ -36,3 +36,7 @@ export const createUser = async (userData, dadosEmpresa, setLoading, navigate) =
         });
         
 }
+
+export const checkAllUserData = async (userData) => {
+  return await axios.post('http://localhost:8080/usuario/validar-usuario', userData)
+}
