@@ -29,11 +29,10 @@ function RedefinicaoDeSenha({email}) {
       });
 
       if (response.status === 200) {
-        window.alert("Senha alterada com sucesso!");
+        window.alert("Senha alterada com sucesso! " +  response.data);
         navigate('/Login'); // Redireciona após sucesso
       }
     } catch (error) {
-      console.error('Erro ao redefinir a senha:', error);
       window.alert('Erro ao redefinir a senha. Tente novamente.');
     }
   };

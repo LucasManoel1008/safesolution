@@ -63,7 +63,7 @@ function CompanyCad({userData}) {
     setErro({});
     if(userData){
       setLoading(true);
-      await ApiRequest.createUserCad(userData, dadosEmpresa, setLoading, navigate);
+      await ApiRequest.createUser(userData, dadosEmpresa, setLoading, navigate);
       
     }
 

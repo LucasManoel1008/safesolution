@@ -22,7 +22,7 @@ import RedefinirSenha from './assets/components/redefinirSenha/RedefinirSenha'
 import RedefinicaoDeSenha from './assets/components/subPages/RedefinicaoDeSenha'
 import BloquarUsuarioDeslogado from '../Filters/BloquarUsuarioDeslogado'
 import BloquarUsuarioLogado from '../Filters/BloquearUsuarioLogado'
-import Admpage from './pages/adm/admpage'
+import Admpage from './pages/adm/Admpage'
 
 const Autenticacao = React.createContext();
 

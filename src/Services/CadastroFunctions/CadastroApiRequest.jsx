@@ -19,11 +19,9 @@ export const getAndSetCep = (cep, setRua, setBairro, setCidade) => {
       });
   };
 
-export const createUserCad = async (userData, dadosEmpresa, setLoading, navigate) => {
+export const createUser = async (userData, dadosEmpresa, setLoading, navigate) => {
   await axios.post('http://localhost:8080/usuario', userData)
         .then(() => {
-          // Segunda requisição para salvar a empresa com o CPF do usuário
-          
           return axios.post(`http://localhost:8080/empresa?cpfUsuario=${userData.cpf}`, dadosEmpresa);
         })
         .then(() => {
