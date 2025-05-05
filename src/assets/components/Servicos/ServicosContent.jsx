@@ -1,18 +1,23 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from '../../../pages/Servicos/servicos.module.css';
+import axios from "axios";
 
-function ServicosContent({ servicos = [] }) {
+function ServicosContent() {
   const [searchTerm, setSearchTerm] = useState('');
-  const [filteredServicos, setFilteredServicos] = useState(servicos);
+  const [servicos, setServicos] = useState();
+
+  const buscarServicos = () => {
+      axios.get('http://localhost:8080/servico')
+          .then((response)=>{
+              console.log(response.data)
+          })
 
 
-
-  const handleSearch = () => {
-    const filtered = servicos.filter((servico) =>
-      servico.nome.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredServicos(filtered);
   };
+
+    useEffect(() => {
+        buscarServicos()
+    }, []);
 
   return (
     <div className={styles.servicosContent} style={{ maxWidth: '70%', marginRight: '10%' }}>
@@ -25,21 +30,18 @@ function ServicosContent({ servicos = [] }) {
             placeholder="Pesquisar..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                handleSearch();
-              }
-            }}
+
+
           />
         </div>
-        <button className="btn btn-primary ms-2" onClick={handleSearch}>
+        <button className="btn btn-primary ms-2">
           <i className="fa fa-search"></i> {}
         </button>
       </div>
 
       {/* Tabela de Serviços */}
       <div style={{ marginTop: '20px' }}>
-        {filteredServicos.length > 0 ? (
+        {1 > 0 ? (
           <table className="table table-striped">
             <thead>
               <tr>
@@ -51,15 +53,7 @@ function ServicosContent({ servicos = [] }) {
               </tr>
             </thead>
             <tbody>
-              {filteredServicos.map((servico, index) => (
-                <tr key={index}>
-                  <td>{servico.nome}</td>
-                  <td>{servico.categoria}</td>
-                  <td>R$ {servico.preco}</td>
-                  <td>{servico.data}</td>
-                  <td>{servico.area}</td>
-                </tr>
-              ))}
+
             </tbody>
           </table>
         ) : (

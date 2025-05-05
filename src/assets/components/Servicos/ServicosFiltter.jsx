@@ -19,9 +19,9 @@ function ServicosFiltter({ onFilterChange }) {
     const FiltroServicos={
         categoria, data, precoMax, area
     }
-    axios.post(
 
-    )
+
+    axios.post('http://localhost:8080/servico/filtrar');
   }
 
   return (
@@ -61,7 +61,7 @@ function ServicosFiltter({ onFilterChange }) {
 
               <div className="precoFiltro mb-4">
                   <span className="d-block">Preço máximo: R$ {precoMax > 0 ? precoMax : "-"}</span>
-                  <input className="w-75" type="range" min="0" max="9999" step="10" value={precoMax}
+                  <input className="w-75" type="range" min="0" max="5000" step="10" value={precoMax}
                          onChange={(e) => setPrecoMax(Number(e.target.value))}/>
               </div>
               <hr/>
@@ -89,7 +89,7 @@ function ServicosFiltter({ onFilterChange }) {
                           setData("");
                           setPrecoMax(0);
                           setArea("");
-                          onFilterChange({categoria: "", data: "", precoMax: 9999, area: ""});
+                          onFilterChange({categoria: "", data: "", precoMax: 5000, area: ""});
                       }}
                   >
 
