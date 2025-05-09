@@ -89,7 +89,7 @@ function Home() {
 
         {/* Divulgação do app Mobile - INICIO */}
         <div className={`d-flex d-lg-none ${styles.applicationMobile}`}>
-          <h4>BAIXE NOSSO APLICATIVO</h4>
+          <h4>Baixe nosso aplicativo móvel</h4>
           <p>Gerenciamento de serviços na palma da mão</p>
           <div className={`mt-5 mb-5 ${styles.applicationLinks}`}>
             <Link to="#" className="pr-4"><img src={Imagemindex.googlePlay} width="150" alt="GOOGLE PLAY" /></Link>

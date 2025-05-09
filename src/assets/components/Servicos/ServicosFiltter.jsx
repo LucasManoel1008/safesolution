@@ -19,9 +19,7 @@ function ServicosFiltter({ onFilterChange }) {
     const FiltroServicos={
         categoria, data, precoMax, area
     }
-
-
-    axios.post('http://localhost:8080/servico/filtrar');
+    axios.post('http://localhost:8080/servico/filtrar', FiltroServicos);
   }
 
   return (

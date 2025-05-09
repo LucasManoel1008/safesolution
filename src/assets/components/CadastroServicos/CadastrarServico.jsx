@@ -49,7 +49,7 @@ function CadastroServico({ onOptionChange }) {
         status_servico: disponibilidade,
         disponibilidade_servico: disponibilidade_servico,
         local_servico: `${cidade}, ${estado}`,
-        valor_estimado_servico: valorMinimo,
+        valor_estimado_servico: parseFloat(valorMinimo.replace(/[^\d.-]/g, '')),
       };
       window.scrollTo(0, 0);
       setLoading(true);
