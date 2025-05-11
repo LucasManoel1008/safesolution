@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { getUserData } from '../../../Services/CadastroServicoFunctions/CadastroServicoFunctions';
 import { fetchUserData, removeService } from '../../../Services/CadastroServicoFunctions/CadastroServicoApiRequest';
 

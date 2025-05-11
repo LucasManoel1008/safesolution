@@ -9,18 +9,25 @@ function ServicosContent() {
   const [loading, setLoading] = useState(true);
 
   const buscarServicos = () => {
-    axios.get('http://localhost:8080/servico')
+    axios.get('http://localhost:8080/servico/listar')
       .then((response) => {
         setServicos(response.data); 
         console.log("Serviços recebidos:", response.data);
       })
-      .catch((error) => {
+      .catch((error) => { 
         console.error("Error fetching services:", error);
       }).finally(() => {
         setLoading(false);
       })
       
   };
+
+  const formatarData = (data) => {
+    const dataFormatada = new Date(data);
+    const opcoes = { year: 'numeric', month: '2-digit', day: '2-digit' };
+    const dataFormatadaString = dataFormatada.toLocaleDateString('pt-BR', opcoes);
+    return dataFormatadaString;
+  }
 
   useEffect(() => {
     buscarServicos();
@@ -61,8 +68,8 @@ function ServicosContent() {
                   </div>
             
                   <div className={styles.item2}>
-                    <p className={styles.precoServico}>R$ {servico.valor_estimado_servico}</p>
-                    <span className="tempoServico">{servico.disponibilidade_servico}</span>
+                    <p className={styles.precoServico}>Preço inicial: R$ {servico.valor_estimado_servico}</p>
+                    <span className="tempoServico">Postado em: {formatarData(servico.disponibilidade_servico)}</span>
                   </div>
                 </div>
                 <hr />

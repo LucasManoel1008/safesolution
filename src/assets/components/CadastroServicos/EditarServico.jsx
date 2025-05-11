@@ -5,6 +5,7 @@ import styles from '../../css/editarServico.module.css';
 import { NumericFormat } from 'react-number-format';
 import { getService } from '../../../Services/CadastroServicoFunctions/CadastroServicoApiRequest';
 import { validateUserInput } from '../../../Services/CadastroServicoFunctions/CadastroServicoValidation';
+import { getDateForService } from '../../../Services/CadastroServicoFunctions/CadastroServicoFunctions';
 
 function EditarServico({ onOptionChange, id }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -15,7 +16,6 @@ function EditarServico({ onOptionChange, id }) {
   const [disponibilidade, setDisponibilidade] = useState('');
   const [disponibilidadeServico, setDisponibilidadeServico] = useState('');
   const [cidade, setCidade] = useState('');
-  const [estado, setEstado] = useState('');
   const [valorEstimadoServico, setValorEstimadoServico] = useState('');
   const [inicio, setInicio] = useState('');
   const [error, setError] = useState([]);
@@ -27,7 +27,6 @@ function EditarServico({ onOptionChange, id }) {
     criterios,
     disponibilidade,
     cidade,
-    estado,
     inicio,
     valorEstimadoServico,
   };
@@ -43,7 +42,6 @@ function EditarServico({ onOptionChange, id }) {
         setDisponibilidadeServico(response.disponibilidade_servico);
         const [cidade, estado] = response.local_servico.split(',');
         setCidade(cidade.trim());
-        setEstado(estado.trim());
         setValorEstimadoServico(response.valor_estimado_servico);
       } catch (error) {
         console.error('Erro ao buscar serviço:', error);
@@ -58,6 +56,7 @@ function EditarServico({ onOptionChange, id }) {
     event.preventDefault();
     setError({});
     if (!validateUserInput(inputValues, setError)) return;
+    let disponibilidade_servico = getDateForService(disponibilidade, inicio);
 
     const editarServico = {
       nome_servico: nomeServico,
@@ -65,8 +64,9 @@ function EditarServico({ onOptionChange, id }) {
       categoria_servico: categorias,
       criterios_servico: criterios,
       status_servico: disponibilidade,
-      local_servico: `${cidade}, ${estado}`,
+      local_servico: `${cidade}`,
       valor_estimado_servico: valorEstimadoServico,
+      disponibilidade_servico: disponibilidade_servico ? disponibilidade_servico : null,
     };
 
     window.scrollTo(0, 0);
@@ -74,11 +74,16 @@ function EditarServico({ onOptionChange, id }) {
     axios
       .put(`http://localhost:8080/servico/${id}`, editarServico)
       .then(() => {
-        location.reload('');
+      window.location.reload();
       })
       .catch(() => {
         setIsLoading(false);
-      });
+      }).finally(() => {
+        console.log(editarServico)
+        setIsLoading(false);
+
+      })
+      
   };
 
   return (
@@ -145,55 +150,21 @@ function EditarServico({ onOptionChange, id }) {
             <span>Informe a cidade e o estado onde o serviço será prestado</span>
             <div className="form-row">
               <div className="form-group col-md-6">
-                <label htmlFor="estado">Estado</label>
+                <label htmlFor="cidade">Cidade</label>
                 <select
                   className="form-select selectEstado"
-                  id="estado"
-                  value={estado}
-                  onChange={(e) => setEstado(e.target.value)}
-                >
-                <option value="" disabled>- Escolha um estado -</option>
-                <option value="Acre">Acre</option>
-                <option value="Alagoas">Alagoas</option>
-                <option value="Amapá">Amapá</option>
-                <option value="Amazonas">Amazonas</option>
-                <option value="Bahia">Bahia</option>
-                <option value="Ceará">Ceará</option>
-                <option value="Distrito Federal">Distrito Federal</option>
-                <option value="Espírito Santo">Espírito Santo</option>
-                <option value="Goiás">Goiás</option>
-                <option value="Maranhão">Maranhão</option>
-                <option value="Mato Grosso">Mato Grosso</option>
-                <option value="Mato Grosso do Sul">Mato Grosso do Sul</option>
-                <option value="Minas Gerais">Minas Gerais</option>
-                <option value="Pará">Pará</option>
-                <option value="Paraíba">Paraíba</option>
-                <option value="Paraná">Paraná</option>
-                <option value="Pernambuco">Pernambuco</option>
-                <option value="Piauí">Piauí</option>
-                <option value="Rio de Janeiro">Rio de Janeiro</option>
-                <option value="Rio Grande do Norte">Rio Grande do Norte</option>
-                <option value="Rio Grande do Sul">Rio Grande do Sul</option>
-                <option value="Rondônia">Rondônia</option>
-                <option value="Roraima">Roraima</option>
-                <option value="Santa Catarina">Santa Catarina</option>
-                <option value="São Paulo">São Paulo</option>
-                <option value="Sergipe">Sergipe</option>
-                <option value="Tocantins">Tocantins</option>
-                </select>
-                {error.estado && <span className="text-danger">{error.estado}</span>}
-              </div>
-              <div className="form-group col-md-6">
-                <label htmlFor="cidade">Cidade</label>
-                <input
-                  type="text"
-                  className="form-control"
                   id="cidade"
-                  placeholder="Cidade"
                   value={cidade}
                   onChange={(e) => setCidade(e.target.value)}
-                />
-                {error.cidade && <span className="text-danger">{error.cidade}</span>}
+                >
+                <option value="" disabled>- Escolha uma Área de atuação -</option>
+                <option value="Barueri">Barueri</option>
+                <option value="Osasco">Osasco</option>
+                <option value="Carapicuiba">Carapicuiba</option>
+                <option value="Itapevi">Itapevi</option>
+                <option value="Barra Funda">Barra Funda</option>
+                </select>
+                {error.cidade && <span className="text-danger" id="cidade">{error.cidade}</span>}
               </div>
             </div>
           </div>
@@ -267,22 +238,8 @@ function EditarServico({ onOptionChange, id }) {
             {error.disponibilidade && <span className="text-danger">{error.disponibilidade}</span>}
           </div>
           {disponibilidade === 'false' && (
-            <div className="disponibilidade pb-4">
-              <h5>Defina quando o serviço estará disponível:</h5>
-              <span>Informe a data de início do serviço</span>
-              <div className="form-row mt-2">
-                <div className="form-group col-md-6">
-                  <label htmlFor="inicio">Data de início</label>
-                  <input
-                    type="date"
-                    className="form-control"
-                    id="inicio"
-                    value={inicio}
-                    onChange={(e) => setInicio(e.target.value)}
-                  />
-                </div>
-              </div>
-              {error.inicio && <span className="text-danger">{error.inicio}</span>}
+            <div className="disponibilidade pb-4">          
+              <span className='error'><span className='bold'>Aviso:</span> serviços inativos ficarão ocultos até que ative-os</span>
             </div>
           )}
           <button type="submit" className="btn btn-primary">
