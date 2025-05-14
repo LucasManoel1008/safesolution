@@ -1,51 +1,100 @@
-.admDashboard{ 
-
+.admDashboard {
+ 
     min-height: 80vh;
     width: 100%;
     margin-top: 71px;
     max-height: 100%;
 }
-h5{
+ 
+h5 {
     font-weight: 600;
 }
-.admHeader{
-width: 370px;
-
-padding: 15px;
-background-color: var(--blue3);
-color: aliceblue;
-box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;    
-
+ 
+.admHeader {
+    width: 370px;
+ 
+    padding: 15px;
+    background-color: var(--blue3);
+    color: aliceblue;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+ 
 }
+ 
 .admHeader ul {
-list-style-type: none;
-margin-top: 60px;
+    list-style-type: none;
+    margin-top: 60px;
 }
-.admHeader ul li{
+ 
+.admHeader ul li {
     margin-bottom: 25px;
-    
+ 
 }
+ 
 .admHeader ul li button {
     color: white;
     font-size: 18px;
     font-weight: 600;
-
+ 
 }
-
+ 
 .admHeader ul li button:hover {
     font-weight: 650;
     color: var(--blue2);
-
-
+ 
+ 
 }
+ 
 .Admcontainer {
     padding: 15px;
     width: 100%
-
 }
-/* INicio Serviços */
-
-
-
-
-/*Final serviços  */
+ 
+.tabelaUsuarios {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+ 
+.tabelaUsuarios thead th {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 2px solid #ccc;
+    font-size: 16px;
+    font-weight: 600;
+}
+ 
+.tabelaUsuarios tbody td {
+    padding: 10px 16px;
+    border-bottom: 1px solid #eee;
+}
+ 
+.statusOnline {
+    color: green;
+}
+ 
+.statusOffline {
+    color: gray;
+}
+ 
+.tabelaUsuarios button {
+    margin-right: 5px;
+    padding: 6px 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: var(--blue2);
+    color: white;
+}
+ 
+.tabelaUsuarios button:hover {
+    background-color: var(--blue1);
+}
+ 
+.btnExcluir {
+    background-color: #d9534f;
+}
+ 
+.btnExcluir:hover {
+    background-color: #c9302c;
+}
