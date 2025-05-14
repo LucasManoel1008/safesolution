@@ -84,14 +84,11 @@ function Container() {
                   <span style={{ color: 'gray' }}>⚪ offline</span>
                 )}
               </td>
-              <td style={{ padding: '10px 16px' }}>
-                <button onClick={() => handlePromover(usuario.id)} style={{ marginRight: 5 }}>
-                  Promover
-                </button>
-                <button onClick={() => handleToggleStatus(usuario.id)} style={{ marginRight: 5 }}>
+              <td style={{ padding: '10px 16px' }}> 
+                <button className='btn btn-secondary' onClick={() => handleToggleStatus(usuario.id)} style={{ marginRight: 5 }}>
                   {usuario.status === 'online' ? 'Bloquear' : 'Desbloquear'}
                 </button>
-                <button onClick={() => handleExcluir(usuario.id)} style={{ color: 'red' }}>
+                <button className='btn btn-danger' onClick={() => handleExcluir(usuario.id)}>
                   Excluir
                 </button>
               </td>
