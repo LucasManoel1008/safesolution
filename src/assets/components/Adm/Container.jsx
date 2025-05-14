@@ -1,35 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import style from '../../css/admpage.module.css';
+import axios from 'axios';
  
 function Container() {
   const [usuarios, setUsuarios] = useState([]);
- 
-  useEffect(() => {
-    // Mock de usuários
-    setUsuarios([
-      {
-        id: 1,
-        nome: 'João Silva',
-        email: 'joao@email.com',
-        tipo: 'cliente',
-        status: 'online'
-      },
-      {
-        id: 2,
-        nome: 'Maria Santos',
-        email: 'maria@email.com',
-        tipo: 'prestador',
-        status: 'offline'
-      },
-      {
-        id: 3,
-        nome: 'Carlos Andrade',
-        email: 'carlos@email.com',
-        tipo: 'admin',
-        status: 'online'
-      }
-    ]);
-  }, []);
+  
+  
+  const recuperarUsuario = () => {
+      axios.get('http://localhost:5173/usuario/listar').then((response) =>{
+        console.log(response.data)
+      })
+    
+  }
+  useEffect(() =>{
+    recuperarUsuario()
+  }, [])
+  
  
   const handlePromover = (id) => {
     setUsuarios(prev =>
