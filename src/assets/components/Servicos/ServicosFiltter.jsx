@@ -14,7 +14,7 @@ function ServicosFiltter() {
   const {servicos, setServicos} = useContext(ServicosContext);
   const {loading, setLoading} = useContext(ServicoLoaderContext);
 
-  const enviarFiltros = async (e) => {
+   const enviarFiltros = async (e) => {
     e.preventDefault();
     setLoading(true);
     const FiltroServicos={
@@ -24,6 +24,7 @@ function ServicosFiltter() {
     try{
         const response = await axios.post('http://localhost:8080/servico/filtrar', FiltroServicos);
         setServicos(response.data);
+        sessionStorage.setItem('servicos', JSON.stringify(response.data)); // Armazena os serviços no sessionStorage
         console.log("Serviços filtrados:", response.data);    
     }
     catch (error) {
@@ -32,11 +33,19 @@ function ServicosFiltter() {
     finally{
         setLoading(false);
     }
-    
-    
-    
-
   }
+    const limparFiltros = () => {
+        setCategoria("");
+        setData("TODOS");
+        setPrecoMax(0);
+        setArea("");
+    }
+
+    React.useEffect(() => {
+        if (categoria === "" && data === "TODOS" && precoMax === 0 && area === "") {
+            enviarFiltros({ preventDefault: () => {} });
+        }
+    }, [categoria, data, precoMax, area]);
 
   return (
 
@@ -99,13 +108,7 @@ function ServicosFiltter() {
                   </button>
                   <button
                       className="btn btn-outline-secondary col-12"
-                      onClick={() => {
-                          setCategoria("");
-                          setData("");
-                          setPrecoMax(0);
-                          setArea("");
-                         
-                      }}
+                      onClick={(e) => limparFiltros(e)}
                   >
 
                       Limpar

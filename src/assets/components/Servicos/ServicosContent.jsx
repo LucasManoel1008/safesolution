@@ -9,7 +9,6 @@ function ServicosContent() {
 
   const [pesquisa, setSearchTerm] = useState('');
   const {servicos, setServicos} = useContext(ServicosContext);
-  const [servicosPesquisados, setServicosPesquisados] = useState([]);
   const {loading, setLoading} = useContext(ServicoLoaderContext);
 
   
@@ -24,20 +23,17 @@ function ServicosContent() {
   const realizarPesquisa = async (e) => {
     e.preventDefault();
     if (pesquisa === '') {
-      setServicosPesquisados([]);
+      setServicos(sessionStorage.getItem('servicos') ? JSON.parse(sessionStorage.getItem('servicos')) : []);
       return;
     }
     setLoading(true);
-    console.log("🔎 Enviando filtros:" + pesquisa) ;
     try{
-        const response = await axios.post('http://localhost:8080/servico/pesquisar', servicos, {
-            params: {
-                pesquisa: pesquisa
-            }
-        }
-        );
-        setServicosPesquisados(response.data);
-        console.log("Serviços filtrados:", response.data);    
+        const servicosFiltrados = servicos.filter((servico) => {
+        return servico.nome_servico.toLowerCase().includes(pesquisa.toLowerCase());
+      });
+        
+      setServicos(servicosFiltrados);
+        
     }
     catch (error) {
         console.error("Erro ao filtrar serviços:", error);
@@ -60,7 +56,6 @@ function ServicosContent() {
             placeholder="Pesquisar..."
             onChange={(e) => {
               setSearchTerm(e.target.value);
-              realizarPesquisa(e);
             }}
           />
         </div>
@@ -72,28 +67,6 @@ function ServicosContent() {
         {loading == true ? (
           <ServicesLoading />
         ) : (
-          servicosPesquisados.length > 0 ? (
-            servicosPesquisados.map((servico, idx) => (
-              <div key={idx}>
-                <div className={`${styles.servicosBox} mt-3`}>
-                  <div className={styles.item1}>
-                    <img src={ImagensUser.paladins} width={50} height={50} alt="Empresa Logo" />
-                    <div className={styles.servicoInfo}>
-                      <h6 className="blue2">{servico.nome_servico}</h6>
-                      <p className={styles.textServico}>{servico.empresa.nome_empresa}</p>
-                      <p className={styles.textServico}>{servico.local_servico}</p>
-                    </div>
-                  </div>
-            
-                  <div className={styles.item2}>
-                    <p className={styles.precoServico}>Preço inicial: R$ {servico.valor_estimado_servico}</p>
-                    <span className="tempoServico">Postado em: {formatarData(servico.disponibilidade_servico)}</span>
-                  </div>
-                </div>
-                <hr />
-              </div>
-            ))
-          ) : (
           servicos.length > 0 ? (
             servicos.map((servico, idx) => (
               <div key={idx}>
@@ -120,7 +93,7 @@ function ServicosContent() {
               <h5>Nenhum serviço encontrado</h5>
             </div>
           ))
-        )}
+        }
         
         
       </div>

@@ -15,6 +15,7 @@ function Servicos() {
   axios.get('http://localhost:8080/servico/listar')
     .then((response) => {
       setServicos(response.data); 
+      sessionStorage.setItem('servicos', JSON.stringify(response.data)); // Armazena os serviços no sessionStorage
       console.log("Serviços recebidos:", response.data);
     })
     .catch((error) => { 
