@@ -1,0 +1,23 @@
+
+:root {
+    --blue3: #234063;
+    --blue4: #1E2D3F;
+    --white: #EDF2F4;
+    --text-color: #333;
+    --link-color: #1E2D3F;
+    --heading-color: #234063;
+}
+
+.card{
+
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.container{
+    font-size: 16px;
+ 
+} 

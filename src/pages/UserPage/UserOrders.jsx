@@ -1,10 +1,10 @@
 import React from "react";
-import Style from "../../assets/css/userOrder.css";
+import Styles from '../../assets/css/UserOrder.module.css';
 
 const Card = ({ title, description, status }) => {
   return (
     <div className="card">
-      <h2 className="card-title">{title}</h2>
+      <h3 className="card-title">{title}</h3>
       <p className="card-description">{description}</p>
       <p className="card-status">{status}</p>
     </div>
@@ -20,9 +20,9 @@ const UserOrder = () => {
   ];
 
   return (
-    <div className="user-orders">
-      <h1 className="text-center">Compras</h1>
-      <div className="orders-list">
+    <div className="User-order">
+      <h2 className="text-center">Compras</h2>
+      <div className={Styles.card}>
         {orders.map((order) => (
           <Card key={order.id} title={order.title} description={order.description} status={order.status} />
         ))}
