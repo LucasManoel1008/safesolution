@@ -23,6 +23,7 @@ import RedefinicaoDeSenha from './assets/components/subPages/RedefinicaoDeSenha'
 import BloquarUsuarioDeslogado from '../Filters/BloquarUsuarioDeslogado'
 import BloquarUsuarioLogado from '../Filters/BloquearUsuarioLogado'
 import Admpage from './pages/adm/Admpage'
+import ServicoTamplate from './assets/components/Servicos/ServicoTamplate'
 
 const Autenticacao = React.createContext();
 
@@ -47,6 +48,7 @@ function App() {
       <Route path='/Solicitação' element ={<Solicitação/>}/>
       <Route path='/Termos' element={<Termos/>} />
       <Route path='/Servicos' element={<Servicos/>}/>
+      <Route path='/Servicos/:id' element={<ServicoTamplate/>}/>
       <Route path='/Manutencao' element={<Servico1/>}/>
       <Route path='/Politicas-de-Privacidade' element = {<Politicas/>} />
       <Route path='/Orcamento2' element={<Orcamento2/>}/>
