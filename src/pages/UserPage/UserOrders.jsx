@@ -16,7 +16,7 @@ const UserOrder = () => {
     { id: 1, title: "Consultoria Empresarial", description: "Description for Order 1", status: "Em andamento" },
     { id: 2, title: "Transposte de Cargas", description: "Description for Order 2", status: "Em andamento" },
     { id: 3, title: "Gestão de Redes Socias", description: "Description for Order 3",  status: "Concluido" },
-    // Adidicionar mais pedidos conforme necessário
+    // Add mais pedidos conforme necessário
   ];
 
   return (
