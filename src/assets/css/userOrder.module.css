@@ -8,16 +8,56 @@
     --heading-color: #234063;
 }
 
-.card{
-
-    background-color: var(--white);
+.card {
+    position: relative; /* Define o card como referência para posicionamento absoluto */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    margin-bottom: 20px;
+    color: var(--text-color);
+    margin: 10px;
 }
 
-.container{
+.header {
+    padding: 10px;
+    color: var(--blue3);
+    margin: 10px; /* Adiciona espaço em todos os lados */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espaço entre os cards */
     font-size: 16px;
- 
-} 
+
+}
+
+.title{
+    text-align: center;
+    font-size: 40px;
+    color: var(--heading-color);
+    margin-bottom: 10px; /* Espaço abaixo do título */
+}
+
+.detailsButton {
+    position: absolute; 
+    top: 50%; 
+    right: 10px;
+    transform: translateY(-50%); 
+    padding: 8px 14px; /* Reduz o preenchimento interno */
+    background-color: #1E90FF; 
+    color: var(--white); 
+    border: none;
+    border-radius: 5px; /* Reduz o arredondamento das bordas */
+    cursor: pointer; 
+    font-size: 0.875rem; /* Reduz o tamanho do texto */
+}
+
+.detailsButton:hover {
+}
+
+.text {
+    font-size: 16px;
+    color: gray;
+    text-align: center;
+    margin: 10px; /* Adiciona espaço em todos os lados */
+}
