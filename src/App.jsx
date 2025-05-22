@@ -24,6 +24,8 @@ import BloquarUsuarioDeslogado from '../Filters/BloquarUsuarioDeslogado'
 import BloquarUsuarioLogado from '../Filters/BloquearUsuarioLogado'
 import Admpage from './pages/adm/Admpage'
 import ServicoTamplate from './assets/components/Servicos/ServicoTamplate'
+import TermosResponsabilidade from './pages/TermosResponsa/TermosResponsabilidade'
+
 
 const Autenticacao = React.createContext();
 
@@ -54,6 +56,7 @@ function App() {
       <Route path='/Orcamento2' element={<Orcamento2/>}/>
       <Route path='*' element ={<NotFound/>} />
       
+      
       <Route path='/Pagamento' element ={<Pagamento/>}/>
       <Route element={<BloquarUsuarioDeslogado logged={isLogged} />}>
         <Route path='/UserPage' element={<UserPage/>} />
@@ -63,6 +66,14 @@ function App() {
         <Route path='/Redefinir-Senha/:token' element={<RedefinicaoDeSenha/>}/>
         <Route path='/Orcamento' element={<Orcamento/>}/>
         <Route path='/Adm' element={<Admpage/>}/>
+        <Route path='/TermosResponsa' element={<TermosResponsabilidade/>}/>
+        <Route path='/Termos' element={<Termos/>} />
+        <Route path='/Termos-de-Responsabilidade' element={<TermosResponsabilidade />} />
+
+
+        
+
+     
       </Route>
     </Routes>
     <Footer/>
