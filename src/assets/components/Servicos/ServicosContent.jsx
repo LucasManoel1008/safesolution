@@ -46,7 +46,7 @@ function ServicosContent() {
   }
 
   const detalhesServicos = (id) => {
-    navigate(`/Servicos/${id}`);
+    navigate(`/Servicos/${id}`, { state: { id } });
   }
 
   return (
