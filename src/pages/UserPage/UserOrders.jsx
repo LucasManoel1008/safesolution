@@ -14,9 +14,9 @@ const Card = ({ title, description, status }) => {
 
 const UserOrder = () => {
   const orders = [
-    { id: 1, title: "Consultoria Empresarial", description: "Description for Order 1", status: "12/04/2024" },
-    { id: 2, title: "Transposte de Cargas", description: "Description for Order 2", status: "15/07/2024" },
-    { id: 3, title: "Gestão de Redes Socias", description: "Description for Order 3",  status: "20/06/2024" },
+    { id: 1, title: "Consultoria Empresarial", description: "Descriçao 1 ", status: "12/04/2024" },
+    { id: 2, title: "Transposte de Cargas", description: "Descriçao 2", status: "15/07/2024" },
+    { id: 3, title: "Gestão de Redes Socias", description: "Descriçao 3",  status: "20/06/2024" },
     // Add mais pedidos conforme necessário
   ];
 
