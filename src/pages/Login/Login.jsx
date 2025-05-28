@@ -35,7 +35,7 @@ function Login() {
   return (
     <div>
       {isLoading ? <LoadingData /> : ''}
-      <section className='loginBox'>
+      <section className='loginBox d-flex'>
         <div className="content container pt-4">
           <h4 className='text-center'>Login</h4>
           <p className='text-center'>Faça login com sua conta</p>
@@ -53,7 +53,6 @@ function Login() {
               />
              {erro.cnpj ? <small className='text-danger'>{erro.cnpj}</small> : ''}
             </div>
-            
 
             <div className="passwordInput mb-4">
               <input 
@@ -73,7 +72,9 @@ function Login() {
           </form>
          
         </div>
+        <Link className="align-self-end position-absolute p-3 text-dark opacity-25" to={"/"}><i class="fa-solid fa-lock"></i></Link>
       </section>
+      
     </div>
   );
 }
