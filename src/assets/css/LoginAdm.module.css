@@ -1,0 +1,7 @@
+.loginPage{
+    display: flex;
+    background-color: red;
+    width: 600px;
+    height: 650px;
+    margin:  120px auto 40px auto;
+}

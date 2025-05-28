@@ -25,6 +25,7 @@ import BloquarUsuarioLogado from '../Filters/BloquearUsuarioLogado'
 import Admpage from './pages/adm/Admpage'
 import ServicoTamplate from './assets/components/Servicos/ServicoTamplate'
 import TermosResponsabilidade from './pages/TermosResponsa/TermosResponsabilidade'
+import LoginAdm from './pages/adm/LoginAdm'
 
 
 const Autenticacao = React.createContext();
@@ -45,6 +46,7 @@ function App() {
       <Route element = {<BloquarUsuarioLogado logged={isLogged} />}>
         <Route path='/Login' element={<Login/>} />
         <Route path='/cadastro' element={<RenderCadastroPage/>} />
+        <Route path='/LoginAdm' element={<LoginAdm/>} />
       </Route>
       <Route path='/Confirmacao' element={<Confirmação/>}/>
       <Route path='/Solicitação' element ={<Solicitação/>}/>
