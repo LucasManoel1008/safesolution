@@ -11,12 +11,9 @@ function LoginAdm() {
   const realzarLogin = (e) => {
     e.preventDefault();
     try{
-      const response = axios.post('http://localhost:8080/adm/login', {
-        nome_adm: username,
-        senha_adm: password
-      });
+      const response = axios.post(`http://localhost:8080/adm/login?nome_adm=${username}&senha_adm=${password}`);
       response.then((res) => {
-        console.log(res.data);
+        
       });
     }
     catch (error) {

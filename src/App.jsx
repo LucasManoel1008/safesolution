@@ -28,7 +28,7 @@ import TermosResponsabilidade from './pages/TermosResponsa/TermosResponsabilidad
 import LoginAdm from './pages/adm/LoginAdm'
 
 
-const Autenticacao = React.createContext();
+const AutenticacaoUsuario = React.createContext();
 
 function App() {
  
@@ -38,7 +38,7 @@ function App() {
   return (
     <div>
       {console.log(isLogged)}
-   <Autenticacao.Provider value={{isLogged, setIsLogged}}>
+   <AutenticacaoUsuario.Provider value={{isLogged, setIsLogged}}>
     <BrowserRouter>
     <Header />
     <Routes>
@@ -80,14 +80,14 @@ function App() {
     </Routes>
     <Footer/>
     </BrowserRouter>
-    </Autenticacao.Provider>
+    </AutenticacaoUsuario.Provider>
    
     </div>
   )
 }
 
 export const usuarioLogado = () => {
-  const context = useContext(Autenticacao);
+  const context = useContext(AutenticacaoUsuario);
   return context;
 }
 
