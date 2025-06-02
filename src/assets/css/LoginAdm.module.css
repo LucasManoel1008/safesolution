@@ -1,7 +1,18 @@
 .loginPage{
     display: flex;
-    background-color: red;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     width: 600px;
-    height: 650px;
-    margin:  120px auto 40px auto;
+    height: 350;
+    margin:  120px auto 220px auto;
+}
+.loginPage .formLogin{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 70px;
+    margin-bottom: 100px;
 }
