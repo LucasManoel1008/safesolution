@@ -72,7 +72,7 @@ function Login() {
           </form>
          
         </div>
-        <Link className="align-self-end position-absolute p-3 text-dark opacity-25" to={"/LoginAdm"}><i class="fa-solid fa-lock"></i></Link>
+        <Link className="align-self-end position-absolute p-3 text-dark opacity-25" to={"/LoginAdm"}><i className="fa-solid fa-lock"></i></Link>
       </section>
       
     </div>
