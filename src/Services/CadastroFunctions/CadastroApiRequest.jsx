@@ -22,6 +22,7 @@ export const getAndSetCep = (cep, setRua, setBairro, setCidade) => {
 export const createUser = async (userData, dadosEmpresa, setLoading, navigate) => {
   await axios.post('http://localhost:8080/usuario', userData)
         .then(() => {
+          console.log("Passou")
           return axios.post(`http://localhost:8080/empresa?cpfUsuario=${userData.cpf}`, dadosEmpresa);
         })
         .then(() => {

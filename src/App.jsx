@@ -25,28 +25,25 @@ import BloquarUsuarioLogado from '../Filters/BloquearUsuarioLogado'
 import Admpage from './pages/adm/Admpage'
 import ServicoTamplate from './assets/components/Servicos/ServicoTamplate'
 import TermosResponsabilidade from './pages/TermosResponsa/TermosResponsabilidade'
-import LoginAdm from './pages/adm/LoginAdm'
+
 
 
 const AutenticacaoUsuario = React.createContext();
 
-function App() {
- 
+function AppContent() {
+  const location = useLocation();
   const [isLogged, setIsLogged] = React.useState(false);
- 
+  
+  const isAdminPage = location.pathname === '/Adm';
   
   return (
     <div>
-      {console.log(isLogged)}
-   <AutenticacaoUsuario.Provider value={{isLogged, setIsLogged}}>
-    <BrowserRouter>
-    <Header />
-    <Routes>
+      {!isAdminPage && <Header />}
+      <Routes>
       <Route index element={<Home/>} />
       <Route element = {<BloquarUsuarioLogado logged={isLogged} />}>
         <Route path='/Login' element={<Login/>} />
-        <Route path='/cadastro' element={<RenderCadastroPage/>} />
-        <Route path='/LoginAdm' element={<LoginAdm/>} />
+        <Route path='/cadastro' element={<RenderCadastroPage/>} />        
       </Route>
       <Route path='/Confirmacao' element={<Confirmação/>}/>
       <Route path='/Solicitação' element ={<Solicitação/>}/>
@@ -67,7 +64,7 @@ function App() {
         <Route path='/Redefinicao-de-senha' element={<RedefinirSenha/>}/>
         <Route path='/Redefinir-Senha/:token' element={<RedefinicaoDeSenha/>}/>
         <Route path='/Orcamento' element={<Orcamento/>}/>
-        <Route path='/Adm' element={<Admpage/>}/>
+        <Route path='/Adm'element={<Admpage/>}/>
         <Route path='/TermosResponsa' element={<TermosResponsabilidade/>}/>
         <Route path='/Termos' element={<Termos/>} />
         <Route path='/Termos-de-Responsabilidade' element={<TermosResponsabilidade />} />
@@ -77,12 +74,21 @@ function App() {
 
      
       </Route>
-    </Routes>
-    <Footer/>
-    </BrowserRouter>
-    </AutenticacaoUsuario.Provider>
-   
+    </Routes>    
+    {!isAdminPage && <Footer/>}
     </div>
+  )
+}
+
+function App() {
+  const [isLogged, setIsLogged] = React.useState(false);
+  
+  return (
+    <AutenticacaoUsuario.Provider value={{isLogged, setIsLogged}}>
+      <BrowserRouter>
+        <AppContent />
+      </BrowserRouter>
+    </AutenticacaoUsuario.Provider>
   )
 }
 

@@ -9,6 +9,7 @@ import { usuarioLogado } from '../../App';
 function Header() {
 
   const {isLogged, setIsLogged} = usuarioLogado()
+  const [nivel_acesso, setNivel_acesso] = useState(1);
   const [userData, setUserData] = useState(null);
   const location = useLocation();
   const navigate = useNavigate();
@@ -26,7 +27,9 @@ function Header() {
     
     if (fetchedUserData){
       setUserData(fetchedUserData);
+      setNivel_acesso(fetchedUserData.usuario.nivel_acesso);
       setIsLogged(true);
+      
       }
     
   }
@@ -43,6 +46,22 @@ function Header() {
   }
   const servicesPage =() => {
       navigate('/Meus-Servicos');
+  }
+  const admPage = () => {
+    if (nivel_acesso == 2) {
+      navigate('/Adm');
+    } else {
+      toast.error('Você não tem permissão para acessar esta página.', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
   }
 
   const errorToast = (error) => {
@@ -82,6 +101,7 @@ const RightHeader = React.memo(() => {
           <div className="dropdown-menu">
             <button className="dropdown-item" onClick={profilePage} type="button">Perfil</button>
             {isLogged ? <button onClick={servicesPage} className='dropdown-item'>Meus Serviços</button> : <Link to="/Login">Meus Serviços</Link>}
+            {isLogged && nivel_acesso == 2 ? <button onClick={admPage} className='dropdown-item'>Dashboard</button> : ""}
             <button className="dropdown-item" onClick={exitAccount} type="button">Sair</button>
           </div>
         </div>

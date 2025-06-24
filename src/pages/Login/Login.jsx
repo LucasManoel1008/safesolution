@@ -69,10 +69,8 @@ function Login() {
             </div>
             <input type="submit" className='btn btn-primary' value={`Login`} />
             <Link to="/Cadastro" className='d-block p-2 cadConta mt-2 text-center '>Cadastrar Nova Conta</Link>  
-          </form>
-         
-        </div>
-        <Link className="align-self-end position-absolute p-3 text-dark opacity-25" to={"/LoginAdm"}><i className="fa-solid fa-lock"></i></Link>
+          </form>         
+        </div>        
       </section>
       
     </div>

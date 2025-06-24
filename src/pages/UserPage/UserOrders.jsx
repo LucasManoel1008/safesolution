@@ -1,5 +1,5 @@
 import React from "react";
-import Styles from '../../assets/css/UserOrder.module.css';
+import Styles from '../../assets/css/userOrder.module.css'
 
 const Card = ({ title, description, status }) => {
   return (
