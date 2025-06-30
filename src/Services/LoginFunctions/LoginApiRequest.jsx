@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { sanitazeCnpj } from './LoginValidation';
 
-    export const LoginApiRequest = async (cnpj, senha, setErro) => {
+    export const LoginApiRequest = async (cnpj, senha, setErro, setErroLogin) => {
         let cleanCnpj = sanitazeCnpj(cnpj);
         try{
             const response = await axios.get(`http://localhost:8080/empresa/login/${cleanCnpj}`, {
@@ -11,13 +11,28 @@ import { sanitazeCnpj } from './LoginValidation';
                 sessionStorage.setItem('empresa', JSON.stringify(response.data));
                 
             } else {
-                setErro({ senha: 'CNPJ e/ou senha incorretos. Tente novamente.' });
+                setErroLogin('Erro inesperado no login.');
                 return false;
             }
         } catch (error) {
-            setErro({ senha: 'Usuario e/ou senha incorretos. Tente novamente.' });
+            if (error.response && error.response.data) {
+                try {
+                    const errorData = typeof error.response.data === 'string' 
+                        ? JSON.parse(error.response.data) 
+                        : error.response.data;
+                    
+                    if (errorData.erro) {
+                        setErroLogin(errorData.erro);
+                    } else {
+                        setErroLogin('Usuário e/ou senha incorretos. Tente novamente.');
+                    }
+                } catch (parseError) {
+                    setErroLogin('Usuário e/ou senha incorretos. Tente novamente.');
+                }
+            } else {
+                setErroLogin('Erro de conexão. Tente novamente.');
+            }
             return false;
         }
         return true;
     }
-    
