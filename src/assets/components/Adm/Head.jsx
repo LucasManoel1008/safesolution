@@ -27,7 +27,7 @@ function Head({ setRender }) {
       </div>
       
       <ul> 
-          <li> <button className='btn' onClick={() => setRender("usuario")}> <i className="fa-solid fa-user mr-2"></i>Usuários </button> </li>
+          <li> <button className='btn' onClick={() => setRender("usuario")}> <i className="fa-solid fa-user mr-2"></i>Empresas </button> </li>
           <li> <button className='btn' onClick={() => setRender("servicos")}> <i className="fa-solid fa-file mr-2"></i>Serviços </button> </li>
           <li> <button className='btn' onClick={() => setRender("mensagens")}>  <i className="fa-solid fa-comment mr-2"></i>Mensagens </button> </li>
           <li><button type="button" className={`btn ${style.botaoVoltar}`} onClick={voltarHome}>
