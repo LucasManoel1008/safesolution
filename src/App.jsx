@@ -25,6 +25,7 @@ import BloquarUsuarioLogado from '../Filters/BloquearUsuarioLogado'
 import Admpage from './pages/adm/Admpage'
 import ServicoTamplate from './assets/components/Servicos/ServicoTamplate'
 import TermosResponsabilidade from './pages/TermosResponsa/TermosResponsabilidade'
+import BloquearNaoAdm from '../Filters/BloquearNaoAdm'
 
 
 
@@ -64,7 +65,9 @@ function AppContent() {
         <Route path='/Redefinicao-de-senha' element={<RedefinirSenha/>}/>
         <Route path='/Redefinir-Senha/:token' element={<RedefinicaoDeSenha/>}/>
         <Route path='/Orcamento' element={<Orcamento/>}/>
-        <Route path='/Adm'element={<Admpage/>}/>
+        <Route element={<BloquearNaoAdm logged={isLogged} />}>
+          <Route path='/Adm'element={<Admpage/>}/>
+        </Route>
         <Route path='/TermosResponsa' element={<TermosResponsabilidade/>}/>
         <Route path='/Termos' element={<Termos/>} />
         <Route path='/Termos-de-Responsabilidade' element={<TermosResponsabilidade />} />

@@ -12,6 +12,7 @@ function Login() {
   const [cnpj, setCnpj] = useState('');
   const [senha, setSenha] = useState('');
   const [erro, setErro] = useState({});
+  const [erroLogin, setErroLogin] = useState(''); 
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const {isLogged, setIsLogged} = usuarioLogado()
@@ -21,15 +22,17 @@ function Login() {
       return;
     }
     setErro({});
+    setErroLogin(''); 
     setIsLoading(true);
-    if(await ApiRequest.LoginApiRequest(cnpj, senha, setErro) == false){
+    
+    const resultado = await ApiRequest.LoginApiRequest(cnpj, senha, setErro, setErroLogin);
+    if(resultado === false){
       setIsLoading(false);
       return;
     }
     setIsLoading(false);
     setIsLogged(true);
     navigate('/UserPage')
-   
   }
   
   return (
@@ -39,6 +42,14 @@ function Login() {
         <div className="content container pt-4">
           <h4 className='text-center'>Login</h4>
           <p className='text-center'>Faça login com sua conta</p>
+          
+
+          {erroLogin && (
+            <div className="alert alert-danger text-center mb-3" role="alert">
+              {erroLogin}
+            </div>
+          )}
+          
           <form className="entradaDados" onSubmit={authenticateUser}>
             <div className="text mb-4 text-left">
               <input 
