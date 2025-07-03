@@ -15,16 +15,10 @@ function Admpage() {
   useEffect(() => {
     const fetchAdmData = async () => {
       try {
-
         const userData = sessionStorage.getItem('empresa');
-
-        
         if (userData) {
-          const parsedData = JSON.parse(userData);
-
-          
+          const parsedData = JSON.parse(userData);    
           setAdmData(parsedData);
-          console.log('setAdmData chamado com:', parsedData);
         } else {
 
           const localUserData = localStorage.getItem('empresa');
