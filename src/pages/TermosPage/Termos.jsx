@@ -3,9 +3,7 @@ import "../../pages/TermosPage/termos.css"
 function Termos() {
   return (
     <div className='termoContent'>
-      <div className='Title'>
-        <h4>Termos de uso</h4>
-      </div>
+      <h1>Termos de Uso</h1>
       <div className='ConteudoTermos'>
 
     <section>
