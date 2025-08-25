@@ -6,8 +6,9 @@ function Termos() {
       <div className='Title'>
         <h4>Termos de uso</h4>
       </div>
-      <div className='texto'>
+      <div className='ConteudoTermos'>
 
+    <section>
         <h5>Termos de Uso — Safe Solutions</h5>
         <p>Safe Solutions, pessoa jurídica de direito privado descreve, através
           deste documento, as regras de uso do site <a href="/">www.safesolutions.com 
@@ -25,7 +26,9 @@ function Termos() {
           significa que você aceitou os Termos de Uso revisados. Caso, após a leitura da 
           versão revisada, você não esteja de acordo com seus termos, favor encerrar o seu 
           acesso. </p>
+    </section>
 
+    <section>
         <h5>Seção 1 - Usuário</h5>
 
         <p>A utilização deste website atribui de forma automática a condição de Usuário e 
@@ -36,7 +39,9 @@ function Termos() {
 
         <p>A utilização deste website acarreta a adesão aos presentes Termos de Uso e a 
           versão mais atualizada da Política de Privacidade de Safe Solutions.</p>
+    </section>
 
+    <section>
         <h5>Seção 3 - Condições de acesso</h5>
 
         <p>Em geral, o acesso ao website da Safe Solutions possui caráter gratuito e não 
@@ -59,7 +64,7 @@ function Termos() {
           implica em licença não-exclusiva, irrevogável e irretratável, para sua utilização, reprodução e 
           publicação pela Safe Solutions no seu website, plataformas e aplicações de internet, ou ainda em 
           outras plataformas, sem qualquer restrição ou limitação.</p>
-
+      </section>
         <h5>Seção 4 - Cookies</h5>
 
         <p>Informações sobre o seu uso neste website podem ser coletadas a partir de cookies. Cookies são 
@@ -79,12 +84,13 @@ function Termos() {
         <p>As definições que escolher podem afetar a sua experiência de navegação e o funcionamento que exige a utilização de cookies. Neste sentido, rejeitamos qualquer
           responsabilidade pelas consequências resultantes do funcionamento limitado deste website provocado pela desativação de cookies no seu dispositivo (incapacidade
           de definir ou ler um cookie).</p>
-
+        
+      <section>
         <h5>Seção 5 - Propriedade Intelectual</h5>
 
         <p>Todos os elementos de Safe Solutions são de propriedade intelectual da mesma ou de seus licenciados. Estes Termos ou a utilização do website não concede a você
           qualquer licença ou direito de uso dos direitos de propriedade intelectual da Safe Solutions ou de terceiros. </p>
-
+      </section>
         <h5>Seção 6 - Links para sites de terceiros</h5>
 
         <p>Este website poderá, de tempos a tempos, conter links de hipertexto que redirecionará você para sites das redes dos nossos parceiros, anunciantes, fornecedores etc.
@@ -96,22 +102,26 @@ function Termos() {
           operacional, prestador de serviços de internet sem fio ou fabricante de dispositivos, incluindo todos os Dados Pessoais que divulgar para outras
           organizações por meio dos aplicativos, relacionadas a tais aplicativos, ou publicadas em nossas páginas em mídias sociais. Nós recomendamos que você se
           informe sobre a política de privacidade e termos de uso de cada site visitado ou de cada prestador de serviço utilizado.</p>
-
+      <section>
         <h5>Seção 7 - Prazos e alterações</h5>
 
         <p>O funcionamento deste website se dá por prazo indeterminado.</p>
 
         <p>O website no todo ou em cada uma das suas seções, pode ser encerrado, suspenso ou interrompido unilateralmente por Safe Solutions, a qualquer
           momento e sem necessidade de prévio aviso.</p>
+      </section>
 
+      <section>  
         <h5>Seção 8 - Dados pessoais</h5>
 
         <p>Durante a utilização deste website, certos dados pessoais serão coletados e tratados por Safe Solutions e/ou pelos Parceiros. As regras
           relacionadas ao tratamento de dados pessoais de Safe Solutions estão estipuladas na Política de Privacidade.</p>
-
+      </section>
+      <section>
         <h5>Seção 9 - Contato</h5>
 
         <p>Caso você tenha qualquer dúvida sobre os Termos de Uso, por favor, entre em contato pelo e-mail safesolutionsempresa@gmail.com.</p>
+      </section>
       </div>
     </div>
 
